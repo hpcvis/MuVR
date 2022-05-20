@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6531052538444464859}
   - component: {fileID: 2165370255037169914}
+  - component: {fileID: 886871086713833669}
   - component: {fileID: 3807133915305081773}
   m_Layer: 0
   m_Name: PlayerAvatar
@@ -60,6 +61,30 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 3807133915305081773}
   SimulationBehaviours: []
+--- !u!114 &886871086713833669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531052538444464858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cedb6a5bdb2aaa04e99ebd9c65e866d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 6712699714561928384}
+  leftShoulder: {fileID: 0}
+  rightShoulder: {fileID: 0}
+  leftElbow: {fileID: 0}
+  rightElbow: {fileID: 0}
+  leftHand: {fileID: 4520906216342882737}
+  rightHand: {fileID: 3504329109087910658}
+  pelvis: {fileID: 0}
+  leftKnee: {fileID: 0}
+  rightKnee: {fileID: 0}
+  leftFoot: {fileID: 0}
+  rightFoot: {fileID: 0}
 --- !u!114 &3807133915305081773
 MonoBehaviour:
   m_ObjectHideFlags: 0

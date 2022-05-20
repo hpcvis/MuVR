@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 68593894583499849}
   - component: {fileID: 3107895282752477843}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: VRCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,3 +342,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a23217197a6979b41baabb62ce6e7a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  links:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 010000000600000007000000
+    _keys: 010000000600000007000000
+    _values:
+    - {fileID: 3107895282752477843}
+    - {fileID: 5545813740652985773}
+    - {fileID: 1681860243847564354}
