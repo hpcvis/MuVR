@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab:
-    RawGuidValue: eda185edfdbfaaf46a7d71f0973b2657
+    RawGuidValue: d7f524ba58b680c489206cdd6b642fe1
   spawnedAvatars:
     reorderableList:
       canAdd: 1
@@ -331,7 +331,8 @@ MonoBehaviour:
     isExpanded: 0
     _keyValues: []
     _keys: []
-    _values: []
+    _values:
+    - {fileID: 0}
 --- !u!114 &790579027 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8176876437710456865, guid: 171f770a56fc2414a9c004b7de9c4f1b,
