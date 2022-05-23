@@ -31,4 +31,8 @@ public class PlayerAvatar : MonoBehaviour {
 		pelvis,
 		leftKnee, rightKnee,
 		leftFoot, rightFoot;
+
+	public void Update() {
+		Debug.Log(head.pose);
+	}
 }
