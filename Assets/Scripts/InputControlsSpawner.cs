@@ -55,6 +55,9 @@ public class InputControlsSpawner : NetworkBehaviour {
         input = Instantiate(inputPrefabs[spawnIndex], Vector3.zero, Quaternion.identity, transform);
         
         // TODO: We need a way to hide the HMD that isn't hard coded...
-        transform.GetChild(0).gameObject.SetActive(false);
+        if (Object.HasInputAuthority)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
 }
