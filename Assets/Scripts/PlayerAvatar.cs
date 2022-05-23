@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerAvatar : MonoBehaviour {
 	// Enum representing linkage
 	[Serializable]
-	public enum Linkage {
+	public enum Slot {
 		INVALID,
 		head,
 		leftShoulder, rightShoulder,
@@ -16,10 +16,16 @@ public class PlayerAvatar : MonoBehaviour {
 		leftKnee, rightKnee,
 		leftFoot, rightFoot
 	}
+
+	// Class wrapper around unity's Pose to enable reference semantics
+	[Serializable]
+	public class PoseRef {
+		public Pose pose;
+	}
 	
 	[Header("Pose Transforms")] 
-	public Transform head;
-	public Transform leftShoulder, rightShoulder,
+	public PoseRef head;
+	public PoseRef leftShoulder, rightShoulder,
 		leftElbow, rightElbow,
 		leftHand, rightHand,
 		pelvis,

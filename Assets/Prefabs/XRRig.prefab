@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 68593894583499855}
   - component: {fileID: 68593894583499854}
   - component: {fileID: 68593894583499849}
-  - component: {fileID: 3107895282752477843}
+  - component: {fileID: 8394357993999360786}
   m_Layer: 0
   m_Name: VRCamera
   m_TagString: MainCamera
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 0
---- !u!114 &3107895282752477843
+--- !u!114 &8394357993999360786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,10 +113,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 68593894583499853}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b04276619253288499210e8bd4924352, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  targetAvatar: {fileID: 0}
+  slot: 1
+  mode: 0
+  offset:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+  target:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &68593894699806819
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 68593895000353630}
   - component: {fileID: 68593895000353631}
-  - component: {fileID: 1681860243847564354}
+  - component: {fileID: 3373011034948879364}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -200,7 +209,7 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 0
---- !u!114 &1681860243847564354
+--- !u!114 &3373011034948879364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,10 +218,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 68593895000353629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b04276619253288499210e8bd4924352, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  targetAvatar: {fileID: 0}
+  slot: 7
+  mode: 0
+  offset:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+  target:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &68593896154261935
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 68593896154261928}
   - component: {fileID: 68593896154261929}
-  - component: {fileID: 5545813740652985773}
+  - component: {fileID: 6588711062793079300}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -264,7 +282,7 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 0
---- !u!114 &5545813740652985773
+--- !u!114 &6588711062793079300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,10 +291,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 68593896154261935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b04276619253288499210e8bd4924352, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  targetAvatar: {fileID: 0}
+  slot: 6
+  mode: 0
+  offset:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+  target:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &68593896185247420
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,32 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a23217197a6979b41baabb62ce6e7a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  links:
-    reorderableList:
-      canAdd: 1
-      canRemove: 1
-      draggable: 1
-      expandable: 1
-      multipleSelection: 1
-      isExpanded: 1
-      label:
-        m_Text: Keys
-        m_Image: {fileID: 0}
-        m_Tooltip: 
-      headerHeight: 18
-      footerHeight: 13
-      slideEasing: 0.15
-      verticalSpacing: 2
-      showDefaultBackground: 1
-      elementDisplayType: 0
-      elementNameProperty: 
-      elementNameOverride: 
-      elementIcon: {fileID: 0}
-    reqReferences: {fileID: 0}
-    isExpanded: 1
-    _keyValues: 010000000600000007000000
-    _keys: 010000000600000007000000
-    _values:
-    - {fileID: 3107895282752477843}
-    - {fileID: 5545813740652985773}
-    - {fileID: 1681860243847564354}
+  syncs:
+  - {fileID: 8394357993999360786}
+  - {fileID: 3373011034948879364}
+  - {fileID: 6588711062793079300}
