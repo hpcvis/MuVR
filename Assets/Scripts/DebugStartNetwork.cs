@@ -4,12 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class DebugStartNetwork : MonoBehaviour {
 
+	[Tooltip("The Fusion Network Topology that we should start the game with.")]
+	public GameMode startupMode = GameMode.AutoHostOrClient;
+
 	// Reference to the NetworkRunner
 	[SerializeField] private NetworkRunner runner;
 	
 	// Start is called before the first frame update
 	private void Start() {
-		StartGame(GameMode.AutoHostOrClient);	
+		StartGame(startupMode);	
 	}
 
 

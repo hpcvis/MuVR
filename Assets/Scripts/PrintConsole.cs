@@ -8,35 +8,28 @@ public class PrintConsole : MonoBehaviour
 	string myLog = "*begin log";
 	string filename = "";
 	bool doShow = true;
-	int kChars = 700;
+	int kChars = 900;
 
-	void OnEnable()
-	{
+	void OnEnable() {
 		Application.logMessageReceived += Log;
 	}
 
-	void OnDisable()
-	{
+	void OnDisable() {
 		Application.logMessageReceived -= Log;
 	}
 
-	void Update()
-	{
+	void Update() {
 		if (Input.GetKeyDown(KeyCode.Space))
-		{
 			doShow = !doShow;
-		}
 	}
 
-	public void Log(string logString, string stackTrace, LogType type)
-	{
+	public void Log(string logString, string stackTrace, LogType type) {
 		// for onscreen...
 		myLog = myLog + "\n" + logString;
-		if (myLog.Length > kChars) { myLog = myLog.Substring(myLog.Length - kChars); }
+		if (myLog.Length > kChars) myLog = myLog.Substring(myLog.Length - kChars);
 
 		// for the file ...
-		if (filename == "")
-		{
+		if (filename == "") {
 			string d = System.Environment.GetFolderPath(
 				System.Environment.SpecialFolder.Desktop) + "/YOUR_LOGS";
 			System.IO.Directory.CreateDirectory(d);
@@ -47,9 +40,8 @@ public class PrintConsole : MonoBehaviour
 		catch { }
 	}
 
-	void OnGUI()
-	{
-		if (!doShow) { return; }
+	void OnGUI() {
+		if (!doShow) return;
 		GUI.matrix = Matrix4x4.TRS(
 			Vector3.zero,
 			Quaternion.identity,
