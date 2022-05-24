@@ -16,7 +16,7 @@ public class SyncPose : MonoBehaviour {
 	public SyncMode mode;
 	
 	[Tooltip("Offset applied while syncing")]
-	public Pose offset;
+	public Pose offset = Pose.identity;
 
 	[Tooltip("Whether or not we should sync transforms or rotations")]
 	private bool syncTransforms, syncRotations;

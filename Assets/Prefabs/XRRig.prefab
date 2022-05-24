@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 68593894583499855}
   - component: {fileID: 68593894583499854}
   - component: {fileID: 68593894583499849}
-  - component: {fileID: 8394357993999360786}
+  - component: {fileID: 2249851324647141663}
   m_Layer: 0
   m_Name: VRCamera
   m_TagString: MainCamera
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 0
---- !u!114 &8394357993999360786
+--- !u!114 &2249851324647141663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,11 +121,11 @@ MonoBehaviour:
   mode: 0
   offset:
     position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!1 &68593894699806819
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 68593895000353630}
   - component: {fileID: 68593895000353631}
-  - component: {fileID: 3373011034948879364}
+  - component: {fileID: 221775747462136568}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 0
---- !u!114 &3373011034948879364
+--- !u!114 &221775747462136568
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,11 +226,11 @@ MonoBehaviour:
   mode: 0
   offset:
     position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!1 &68593896154261935
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 68593896154261928}
   - component: {fileID: 68593896154261929}
-  - component: {fileID: 6588711062793079300}
+  - component: {fileID: 6373481742287851318}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 0
---- !u!114 &6588711062793079300
+--- !u!114 &6373481742287851318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -299,11 +299,11 @@ MonoBehaviour:
   mode: 0
   offset:
     position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!1 &68593896185247420
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +315,6 @@ GameObject:
   - component: {fileID: 68593896185247422}
   - component: {fileID: 68593896185247421}
   - component: {fileID: 5307495941646319769}
-  - component: {fileID: 1029290806827044014}
   m_Layer: 0
   m_Name: XRRig
   m_TagString: Untagged
@@ -371,19 +370,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncs:
-  - {fileID: 8394357993999360786}
-  - {fileID: 3373011034948879364}
-  - {fileID: 6588711062793079300}
---- !u!114 &1029290806827044014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68593896185247420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017c5e3933235514c9520e1dace2a4b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ActionAssets: []
+  - {fileID: 2249851324647141663}
+  - {fileID: 221775747462136568}
+  - {fileID: 6373481742287851318}

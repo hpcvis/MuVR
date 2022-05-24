@@ -6,7 +6,7 @@ public class SyncTransform : MonoBehaviour {
 	public Transform target;
 	
 	[Tooltip("Offset applied while syncing")]
-	public Pose offset;
+	public Pose offset = Pose.identity;
 
 	// Update is called once per frame
 	private void Update() {

@@ -20,12 +20,12 @@ public class PlayerAvatar : MonoBehaviour {
 	// Class wrapper around unity's Pose to enable reference semantics
 	[Serializable]
 	public class PoseRef {
-		public Pose pose;
+		public Pose pose = Pose.identity;
 	}
 	
-	[Header("Pose Transforms")] 
-	public PoseRef head;
-	public PoseRef leftShoulder, rightShoulder,
+	[Header("Pose Transforms (Read Only)")] 
+	[ReadOnly] public PoseRef head;
+	[ReadOnly] public PoseRef leftShoulder, rightShoulder,
 		leftElbow, rightElbow,
 		leftHand, rightHand,
 		pelvis,
