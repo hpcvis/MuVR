@@ -94,9 +94,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_PositionAction.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_PositionAction.m_Reference
     value: 
-    objectReference: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: -3326005586356538449, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_RotationAction.m_UseReference
@@ -131,9 +135,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_RotationAction.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_RotationAction.m_Reference
     value: 
-    objectReference: {fileID: 5101698808175986029, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: 5101698808175986029, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_TrackingStateAction.m_UseReference
@@ -168,9 +176,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_TrackingStateAction.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_TrackingStateAction.m_Reference
     value: 
-    objectReference: {fileID: -1277054153949319361, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: -1277054153949319361, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_SelectAction.m_UseReference
@@ -205,9 +217,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_SelectAction.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_SelectAction.m_Reference
     value: 
-    objectReference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: 187161793506945269, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_SelectActionValue.m_UseReference
@@ -242,9 +258,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_SelectActionValue.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_SelectActionValue.m_Reference
     value: 
-    objectReference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: -1758520528963094988, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_ActivateAction.m_UseReference
@@ -279,9 +299,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_ActivateAction.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_ActivateAction.m_Reference
     value: 
-    objectReference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: 83097790271614945, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_ActivateActionValue.m_UseReference
@@ -316,9 +340,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_ActivateActionValue.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_ActivateActionValue.m_Reference
     value: 
-    objectReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: 7904272356298805229, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_UIPressAction.m_UseReference
@@ -353,9 +381,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_UIPressAction.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_UIPressAction.m_Reference
     value: 
-    objectReference: {fileID: 3279264004350380116, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: 83097790271614945, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_UIPressActionValue.m_UseReference
@@ -390,9 +422,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_UIPressActionValue.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_UIPressActionValue.m_Reference
     value: 
-    objectReference: {fileID: -5908353012961274365, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: 7904272356298805229, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_HapticDeviceAction.m_UseReference
@@ -427,9 +463,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_HapticDeviceAction.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_HapticDeviceAction.m_Reference
     value: 
-    objectReference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: -8222252007134549311, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_RotateAnchorAction.m_UseReference
@@ -464,9 +504,13 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_RotateAnchorAction.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_RotateAnchorAction.m_Reference
     value: 
-    objectReference: {fileID: -5913262927076077117, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: -5913262927076077117, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_TranslateAnchorAction.m_UseReference
@@ -501,11 +545,16 @@ Preset:
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: m_TranslateAnchorAction.m_Action.m_Flags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: m_TranslateAnchorAction.m_Reference
     value: 
-    objectReference: {fileID: 875253871413052681, guid: c348712bda248c246b8c49b3db54643f,
+    objectReference: {fileID: 875253871413052681, guid: ad97252fa702ca2418d1f94478290ebf,
       type: 3}
   - target: {fileID: 0}
     propertyPath: m_ButtonPressPoint
     value: 0.5
     objectReference: {fileID: 0}
+  m_ExcludedProperties: []

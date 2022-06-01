@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 1
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 6606634378604021384}
   _networkObjectCache: {fileID: 6606634378604021384}
   _synchronizeParent: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _networkBehaviours:
   - {fileID: 3807133915305081773}
+  - {fileID: 7089441834453454997}
   - {fileID: 7407683681342061073}
   - {fileID: 2450336938242817400}
   - {fileID: 8229183251738500020}
@@ -240,7 +241,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 6606634378604021384}
   _networkObjectCache: {fileID: 6606634378604021384}
   inputPrefabs:
-  - {fileID: 68593896185247420, guid: eda185edfdbfaaf46a7d71f0973b2657, type: 3}
+  - {fileID: 4732151867741746184, guid: 299522a758213fc41a1a31c8d742fafe, type: 3}
   spawnIndex: 0
   input: {fileID: 0}
 --- !u!114 &7089441834453454997
@@ -255,9 +256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aaecc057afee174d8db587928f20f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 6606634378604021384}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 6606634378604021384}
 --- !u!1001 &1468305191387676151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -494,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 6606634378604021384}
   _networkObjectCache: {fileID: 6606634378604021384}
   _synchronizeParent: 0
@@ -674,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 2
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 6606634378604021384}
   _networkObjectCache: {fileID: 6606634378604021384}
   _synchronizeParent: 0
