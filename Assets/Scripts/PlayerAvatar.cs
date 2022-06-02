@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Component that holds pose data. It acts as the glue between the input layer and the networking layer
 public class PlayerAvatar : MonoBehaviour {
 	// Enum representing linkage
 	[Serializable]
@@ -23,6 +22,7 @@ public class PlayerAvatar : MonoBehaviour {
 		public Pose pose = Pose.identity;
 	}
 	
+	// Poses that can can be read to or from by the input and networking layers respectively
 	[Header("Pose Transforms (Read Only)")] 
 	[ReadOnly] public PoseRef head;
 	[ReadOnly] public PoseRef leftShoulder, rightShoulder,

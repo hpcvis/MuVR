@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using RotaryHeart.Lib.SerializableDictionary;
 
 // Class that links transforms found in the avatar to child SyncTransforms
 public class InputControlLinker : MonoBehaviour {

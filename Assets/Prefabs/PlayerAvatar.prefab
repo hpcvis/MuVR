@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6744889951060607992}
-  - component: {fileID: 7949002821323983880}
   - component: {fileID: 6869786338442502763}
+  - component: {fileID: 7407683681342061073}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -34,32 +34,6 @@ Transform:
   m_Father: {fileID: 6531052538444464859}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7949002821323983880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6409199300151045563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 1468305191387277175}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
 --- !u!114 &6869786338442502763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +56,48 @@ MonoBehaviour:
     pose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &7407683681342061073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6409199300151045563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 6606634378604021384}
+  _networkObjectCache: {fileID: 6606634378604021384}
+  _synchronizeParent: 0
+  _packing:
+    Position: 0
+    Rotation: 0
+    Scale: 0
+  _interpolation: 2
+  _extrapolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  _clientAuthoritative: 1
+  _sendToOwner: 1
+  _interval: 1
+  _synchronizePosition: 1
+  _positionSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeRotation: 1
+  _rotationSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeScale: 1
+  _scaleSnapping:
+    X: 0
+    Y: 0
+    Z: 0
 --- !u!1 &6531052538444464858
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,9 +107,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6531052538444464859}
-  - component: {fileID: 2165370255037169914}
+  - component: {fileID: 6606634378604021384}
   - component: {fileID: 886871086713833669}
   - component: {fileID: 3807133915305081773}
+  - component: {fileID: 7089441834453454997}
   m_Layer: 0
   m_Name: PlayerAvatar
   m_TagString: Untagged
@@ -119,7 +136,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2165370255037169914
+--- !u!114 &6606634378604021384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,24 +145,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 6531052538444464858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectInterest: 0
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 1
-  AllowStateAuthorityOverride: 0
-  AoiPositionSource: {fileID: 0}
-  Flags: 2305
-  NetworkGuid:
-    RawGuidValue: d7f524ba58b680c489206cdd6b642fe1
-  NestedObjects: []
-  NetworkedBehaviours:
+  _networkBehaviours:
   - {fileID: 3807133915305081773}
-  - {fileID: 7949002821323983880}
-  - {fileID: 7718345340292945603}
-  - {fileID: 2163209429990556204}
-  SimulationBehaviours: []
+  - {fileID: 7407683681342061073}
+  - {fileID: 2450336938242817400}
+  - {fileID: 8229183251738500020}
+  SceneTransformProperties:
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    LocalScale: {x: 1, y: 1, z: 1}
+  _isNetworked: 1
+  _hasParentNetworkObjectAtEdit: 0
+  NetworkObserver: {fileID: 0}
+  _prefabId: -1
+  _scenePathHash: 0
+  _sceneId: 0
+  _sceneNetworkObjects: []
 --- !u!114 &886871086713833669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,11 +236,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6527c469e81b3ae4e86c9378820690fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 3
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 6606634378604021384}
+  _networkObjectCache: {fileID: 6606634378604021384}
   inputPrefabs:
   - {fileID: 68593896185247420, guid: eda185edfdbfaaf46a7d71f0973b2657, type: 3}
   spawnIndex: 0
   input: {fileID: 0}
+--- !u!114 &7089441834453454997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531052538444464858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aaecc057afee174d8db587928f20f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 6606634378604021384}
+  _networkObjectCache: {fileID: 0}
 --- !u!1001 &1468305191387676151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -447,7 +482,7 @@ MonoBehaviour:
     pose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &2163209429990556204
+--- !u!114 &8229183251738500020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -456,29 +491,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 641241335209130914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 658846333565348909}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
---- !u!4 &658846333565348909 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6018573344630389633, guid: c4b9c875ed967534eb12cd57aeeb1183,
-    type: 3}
-  m_PrefabInstance: {fileID: 6531052538872928172}
-  m_PrefabAsset: {fileID: 0}
+  _componentIndexCache: 3
+  _addedNetworkObject: {fileID: 6606634378604021384}
+  _networkObjectCache: {fileID: 6606634378604021384}
+  _synchronizeParent: 0
+  _packing:
+    Position: 0
+    Rotation: 0
+    Scale: 0
+  _interpolation: 2
+  _extrapolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  _clientAuthoritative: 1
+  _sendToOwner: 1
+  _interval: 1
+  _synchronizePosition: 1
+  _positionSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeRotation: 1
+  _rotationSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeScale: 1
+  _scaleSnapping:
+    X: 0
+    Y: 0
+    Z: 0
 --- !u!4 &4520906216342882737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7214636785028439581, guid: c4b9c875ed967534eb12cd57aeeb1183,
@@ -617,7 +662,7 @@ MonoBehaviour:
     pose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &7718345340292945603
+--- !u!114 &2450336938242817400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -626,29 +671,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 502917833561737489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 520216050449309342}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
---- !u!4 &520216050449309342 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6744940971008695921, guid: 61e60013ce1d7d942b8975c98fdf8154,
-    type: 3}
-  m_PrefabInstance: {fileID: 6531052539235746031}
-  m_PrefabAsset: {fileID: 0}
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 6606634378604021384}
+  _networkObjectCache: {fileID: 6606634378604021384}
+  _synchronizeParent: 0
+  _packing:
+    Position: 0
+    Rotation: 0
+    Scale: 0
+  _interpolation: 2
+  _extrapolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  _clientAuthoritative: 1
+  _sendToOwner: 1
+  _interval: 1
+  _synchronizePosition: 1
+  _positionSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeRotation: 1
+  _rotationSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeScale: 1
+  _scaleSnapping:
+    X: 0
+    Y: 0
+    Z: 0
 --- !u!4 &3504329109087910658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7638972948592835565, guid: 61e60013ce1d7d942b8975c98fdf8154,
