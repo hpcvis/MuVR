@@ -1,5 +1,29 @@
 {
   "dependencies": {
+    "com.adrenak.airpeer": {
+      "version": "1.2.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://registry.npmjs.org"
+    },
+    "com.adrenak.unimic": {
+      "version": "1.0.3",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://registry.npmjs.org"
+    },
+    "com.adrenak.univoice": {
+      "version": "1.1.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.adrenak.unimic": "1.0.3",
+        "com.adrenak.airpeer": "1.2.0"
+      },
+      "url": "https://registry.npmjs.org"
+    },
     "com.unity.collab-proxy": {
       "version": "1.15.18",
       "depth": 0,
