@@ -93,7 +93,7 @@ public class FishNetGroupVoiceCallSample : NetworkBehaviour {
 
         // JOINING
         agent.Network.OnJoinedChatroom += id => {
-            if (agent.Network.CurrentChatroomName == FishNetChatroomNetwork.DefaultChatroomName)
+            if (agent.Network.CurrentChatroomName == FishNetChatroomNetwork.DefaultRoomName)
                 return;
             
             var chatroomName = agent.Network.CurrentChatroomName;
