@@ -41,12 +41,14 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 
 	// When this object is interacted with (only called if interaction transfers are enabled), give it to the interaction's owner
 	void OnInteractableSelected(SelectEnterEventArgs e) {
+		// note: beware of NetworkObjects that may be in the way of the player representation that we are looking for
+		// there was a NetworkObject on the XRRig at some point which broke this whole function
 		var no = e.interactorObject.transform.GetComponentInParent<NetworkObject>();
 		if (no is null) return;
-		
+
 		GiveOwnership(no.Owner);
 		
-		Debug.Log("Selected");
+		Debug.Log($"Selected; IsOwner: {IsOwner}");
 	}
 
 	// When this object enters an Ownership Volume (only called if volume transfers are enabled), give it to the volume's owner

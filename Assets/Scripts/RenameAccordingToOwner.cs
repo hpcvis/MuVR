@@ -1,9 +1,18 @@
 
 // Component that when attached to a network object prefab will rename the object to reference the name of its owner when it is instantiated.
 
+using System;
 using FishNet.Connection;
 
-public class RenameAccordingToOwner : EnchancedNetworkBehaviour {
+public class RenameAccordingToOwner : EnchancedNetworkBehaviour
+{
+	private string baseName;
+
+	private void Awake()
+	{
+		baseName = gameObject.name;
+	}
+
 	public override void OnStartBoth() {
 		base.OnStartBoth();
 		
@@ -16,6 +25,6 @@ public class RenameAccordingToOwner : EnchancedNetworkBehaviour {
 
 	void RenameObject() {
 		// Rename this object after its owner
-		gameObject.name = gameObject.name.Replace("(Clone)", " [" + Owner.ClientId + "]");
+		gameObject.name = $"{baseName} [{Owner.ClientId}]";
 	}
 }
