@@ -135,6 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 169352152}
   - component: {fileID: 169352155}
+  - component: {fileID: 169352157}
   - component: {fileID: 169352151}
   - component: {fileID: 169352150}
   - component: {fileID: 169352149}
@@ -142,8 +143,9 @@ GameObject:
   - component: {fileID: 169352147}
   - component: {fileID: 169352154}
   - component: {fileID: 169352153}
+  - component: {fileID: 169352156}
   m_Layer: 0
-  m_Name: Grab Interactable
+  m_Name: Grab Interactable (Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,6 +382,12 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 169352155}
   target: {fileID: 169352148}
   clientAuthority: 0
+  syncVelocity: 1
+  clearVelocity: 0
+  velocitySensitivity: 0.1
+  syncAngularVelocity: 1
+  clearAngularVelocity: 0
+  angularVelocitySensitivity: 0.1
 --- !u!114 &169352154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +445,8 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 169352154}
   - {fileID: 169352153}
+  - {fileID: 169352156}
+  - {fileID: 169352157}
   SceneTransformProperties:
     Position: {x: 0, y: 0.223, z: 0.289}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -449,6 +459,39 @@ MonoBehaviour:
   _sceneId: 11044052904315924751
   _sceneNetworkObjects:
   - {fileID: 169352155}
+--- !u!114 &169352156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169352146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f57a7c786f019442b3036e9f735943d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 169352155}
+  _networkObjectCache: {fileID: 169352155}
+  enableInteractionTransfer: 1
+  enableVolumeTransfer: 1
+  interactable: {fileID: 169352147}
+--- !u!114 &169352157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169352146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aaecc057afee174d8db587928f20f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 3
+  _addedNetworkObject: {fileID: 169352155}
+  _networkObjectCache: {fileID: 169352155}
 --- !u!1 &599916901
 GameObject:
   m_ObjectHideFlags: 0
