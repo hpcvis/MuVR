@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
-using Adrenak.UniMic;
 using Adrenak.UniVoice;
 using UnityEngine.UI;
 using Adrenak.UniVoice.InbuiltImplementations;
@@ -64,13 +62,8 @@ public class FishNetGroupVoiceCallSample : NetworkBehaviour {
     }
 
     void InitializeAgent() {
-        var input = new UniMicAudioInput(Mic.Instance);
-        if (!Mic.Instance.IsRecording)
-            Mic.Instance.StartRecording(16000, 100);
-
-        agent = new ChatroomAgent(network, input, new InbuiltAudioOutputFactory()) {
-            MuteSelf = false
-        };
+        
+        agent = network.CreateAgent();
 
         // HOSTING
         agent.Network.OnCreatedChatroom += () => {

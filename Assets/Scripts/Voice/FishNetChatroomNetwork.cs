@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Adrenak.UniMic;
 using Adrenak.UniVoice;
+using Adrenak.UniVoice.InbuiltImplementations;
 using FishNet.Broadcast;
 using FishNet.Connection;
 using FishNet.Object;
@@ -276,4 +278,29 @@ public class FishNetChatroomNetwork : EnchancedNetworkBehaviour, IChatroomNetwor
         ClientManager.Broadcast(data, Channel.Unreliable);
         OnAudioSent?.Invoke(dtoData);
     }
+    
+    
+    
+    #region CreateAgent
+
+    // Creates a new ChatroomAgent using this network, given an audio input and an audio output factory
+    public ChatroomAgent CreateAgent(IAudioInput audioInput, IAudioOutputFactory audioOutputFactory) =>
+        new ChatroomAgent(this, audioInput, audioOutputFactory) {
+            MuteSelf = false
+        };
+
+    // Creates a new ChatroomAgent using this network, given an audio input (default audio output)
+    public ChatroomAgent CreateAgent(IAudioInput audioInput) => CreateAgent(audioInput, new InbuiltAudioOutputFactory());
+    // Creates a new ChatroomAgent using this network, given an audio output factory (default audio input)
+    public ChatroomAgent CreateAgent(IAudioOutputFactory audioOutputFactory) {
+        var input = new UniMicAudioInput(Mic.Instance);
+        if (!Mic.Instance.IsRecording)
+            Mic.Instance.StartRecording(16000, 100);
+
+        return CreateAgent(input, audioOutputFactory);
+    }
+    // Creates a new ChatroomAgent using this network (default audio input and output)
+    public ChatroomAgent CreateAgent() => CreateAgent(new InbuiltAudioOutputFactory());
+
+    #endregion
 }
