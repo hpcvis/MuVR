@@ -23,6 +23,7 @@ public class FishNetChatroomNetwork : EnchancedNetworkBehaviour, IChatroomNetwor
         // Extra fields must be at the bottom so that ChatroomAudioBroadcast and ChatroomAudioDTO have overlapping memory layouts
         public string roomName;     // Name of the room this audio is being sent to
         public uint tick;           // The tick this audio was sent on
+        public int senderID;        // The client ID of the packet's sender
     }
     
     // Dictionary mapping open room names to the list of players currently in the room
@@ -30,11 +31,8 @@ public class FishNetChatroomNetwork : EnchancedNetworkBehaviour, IChatroomNetwor
     
     // Name of the room that players join by default
     public const string DefaultRoomName = "<DEFAULT>";
-    
-    [Tooltip("When true data is only sent to people who can observer you, when false data is sent to everyone in the same room")]
-    public bool enableProximityAudio = true;
-    
-    
+
+
     #region UniVoice Compatability/Callbacks
     
     // "Union" used to equate ChatroomAudioBroadcasts to UniVoice's own broadcast struct 
@@ -119,41 +117,24 @@ public class FishNetChatroomNetwork : EnchancedNetworkBehaviour, IChatroomNetwor
         // Ignore any audio not in the same chatroom
         if (broadcastAudio.roomName != CurrentChatroomName) return;
         
-        // Debug.Log($"Received data from {broadcastAudio.id}");
-        
+        // Debug.Log($"Received data from {broadcastAudio.senderID}");
+
         OnAudioReceived?.Invoke(BroadcastUnion.ToDTO(broadcastAudio));
     }
     
     // Function called when audio is received on the server, it figures out where the audio needs to be forwarded and then does so.
     void OnAudioBroadcastReceivedServer(NetworkConnection sender, ChatroomAudioBroadcast audio) {
-        // Find all of the connections in the same room as the sender
-        HashSet<NetworkConnection> recipients = new HashSet<NetworkConnection>();
-        foreach (var ID in openRooms[audio.roomName])
-            recipients.Add(NetworkManager.ServerManager.Clients[ID]);
-        // Don't send data back to the sender
-        recipients.Remove(sender);
+        // Make sure the targeted user is in the room (and data isn't forwarded back to the sender)
+        if (audio.id == sender.ClientId) return;
+        if (!ServerManager.Clients.ContainsKey(audio.id)) return;
+        if (!openRooms.ContainsKey(audio.roomName)) return;
+        if (!openRooms[audio.roomName].Contains(audio.id)) return;
 
-        
-        // If proximity audio is enabled, remove any people from the room who can't observe this player
-        if (enableProximityAudio) {
-            var ownedObject = sender.FirstObject;
-            if (ownedObject is not null) {
-                HashSet<NetworkConnection> observerRecipients = new HashSet<NetworkConnection>();
-                
-                foreach (var observer in ownedObject.Observers)
-                    if (recipients.Contains(observer))
-                        observerRecipients.Add(observer);
-                
-                recipients = observerRecipients;
-            }
-        }
-        
-        // Debug.Log($"[SERVER] Received data from {audio.id}");
-        // foreach(var con in recipients)
-        //     Debug.Log($"[SERVER] Forwarded data to {con.ClientId}");
+        // Debug.Log($"Forwarding data from {sender.ClientId} to {audio.id}");
+        audio.senderID = sender.ClientId;
 
-        // Forward the received audio to every user we discovered
-        ServerManager.Broadcast(recipients, audio, false, Channel.Unreliable);
+        // Forward the received audio to the targeted user
+        ServerManager.Broadcast(ServerManager.Clients[audio.id], audio, false, Channel.Unreliable);
     }
 
     public void Dispose() { /* I don't think anything needs to be destroyed! */ }
@@ -169,10 +150,11 @@ public class FishNetChatroomNetwork : EnchancedNetworkBehaviour, IChatroomNetwor
                 return;
             }
 
-            // Notify the server (and event listeners) that we have joined a new room
+            // Notify the server (and event listeners) that we have created & joined a new room
             HostChatroomServerRpc(OwnID, roomName);
             CurrentChatroomName = roomName;
             OnCreatedChatroom?.Invoke();
+            OnJoinedChatroom?.Invoke(OwnID);
         } catch (Exception e) {
             OnChatroomCreationFailed?.Invoke(e);
         }
@@ -286,7 +268,6 @@ public class FishNetChatroomNetwork : EnchancedNetworkBehaviour, IChatroomNetwor
         if (!LocalConnection.IsActive) return;
         
         // Add additional book keeping information to the data
-        dtoData.id = OwnID;
         ChatroomAudioBroadcast data = BroadcastUnion.ToBroadcast(dtoData);
         data.roomName = CurrentChatroomName;
         data.tick = TimeManager.Tick;
