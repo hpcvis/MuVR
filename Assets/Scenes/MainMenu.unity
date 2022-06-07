@@ -486,6 +486,7 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 118292898}
   _networkObjectCache: {fileID: 118292898}
+  <CurrentChatroomName>k__BackingField: <DEFAULT>
 --- !u!114 &118292898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,6 +502,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 118292897}
   - {fileID: 118292896}
+  - {fileID: 118292899}
   SceneTransformProperties:
     Position: {x: 153, y: 294.1, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -513,6 +515,7 @@ MonoBehaviour:
   _sceneId: 11044052905176610832
   _sceneNetworkObjects:
   - {fileID: 118292898}
+  - {fileID: 854140922}
 --- !u!114 &118292899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,9 +528,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71fd7f855ec523429999fc4e14a1928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 118292898}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 118292898}
   _overrideType: 3
   _observerConditions: []
 --- !u!1 &230964748
@@ -1606,8 +1609,8 @@ MonoBehaviour:
   _scenePathHash: 2571393946
   _sceneId: 11044052904315924751
   _sceneNetworkObjects:
-  - {fileID: 854140922}
   - {fileID: 118292898}
+  - {fileID: 854140922}
 --- !u!4 &854140923
 Transform:
   m_ObjectHideFlags: 0

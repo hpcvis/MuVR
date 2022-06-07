@@ -1,0 +1,154 @@
+From 95862fe728dabc0c031c5b247bddc1971d617ff5 Mon Sep 17 00:00:00 2001
+From: Joshua Dahl <joshuadahlunr@nevada.unr.edu>
+Date: Tue, 7 Jun 2022 16:06:09 -0700
+Subject: [PATCH] Mic Editor
+
+---
+ .../Thirdparty/Adrenak/UniMic/Runtime/Mic.cs  | 79 +++++++++++++++++--
+ 1 file changed, 71 insertions(+), 8 deletions(-)
+
+diff --git a/Assets/Thirdparty/Adrenak/UniMic/Runtime/Mic.cs b/Assets/Thirdparty/Adrenak/UniMic/Runtime/Mic.cs
+index 8b32c95..44457a4 100644
+--- a/Assets/Thirdparty/Adrenak/UniMic/Runtime/Mic.cs
++++ b/Assets/Thirdparty/Adrenak/UniMic/Runtime/Mic.cs
+@@ -2,9 +2,10 @@
+ using UnityEngine;
+ using System.Collections;
+ using System.Collections.Generic;
++using UnityEditor;
+ 
+ namespace Adrenak.UniMic {
+-    [RequireComponent(typeof(AudioSource))]
++    [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
+     public class Mic : MonoBehaviour {
+         // ================================================
+         #region MEMBERS
+@@ -91,9 +92,9 @@ namespace Adrenak.UniMic {
+         static Mic m_Instance;
+         public static Mic Instance {
+             get {
+-                if (m_Instance == null)
++                if (m_Instance is null)
+                     m_Instance = GameObject.FindObjectOfType<Mic>();
+-                if (m_Instance == null) {
++                if (m_Instance is null) {
+                     m_Instance = new GameObject("UniMic.Mic").AddComponent<Mic>();
+                     DontDestroyOnLoad(m_Instance.gameObject);
+                 }
+@@ -109,6 +110,10 @@ namespace Adrenak.UniMic {
+             UpdateDevices();
+             CurrentDeviceIndex = 0;
+         }
++        
++#if UNITY_EDITOR
++        private void Update() => UpdateDevices();
++#endif
+ 
+         public void UpdateDevices() {
+             Devices = new List<string>();
+@@ -123,7 +128,10 @@ namespace Adrenak.UniMic {
+         public void ChangeDevice(int index) {
+             Microphone.End(CurrentDeviceName);
+             CurrentDeviceIndex = index;
++#if UNITY_EDITOR
++#else
+             StartRecording(Frequency, SampleDurationMS);
++#endif
+         }
+ 
+         /// <summary>
+@@ -143,8 +151,7 @@ namespace Adrenak.UniMic {
+ 
+             StartCoroutine(ReadRawAudio());
+ 
+-            if (OnStartRecording != null)
+-                OnStartRecording.Invoke();
++            OnStartRecording?.Invoke();
+         }
+ 
+         /// <summary>
+@@ -161,8 +168,7 @@ namespace Adrenak.UniMic {
+ 
+             StopCoroutine(ReadRawAudio());
+ 
+-            if (OnStopRecording != null)
+-                OnStopRecording.Invoke();
++            OnStopRecording?.Invoke();
+         }
+ 
+         IEnumerator ReadRawAudio() {
+@@ -171,7 +177,7 @@ namespace Adrenak.UniMic {
+             int prevPos = 0;
+             float[] temp = new float[Sample.Length];
+ 
+-            while (AudioClip != null && Microphone.IsRecording(CurrentDeviceName)) {
++            while (AudioClip is not null && Microphone.IsRecording(CurrentDeviceName)) {
+                 bool isNewDataAvailable = true;
+ 
+                 while (isNewDataAvailable) {
+@@ -201,4 +207,61 @@ namespace Adrenak.UniMic {
+         }
+         #endregion
+     }
++    
++    
++    
++#if UNITY_EDITOR
++    [CustomEditor(typeof(Mic))]
++    public class MicEditor : Editor {
++        private bool showInfo = false;
++        
++        public override void OnInspectorGUI() {
++            base.OnInspectorGUI();
++            
++            Mic mic = (Mic)target;
++
++            // Present a dropdown menu listing the possible styles
++            EditorGUILayout.BeginHorizontal();
++            EditorGUILayout.PrefixLabel("Select Device");
++            if (EditorGUILayout.DropdownButton(new GUIContent(mic.CurrentDeviceName), FocusType.Keyboard)) {
++                GenericMenu menu = new GenericMenu();
++
++                foreach (var device in mic.Devices)
++                    menu.AddItem(new GUIContent(device), mic.Devices[mic.CurrentDeviceIndex] == device,
++                        OnDeviceSelected, device);
++
++                menu.ShowAsContext();
++            }
++            EditorGUILayout.EndHorizontal();
++
++            // Display a button to reset to the system's default mic
++            if (EditorGUILayout.LinkButton("Switch to System's Default Device"))
++                mic.ChangeDevice(0);
++
++            if ((showInfo = EditorGUILayout.BeginFoldoutHeaderGroup(showInfo, "Debug Info")) == true) {
++                GUI.enabled = false;
++                
++                EditorGUILayout.IntField("Device Index", mic.CurrentDeviceIndex);
++                
++                EditorGUILayout.Toggle("Is Recording", mic.IsRecording);
++                EditorGUILayout.IntField("Frequency", mic.Frequency);
++                EditorGUILayout.IntField("Sample Duration (ms)", mic.SampleDurationMS);
++                EditorGUILayout.IntField("Sample Length (s)", mic.SampleDurationMS);
++
++                GUI.enabled = true;
++            }
++
++
++        }
++
++        // Handler for when a menu item is selected
++        void OnDeviceSelected(object device_) {
++            string device = (string) device_;
++            Mic mic = (Mic)target;
++            
++            mic.ChangeDevice(mic.Devices.FindIndex(x => x == device));
++        }
++
++    }
++#endif
+ }
+\ No newline at end of file
+-- 
+2.35.1.windows.2
+
