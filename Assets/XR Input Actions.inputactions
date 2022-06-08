@@ -1,5 +1,5 @@
 {
-    "name": "XRI Default Input Actions",
+    "name": "XR Input Actions",
     "maps": [
         {
             "name": "XRI Head",
@@ -1534,6 +1534,102 @@
                     "processors": "",
                     "groups": "",
                     "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "TrackerLeftElbow",
+            "id": "d6a07581-1e09-4a27-9e8d-37b7d61e5a0e",
+            "actions": [
+                {
+                    "name": "Position",
+                    "type": "Value",
+                    "id": "a82e3f8c-8e0a-4b13-8b9d-50aa28c064d7",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Rotation",
+                    "type": "Value",
+                    "id": "66b2dd71-3f33-415f-84b3-10e5fc67f9a4",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3bc45276-1fe3-4719-8d8a-fcc925cfdb7d",
+                    "path": "<XRViveTracker>{Left Elbow}/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3dedde56-9fcd-4d76-8808-59f6f5a480ca",
+                    "path": "<XRViveTracker>{Left Elbow}/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "TrackerRightElbow",
+            "id": "4b8fcc63-2572-4268-9102-43918b764be7",
+            "actions": [
+                {
+                    "name": "Position",
+                    "type": "Value",
+                    "id": "fe5e8875-dc6a-46ac-9791-fe75a2288185",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Rotation",
+                    "type": "Value",
+                    "id": "2adb06c4-d446-47d9-b9b6-5c70848e324f",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9538e2d5-61ed-4812-9cac-1901dd0ec39b",
+                    "path": "<XRViveTracker>{Right Elbow}/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a15d9e65-e439-4c55-a66c-68eef417ce48",
+                    "path": "<XRViveTracker>{Right Elbow}/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

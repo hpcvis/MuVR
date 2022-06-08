@@ -1562,6 +1562,102 @@ namespace Generated
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""TrackerLeftElbow"",
+            ""id"": ""d6a07581-1e09-4a27-9e8d-37b7d61e5a0e"",
+            ""actions"": [
+                {
+                    ""name"": ""Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""a82e3f8c-8e0a-4b13-8b9d-50aa28c064d7"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""66b2dd71-3f33-415f-84b3-10e5fc67f9a4"",
+                    ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3bc45276-1fe3-4719-8d8a-fcc925cfdb7d"",
+                    ""path"": ""<XRViveTracker>{Left Elbow}/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3dedde56-9fcd-4d76-8808-59f6f5a480ca"",
+                    ""path"": ""<XRViveTracker>{Left Elbow}/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TrackerRightElbow"",
+            ""id"": ""4b8fcc63-2572-4268-9102-43918b764be7"",
+            ""actions"": [
+                {
+                    ""name"": ""Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""fe5e8875-dc6a-46ac-9791-fe75a2288185"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""2adb06c4-d446-47d9-b9b6-5c70848e324f"",
+                    ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9538e2d5-61ed-4812-9cac-1901dd0ec39b"",
+                    ""path"": ""<XRViveTracker>{Right Elbow}/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a15d9e65-e439-4c55-a66c-68eef417ce48"",
+                    ""path"": ""<XRViveTracker>{Right Elbow}/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1685,6 +1781,14 @@ namespace Generated
             m_XRIUI_ScrollWheel = m_XRIUI.FindAction("ScrollWheel", throwIfNotFound: true);
             m_XRIUI_MiddleClick = m_XRIUI.FindAction("MiddleClick", throwIfNotFound: true);
             m_XRIUI_RightClick = m_XRIUI.FindAction("RightClick", throwIfNotFound: true);
+            // TrackerLeftElbow
+            m_TrackerLeftElbow = asset.FindActionMap("TrackerLeftElbow", throwIfNotFound: true);
+            m_TrackerLeftElbow_Position = m_TrackerLeftElbow.FindAction("Position", throwIfNotFound: true);
+            m_TrackerLeftElbow_Rotation = m_TrackerLeftElbow.FindAction("Rotation", throwIfNotFound: true);
+            // TrackerRightElbow
+            m_TrackerRightElbow = asset.FindActionMap("TrackerRightElbow", throwIfNotFound: true);
+            m_TrackerRightElbow_Position = m_TrackerRightElbow.FindAction("Position", throwIfNotFound: true);
+            m_TrackerRightElbow_Rotation = m_TrackerRightElbow.FindAction("Rotation", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -2292,6 +2396,88 @@ namespace Generated
             }
         }
         public XRIUIActions @XRIUI => new XRIUIActions(this);
+
+        // TrackerLeftElbow
+        private readonly InputActionMap m_TrackerLeftElbow;
+        private ITrackerLeftElbowActions m_TrackerLeftElbowActionsCallbackInterface;
+        private readonly InputAction m_TrackerLeftElbow_Position;
+        private readonly InputAction m_TrackerLeftElbow_Rotation;
+        public struct TrackerLeftElbowActions
+        {
+            private @XRInputActions m_Wrapper;
+            public TrackerLeftElbowActions(@XRInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Position => m_Wrapper.m_TrackerLeftElbow_Position;
+            public InputAction @Rotation => m_Wrapper.m_TrackerLeftElbow_Rotation;
+            public InputActionMap Get() { return m_Wrapper.m_TrackerLeftElbow; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(TrackerLeftElbowActions set) { return set.Get(); }
+            public void SetCallbacks(ITrackerLeftElbowActions instance)
+            {
+                if (m_Wrapper.m_TrackerLeftElbowActionsCallbackInterface != null)
+                {
+                    @Position.started -= m_Wrapper.m_TrackerLeftElbowActionsCallbackInterface.OnPosition;
+                    @Position.performed -= m_Wrapper.m_TrackerLeftElbowActionsCallbackInterface.OnPosition;
+                    @Position.canceled -= m_Wrapper.m_TrackerLeftElbowActionsCallbackInterface.OnPosition;
+                    @Rotation.started -= m_Wrapper.m_TrackerLeftElbowActionsCallbackInterface.OnRotation;
+                    @Rotation.performed -= m_Wrapper.m_TrackerLeftElbowActionsCallbackInterface.OnRotation;
+                    @Rotation.canceled -= m_Wrapper.m_TrackerLeftElbowActionsCallbackInterface.OnRotation;
+                }
+                m_Wrapper.m_TrackerLeftElbowActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Position.started += instance.OnPosition;
+                    @Position.performed += instance.OnPosition;
+                    @Position.canceled += instance.OnPosition;
+                    @Rotation.started += instance.OnRotation;
+                    @Rotation.performed += instance.OnRotation;
+                    @Rotation.canceled += instance.OnRotation;
+                }
+            }
+        }
+        public TrackerLeftElbowActions @TrackerLeftElbow => new TrackerLeftElbowActions(this);
+
+        // TrackerRightElbow
+        private readonly InputActionMap m_TrackerRightElbow;
+        private ITrackerRightElbowActions m_TrackerRightElbowActionsCallbackInterface;
+        private readonly InputAction m_TrackerRightElbow_Position;
+        private readonly InputAction m_TrackerRightElbow_Rotation;
+        public struct TrackerRightElbowActions
+        {
+            private @XRInputActions m_Wrapper;
+            public TrackerRightElbowActions(@XRInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Position => m_Wrapper.m_TrackerRightElbow_Position;
+            public InputAction @Rotation => m_Wrapper.m_TrackerRightElbow_Rotation;
+            public InputActionMap Get() { return m_Wrapper.m_TrackerRightElbow; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(TrackerRightElbowActions set) { return set.Get(); }
+            public void SetCallbacks(ITrackerRightElbowActions instance)
+            {
+                if (m_Wrapper.m_TrackerRightElbowActionsCallbackInterface != null)
+                {
+                    @Position.started -= m_Wrapper.m_TrackerRightElbowActionsCallbackInterface.OnPosition;
+                    @Position.performed -= m_Wrapper.m_TrackerRightElbowActionsCallbackInterface.OnPosition;
+                    @Position.canceled -= m_Wrapper.m_TrackerRightElbowActionsCallbackInterface.OnPosition;
+                    @Rotation.started -= m_Wrapper.m_TrackerRightElbowActionsCallbackInterface.OnRotation;
+                    @Rotation.performed -= m_Wrapper.m_TrackerRightElbowActionsCallbackInterface.OnRotation;
+                    @Rotation.canceled -= m_Wrapper.m_TrackerRightElbowActionsCallbackInterface.OnRotation;
+                }
+                m_Wrapper.m_TrackerRightElbowActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Position.started += instance.OnPosition;
+                    @Position.performed += instance.OnPosition;
+                    @Position.canceled += instance.OnPosition;
+                    @Rotation.started += instance.OnRotation;
+                    @Rotation.performed += instance.OnRotation;
+                    @Rotation.canceled += instance.OnRotation;
+                }
+            }
+        }
+        public TrackerRightElbowActions @TrackerRightElbow => new TrackerRightElbowActions(this);
         private int m_GenericXRControllerSchemeIndex = -1;
         public InputControlScheme GenericXRControllerScheme
         {
@@ -2386,6 +2572,16 @@ namespace Generated
             void OnScrollWheel(InputAction.CallbackContext context);
             void OnMiddleClick(InputAction.CallbackContext context);
             void OnRightClick(InputAction.CallbackContext context);
+        }
+        public interface ITrackerLeftElbowActions
+        {
+            void OnPosition(InputAction.CallbackContext context);
+            void OnRotation(InputAction.CallbackContext context);
+        }
+        public interface ITrackerRightElbowActions
+        {
+            void OnPosition(InputAction.CallbackContext context);
+            void OnRotation(InputAction.CallbackContext context);
         }
     }
 }
