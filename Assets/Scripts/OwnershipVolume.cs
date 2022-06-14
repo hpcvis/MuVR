@@ -55,8 +55,8 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
         switch (mode) {
         // In oldest player mode, add the interacting player to the back of the potential player list
         case OwnershipMode.OldestPlayer:
-            potentialOwners.Add(no.Owner);
-            // In newest player mode, add the interacting player to the front of the potential player list
+            potentialOwners.Add(no.Owner); 
+        // In newest player mode, add the interacting player to the front of the potential player list
         break; case OwnershipMode.NewestPlayer: {
             var oldOwners = new List<NetworkConnection>(potentialOwners);
             potentialOwners.Clear();

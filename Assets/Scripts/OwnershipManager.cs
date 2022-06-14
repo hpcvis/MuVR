@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using FishNet.Object;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -11,6 +9,11 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 	[Tooltip("Enable changing ownership when this object enters an ownership volume that belongs to a player.")]
 	public bool enableVolumeTransfer = true;
 
+	// Counter tracking how many controllers are actively selecting us
+	private uint selectionCount = 0;
+	// Property indicating if we are actively selected
+	private bool isSelected => selectionCount > 0;
+
 	// XR Interactable that is interacted with to trigger interactions
 	public XRBaseInteractable interactable = null;
 
@@ -20,7 +23,11 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 
 		// Only register us as a listener if interaction transfers are enabled
 		if (enableInteractionTransfer)
-			if(interactable is not null) interactable.selectEntered.AddListener(OnInteractableSelected);
+			if (interactable is not null) {
+				interactable.selectEntered.AddListener(OnInteractableSelected);
+				interactable.selectExited.AddListener(OnInteractableUnselected);
+			}
+		
 	}
 
 	// When this object is destroyed on the client, remove it it as an interaction listener
@@ -28,7 +35,10 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 		base.OnStopClient();
 
 		// Only unregister us as a listener if interaction transfers are enabled
-		if(interactable is not null) interactable.selectEntered.RemoveListener(OnInteractableSelected);
+		if (interactable is not null) {
+			interactable.selectEntered.RemoveListener(OnInteractableSelected);
+			interactable.selectExited.RemoveListener(OnInteractableUnselected);
+		}
 	}
 
 	// When variables are changed in the editor, automatically add the attached GrabInteractable
@@ -47,18 +57,29 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 		if (no is null) return;
 
 		GiveOwnership(no.Owner);
+		selectionCount++; // Since we are now selected, volume transfers are temporarily disabled
+	}
+	
+	// When interaction with this object ceases, decrement the number of selections
+	void OnInteractableUnselected(SelectExitEventArgs e) {
+		selectionCount--; // If this was the last interaction, volume transfers are now enabled again!
 		
-		// TODO: Temporarily disable volume ownership transfers 
-		
-		Debug.Log($"Selected; IsOwner: {IsOwner}");
+		// If we are no longer selected by anyone, transfer our ownership to whoever controls the OwnershipVolume we are within
+		if(!isSelected)
+			if(enableVolumeTransfer && lastVolume is not null) OnTriggerEnter(lastVolume.GetComponent<Collider>());
 	}
 
 	// When this object enters an Ownership Volume (only called if volume transfers are enabled), give it to the volume's owner
+	private OwnershipVolume lastVolume; // Variable tracking the last OwnershipVolume we were within (used to set owner when interaction stops) NOTE: Overlapping ownership volumes will act strangely
 	void OnTriggerEnter(Collider other) {
 		if (!enableVolumeTransfer) return;
-		
+
 		var ov = other.GetComponent<OwnershipVolume>();
 		if (ov is null) return;
+		lastVolume = ov; // Save a reference to the volume for latter
+		
+		// If we are currently selected don't transfer ownership
+		if (isSelected) return;
 		
 		if (ov.volumeOwner is not null)
 			GiveOwnership(ov.volumeOwner);
@@ -72,6 +93,10 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 
 		var ov = other.GetComponent<OwnershipVolume>();
 		if (ov is null) return;
+		if (ov == lastVolume) lastVolume = null; // We are no longer colliding with the previous volume
+		
+		// If we are currently selected don't transfer ownership
+		if (isSelected) return;
 
 		// Stop listening to changes in ownership
 		ov.UnregisterAsListener(this);
