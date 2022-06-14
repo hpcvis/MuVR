@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4732151867418884824}
+  - component: {fileID: 2266256977479872822}
   - component: {fileID: 4732151867418884828}
   - component: {fileID: 4732151867418884829}
   - component: {fileID: 4732151867418884826}
@@ -35,6 +36,19 @@ Transform:
   m_Father: {fileID: 4732151868328584724}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2266256977479872822
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732151867418884825}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!20 &4732151867418884828
 Camera:
   m_ObjectHideFlags: 0

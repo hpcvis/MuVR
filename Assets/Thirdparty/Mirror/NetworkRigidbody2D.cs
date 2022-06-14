@@ -1,4 +1,5 @@
 using FishNet.Component.Transforming;
+using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using FishNet.Transporting;
@@ -6,9 +7,11 @@ using UnityEngine;
 
 // NOTE: Component ported from Mirror
 [RequireComponent(typeof(NetworkTransform))]
-public class NetworkRigidbody2D : NetworkBehaviour {
+public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     [Header("Settings")]
     [SerializeField] Rigidbody2D target;
+    [Tooltip("Flag indicating if the managed rigidbody should be kinematic")]
+    [SerializeField] private bool targetIsKinematic = false;
 
     [Tooltip("Set to true if moves come from owner client, set to false if moves always come from server")]
     public bool clientAuthority = true;
@@ -41,7 +44,8 @@ public class NetworkRigidbody2D : NetworkBehaviour {
 
     private new void OnValidate() {
         base.OnValidate();
-        if (target == null) target = GetComponent<Rigidbody2D>();
+        if (target is null) target = GetComponent<Rigidbody2D>();
+        if (target is not null) targetIsKinematic = target.isKinematic;
     }
 
 
@@ -119,12 +123,19 @@ public class NetworkRigidbody2D : NetworkBehaviour {
     #endregion
 
 
-    public override void OnStartClient () {
-        base.OnStartClient();
+    public override void OnStartBoth() {
+        base.OnStartBoth();
         TimeManager.OnPostTick += OnPostTick;
         
         // Make sure that anyone without authority isn't performing physics calculations
-        target.isKinematic |= !(ServerWithAuthority || ClientWithAuthority);
+        target.isKinematic = targetIsKinematic || !(ServerWithAuthority || ClientWithAuthority);
+    }
+
+    public override void OnOwnershipBoth(NetworkConnection prev) {
+        base.OnOwnershipBoth(prev);
+        
+        // Make sure that anyone without authority isn't performing physics calculations
+        target.isKinematic = targetIsKinematic || !(ServerWithAuthority || ClientWithAuthority);
     }
 
     public void OnEnable() {
@@ -133,7 +144,8 @@ public class NetworkRigidbody2D : NetworkBehaviour {
     }
 
     void OnDisable() {
-        TimeManager.OnPostTick -= OnPostTick;
+        if (TimeManager is not null)
+            TimeManager.OnPostTick -= OnPostTick;
     }
     
     private void OnPostTick() {

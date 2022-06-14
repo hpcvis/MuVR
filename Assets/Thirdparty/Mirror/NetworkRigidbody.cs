@@ -1,5 +1,5 @@
-using System;
 using FishNet.Component.Transforming;
+using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using FishNet.Transporting;
@@ -8,9 +8,11 @@ using UnityEngine;
 // NOTE: Component ported from Mirror
 [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-rigidbody")]
 [RequireComponent(typeof(NetworkTransform))]
-public class NetworkRigidbody : NetworkBehaviour {
+public class NetworkRigidbody : EnchancedNetworkBehaviour {
     [Header("Settings")] 
     [SerializeField] Rigidbody target;
+    [Tooltip("Flag indicating weather or not the managed rigidbody should be Kinematic")]
+    [SerializeField] private bool targetIsKinematic = false;
 
     [Tooltip("Set to true if moves come from owner client, set to false if moves always come from server")]
     public bool clientAuthority = true;
@@ -43,7 +45,8 @@ public class NetworkRigidbody : NetworkBehaviour {
 
     private new void OnValidate() {
         base.OnValidate();
-        if (target == null) target = GetComponent<Rigidbody>();
+        if (target is null) target = GetComponent<Rigidbody>();
+        if (target is not null) targetIsKinematic = target.isKinematic;
     }
 
     #region Sync vars
@@ -119,12 +122,19 @@ public class NetworkRigidbody : NetworkBehaviour {
 
     #endregion
     
-    public override void OnStartClient () {
-        base.OnStartClient();
+    public override void OnStartBoth() {
+        base.OnStartBoth();
         TimeManager.OnPostTick += OnPostTick;
         
         // Make sure that anyone without authority isn't performing physics calculations
-        target.isKinematic |= !(ServerWithAuthority || ClientWithAuthority);
+        target.isKinematic = targetIsKinematic || !(ServerWithAuthority || ClientWithAuthority);
+    }
+
+    public override void OnOwnershipBoth(NetworkConnection prev) {
+        base.OnOwnershipBoth(prev);
+        
+        // Make sure that anyone without authority isn't performing physics calculations
+        target.isKinematic = targetIsKinematic || !(ServerWithAuthority || ClientWithAuthority);
     }
 
     public void OnEnable() {
@@ -133,7 +143,8 @@ public class NetworkRigidbody : NetworkBehaviour {
     }
 
     void OnDisable() {
-        TimeManager.OnPostTick -= OnPostTick;
+        if (TimeManager is not null)
+            TimeManager.OnPostTick -= OnPostTick;
     }
     
     private void OnPostTick() {

@@ -48,6 +48,8 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 
 		GiveOwnership(no.Owner);
 		
+		// TODO: Temporarily disable volume ownership transfers 
+		
 		Debug.Log($"Selected; IsOwner: {IsOwner}");
 	}
 
@@ -58,8 +60,20 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 		var ov = other.GetComponent<OwnershipVolume>();
 		if (ov is null) return;
 		
-		if(ov.volumeOwner is not null) GiveOwnership(ov.volumeOwner);
-		
-		Debug.Log("Entered Ownership Volume");
+		if (ov.volumeOwner is not null)
+			GiveOwnership(ov.volumeOwner);
+		// Be sure to listen for changes in ownership
+		ov.RegisterAsListener(this);
+	}
+
+	// When this object leaves its Ownership Volume it stops listening to changes in ownership
+	void OnTriggerExit(Collider other) {
+		if (!enableVolumeTransfer) return;
+
+		var ov = other.GetComponent<OwnershipVolume>();
+		if (ov is null) return;
+
+		// Stop listening to changes in ownership
+		ov.UnregisterAsListener(this);
 	}
 }

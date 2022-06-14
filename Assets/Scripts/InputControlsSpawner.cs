@@ -48,7 +48,7 @@ public class InputControlsSpawner : EnchancedNetworkBehaviour {
 
         // TODO: Add functionality to spawn VR or non VR input
         Debug.Log("Spawning input controls!");
-        input = Instantiate(inputPrefabs[spawnIndex], Vector3.zero, Quaternion.identity, transform);
+        input = Instantiate(inputPrefabs[spawnIndex], transform.position, transform.rotation, transform);
 
         // TODO: We need a way to hide the HMD that isn't hard coded...
         // Move our head model down super far into the floor so that we don't have it blocking our vision
