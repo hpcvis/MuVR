@@ -1,3 +1,4 @@
+using FishNet.Connection;
 using FishNet.Object;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -8,6 +9,8 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 	public bool enableInteractionTransfer = true;
 	[Tooltip("Enable changing ownership when this object enters an ownership volume that belongs to a player.")]
 	public bool enableVolumeTransfer = true;
+	[Tooltip("Should the owner of this object return it to the scene before leaving the game?")]
+	public bool releaseOwnershipOnLeave = true;
 
 	// Counter tracking how many controllers are actively selecting us
 	private uint selectionCount = 0;
@@ -27,7 +30,6 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 				interactable.selectEntered.AddListener(OnInteractableSelected);
 				interactable.selectExited.AddListener(OnInteractableUnselected);
 			}
-		
 	}
 
 	// When this object is destroyed on the client, remove it it as an interaction listener
@@ -40,6 +42,25 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 			interactable.selectExited.RemoveListener(OnInteractableUnselected);
 		}
 	}
+
+	// Un/Register the listener which returns control of the object to scene when its owner leaves
+	public override void OnStartServer() {
+		base.OnStartServer();
+		ServerManager.Objects.OnPreDestroyClientObjects += OnPreDestroyClientObjects;
+	}
+	public override void OnStopServer() {
+		base.OnStopServer();
+		ServerManager.Objects.OnPreDestroyClientObjects -= OnPreDestroyClientObjects;
+	}
+
+	// When the owner of this object leaves, return control of it to the scene
+	public void OnPreDestroyClientObjects(NetworkConnection leaving) {
+		if (leaving != Owner) return; 
+		
+		if(releaseOwnershipOnLeave)
+			GiveOwnership(null);
+	}
+	
 
 	// When variables are changed in the editor, automatically add the attached GrabInteractable
 	protected override void OnValidate() {

@@ -37,6 +37,22 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
         UpdateOwnerServerRpc(Owner);
     }
 
+    // Un/Register the event listen which removes dead connections from the list of potential owners
+    public override void OnStartServer() {
+        base.OnStartServer();
+        ServerManager.Objects.OnPreDestroyClientObjects += OnPreDestroyClientObjects;
+    }
+    public override void OnStopServer() {
+        base.OnStopServer();
+        ServerManager.Objects.OnPreDestroyClientObjects -= OnPreDestroyClientObjects;
+    }
+    
+    // When a client leaves the game, remove them from the list of potential owners
+    public void OnPreDestroyClientObjects(NetworkConnection leaving) {
+        potentialOwners.Remove(leaving);
+        UpdateOwner(GetFirstPotentialOwner());
+    }
+
     // When another object overlaps with us, update volumeOwner
     private void OnTriggerEnter(Collider other) {
         if(IsServer) OnTriggerEnterServer(other.gameObject);
@@ -78,7 +94,7 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
     [ServerRpc(RequireOwnership = false)]
     private void OnTriggerEnterServerRpc(GameObject other) => OnTriggerEnterServer(other);
 
-        // When another object stops overlapping with us, update volumeOwner
+    // When another object stops overlapping with us, update volumeOwner
     private void OnTriggerExit(Collider other) {
         if(IsServer) OnTriggerExitServer(other.gameObject);
         else OnTriggerExitServerRpc(other.gameObject);
