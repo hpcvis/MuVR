@@ -11,7 +11,7 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     [Header("Settings")]
     [SerializeField] Rigidbody2D target;
     [Tooltip("Flag indicating if the managed rigidbody should be kinematic")]
-    [SerializeField] private bool targetIsKinematic = false;
+    public bool targetIsKinematic = false;
 
     [Tooltip("Set to true if moves come from owner client, set to false if moves always come from server")]
     public bool clientAuthority = true;
@@ -96,7 +96,8 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
         if (IgnoreSync)
             return;
 
-        target.isKinematic = newValue;
+        targetIsKinematic = newValue;
+        UpdateOwnershipKinematicState();
     }
 
     private void OnGravityScaleChanged(float _, float newValue, bool onServer) {
@@ -125,18 +126,19 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
 
     public override void OnStartBoth() {
         base.OnStartBoth();
-        TimeManager.OnPostTick += OnPostTick;
+        OnEnable();
         
-        // Make sure that anyone without authority isn't performing physics calculations
-        target.isKinematic = targetIsKinematic || !(ServerWithAuthority || ClientWithAuthority);
+        UpdateOwnershipKinematicState();
     }
 
     public override void OnOwnershipBoth(NetworkConnection prev) {
         base.OnOwnershipBoth(prev);
-        
-        // Make sure that anyone without authority isn't performing physics calculations
-        target.isKinematic = targetIsKinematic || !(ServerWithAuthority || ClientWithAuthority);
+
+        UpdateOwnershipKinematicState();
     }
+
+    // Make sure that anyone without authority isn't performing physics calculations
+    public void UpdateOwnershipKinematicState() => target.isKinematic = targetIsKinematic || !(ServerWithAuthority || ClientWithAuthority);
 
     public void OnEnable() {
         if (TimeManager is not null)
@@ -188,7 +190,7 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
         }
 
         // other rigidbody settings
-        isKinematic = target.isKinematic;
+        isKinematic = targetIsKinematic;
         gravityScale = target.gravityScale;
         drag = target.drag;
         angularDrag = target.angularDrag;
@@ -239,9 +241,9 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     [Client(RequireOwnership = true)]
     private void SendRigidBodySettings() {
         // These shouldn't change often so it is ok to send in their own Command
-        if (previousValue.isKinematic != target.isKinematic) {
-            SendIsKinematicServerRpc(target.isKinematic);
-            previousValue.isKinematic = target.isKinematic;
+        if (previousValue.isKinematic != targetIsKinematic) {
+            SendIsKinematicServerRpc(targetIsKinematic);
+            previousValue.isKinematic = targetIsKinematic;
         }
 
         if (previousValue.gravityScale != target.gravityScale) {
@@ -298,7 +300,8 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
             return;
 
         this.isKinematic = isKinematic;
-        target.isKinematic = isKinematic;
+        targetIsKinematic = isKinematic;
+        UpdateOwnershipKinematicState();
     }
 
     [ServerRpc]

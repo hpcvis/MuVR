@@ -10,15 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 250987709324251745}
   - component: {fileID: 250987709324251746}
-  - component: {fileID: 250987709324251748}
+  - component: {fileID: 250987709324251749}
+  - component: {fileID: 250987709324251747}
   - component: {fileID: 250987709324251758}
   - component: {fileID: 250987709324251759}
   - component: {fileID: 250987709324251756}
   - component: {fileID: 250987709324251757}
-  - component: {fileID: 250987709324251754}
-  - component: {fileID: 250987709324251747}
   - component: {fileID: 250987709324251744}
-  - component: {fileID: 250987709324251749}
+  - component: {fileID: 6970877829897743906}
+  - component: {fileID: 250987709324251748}
   m_Layer: 0
   m_Name: TestInteractable
   m_TagString: Untagged
@@ -58,7 +58,6 @@ MonoBehaviour:
   - {fileID: 250987709324251747}
   - {fileID: 250987709324251744}
   - {fileID: 250987709324251749}
-  - {fileID: 0}
   SceneTransformProperties:
     Position: {x: 0, y: 0.223, z: 0.289}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -71,7 +70,7 @@ MonoBehaviour:
   _sceneId: 0
   _sceneNetworkObjects:
   - {fileID: 250987709324251746}
---- !u!114 &250987709324251748
+--- !u!114 &250987709324251749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,12 +79,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 250987709324251755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aaecc057afee174d8db587928f20f0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f57a7c786f019442b3036e9f735943d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 0
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 250987709324251746}
   _networkObjectCache: {fileID: 250987709324251746}
+  enableInteractionTransfer: 1
+  enableVolumeTransfer: 1
+  interactable: {fileID: 6970877829897743906}
+--- !u!114 &250987709324251747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250987709324251755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 250987709324251746}
+  _networkObjectCache: {fileID: 250987709324251746}
+  _synchronizeParent: 0
+  _packing:
+    Position: 1
+    Rotation: 1
+    Scale: 0
+  _interpolation: 2
+  _extrapolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  _clientAuthoritative: 0
+  _sendToOwner: 1
+  _interval: 1
+  _synchronizePosition: 1
+  _positionSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeRotation: 1
+  _rotationSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeScale: 1
+  _scaleSnapping:
+    X: 0
+    Y: 0
+    Z: 0
 --- !u!33 &250987709324251758
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -165,7 +209,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &250987709324251754
+--- !u!114 &250987709324251744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,7 +218,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 250987709324251755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: f572e46af83151541aed4c1c20a097ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 250987709324251746}
+  _networkObjectCache: {fileID: 250987709324251746}
+  target: {fileID: 250987709324251757}
+  targetIsKinematic: 0
+  clientAuthority: 0
+  syncVelocity: 1
+  clearVelocity: 0
+  velocitySensitivity: 0.1
+  syncAngularVelocity: 1
+  clearAngularVelocity: 0
+  angularVelocitySensitivity: 0.1
+--- !u!114 &6970877829897743906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250987709324251755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce35062a99d282419fe2361aa0830f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -285,7 +353,7 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!114 &250987709324251747
+--- !u!114 &250987709324251748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,77 +362,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 250987709324251755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2aaecc057afee174d8db587928f20f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 1
+  _componentIndexCache: 0
   _addedNetworkObject: {fileID: 250987709324251746}
   _networkObjectCache: {fileID: 250987709324251746}
-  _synchronizeParent: 0
-  _packing:
-    Position: 1
-    Rotation: 1
-    Scale: 0
-  _interpolation: 2
-  _extrapolation: 2
-  _enableTeleport: 0
-  _teleportThreshold: 1
-  _clientAuthoritative: 0
-  _sendToOwner: 1
-  _interval: 1
-  _synchronizePosition: 1
-  _positionSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeRotation: 1
-  _rotationSnapping:
-    X: 0
-    Y: 0
-    Z: 0
-  _synchronizeScale: 1
-  _scaleSnapping:
-    X: 0
-    Y: 0
-    Z: 0
---- !u!114 &250987709324251744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250987709324251755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f572e46af83151541aed4c1c20a097ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 2
-  _addedNetworkObject: {fileID: 250987709324251746}
-  _networkObjectCache: {fileID: 250987709324251746}
-  target: {fileID: 250987709324251757}
-  clientAuthority: 0
-  syncVelocity: 1
-  clearVelocity: 0
-  velocitySensitivity: 0.1
-  syncAngularVelocity: 1
-  clearAngularVelocity: 0
-  angularVelocitySensitivity: 0.1
---- !u!114 &250987709324251749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250987709324251755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f57a7c786f019442b3036e9f735943d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 3
-  _addedNetworkObject: {fileID: 250987709324251746}
-  _networkObjectCache: {fileID: 250987709324251746}
-  enableInteractionTransfer: 1
-  enableVolumeTransfer: 1
-  interactable: {fileID: 250987709324251754}
