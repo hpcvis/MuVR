@@ -56,7 +56,7 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 		var no = e.interactorObject.transform.GetComponentInParent<NetworkObject>();
 		if (no is null) return;
 
-		GiveOwnership(no.Owner);
+		RequestGiveOwnership(no.Owner);
 		selectionCount++; // Since we are now selected, volume transfers are temporarily disabled
 	}
 	
@@ -82,7 +82,7 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 		if (isSelected) return;
 		
 		if (ov.volumeOwner is not null)
-			GiveOwnership(ov.volumeOwner);
+			RequestGiveOwnership(ov.volumeOwner);
 		// Be sure to listen for changes in ownership
 		ov.RegisterAsListener(this);
 	}

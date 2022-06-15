@@ -17,7 +17,7 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
     private readonly HashSet<OwnershipManager> containedOwnershipManagers = new();
 
     // The connection this volume currently considers to be its owner 
-    [SyncVar] public NetworkConnection volumeOwner = null;
+    [SyncVar(OnChange = nameof(OnVolumeOwnerChanged))] public NetworkConnection volumeOwner = null;
     [SerializeField, ReadOnly] private int volumeOwnerDebug = -2; // Inspector display of the current volume owner (-2 = unset, -1 = scene)
 
     public enum OwnershipMode {
@@ -38,10 +38,13 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
     }
 
     // When another object overlaps with us, update volumeOwner
-    private void OnTriggerEnter(Collider other) => OnTriggerEnterServer(other);
-
-    [Server]
-    private void OnTriggerEnterServer(Collider other) {
+    private void OnTriggerEnter(Collider other) {
+        if(IsServer) OnTriggerEnterServer(other.gameObject);
+        else OnTriggerEnterServerRpc(other.gameObject);
+    }
+    [Server] private void OnTriggerEnterServer(GameObject other) {
+        if (other is null) return;
+        
         // Objects that we assign ownership to don't control who owns the volume
         var m = other.GetComponentInParent<OwnershipManager>();
         if (m is not null) return;
@@ -72,10 +75,17 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
         // Update the volumeOwner to reference the front of the list
         if(potentialOwners.Count > 0) UpdateOwner(GetFirstPotentialOwner());
     }
-    
-    // When another object stops overlapping with us, update volumeOwner
-    private void OnTriggerExit(Collider other) => OnTriggerExitServer(other);
-    [Server] private void OnTriggerExitServer(Collider other) {
+    [ServerRpc(RequireOwnership = false)]
+    private void OnTriggerEnterServerRpc(GameObject other) => OnTriggerEnterServer(other);
+
+        // When another object stops overlapping with us, update volumeOwner
+    private void OnTriggerExit(Collider other) {
+        if(IsServer) OnTriggerExitServer(other.gameObject);
+        else OnTriggerExitServerRpc(other.gameObject);
+    }
+    [Server] private void OnTriggerExitServer(GameObject other) {
+        if (other is null) return;
+        
         // Objects that we assign ownership to don't control who owns the volume
         var m = other.GetComponentInParent<OwnershipManager>();
         if (m is not null) return;
@@ -89,6 +99,8 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
         potentialOwners.Remove(no.Owner);
         UpdateOwner(GetFirstPotentialOwner());
     }
+    [ServerRpc(RequireOwnership = false)]
+    private void OnTriggerExitServerRpc(GameObject other) => OnTriggerEnterServer(other);
 
     // On validate gives warnings if settings on connected components aren't properly set
     protected override void OnValidate() {
@@ -103,20 +115,42 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
         if(!collider.isTrigger)
             Debug.LogError("The collider must be a trigger or the volume will not function correctly.");
     }
+
+    // Function that updates the debug display when the volume's owner changes
+    private void OnVolumeOwnerChanged(NetworkConnection prev, NetworkConnection @new, bool asServer){
+        volumeOwnerDebug = volumeOwner?.ClientId ?? -1;
+    }
     
     // Server only function called by an OwnershipManager to register it as listening for changes in ownership
-    [Server] public void RegisterAsListener(OwnershipManager m) => containedOwnershipManagers.Add(m);
-
+    public void RegisterAsListener(OwnershipManager m) {
+        if(IsServer) RegisterAsListenerServer(m);
+        else RegisterAsListenerServerRPC(m.gameObject);
+    }
+    [Server] private void RegisterAsListenerServer(OwnershipManager m) {
+        if (m is null) return;
+        containedOwnershipManagers.Add(m);
+    }
+    [ServerRpc(RequireOwnership = false)]
+    private void RegisterAsListenerServerRPC(GameObject m) => RegisterAsListenerServer(m.GetComponent<OwnershipManager>());
+    
     // Server only function called by an OwnershipManager to indicate it is no longer interested in ownership changes
-    [Server] public void UnregisterAsListener(OwnershipManager m) => containedOwnershipManagers.Remove(m);
+    public void UnregisterAsListener(OwnershipManager m) {
+        if(IsServer) UnregisterAsListenerServer(m);
+        else UnregisterAsListenerServerRPC(m.gameObject);
+    }
+    [Server] private void UnregisterAsListenerServer(OwnershipManager m) {
+        if (m is null) return;
+        containedOwnershipManagers.Remove(m);
+    }
+    [ServerRpc(RequireOwnership = false)]
+    private void UnregisterAsListenerServerRPC(GameObject m) => UnregisterAsListenerServer(m.GetComponent<OwnershipManager>());
 
 
 
     // Server only function that updates the current owner 
     [Server] protected void UpdateOwner(NetworkConnection newOwner) {
         volumeOwner = newOwner;
-        volumeOwnerDebug = volumeOwner?.ClientId ?? -1;
-        
+
         // Notify all of the contained OwnershipManagers that the owner has changed
         foreach(var m in containedOwnershipManagers)
             m.GiveOwnership(volumeOwner);

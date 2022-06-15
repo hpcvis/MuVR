@@ -67,6 +67,17 @@ public class EnchancedNetworkBehaviour : NetworkBehaviour {
 	/// Called when a tick occurs.
 	public virtual void Tick() { }
 	/// Called after a tick occurs; physics would have simulated if using PhysicsMode.TimeManager.
-	public virtual void PostTick() { } 
+	public virtual void PostTick() { }
+
+	
+	/// Function that requests that the server give the provided NetworkConnection ownership
+	public void RequestGiveOwnership(NetworkConnection newOwner) {
+		if(IsServer) GiveOwnership(newOwner);
+		else GiveOwnershipServerRPC(newOwner);
+	}
+
+	/// Server RPC that gives the provided NetworkConnection ownership over the controlling object
+	[ServerRpc(RequireOwnership = false)]
+	protected void GiveOwnershipServerRPC(NetworkConnection newOwner) => GiveOwnership(newOwner);
 }
 
