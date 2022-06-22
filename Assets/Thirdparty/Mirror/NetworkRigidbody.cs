@@ -1,7 +1,7 @@
+using FishNet;
 using FishNet.Component.Transforming;
 using FishNet.Connection;
 using FishNet.Object;
-using FishNet.Object.Synchronizing;
 using FishNet.Transporting;
 using UnityEngine;
 
@@ -48,169 +48,266 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
         if (target is null) target = GetComponent<Rigidbody>();
         if (target is not null) targetIsKinematic = target.isKinematic;
     }
+    
+    private bool ClientWithAuthority => clientAuthority && IsOwner;
+    private bool ServerWithAuthority => IsServer && !clientAuthority;
+    private bool IsAuthority => ClientWithAuthority || ServerWithAuthority;
 
     #region Sync vars
 
-    [SyncVar(Channel = Channel.Unreliable, OnChange = nameof(OnVelocityChanged))]
-    private Vector3 velocity;
+    #region veclocity sync
+    
+    [SerializeField, ReadOnly] private Vector3 _velocity;
 
-    [SyncVar(Channel = Channel.Unreliable, OnChange = nameof(OnAngularVelocityChanged))]
-    private Vector3 angularVelocity;
-
-    [SyncVar(OnChange = nameof(OnIsKinematicChanged))]
-    private bool isKinematic;
-
-    [SyncVar(OnChange = nameof(OnUseGravityChanged))]
-    private bool useGravity;
-
-    [SyncVar(OnChange = nameof(OnDragChanged))]
-    private float drag;
-
-    [SyncVar(OnChange = nameof(OnAngularDragChanged))]
-    private float angularDrag;
-
-    /// <summary>
-    ///     Ignore value if is host or client with Authority
-    /// </summary>
-    /// <returns></returns>
-    private bool IgnoreSync => IsServer || ClientWithAuthority;
-
-    private bool ClientWithAuthority => clientAuthority && IsOwner;
-    private bool ServerWithAuthority => IsServer && !clientAuthority;
-
-    private void OnVelocityChanged(Vector3 _, Vector3 newValue, bool onServer) {
-        if (IgnoreSync)
-            return;
-
-        target.velocity = newValue;
+    public Vector3 velocity {
+        get => _velocity;
+        set {
+            OnVelocityChanged(_velocity, value, false);
+            if (IsServer)
+                ObserversSetVelocity(value);
+            else if (IsClient)
+                ServerSetVelocity(value);
+        }
     }
 
-    private void OnAngularVelocityChanged(Vector3 _, Vector3 newValue, bool onServer) {
-        if (IgnoreSync)
-            return;
-
-        target.angularVelocity = newValue;
+    [ServerRpc]
+    private void ServerSetVelocity(Vector3 value, Channel channel = Channel.Unreliable) {
+        OnVelocityChanged(_velocity, value, false);
+        ObserversSetVelocity(value);
     }
 
+    [ObserversRpc(BufferLast = true)]
+    private void ObserversSetVelocity(Vector3 value, Channel channel = Channel.Unreliable) {
+        OnVelocityChanged(_velocity, value, false);
+        _velocity = value;
+    }
+    
+    private void OnVelocityChanged(Vector3 _, Vector3 newValue, bool onServer) => target.velocity = newValue;
+    
+    #endregion
+
+    #region angular velocity sync
+
+    [SerializeField, ReadOnly] private Vector3 _angularVelocity;
+
+    public Vector3 angularVelocity {
+        get => _angularVelocity;
+        set {
+            OnAngularVelocityChanged(_angularVelocity, value, false);
+            if (IsServer)
+                ObserversSetAngularVelocity(value);
+            else if (IsClient)
+                ServerSetAngularVelocity(value);
+        }
+    }
+
+    [ServerRpc]
+    private void ServerSetAngularVelocity(Vector3 value, Channel channel = Channel.Unreliable) {
+        OnAngularVelocityChanged(_angularVelocity, value, false);
+        ObserversSetAngularVelocity(value);
+    }
+
+    [ObserversRpc(BufferLast = true)]
+    private void ObserversSetAngularVelocity(Vector3 value, Channel channel = Channel.Unreliable) {
+        OnAngularVelocityChanged(_angularVelocity, value, false);
+        _angularVelocity = value;
+    }
+    
+    private void OnAngularVelocityChanged(Vector3 _, Vector3 newValue, bool onServer) => target.angularVelocity = newValue;
+    
+    #endregion
+    
+    #region is kinemtaic sync
+
+    [SerializeField, ReadOnly] private bool _isKinematic;
+
+    public bool isKinematic {
+        get => _isKinematic;
+        set {
+            OnIsKinematicChanged(_isKinematic, value, false);
+            if (IsServer)
+                ObserversSetIsKinematic(value);
+            else if (IsClient)
+                ServerSetIsKinematic(value);
+        }
+    }
+
+    [ServerRpc]
+    private void ServerSetIsKinematic(bool value, Channel channel = Channel.Reliable) {
+        OnIsKinematicChanged(_isKinematic, value, false);
+        ObserversSetIsKinematic(value);
+    }
+
+    [ObserversRpc(BufferLast = true)]
+    private void ObserversSetIsKinematic(bool value, Channel channel = Channel.Reliable) {
+        OnIsKinematicChanged(_isKinematic, value, false);
+        _isKinematic = value;
+    }
+    
     private void OnIsKinematicChanged(bool _, bool newValue, bool onServer) {
-        if (IgnoreSync)
-            return;
-
         targetIsKinematic = newValue;
         UpdateOwnershipKinematicState();
     }
+    
+    #endregion
+    
+    #region use gravity sync
 
-    private void OnUseGravityChanged(bool _, bool newValue, bool onServer) {
-        if (IgnoreSync)
-            return;
+    [SerializeField, ReadOnly] private bool _useGravity;
 
-        target.useGravity = newValue;
+    public bool useGravity {
+        get => _useGravity;
+        set {
+            OnUseGravityChanged(_useGravity, value, false);
+            if (IsServer)
+                ObserversSetUseGravity(value);
+            else if (IsClient)
+                ServerSetUseGravity(value);
+        }
     }
 
-    private void OnDragChanged(float _, float newValue, bool onServer) {
-        if (IgnoreSync)
-            return;
-
-        target.drag = newValue;
+    [ServerRpc]
+    private void ServerSetUseGravity(bool value, Channel channel = Channel.Reliable) {
+        OnUseGravityChanged(_useGravity, value, false);
+        ObserversSetUseGravity(value);
     }
 
-    private void OnAngularDragChanged(float _, float newValue, bool onServer) {
-        if (IgnoreSync)
-            return;
-
-        target.angularDrag = newValue;
+    [ObserversRpc(BufferLast = true)]
+    private void ObserversSetUseGravity(bool value, Channel channel = Channel.Reliable) {
+        OnUseGravityChanged(_useGravity, value, false);
+        _useGravity = value;
     }
+    
+    private void OnUseGravityChanged(bool _, bool newValue, bool onServer) => target.useGravity = newValue;
+    
+    #endregion
+    
+    #region drag sync
+
+    [SerializeField, ReadOnly] private float _drag;
+
+    public float drag {
+        get => _drag;
+        set {
+            OnDragChanged(_drag, value, false);
+            if (IsServer)
+                ObserversSetDrag(value);
+            else if (IsClient)
+                ServerSetDrag(value);
+        }
+    }
+
+    [ServerRpc]
+    private void ServerSetDrag(float value, Channel channel = Channel.Reliable) {
+        OnDragChanged(_drag, value, false);
+        ObserversSetDrag(value);
+    }
+
+    [ObserversRpc(BufferLast = true)]
+    private void ObserversSetDrag(float value, Channel channel = Channel.Reliable) {
+        OnDragChanged(_drag, value, false);
+        _drag = value;
+    }
+    
+    private void OnDragChanged(float _, float newValue, bool onServer) => target.drag = newValue;
+    
+    #endregion
+    
+    #region angular drag sync
+
+    [SerializeField, ReadOnly] private float _angularDrag;
+
+    public float angularDrag {
+        get => _angularDrag;
+        set {
+            OnAngularDragChanged(_angularDrag, value, false);
+            if (IsServer)
+                ObserversSetAngularDrag(value);
+            else if (IsClient)
+                ServerSetAngularDrag(value);
+        }
+    }
+
+    [ServerRpc]
+    private void ServerSetAngularDrag(float value, Channel channel = Channel.Reliable) {
+        OnAngularDragChanged(_angularDrag, value, false);
+        ObserversSetAngularDrag(value);
+    }
+
+    [ObserversRpc(BufferLast = true)]
+    private void ObserversSetAngularDrag(float value, Channel channel = Channel.Reliable) {
+        OnAngularDragChanged(_angularDrag, value, false);
+        _angularDrag = value;
+    }
+    
+    private void OnAngularDragChanged(float _, float newValue, bool onServer) => target.angularDrag = newValue;
+    
+    #endregion
 
     #endregion
+
+    // Bool tracking if the "SyncVar"s have been initialized
+    private bool isStarted = false;
     
     public override void OnStartBoth() {
         base.OnStartBoth();
-        OnEnable();
-        
+
         UpdateOwnershipKinematicState();
+        
+        // Make sure that rarely updated properties have their initial values synced
+        if (IsAuthority) {
+            isKinematic = targetIsKinematic;
+            useGravity = target.useGravity;
+            drag = target.drag;
+            angularDrag = target.angularDrag;
+        }
+
+        isStarted = true;
     }
 
     public override void OnOwnershipBoth(NetworkConnection prev) {
         base.OnOwnershipBoth(prev);
 
+        if (!isStarted) return;
+        
+        // If your the owner, make sure your local rigidbody has the same settings as the previous owner
+        if (IsAuthority) {
+            target.velocity = velocity;
+            target.angularVelocity = angularVelocity;
+        }
+        
         UpdateOwnershipKinematicState();
     }
     
     // Make sure that anyone without authority isn't performing physics calculations
-    public void UpdateOwnershipKinematicState() => target.isKinematic = targetIsKinematic || !(ServerWithAuthority || ClientWithAuthority);
-    
+    public void UpdateOwnershipKinematicState() => target.isKinematic = targetIsKinematic || !IsAuthority;
 
-    public void OnEnable() {
-        if (TimeManager is not null)
-            TimeManager.OnPostTick += OnPostTick;
-    }
+    public override void Tick() {
+        // Debug.Log($"Pre: {velocity} - {target.velocity}");
+        
+        SendDataIfAuthority();
 
-    void OnDisable() {
-        if (TimeManager is not null)
-            TimeManager.OnPostTick -= OnPostTick;
-    }
-    
-    private void OnPostTick() {
-        if (IsServer)
-            SyncToClients();
-        else if (ClientWithAuthority) SendToServer();
+        // Debug.Log($"Post: {velocity} - {target.velocity}");
     }
 
     // TODO: Should this be switched to occuring on ticks?
     void FixedUpdate() {
         if (clearAngularVelocity && !syncAngularVelocity) target.angularVelocity = Vector3.zero;
-
         if (clearVelocity && !syncVelocity) target.velocity = Vector3.zero;
     }
-
-    /// <summary>
-    ///     Updates sync var values on server so that they sync to the client
-    /// </summary>
-    [Server]
-    private void SyncToClients() {
-        // only update if they have changed more than Sensitivity
-
-        var currentVelocity = syncVelocity ? target.velocity : default;
-        var currentAngularVelocity = syncAngularVelocity ? target.angularVelocity : default;
-
-        var velocityChanged = syncVelocity && (previousValue.velocity - currentVelocity).sqrMagnitude >
-            velocitySensitivity * velocitySensitivity;
-        var angularVelocityChanged = syncAngularVelocity &&
-                                     (previousValue.angularVelocity - currentAngularVelocity).sqrMagnitude >
-                                     angularVelocitySensitivity * angularVelocitySensitivity;
-
-        if (velocityChanged) {
-            velocity = currentVelocity;
-            previousValue.velocity = currentVelocity;
-        }
-
-        if (angularVelocityChanged) {
-            angularVelocity = currentAngularVelocity;
-            previousValue.angularVelocity = currentAngularVelocity;
-        }
-
-        // other rigidbody settings
-        isKinematic = targetIsKinematic;
-        useGravity = target.useGravity;
-        drag = target.drag;
-        angularDrag = target.angularDrag;
-    }
+    
 
     /// <summary>
     ///     Uses Command to send values to server
     /// </summary>
-    [Client(RequireOwnership = true)]
-    private void SendToServer() {
+    private void SendDataIfAuthority() {
+        if (!IsAuthority) return;
+        
         SendVelocity();
         SendRigidBodySettings();
     }
-
-    [Client(RequireOwnership = true)]
+    
     private void SendVelocity() {
-        var now = Time.time;
-        if (now < previousValue.nextSyncTime)
-            return;
-
         var currentVelocity = syncVelocity ? target.velocity : default;
         var currentAngularVelocity = syncAngularVelocity ? target.angularVelocity : default;
 
@@ -223,126 +320,45 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
         // if angularVelocity has changed it is likely that velocity has also changed so just sync both values
         // however if only velocity has changed just send velocity
         if (angularVelocityChanged) {
-            SendVelocityAndAngularServerRpc(currentVelocity, currentAngularVelocity);
+            velocity = currentVelocity;
+            angularVelocity = currentAngularVelocity;
             previousValue.velocity = currentVelocity;
             previousValue.angularVelocity = currentAngularVelocity;
         }
         else if (velocityChanged) {
-            SendVelocityServerRpc(currentVelocity);
+            velocity = currentVelocity;
             previousValue.velocity = currentVelocity;
         }
-
-
-        // only update syncTime if either has changed
-        if (angularVelocityChanged || velocityChanged) previousValue.nextSyncTime = now + (float) TimeManager.TickDelta;
     }
 
     [Client(RequireOwnership = true)]
     private void SendRigidBodySettings() {
         // These shouldn't change often so it is ok to send in their own Command
         if (previousValue.isKinematic != targetIsKinematic) {
-            SendIsKinematicServerRpc(targetIsKinematic);
+            isKinematic = targetIsKinematic;
             previousValue.isKinematic = targetIsKinematic;
         }
 
         if (previousValue.useGravity != target.useGravity) {
-            SendUseGravityServerRpc(target.useGravity);
+            useGravity = target.useGravity;
             previousValue.useGravity = target.useGravity;
         }
 
         if (previousValue.drag != target.drag) {
-            SendDragServerRpc(target.drag);
+            drag = target.drag;
             previousValue.drag = target.drag;
         }
 
         if (previousValue.angularDrag != target.angularDrag) {
-            SendAngularDragServerRpc(target.angularDrag);
+            angularDrag = target.angularDrag;
             previousValue.angularDrag = target.angularDrag;
         }
-    }
-
-    /// <summary>
-    ///     Called when only Velocity has changed on the client
-    /// </summary>
-    [ServerRpc]
-    private void SendVelocityServerRpc(Vector3 velocity) {
-        // Ignore messages from client if not in client authority mode
-        if (!clientAuthority)
-            return;
-
-        this.velocity = velocity;
-        target.velocity = velocity;
-    }
-
-    /// <summary>
-    ///     Called when angularVelocity has changed on the client
-    /// </summary>
-    [ServerRpc]
-    private void SendVelocityAndAngularServerRpc(Vector3 velocity, Vector3 angularVelocity) {
-        // Ignore messages from client if not in client authority mode
-        if (!clientAuthority)
-            return;
-
-        if (syncVelocity) {
-            this.velocity = velocity;
-
-            target.velocity = velocity;
-        }
-
-        this.angularVelocity = angularVelocity;
-        target.angularVelocity = angularVelocity;
-    }
-
-    [ServerRpc]
-    private void SendIsKinematicServerRpc(bool isKinematic) {
-        // Ignore messages from client if not in client authority mode
-        if (!clientAuthority)
-            return;
-
-        this.isKinematic = isKinematic;
-        targetIsKinematic = isKinematic;
-        UpdateOwnershipKinematicState();
-    }
-
-    [ServerRpc]
-    private void SendUseGravityServerRpc(bool useGravity) {
-        // Ignore messages from client if not in client authority mode
-        if (!clientAuthority)
-            return;
-
-        this.useGravity = useGravity;
-        target.useGravity = useGravity;
-    }
-
-    [ServerRpc]
-    private void SendDragServerRpc(float drag) {
-        // Ignore messages from client if not in client authority mode
-        if (!clientAuthority)
-            return;
-
-        this.drag = drag;
-        target.drag = drag;
-    }
-
-    [ServerRpc]
-    private void SendAngularDragServerRpc(float angularDrag) {
-        // Ignore messages from client if not in client authority mode
-        if (!clientAuthority)
-            return;
-
-        this.angularDrag = angularDrag;
-        target.angularDrag = angularDrag;
     }
 
     /// <summary>
     ///     holds previously synced values
     /// </summary>
     public struct ClientSyncState {
-        /// <summary>
-        ///     Next sync time that velocity will be synced, based on syncInterval.
-        /// </summary>
-        public float nextSyncTime;
-
         public Vector3 velocity;
         public Vector3 angularVelocity;
         public bool isKinematic;
