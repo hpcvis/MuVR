@@ -3,11 +3,11 @@ using FishNet.Object;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-// Component that transfers ownership of this object to another player
+// Component that transfers ownership of this object to another user
 public class OwnershipManager : EnchancedNetworkBehaviour {
-	[Tooltip("Enable changing ownership when a player interacts with this object.")]
+	[Tooltip("Enable changing ownership when a user interacts with this object.")]
 	public bool enableInteractionTransfer = true;
-	[Tooltip("Enable changing ownership when this object enters an ownership volume that belongs to a player.")]
+	[Tooltip("Enable changing ownership when this object enters an ownership volume that belongs to a user.")]
 	public bool enableVolumeTransfer = true;
 	[Tooltip("Should the owner of this object return it to the scene before leaving the game?")]
 	public bool releaseOwnershipOnLeave = true;
@@ -72,7 +72,7 @@ public class OwnershipManager : EnchancedNetworkBehaviour {
 
 	// When this object is interacted with (only called if interaction transfers are enabled), give it to the interaction's owner
 	void OnInteractableSelected(SelectEnterEventArgs e) {
-		// note: beware of NetworkObjects that may be in the way of the player representation that we are looking for
+		// note: beware of NetworkObjects that may be in the way of the user representation that we are looking for
 		// there was a NetworkObject on the XRRig at some point which broke this whole function
 		var no = e.interactorObject.transform.GetComponentInParent<NetworkObject>();
 		if (no is null) return;

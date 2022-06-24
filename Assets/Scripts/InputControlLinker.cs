@@ -7,7 +7,7 @@ public class InputControlLinker : MonoBehaviour {
 
 	private void Start() {
 		// Get a reference to the avatar (should be attached to the parent object)
-		var avatar = transform.parent.GetComponent<PlayerAvatar>();
+		var avatar = transform.parent.GetComponent<UserAvatar>();
 
 		// For each of the managed SyncPoses, update its avatar and rebind its links
 		foreach (var sync in syncs) {

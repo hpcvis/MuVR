@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-// Component that copies the transform from the object it is attached to, to a pose slot on a PlayerAvatar
+// Component that copies the transform from the object it is attached to, to a pose slot on a UserAvatar
 public class SyncPose : MonoBehaviour {
 	// Enum setting weather we should be sending our transform to the pose, or reading our transform from the pose
 	public enum SyncMode {
@@ -11,8 +11,8 @@ public class SyncPose : MonoBehaviour {
 		SyncFrom
 	}
 
-	[Tooltip("PlayerAvatar we are syncing with")]
-	public PlayerAvatar targetAvatar;
+	[Tooltip("UserAvatar we are syncing with")]
+	public UserAvatar targetAvatar;
 	[Tooltip("Which pose on the avatar we are syncing with")]
 	public string slot;
 	[Tooltip("Should we send our transform to the pose, or update our transform to match the pose?")]
@@ -23,7 +23,7 @@ public class SyncPose : MonoBehaviour {
 	[Tooltip("Whether or not we should sync positions or rotations")]
 	public bool syncPositions = true, syncRotations = true;
 
-	[SerializeField] [ReadOnly] private PlayerAvatar.PoseRef target;
+	[SerializeField] [ReadOnly] private UserAvatar.PoseRef target;
 
 	// When the object is created make sure to update the target
 	private void Start() {

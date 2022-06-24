@@ -10,7 +10,7 @@ using Gma.DataStructures;
 [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Collider))]
 public class OwnershipVolume : EnchancedNetworkBehaviour {
 
-    // "Stack" of unique players who are currently within the volume
+    // "Stack" of unique users who are currently within the volume
     // NOTE: Ordered set selected so that the stack ordering is preserved, while still only allowing unique network connections in the list
     private readonly OrderedSet<NetworkConnection> potentialOwners = new();
     // Set of OwnershipManagers that are currently within the volume (and should thus be notified of ownership changes)
@@ -22,17 +22,17 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
 
     public enum OwnershipMode {
         Manual,
-        LocalPlayer, // Sets the owner to the player who spawned this volume (only works for non-scene objects.)
-        NewestPlayer, // Sets the owner to the last player who touched the volume
-        OldestPlayer // Sets the owner to the first player who touched the volume
+        LocalUser, // Sets the owner to the user who spawned this volume (only works for non-scene objects.)
+        NewestUser, // Sets the owner to the last user who touched the volume
+        OldestUser // Sets the owner to the first user who touched the volume
     }
 
     [SerializeField] private OwnershipMode mode;
 
-    // If we are in LocalPlayer mode, assign the player who spawned this object as the volumeOwner
+    // If we are in LocalUser mode, assign the user who spawned this object as the volumeOwner
     public override void OnStartClient(){
         base.OnStartClient();
-        if (mode != OwnershipMode.LocalPlayer) return;
+        if (mode != OwnershipMode.LocalUser) return;
 
         UpdateOwnerServerRpc(Owner);
     }
@@ -72,11 +72,11 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
 
 
         switch (mode) {
-        // In oldest player mode, add the interacting player to the back of the potential player list
-        case OwnershipMode.OldestPlayer:
+        // In oldest user mode, add the interacting user to the back of the potential user list
+        case OwnershipMode.OldestUser:
             potentialOwners.Add(no.Owner); 
-        // In newest player mode, add the interacting player to the front of the potential player list
-        break; case OwnershipMode.NewestPlayer: {
+        // In newest user mode, add the interacting user to the front of the potential user list
+        break; case OwnershipMode.NewestUser: {
             var oldOwners = new List<NetworkConnection>(potentialOwners);
             potentialOwners.Clear();
             potentialOwners.Add(no.Owner);
@@ -108,8 +108,8 @@ public class OwnershipVolume : EnchancedNetworkBehaviour {
         
         var no = other.GetComponentInParent<NetworkObject>();
         if (no is null) return;
-        // Only update ownership if we are in oldest or newest player mode
-        if ( mode is not (OwnershipMode.OldestPlayer or OwnershipMode.NewestPlayer) ) return;
+        // Only update ownership if we are in oldest or newest user mode
+        if ( mode is not (OwnershipMode.OldestUser or OwnershipMode.NewestUser) ) return;
 
         // Remove the owner that is no longer overlapping from the list of potential owners
         potentialOwners.Remove(no.Owner);

@@ -3,7 +3,7 @@ using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
 
 // Component that holds pose data. It acts as the glue between the input layer and the networking layer
-public class PlayerAvatar : MonoBehaviour {
+public class UserAvatar : MonoBehaviour {
 	// Class wrapper around unity's Pose to enable reference semantics
 	[Serializable]
 	public class PoseRef {
