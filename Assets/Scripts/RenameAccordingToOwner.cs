@@ -8,10 +8,7 @@ public class RenameAccordingToOwner : EnchancedNetworkBehaviour
 {
 	private string baseName;
 
-	private void Awake()
-	{
-		baseName = gameObject.name;
-	}
+	private void Awake() => baseName = gameObject.name.Replace("(Clone)", "");
 
 	public override void OnStartBoth() {
 		base.OnStartBoth();
@@ -19,9 +16,7 @@ public class RenameAccordingToOwner : EnchancedNetworkBehaviour
 		RenameObject();
 	}
 
-	public override void OnOwnershipBoth(NetworkConnection _) {
-		RenameObject();
-	}
+	public override void OnOwnershipBoth(NetworkConnection _) => RenameObject();
 
 	void RenameObject() {
 		// Rename this object after its owner

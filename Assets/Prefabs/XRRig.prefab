@@ -201,12 +201,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: 1
+  targetAvatar: {fileID: 886871086713833669, guid: d7f524ba58b680c489206cdd6b642fe1,
+    type: 3}
+  slot: Head
   mode: 0
   offset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+  syncPositions: 1
+  syncRotations: 1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -755,12 +758,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: 7
+  targetAvatar: {fileID: 886871086713833669, guid: d7f524ba58b680c489206cdd6b642fe1,
+    type: 3}
+  slot: RightHand
   mode: 0
   offset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  syncPositions: 1
+  syncRotations: 1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -1376,12 +1382,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: 6
+  targetAvatar: {fileID: 886871086713833669, guid: d7f524ba58b680c489206cdd6b642fe1,
+    type: 3}
+  slot: LeftHand
   mode: 0
   offset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  syncPositions: 1
+  syncRotations: 1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}

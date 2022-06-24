@@ -49,11 +49,6 @@ public class InputControlsSpawner : EnchancedNetworkBehaviour {
         // TODO: Add functionality to spawn VR or non VR input
         Debug.Log("Spawning input controls!");
         input = Instantiate(inputPrefabs[spawnIndex], transform.position, transform.rotation, transform);
-
-        // TODO: We need a way to hide the HMD that isn't hard coded...
-        // Move our head model down super far into the floor so that we don't have it blocking our vision
-        if (IsOwner)
-            transform.GetChild(0).GetChild(0).transform.position -= new Vector3(0, 1_000_000, 0);
     }
 
     // If we aren't the owner disable all of the pose syncs... just rely on the network transforms
