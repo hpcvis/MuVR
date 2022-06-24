@@ -97,6 +97,8 @@ MonoBehaviour:
   offset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+  syncPositions: 1
+  syncRotations: 1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -113,9 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e269b32501e58ec45a8196a2c8ce781c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 6606634378604021384}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 6606634378604021384}
+  target: {fileID: 7983287557230526603}
   ownedOffset:
     position: {x: 0, y: -1000000, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -133,7 +136,6 @@ GameObject:
   - component: {fileID: 6531052538444464859}
   - component: {fileID: 6606634378604021384}
   - component: {fileID: 886871086713833669}
-  - component: {fileID: 3807133915305081773}
   - component: {fileID: 7089441834453454997}
   m_Layer: 0
   m_Name: PingPongAvatar
@@ -174,8 +176,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _networkBehaviours:
-  - {fileID: 3807133915305081773}
+  - {fileID: 886871086713833669}
   - {fileID: 7089441834453454997}
+  - {fileID: 8668587123222019684}
   - {fileID: 2450336938242817400}
   - {fileID: 8229183251738500020}
   SceneTransformProperties:
@@ -201,6 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cedb6a5bdb2aaa04e99ebd9c65e866d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 6606634378604021384}
+  _networkObjectCache: {fileID: 6606634378604021384}
   slots:
     reorderableList:
       canAdd: 1
@@ -242,25 +248,13 @@ MonoBehaviour:
     - pose:
         position: {x: 0, y: 0, z: 0}
         rotation: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3807133915305081773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6531052538444464858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6527c469e81b3ae4e86c9378820690fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 0
-  _addedNetworkObject: {fileID: 6606634378604021384}
-  _networkObjectCache: {fileID: 6606634378604021384}
   inputPrefabs:
   - {fileID: 4732151867741746184, guid: 1d44d74bb658c644689953d25a88b183, type: 3}
   spawnIndex: 0
   input: {fileID: 0}
+  onInputSpawned:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7089441834453454997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +363,8 @@ MonoBehaviour:
   offset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+  syncPositions: 1
+  syncRotations: 1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -385,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 6606634378604021384}
   _networkObjectCache: {fileID: 6606634378604021384}
   _synchronizeParent: 0
@@ -549,6 +545,8 @@ MonoBehaviour:
   offset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+  syncPositions: 1
+  syncRotations: 1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -565,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 2
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 6606634378604021384}
   _networkObjectCache: {fileID: 6606634378604021384}
   _synchronizeParent: 0
