@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using Adrenak.UniVoice.InbuiltImplementations;
 using Adrenak.UniVoice.Samples;
 using FishNet.Object;
 
-[RequireComponent(typeof(FishNetChatroomNetwork))]
+[RequireComponent(typeof(FishyVoice.VoiceNetwork))]
 public class FishNetGroupVoiceCallSample : NetworkBehaviour {
     public GameObject audioPanel;
     
@@ -27,12 +28,12 @@ public class FishNetGroupVoiceCallSample : NetworkBehaviour {
     public Toggle muteSelfToggle;
     public Toggle muteOthersToggle;
 
-    FishNetChatroomNetwork network;
-    ChatroomAgent agent;
-    Dictionary<short, PeerView> peerViews = new Dictionary<short, PeerView>();
+    private FishyVoice.VoiceNetwork network;
+    private ChatroomAgent agent;
+    private readonly Dictionary<short, PeerView> peerViews = new Dictionary<short, PeerView>();
 
     private void Awake() {
-        network = GetComponent<FishNetChatroomNetwork>();
+        network = GetComponent<FishyVoice.VoiceNetwork>();
         audioPanel.SetActive(false);
     }
 
@@ -86,7 +87,7 @@ public class FishNetGroupVoiceCallSample : NetworkBehaviour {
 
         // JOINING
         agent.Network.OnJoinedChatroom += id => {
-            if (agent.Network.CurrentChatroomName == FishNetChatroomNetwork.DefaultRoomName)
+            if (agent.Network.CurrentChatroomName == FishyVoice.VoiceNetwork.DefaultRoomName)
                 return;
             
             var chatroomName = agent.Network.CurrentChatroomName;
@@ -97,9 +98,7 @@ public class FishNetGroupVoiceCallSample : NetworkBehaviour {
             chatroomGO.SetActive(true);
         };
 
-        agent.Network.OnChatroomJoinFailed += ex => {
-            ShowMessage(ex);
-        };
+        agent.Network.OnChatroomJoinFailed += ShowMessage;
 
         agent.Network.OnLeftChatroom += () => {
             ShowMessage("You left the chatroom");
@@ -172,26 +171,30 @@ public class FishNetGroupVoiceCallSample : NetworkBehaviour {
         }
     }
 
-    void HostChatroom() {
+    private void HostChatroom() {
         var roomName = inputField.text;
         Debug.Log("Hosting: " + roomName);
         agent.Network.HostChatroom(roomName);
     }
 
-    void JoinChatroom() {
+    private void JoinChatroom() {
         var roomName = inputField.text;
         agent.Network.JoinChatroom(roomName);
     }
 
-    void ExitChatroom() {
+    private void ExitChatroom() {
         Debug.Log(agent.CurrentMode);
-        if (agent.CurrentMode == ChatroomAgentMode.Host)
-            agent.Network.CloseChatroom();
-        else if (agent.CurrentMode == ChatroomAgentMode.Guest)
-            agent.Network.LeaveChatroom();
+        switch (agent.CurrentMode) {
+            case ChatroomAgentMode.Host:
+                agent.Network.CloseChatroom();
+            break; case ChatroomAgentMode.Guest:
+                agent.Network.LeaveChatroom();
+            break; default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
-    void ShowMessage(object obj) {
+    private void ShowMessage(object obj) {
         Debug.Log("<color=blue>" + obj + "</color>");
         menuMessage.text = obj.ToString();
         if (agent.CurrentMode != ChatroomAgentMode.Unconnected)

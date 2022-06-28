@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -92,9 +92,8 @@ namespace Adrenak.UniMic {
         static Mic m_Instance;
         public static Mic Instance {
             get {
-                if (m_Instance is null)
-                    m_Instance = GameObject.FindObjectOfType<Mic>();
-                if (m_Instance is null) {
+                m_Instance ??= FindObjectOfType<Mic>();
+                if (m_Instance == null) {
                     m_Instance = new GameObject("UniMic.Mic").AddComponent<Mic>();
                     DontDestroyOnLoad(m_Instance.gameObject);
                 }
