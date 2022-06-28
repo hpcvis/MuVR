@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Samples/PingPong/PingPong.unity
+    guid: bcb32edbde922f24a8b4c5132d42e44b
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 3baaf1d53788d944c86d7d639fc35164
   - enabled: 1
-    path: Assets/Samples/PingPong/Scenes/PingPong.unity
-    guid: bcb32edbde922f24a8b4c5132d42e44b
+    path: Assets/Samples/OwnershipTransferDemo/Demo.unity
+    guid: 4bd7130b00fa79541b8d4e2dedc133db
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}

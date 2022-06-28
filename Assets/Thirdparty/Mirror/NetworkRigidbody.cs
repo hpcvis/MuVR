@@ -278,7 +278,7 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
         
         UpdateOwnershipKinematicState();
     }
-    
+
     // Make sure that anyone without authority isn't performing physics calculations
     public void UpdateOwnershipKinematicState() => target.isKinematic = targetIsKinematic || !IsAuthority;
 
