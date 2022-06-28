@@ -70,12 +70,22 @@ public class EnchancedNetworkBehaviour : NetworkBehaviour {
 	public virtual void PostTick() { }
 
 	
+	/// Function that gives ownership to a new owner with a cooldown, so that ownership can't repeatedly flip flop back and fourth
+	protected bool canGiveOwnership = true;
+	public void GiveOwnershipWithCooldown(NetworkConnection newOwner, float cooldown = .1f) {
+		if (!canGiveOwnership) return;
+		
+		RequestGiveOwnership(newOwner);
+		StartCoroutine(Timer.Start(() => canGiveOwnership = true, cooldown));
+		canGiveOwnership = false;
+	}
+	
 	/// Function that requests that the server give the provided NetworkConnection ownership
 	public void RequestGiveOwnership(NetworkConnection newOwner) {
 		if(IsServer) GiveOwnership(newOwner);
 		else GiveOwnershipServerRPC(newOwner);
 	}
-
+	
 	/// Server RPC that gives the provided NetworkConnection ownership over the controlling object
 	[ServerRpc(RequireOwnership = false)]
 	protected void GiveOwnershipServerRPC(NetworkConnection newOwner) => GiveOwnership(newOwner);

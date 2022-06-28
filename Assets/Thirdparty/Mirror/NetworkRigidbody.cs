@@ -25,7 +25,7 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
     [field: SerializeField] private bool clearVelocity = false;
 
     [field: Tooltip("Only Syncs Value if distance between previous and current is great than sensitivity")]
-    [field: SerializeField] private float velocitySensitivity = 0.1f;
+    [field: SerializeField] private float velocitySensitivity = 0.01f;
 
 
     [field: Header("Angular Velocity")] 
@@ -36,7 +36,7 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
     [field: SerializeField] private bool clearAngularVelocity = false;
 
     [field: Tooltip("Only Syncs Value if distance between previous and current is great than sensitivity")]
-    [field: SerializeField] private float angularVelocitySensitivity = 0.1f;
+    [field: SerializeField] private float angularVelocitySensitivity = 0.01f;
 
     /// <summary>
     ///     Values sent on client with authority after they are sent to the server
@@ -63,6 +63,7 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
         get => _velocity;
         set {
             OnVelocityChanged(_velocity, value, false);
+            _velocity = value;
             if (IsServer)
                 ObserversSetVelocity(value);
             else if (IsClient)
@@ -71,13 +72,14 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetVelocity(Vector3 value, Channel channel = Channel.Unreliable) {
+    private void ServerSetVelocity(Vector3 value) {
         OnVelocityChanged(_velocity, value, false);
         ObserversSetVelocity(value);
+        _velocity = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetVelocity(Vector3 value, Channel channel = Channel.Unreliable) {
+    private void ObserversSetVelocity(Vector3 value) {
         OnVelocityChanged(_velocity, value, false);
         _velocity = value;
     }
@@ -94,6 +96,7 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
         get => _angularVelocity;
         set {
             OnAngularVelocityChanged(_angularVelocity, value, false);
+            _angularVelocity = value;
             if (IsServer)
                 ObserversSetAngularVelocity(value);
             else if (IsClient)
@@ -102,13 +105,14 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetAngularVelocity(Vector3 value, Channel channel = Channel.Unreliable) {
+    private void ServerSetAngularVelocity(Vector3 value) {
         OnAngularVelocityChanged(_angularVelocity, value, false);
         ObserversSetAngularVelocity(value);
+        _angularVelocity = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetAngularVelocity(Vector3 value, Channel channel = Channel.Unreliable) {
+    private void ObserversSetAngularVelocity(Vector3 value) {
         OnAngularVelocityChanged(_angularVelocity, value, false);
         _angularVelocity = value;
     }
@@ -125,6 +129,7 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
         get => _isKinematic;
         set {
             OnIsKinematicChanged(_isKinematic, value, false);
+            _isKinematic = value;
             if (IsServer)
                 ObserversSetIsKinematic(value);
             else if (IsClient)
@@ -133,13 +138,14 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetIsKinematic(bool value, Channel channel = Channel.Reliable) {
+    private void ServerSetIsKinematic(bool value) {
         OnIsKinematicChanged(_isKinematic, value, false);
         ObserversSetIsKinematic(value);
+        _isKinematic = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetIsKinematic(bool value, Channel channel = Channel.Reliable) {
+    private void ObserversSetIsKinematic(bool value) {
         OnIsKinematicChanged(_isKinematic, value, false);
         _isKinematic = value;
     }
@@ -159,6 +165,7 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
         get => _useGravity;
         set {
             OnUseGravityChanged(_useGravity, value, false);
+            _useGravity = value;
             if (IsServer)
                 ObserversSetUseGravity(value);
             else if (IsClient)
@@ -167,13 +174,14 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetUseGravity(bool value, Channel channel = Channel.Reliable) {
+    private void ServerSetUseGravity(bool value) {
         OnUseGravityChanged(_useGravity, value, false);
         ObserversSetUseGravity(value);
+        _useGravity = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetUseGravity(bool value, Channel channel = Channel.Reliable) {
+    private void ObserversSetUseGravity(bool value) {
         OnUseGravityChanged(_useGravity, value, false);
         _useGravity = value;
     }
@@ -190,6 +198,7 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
         get => _drag;
         set {
             OnDragChanged(_drag, value, false);
+            _drag = value;
             if (IsServer)
                 ObserversSetDrag(value);
             else if (IsClient)
@@ -198,13 +207,14 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetDrag(float value, Channel channel = Channel.Reliable) {
+    private void ServerSetDrag(float value) {
         OnDragChanged(_drag, value, false);
         ObserversSetDrag(value);
+        _drag = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetDrag(float value, Channel channel = Channel.Reliable) {
+    private void ObserversSetDrag(float value) {
         OnDragChanged(_drag, value, false);
         _drag = value;
     }
@@ -221,6 +231,7 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
         get => _angularDrag;
         set {
             OnAngularDragChanged(_angularDrag, value, false);
+            _angularDrag = value;
             if (IsServer)
                 ObserversSetAngularDrag(value);
             else if (IsClient)
@@ -229,13 +240,14 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetAngularDrag(float value, Channel channel = Channel.Reliable) {
+    private void ServerSetAngularDrag(float value) {
         OnAngularDragChanged(_angularDrag, value, false);
         ObserversSetAngularDrag(value);
+        _angularDrag = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetAngularDrag(float value, Channel channel = Channel.Reliable) {
+    private void ObserversSetAngularDrag(float value) {
         OnAngularDragChanged(_angularDrag, value, false);
         _angularDrag = value;
     }
@@ -324,35 +336,25 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
             angularVelocity = currentAngularVelocity;
             previousValue.velocity = currentVelocity;
             previousValue.angularVelocity = currentAngularVelocity;
-        }
-        else if (velocityChanged) {
+        } else if (velocityChanged) {
             velocity = currentVelocity;
             previousValue.velocity = currentVelocity;
         }
     }
-
-    [Client(RequireOwnership = true)]
+    
     private void SendRigidBodySettings() {
         // These shouldn't change often so it is ok to send in their own Command
-        if (previousValue.isKinematic != targetIsKinematic) {
-            isKinematic = targetIsKinematic;
-            previousValue.isKinematic = targetIsKinematic;
-        }
+        if (previousValue.isKinematic != targetIsKinematic) 
+            previousValue.isKinematic = isKinematic = targetIsKinematic;
 
-        if (previousValue.useGravity != target.useGravity) {
-            useGravity = target.useGravity;
-            previousValue.useGravity = target.useGravity;
-        }
+        if (previousValue.useGravity != target.useGravity) 
+            previousValue.useGravity = useGravity = target.useGravity;
 
-        if (previousValue.drag != target.drag) {
-            drag = target.drag;
-            previousValue.drag = target.drag;
-        }
+        if (previousValue.drag != target.drag) 
+            previousValue.drag = drag = target.drag;
 
-        if (previousValue.angularDrag != target.angularDrag) {
-            angularDrag = target.angularDrag;
-            previousValue.angularDrag = target.angularDrag;
-        }
+        if (previousValue.angularDrag != target.angularDrag)
+            previousValue.angularDrag = angularDrag = target.angularDrag;
     }
 
     /// <summary>
