@@ -71,25 +71,25 @@ namespace FishyVoice {
         /// <summary>
         /// Current state of client socket.
         /// </summary>
-        protected LocalConnectionStates clientState = LocalConnectionStates.Stopped;
+        protected LocalConnectionState clientState = LocalConnectionState.Stopped;
 
         /// <summary>
         /// Current state of server socket.
         /// </summary>
-        protected LocalConnectionStates serverState = LocalConnectionStates.Stopped;
+        protected LocalConnectionState serverState = LocalConnectionState.Stopped;
 
         #endregion
 
         void OnGUI() {
 #if ENABLE_INPUT_SYSTEM
-            string GetNextStateText(LocalConnectionStates state) {
-                if (state == LocalConnectionStates.Stopped)
+            string GetNextStateText(LocalConnectionState state) {
+                if (state == LocalConnectionState.Stopped)
                     return "Start";
-                else if (state == LocalConnectionStates.Starting)
+                else if (state == LocalConnectionState.Starting)
                     return "Starting";
-                else if (state == LocalConnectionStates.Stopping)
+                else if (state == LocalConnectionState.Stopping)
                     return "Stopping";
-                else if (state == LocalConnectionStates.Started)
+                else if (state == LocalConnectionState.Started)
                     return "Stop";
                 else
                     return "Invalid";
@@ -143,8 +143,8 @@ namespace FishyVoice {
                 return;
             }
             else {
-                UpdateColor(LocalConnectionStates.Stopped, ref serverIndicator);
-                UpdateColor(LocalConnectionStates.Stopped, ref clientIndicator);
+                UpdateColor(LocalConnectionState.Stopped, ref serverIndicator);
+                UpdateColor(LocalConnectionState.Stopped, ref clientIndicator);
                 NetworkManager.ServerManager.OnServerConnectionState += ServerManager_OnServerConnectionState;
                 NetworkManager.ClientManager.OnClientConnectionState += ClientManager_OnClientConnectionState;
             }
@@ -170,11 +170,11 @@ namespace FishyVoice {
         /// </summary>
         /// <param name="state"></param>
         /// <param name="img"></param>
-        protected void UpdateColor(LocalConnectionStates state, ref Image img) {
+        protected void UpdateColor(LocalConnectionState state, ref Image img) {
             Color c;
-            if (state == LocalConnectionStates.Started)
+            if (state == LocalConnectionState.Started)
                 c = startedColor;
-            else if (state == LocalConnectionStates.Stopped)
+            else if (state == LocalConnectionState.Stopped)
                 c = stoppedColor;
             else
                 c = changingColor;
@@ -199,7 +199,7 @@ namespace FishyVoice {
             if (NetworkManager is null)
                 return;
 
-            if (serverState != LocalConnectionStates.Stopped)
+            if (serverState != LocalConnectionState.Stopped)
                 NetworkManager.ServerManager.StopConnection(true);
             else
                 NetworkManager.ServerManager.StartConnection();
@@ -210,7 +210,7 @@ namespace FishyVoice {
             if (NetworkManager is null)
                 return;
 
-            if (clientState != LocalConnectionStates.Stopped)
+            if (clientState != LocalConnectionState.Stopped)
                 NetworkManager.ClientManager.StopConnection();
             else
                 NetworkManager.ClientManager.StartConnection();

@@ -36,7 +36,7 @@ namespace FishyVoice {
         protected bool networkActive => (IsServer && ServerManager.Started) || LocalConnection.IsActive;
 
         // Variable tracking the current connection state of the network (connected? disconnected?)
-        [HideInInspector] public LocalConnectionStates connectionState = LocalConnectionStates.Stopped;
+        [HideInInspector] public LocalConnectionState connectionState = LocalConnectionState.Stopped;
 
         // Dictionary mapping open room names to the list of players currently in the room
         [SyncObject] protected readonly SyncDictionary<string, List<short>> openRooms = new();
@@ -123,7 +123,7 @@ namespace FishyVoice {
             } catch (NullReferenceException) { }
             
             // If we are in a room be sure to leave
-            if(connectionState == LocalConnectionStates.Started)
+            if(connectionState == LocalConnectionState.Started)
                 LeaveChatroom();
         }
 
@@ -176,7 +176,7 @@ namespace FishyVoice {
                 CurrentChatroomName = roomName;
                 OnCreatedChatroom?.Invoke();
                 OnJoinedChatroom?.Invoke(OwnID);
-                connectionState = LocalConnectionStates.Started;
+                connectionState = LocalConnectionState.Started;
             } catch (Exception e) {
                 OnChatroomCreationFailed?.Invoke(e);
             }
@@ -219,7 +219,7 @@ namespace FishyVoice {
 
             OnlosedChatroom?.Invoke();
             CurrentChatroomName = DefaultRoomName;
-            connectionState = LocalConnectionStates.Stopped;
+            connectionState = LocalConnectionState.Stopped;
         }
 
         // Function called to join a chatroom
@@ -237,7 +237,7 @@ namespace FishyVoice {
             if(IsServer) JoinChatroomServer(OwnID, roomName); 
             else JoinChatroomServerRpc(OwnID, roomName);
             OnJoinedChatroom?.Invoke(OwnID);
-            connectionState = LocalConnectionStates.Started;
+            connectionState = LocalConnectionState.Started;
         }
 
         // RPC that notifies the server (and all clients in the room) that we have joined a room
@@ -268,7 +268,7 @@ namespace FishyVoice {
             LeaveChatroomServerRpc(OwnID, CurrentChatroomName);
             OnLeftChatroom?.Invoke();
             CurrentChatroomName = DefaultRoomName;
-            connectionState = LocalConnectionStates.Stopped;
+            connectionState = LocalConnectionState.Stopped;
         }
         
         // RPC that notifies the server (and other peers in the room) that you have left the chatroom

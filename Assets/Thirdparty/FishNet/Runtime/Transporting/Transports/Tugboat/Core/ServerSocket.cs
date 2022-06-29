@@ -19,13 +19,13 @@ namespace FishNet.Transporting.Tugboat.Server
         /// Gets the current ConnectionState of a remote client on the server.
         /// </summary>
         /// <param name="connectionId">ConnectionId to get ConnectionState for.</param>
-        internal RemoteConnectionStates GetConnectionState(int connectionId)
+        internal RemoteConnectionState GetConnectionState(int connectionId)
         {
             NetPeer peer = GetNetPeer(connectionId, false);
             if (peer == null || peer.ConnectionState != ConnectionState.Connected)
-                return RemoteConnectionStates.Stopped;
+                return RemoteConnectionState.Stopped;
             else
-                return RemoteConnectionStates.Started;
+                return RemoteConnectionState.Started;
         }
         #endregion
 
@@ -48,7 +48,7 @@ namespace FishNet.Transporting.Tugboat.Server
         /// <summary>
         /// Changes to the sockets local connection state.
         /// </summary>
-        private Queue<LocalConnectionStates> _localConnectionStates = new Queue<LocalConnectionStates>();
+        private Queue<LocalConnectionState> _localConnectionStates = new Queue<LocalConnectionState>();
         /// <summary>
         /// Inbound messages which need to be handled.
         /// </summary>
@@ -57,14 +57,6 @@ namespace FishNet.Transporting.Tugboat.Server
         /// Outbound messages which need to be handled.
         /// </summary>
         private Queue<Packet> _outgoing = new Queue<Packet>();
-        /// <summary>
-        /// Ids to disconnect next iteration. This ensures data goes through to disconnecting remote connections. This may be removed in a later release.
-        /// </summary>
-        private ListCache<int> _disconnectingNext = new ListCache<int>();
-        /// <summary>
-        /// Ids to disconnect immediately.
-        /// </summary>
-        private ListCache<int> _disconnectingNow = new ListCache<int>();
         /// <summary>
         /// PossibleAttackEvents which need to be handled.
         /// </summary>
@@ -187,7 +179,7 @@ namespace FishNet.Transporting.Tugboat.Server
             //If started succcessfully.
             if (startResult)
             {
-                _localConnectionStates.Enqueue(LocalConnectionStates.Started);
+                _localConnectionStates.Enqueue(LocalConnectionState.Started);
             }
             //Failed to start.
             else
@@ -225,8 +217,8 @@ namespace FishNet.Transporting.Tugboat.Server
                 }
 
                 //If not stopped yet also enqueue stop.
-                if (base.GetConnectionState() != LocalConnectionStates.Stopped)
-                    _localConnectionStates.Enqueue(LocalConnectionStates.Stopped);
+                if (base.GetConnectionState() != LocalConnectionState.Stopped)
+                    _localConnectionStates.Enqueue(LocalConnectionState.Stopped);
             });
         }
 
@@ -265,10 +257,10 @@ namespace FishNet.Transporting.Tugboat.Server
         /// </summary>
         internal bool StartConnection(ushort port, int maximumClients, AttackResponseType attackResponseType, string ipv4BindAddress, string ipv6BindAddress)
         {
-            if (base.GetConnectionState() != LocalConnectionStates.Stopped)
+            if (base.GetConnectionState() != LocalConnectionState.Stopped)
                 return false;
 
-            base.SetConnectionState(LocalConnectionStates.Starting, true);
+            base.SetConnectionState(LocalConnectionState.Starting, true);
 
             //Assign properties.
             _port = port;
@@ -288,10 +280,10 @@ namespace FishNet.Transporting.Tugboat.Server
         /// </summary>
         internal bool StopConnection()
         {
-            if (_server == null || base.GetConnectionState() == LocalConnectionStates.Stopped || base.GetConnectionState() == LocalConnectionStates.Stopping)
+            if (_server == null || base.GetConnectionState() == LocalConnectionState.Stopped || base.GetConnectionState() == LocalConnectionState.Stopping)
                 return false;
 
-            _localConnectionStates.Enqueue(LocalConnectionStates.Stopping);
+            _localConnectionStates.Enqueue(LocalConnectionState.Stopping);
             StopSocketOnThread();
             return true;
         }
@@ -300,34 +292,24 @@ namespace FishNet.Transporting.Tugboat.Server
         /// Stops a remote client disconnecting the client from the server.
         /// </summary>
         /// <param name="connectionId">ConnectionId of the client to disconnect.</param>
-        internal bool StopConnection(int connectionId, bool immediately)
+        internal bool StopConnection(int connectionId)
         {
             //Server isn't running.
-            if (_server == null || base.GetConnectionState() != LocalConnectionStates.Started)
+            if (_server == null || base.GetConnectionState() != LocalConnectionState.Started)
                 return false;
 
             NetPeer peer = GetNetPeer(connectionId, false);
             if (peer == null)
                 return false;
 
-            //Don't disconnect immediately, wait until next command iteration.
-            if (!immediately)
+            try
             {
-                _disconnectingNext.AddValue(connectionId);
-
+                peer.Disconnect();
+                base.Transport.HandleRemoteConnectionState(new RemoteConnectionStateArgs(RemoteConnectionState.Stopped, connectionId, base.Transport.Index));
             }
-            //Disconnect immediately.
-            else
+            catch
             {
-                try
-                {
-                    peer.Disconnect();
-                    base.Transport.HandleRemoteConnectionState(new RemoteConnectionStateArgs(RemoteConnectionStates.Stopped, connectionId, base.Transport.Index));
-                }
-                catch
-                {
-                    return false;
-                }
+                return false;
             }
 
             return true;
@@ -341,8 +323,6 @@ namespace FishNet.Transporting.Tugboat.Server
             _localConnectionStates.Clear();
             base.ClearPacketQueue(ref _incoming);
             base.ClearPacketQueue(ref _outgoing);
-            _disconnectingNext.Reset();
-            _disconnectingNow.Reset();
             while (_possibleAttackEvents.TryDequeue(out _)) ;
             _remoteConnectionEvents.Clear();
         }
@@ -402,44 +382,12 @@ namespace FishNet.Transporting.Tugboat.Server
         }
 
         /// <summary>
-        /// Dequeues and processes commands.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void DequeueDisconnects()
-        {
-            int count;
-
-            count = _disconnectingNow.Written;
-            //If there are disconnect nows.
-            if (count > 0)
-            {
-                List<int> collection = _disconnectingNow.Collection;
-                for (int i = 0; i < count; i++)
-                    StopConnection(collection[i], true);
-
-                _disconnectingNow.Reset();
-            }
-
-            count = _disconnectingNext.Written;
-            //If there are disconnect next.
-            if (count > 0)
-            {
-                List<int> collection = _disconnectingNext.Collection;
-                for (int i = 0; i < count; i++)
-                    _disconnectingNow.AddValue(collection[i]);
-
-                _disconnectingNext.Reset();
-            }
-        }
-
-
-        /// <summary>
         /// Dequeues and processes outgoing.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void DequeueOutgoing()
         {
-            if (base.GetConnectionState() != LocalConnectionStates.Started || _server == null)
+            if (base.GetConnectionState() != LocalConnectionState.Started || _server == null)
             {
                 //Not started, clear outgoing.
                 base.ClearPacketQueue(ref _outgoing);
@@ -489,7 +437,6 @@ namespace FishNet.Transporting.Tugboat.Server
         internal void IterateOutgoing()
         {
             DequeueOutgoing();
-            DequeueDisconnects();
         }
 
         /// <summary>
@@ -507,12 +454,12 @@ namespace FishNet.Transporting.Tugboat.Server
                 base.SetConnectionState(_localConnectionStates.Dequeue(), true);
 
             //Not yet started.
-            LocalConnectionStates localState = base.GetConnectionState();
-            if (localState != LocalConnectionStates.Started)
+            LocalConnectionState localState = base.GetConnectionState();
+            if (localState != LocalConnectionState.Started)
             {
                 ResetQueues();
                 //If stopped try to kill task.
-                if (localState == LocalConnectionStates.Stopped)
+                if (localState == LocalConnectionState.Stopped)
                 {
                     StopSocketOnThread();
                     return;
@@ -537,7 +484,7 @@ namespace FishNet.Transporting.Tugboat.Server
             while (_remoteConnectionEvents.Count > 0)
             {
                 RemoteConnectionEvent connectionEvent = _remoteConnectionEvents.Dequeue();
-                RemoteConnectionStates state = (connectionEvent.Connected) ? RemoteConnectionStates.Started : RemoteConnectionStates.Stopped;
+                RemoteConnectionState state = (connectionEvent.Connected) ? RemoteConnectionState.Started : RemoteConnectionState.Stopped;
                 base.Transport.HandleRemoteConnectionState(new RemoteConnectionStateArgs(state, connectionEvent.ConnectionId, base.Transport.Index));
             }
 

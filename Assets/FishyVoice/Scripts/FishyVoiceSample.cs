@@ -14,7 +14,7 @@ namespace FishyVoice {
         public string roomName = FishyVoice.VoiceNetwork.DefaultRoomName;
         
         // Variable indicating the current connection state of the voice network
-        protected LocalConnectionStates voiceState => voiceNetwork?.connectionState ?? LocalConnectionStates.Stopped;
+        protected LocalConnectionState voiceState => voiceNetwork?.connectionState ?? LocalConnectionState.Stopped;
         // Voice network reference
         protected FishyVoice.VoiceNetwork voiceNetwork;
         // Agent that participates in the voice network
@@ -26,12 +26,12 @@ namespace FishyVoice {
                 Debug.LogError("Voice Network object not found, voice connectivity will not work!");
         }
 
-        private static string GetNextStateText(LocalConnectionStates state) {
+        private static string GetNextStateText(LocalConnectionState state) {
             return state switch {
-                LocalConnectionStates.Stopped => "Start",
-                LocalConnectionStates.Starting => "Starting",
-                LocalConnectionStates.Stopping => "Stopping",
-                LocalConnectionStates.Started => "Stop",
+                LocalConnectionState.Stopped => "Start",
+                LocalConnectionState.Starting => "Starting",
+                LocalConnectionState.Stopping => "Stopping",
+                LocalConnectionState.Started => "Stop",
                 _ => "Invalid"
             };
         }
@@ -81,7 +81,7 @@ namespace FishyVoice {
             // Listen for changes to the client state
             NetworkManager.ClientManager.OnClientConnectionState += OnClientConnectionState;
             
-            UpdateColor(LocalConnectionStates.Stopped, ref voiceIndicator);
+            UpdateColor(LocalConnectionState.Stopped, ref voiceIndicator);
             
             // Create agent and listen for its messages
             agent?.Dispose();
@@ -124,7 +124,7 @@ namespace FishyVoice {
         public void OnClientConnectionState(ClientConnectionStateArgs args) {
             // Make sure the voice button is only visible if we are a client (or host)
 #if !ENABLE_INPUT_SYSTEM
-            voiceIndicator.transform.parent.gameObject.SetActive(args.ConnectionState == LocalConnectionStates.Started);
+            voiceIndicator.transform.parent.gameObject.SetActive(args.ConnectionState == LocalConnectionState.Started);
 #endif
         }
 
@@ -132,7 +132,7 @@ namespace FishyVoice {
             if (NetworkManager is null)
                 return;
 
-            if (serverState != LocalConnectionStates.Stopped) {
+            if (serverState != LocalConnectionState.Stopped) {
                 NetworkManager.ServerManager.OnServerConnectionState -= OnServerStart;
                 NetworkManager.ServerManager.StopConnection(true);
             } else {
@@ -142,20 +142,20 @@ namespace FishyVoice {
         }
 
         public void OnServerStart(ServerConnectionStateArgs args) {
-            if (args.ConnectionState != LocalConnectionStates.Started) return;
+            if (args.ConnectionState != LocalConnectionState.Started) return;
 
             // The server needs to keep a room running, but it shouldn't participate in the room unless it is a host and the client part wishes to
             agent.HostChatroom(roomName);
             // agent.MuteOthers = true;
             // agent.MuteSelf = true;
-            voiceNetwork.connectionState = LocalConnectionStates.Stopped;
+            voiceNetwork.connectionState = LocalConnectionState.Stopped;
         }
 
         public override void OnClick_Client() {
             if (NetworkManager is null)
                 return;
             
-            if(voiceState == LocalConnectionStates.Started && clientState == LocalConnectionStates.Started) OnClick_Voice();
+            if(voiceState == LocalConnectionState.Started && clientState == LocalConnectionState.Started) OnClick_Voice();
             
             base.OnClick_Client();
         }
@@ -165,7 +165,7 @@ namespace FishyVoice {
             if (!NetworkManager.IsClient) return;
 
             // Turning voice on or off equates to joining or leaving a chatroom
-            if(voiceNetwork.connectionState == LocalConnectionStates.Started)
+            if(voiceNetwork.connectionState == LocalConnectionState.Started)
                 agent.LeaveChatroom();
             else 
                 agent.JoinChatroom(roomName);

@@ -54,7 +54,7 @@ namespace FishNet.Example.Authenticating
             * doesn't have to send an authentication request before client
             * can authenticate, that is entirely optional and up to you. In this
             * example the client tries to authenticate soon as they connect. */
-            if (args.ConnectionState != LocalConnectionStates.Started)
+            if (args.ConnectionState != LocalConnectionState.Started)
                 return;
 
             PasswordBroadcast pb = new PasswordBroadcast()
@@ -83,8 +83,6 @@ namespace FishNet.Example.Authenticating
             }
 
             bool correctPassword = (pb.Password == _password);
-            //Invoke result. This is handled internally to complete the connection or kick client.
-            OnAuthenticationResult?.Invoke(conn, correctPassword);
             /* Tell client if they authenticated or not. This is
              * entirely optional but does demonstrate that you can send
              * broadcasts to client on pass or fail. */
@@ -93,6 +91,11 @@ namespace FishNet.Example.Authenticating
                 Passed = correctPassword
             };
             base.NetworkManager.ServerManager.Broadcast(conn, rb, false);
+
+            /* Invoke result. This is handled internally to complete the connection or kick client.
+             * It's important to call this after sending the broadcast so that the broadcast
+             * makes it out to the client before the kick. */
+            OnAuthenticationResult?.Invoke(conn, correctPassword);
         }
 
         /// <summary>
