@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 5797937728107384219}
   m_Layer: 0
   m_Name: Ping Pong Ball
-  m_TagString: Untagged
+  m_TagString: PingPongBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +34,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299493559567359292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.16, y: 1.32, z: 1.074}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -59,13 +59,13 @@ MonoBehaviour:
   - {fileID: 4240698198892065843}
   - {fileID: 5797937728107384219}
   SceneTransformProperties:
-    Position: {x: -2.16, y: 1.32, z: 1.074}
+    Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   _isNetworked: 1
   _hasParentNetworkObjectAtEdit: 0
   NetworkObserver: {fileID: 0}
-  _prefabId: -1
+  _prefabId: 6
   _scenePathHash: 0
   _sceneId: 0
   _sceneNetworkObjects: []
@@ -86,6 +86,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 2134098615558595784}
   enableInteractionTransfer: 1
   enableVolumeTransfer: 1
+  releaseOwnershipOnLeave: 1
   interactable: {fileID: 1626047667302518300}
 --- !u!114 &8121349878689320405
 MonoBehaviour:
@@ -228,10 +229,16 @@ MonoBehaviour:
   clientAuthority: 1
   syncVelocity: 1
   clearVelocity: 0
-  velocitySensitivity: 0.1
+  velocitySensitivity: 0.01
   syncAngularVelocity: 1
   clearAngularVelocity: 0
-  angularVelocitySensitivity: 0.1
+  angularVelocitySensitivity: 0.01
+  _velocity: {x: 0, y: 0, z: 0}
+  _angularVelocity: {x: 0, y: 0, z: 0}
+  _isKinematic: 0
+  _useGravity: 0
+  _drag: 0
+  _angularDrag: 0
 --- !u!114 &1626047667302518300
 MonoBehaviour:
   m_ObjectHideFlags: 0
