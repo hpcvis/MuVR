@@ -1,3 +1,4 @@
+using System;
 using FishNet;
 using FishNet.Component.Transforming;
 using FishNet.Connection;
@@ -24,9 +25,6 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
     [field: Tooltip("Set velocity to 0 each frame (only works if syncVelocity is false")] 
     [field: SerializeField] private bool clearVelocity = false;
 
-    [field: Tooltip("Only Syncs Value if distance between previous and current is great than sensitivity")]
-    [field: SerializeField] private float velocitySensitivity = 0.01f;
-
 
     [field: Header("Angular Velocity")] 
     [field: Tooltip("Syncs AngularVelocity every SyncInterval")] 
@@ -34,9 +32,6 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
 
     [field: Tooltip("Set angularVelocity to 0 each frame (only works if syncAngularVelocity is false")]
     [field: SerializeField] private bool clearAngularVelocity = false;
-
-    [field: Tooltip("Only Syncs Value if distance between previous and current is great than sensitivity")]
-    [field: SerializeField] private float angularVelocitySensitivity = 0.01f;
 
     /// <summary>
     ///     Values sent on client with authority after they are sent to the server
@@ -320,25 +315,16 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
     }
     
     private void SendVelocity() {
-        var currentVelocity = syncVelocity ? target.velocity : default;
-        var currentAngularVelocity = syncAngularVelocity ? target.angularVelocity : default;
-
-        var velocityChanged = syncVelocity && (previousValue.velocity - currentVelocity).sqrMagnitude >
-            velocitySensitivity * velocitySensitivity;
-        var angularVelocityChanged = syncAngularVelocity &&
-                                     (previousValue.angularVelocity - currentAngularVelocity).sqrMagnitude >
-                                     angularVelocitySensitivity * angularVelocitySensitivity;
-
         // if angularVelocity has changed it is likely that velocity has also changed so just sync both values
         // however if only velocity has changed just send velocity
-        if (angularVelocityChanged) {
-            velocity = currentVelocity;
-            angularVelocity = currentAngularVelocity;
-            previousValue.velocity = currentVelocity;
-            previousValue.angularVelocity = currentAngularVelocity;
-        } else if (velocityChanged) {
-            velocity = currentVelocity;
-            previousValue.velocity = currentVelocity;
+        if (syncVelocity && syncAngularVelocity) {
+            velocity = target.velocity;
+            angularVelocity = target.angularVelocity;
+            previousValue.velocity = target.velocity;
+            previousValue.angularVelocity = target.angularVelocity;
+        } else if (syncVelocity) {
+            velocity = target.velocity;
+            previousValue.velocity = target.velocity;
         }
     }
     
@@ -350,10 +336,10 @@ public class NetworkRigidbody : EnchancedNetworkBehaviour {
         if (previousValue.useGravity != target.useGravity) 
             previousValue.useGravity = useGravity = target.useGravity;
 
-        if (previousValue.drag != target.drag) 
+        if (Math.Abs(previousValue.drag - target.drag) > Mathf.Epsilon) 
             previousValue.drag = drag = target.drag;
 
-        if (previousValue.angularDrag != target.angularDrag)
+        if (Math.Abs(previousValue.angularDrag - target.angularDrag) > Mathf.Epsilon)
             previousValue.angularDrag = angularDrag = target.angularDrag;
     }
 

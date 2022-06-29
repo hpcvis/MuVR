@@ -1,3 +1,4 @@
+using System;
 using FishNet;
 using FishNet.Component.Transforming;
 using FishNet.Connection;
@@ -23,9 +24,6 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     [field: Tooltip("Set velocity to 0 each frame (only works if syncVelocity is false")] 
     [field: SerializeField] private bool clearVelocity = false;
 
-    [field: Tooltip("Only Syncs Value if distance between previous and current is great than sensitivity")]
-    [field: SerializeField] private float velocitySensitivity = 0.1f;
-
 
     [field: Header("Angular Velocity")] 
     [field: Tooltip("Syncs AngularVelocity every SyncInterval")] 
@@ -34,23 +32,20 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     [field: Tooltip("Set angularVelocity to 0 each frame (only works if syncAngularVelocity is false")]
     [field: SerializeField] private bool clearAngularVelocity = false;
 
-    [field: Tooltip("Only Syncs Value if distance between previous and current is great than sensitivity")]
-    [field: SerializeField] private float angularVelocitySensitivity = 0.1f;
-
     /// <summary>
     ///     Values sent on client with authority after they are sent to the server
     /// </summary>
     private ClientSyncState previousValue = new();
-    
-    private bool ClientWithAuthority => clientAuthority && IsOwner;
-    private bool ServerWithAuthority => IsServer && !clientAuthority;
-    private bool IsAuthority => ClientWithAuthority || ServerWithAuthority;
 
     private new void OnValidate() {
         base.OnValidate();
         if (target is null) target = GetComponent<Rigidbody2D>();
         if (target is not null) targetIsKinematic = target.isKinematic;
     }
+    
+    private bool ClientWithAuthority => clientAuthority && IsOwner;
+    private bool ServerWithAuthority => IsServer && !clientAuthority;
+    private bool IsAuthority => ClientWithAuthority || ServerWithAuthority;
 
     #region Sync vars
 
@@ -62,6 +57,7 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
         get => _velocity;
         set {
             OnVelocityChanged(_velocity, value, false);
+            _velocity = value;
             if (IsServer)
                 ObserversSetVelocity(value);
             else if (IsClient)
@@ -70,13 +66,14 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetVelocity(Vector2 value, Channel channel = Channel.Unreliable) {
+    private void ServerSetVelocity(Vector2 value) {
         OnVelocityChanged(_velocity, value, false);
         ObserversSetVelocity(value);
+        _velocity = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetVelocity(Vector2 value, Channel channel = Channel.Unreliable) {
+    private void ObserversSetVelocity(Vector2 value) {
         OnVelocityChanged(_velocity, value, false);
         _velocity = value;
     }
@@ -93,6 +90,7 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
         get => _angularVelocity;
         set {
             OnAngularVelocityChanged(_angularVelocity, value, false);
+            _angularVelocity = value;
             if (IsServer)
                 ObserversSetAngularVelocity(value);
             else if (IsClient)
@@ -101,13 +99,14 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetAngularVelocity(float value, Channel channel = Channel.Unreliable) {
+    private void ServerSetAngularVelocity(float value) {
         OnAngularVelocityChanged(_angularVelocity, value, false);
         ObserversSetAngularVelocity(value);
+        _angularVelocity = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetAngularVelocity(float value, Channel channel = Channel.Unreliable) {
+    private void ObserversSetAngularVelocity(float value) {
         OnAngularVelocityChanged(_angularVelocity, value, false);
         _angularVelocity = value;
     }
@@ -124,6 +123,7 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
         get => _isKinematic;
         set {
             OnIsKinematicChanged(_isKinematic, value, false);
+            _isKinematic = value;
             if (IsServer)
                 ObserversSetIsKinematic(value);
             else if (IsClient)
@@ -132,13 +132,14 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetIsKinematic(bool value, Channel channel = Channel.Reliable) {
+    private void ServerSetIsKinematic(bool value) {
         OnIsKinematicChanged(_isKinematic, value, false);
         ObserversSetIsKinematic(value);
+        _isKinematic = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetIsKinematic(bool value, Channel channel = Channel.Reliable) {
+    private void ObserversSetIsKinematic(bool value) {
         OnIsKinematicChanged(_isKinematic, value, false);
         _isKinematic = value;
     }
@@ -150,7 +151,7 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     
     #endregion
     
-    #region gravity scale sync
+    #region use gravity sync
 
     [SerializeField, ReadOnly] private float _gravityScale;
 
@@ -158,6 +159,7 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
         get => _gravityScale;
         set {
             OnGravityScaleChanged(_gravityScale, value, false);
+            _gravityScale = value;
             if (IsServer)
                 ObserversSetGravityScale(value);
             else if (IsClient)
@@ -166,13 +168,14 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetGravityScale(float value, Channel channel = Channel.Reliable) {
+    private void ServerSetGravityScale(float value) {
         OnGravityScaleChanged(_gravityScale, value, false);
         ObserversSetGravityScale(value);
+        _gravityScale = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetGravityScale(float value, Channel channel = Channel.Reliable) {
+    private void ObserversSetGravityScale(float value) {
         OnGravityScaleChanged(_gravityScale, value, false);
         _gravityScale = value;
     }
@@ -189,6 +192,7 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
         get => _drag;
         set {
             OnDragChanged(_drag, value, false);
+            _drag = value;
             if (IsServer)
                 ObserversSetDrag(value);
             else if (IsClient)
@@ -197,13 +201,14 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetDrag(float value, Channel channel = Channel.Reliable) {
+    private void ServerSetDrag(float value) {
         OnDragChanged(_drag, value, false);
         ObserversSetDrag(value);
+        _drag = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetDrag(float value, Channel channel = Channel.Reliable) {
+    private void ObserversSetDrag(float value) {
         OnDragChanged(_drag, value, false);
         _drag = value;
     }
@@ -220,6 +225,7 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
         get => _angularDrag;
         set {
             OnAngularDragChanged(_angularDrag, value, false);
+            _angularDrag = value;
             if (IsServer)
                 ObserversSetAngularDrag(value);
             else if (IsClient)
@@ -228,13 +234,14 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
     }
 
     [ServerRpc]
-    private void ServerSetAngularDrag(float value, Channel channel = Channel.Reliable) {
+    private void ServerSetAngularDrag(float value) {
         OnAngularDragChanged(_angularDrag, value, false);
         ObserversSetAngularDrag(value);
+        _angularDrag = value;
     }
 
     [ObserversRpc(BufferLast = true)]
-    private void ObserversSetAngularDrag(float value, Channel channel = Channel.Reliable) {
+    private void ObserversSetAngularDrag(float value) {
         OnAngularDragChanged(_angularDrag, value, false);
         _angularDrag = value;
     }
@@ -263,7 +270,6 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
 
         isStarted = true;
     }
-    
 
     public override void OnOwnershipBoth(NetworkConnection prev) {
         base.OnOwnershipBoth(prev);
@@ -304,54 +310,36 @@ public class NetworkRigidbody2D : EnchancedNetworkBehaviour {
         if (!IsAuthority) return;
         
         SendVelocity();
-        SendRigidbodySettings();
+        SendRigidbody2DSettings();
     }
     
     private void SendVelocity() {
-        var currentVelocity = syncVelocity ? target.velocity : default;
-        var currentAngularVelocity = syncAngularVelocity ? target.angularVelocity : default;
-
-        var velocityChanged = syncVelocity && (previousValue.velocity - currentVelocity).sqrMagnitude >
-            velocitySensitivity * velocitySensitivity;
-        var angularVelocityChanged = syncAngularVelocity &&
-                                     Mathf.Abs(previousValue.angularVelocity - currentAngularVelocity) > angularVelocitySensitivity;
-
         // if angularVelocity has changed it is likely that velocity has also changed so just sync both values
         // however if only velocity has changed just send velocity
-        if (angularVelocityChanged) {
-            velocity = currentVelocity;
-            angularVelocity = currentAngularVelocity;
-            previousValue.velocity = currentVelocity;
-            previousValue.angularVelocity = currentAngularVelocity;
-        }
-        else if (velocityChanged) {
-            velocity = currentVelocity;
-            previousValue.velocity = currentVelocity;
+        if (syncVelocity && syncAngularVelocity) {
+            velocity = target.velocity;
+            angularVelocity = target.angularVelocity;
+            previousValue.velocity = target.velocity;
+            previousValue.angularVelocity = target.angularVelocity;
+        } else if (syncVelocity) {
+            velocity = target.velocity;
+            previousValue.velocity = target.velocity;
         }
     }
-
-    [Client(RequireOwnership = true)]
-    private void SendRigidbodySettings() {
+    
+    private void SendRigidbody2DSettings() {
         // These shouldn't change often so it is ok to send in their own Command
-        if (previousValue.isKinematic != targetIsKinematic) {
-            isKinematic = targetIsKinematic;
-            previousValue.isKinematic = targetIsKinematic;
-        }
+        if (previousValue.isKinematic != targetIsKinematic) 
+            previousValue.isKinematic = isKinematic = targetIsKinematic;
 
-        if (previousValue.gravityScale != target.gravityScale) {
-            gravityScale = target.gravityScale;
-            previousValue.gravityScale = target.gravityScale;
-        }
+        if (Math.Abs(previousValue.gravityScale - target.gravityScale) > Mathf.Epsilon) 
+            previousValue.gravityScale = gravityScale = target.gravityScale;
 
-        if (previousValue.drag != target.drag) {
-            drag = target.drag;
-            previousValue.drag = target.drag;
-        }
+        if (Math.Abs(previousValue.drag - target.drag) > Mathf.Epsilon) 
+            previousValue.drag = drag = target.drag;
 
-        if (previousValue.angularDrag != target.angularDrag) {
-            angularDrag = target.angularDrag;
-            previousValue.angularDrag = target.angularDrag;
-        }
+        if (Math.Abs(previousValue.angularDrag - target.angularDrag) > Mathf.Epsilon)
+            previousValue.angularDrag = angularDrag = target.angularDrag;
     }
 
     /// <summary>
