@@ -118,7 +118,7 @@ MonoBehaviour:
   _componentIndexCache: 2
   _addedNetworkObject: {fileID: 6606634378604021384}
   _networkObjectCache: {fileID: 6606634378604021384}
-  target: {fileID: 7983287557230526603}
+  target: {fileID: 801873524618066614}
   ownedOffset:
     position: {x: 0, y: -1000000, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
