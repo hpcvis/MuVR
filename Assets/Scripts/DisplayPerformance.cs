@@ -1,11 +1,17 @@
+using Mirror;
 using UnityEngine;
 
 public class DisplayPerformance : MonoBehaviour {
 	public int targetFrameRate = 60;
 	private float nextDisplayTime = 0f;
 	private readonly MovingAverage average = new(100);
+	private NetworkManager networkManager;
 
 	private uint frames = 0;
+
+	private void Awake() {
+		networkManager = FindObjectOfType<NetworkManager>();
+	}
 
 	private void Update() {
 #if UNITY_SERVER
@@ -26,8 +32,7 @@ public class DisplayPerformance : MonoBehaviour {
         lost = (1d - lost);
 
         //Replace this with the equivalent of your networking solution.
-        int clientCount = 0;
-        // int clientCount = InstanceFinder.ServerManager.Clients.Count;
+        int clientCount = networkManager.numPlayers;
 
         Debug.Log($"Average {lost:f3} performance lost ({avgFrameRate:f2}) with {clientCount} clients.");
 #elif UNITY_EDITOR
