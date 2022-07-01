@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 
 public class DisplayPerformance : MonoBehaviour {
@@ -26,8 +27,7 @@ public class DisplayPerformance : MonoBehaviour {
         lost = (1d - lost);
 
         //Replace this with the equivalent of your networking solution.
-        int clientCount = 0;
-        // int clientCount = InstanceFinder.ServerManager.Clients.Count;
+        int clientCount = NetworkManager.Singleton.ConnectedClients.Count;
 
         Debug.Log($"Average {lost:f3} performance lost ({avgFrameRate:f2}) with {clientCount} clients.");
 #elif UNITY_EDITOR
