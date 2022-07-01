@@ -1,6 +1,7 @@
+﻿using FishNet.Object;
 using UnityEngine;
 
-public class SimulatePlayer : MonoBehaviour {
+public class SimulatePlayer : NetworkBehaviour {
 	private float nextMoveUpdate;
 	private float nextRpc;
 	private Vector3 posGoal;
@@ -12,8 +13,8 @@ public class SimulatePlayer : MonoBehaviour {
 	}
 
 	private void Update() {
-		// if (!base.IsOwner)
-		// 	return;
+		if (!IsOwner)
+			return;
 
 		transform.position = Vector3.MoveTowards(transform.position, posGoal, Time.deltaTime * 3f);
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, rotGoal, Time.deltaTime * 20f);
@@ -49,11 +50,11 @@ public class SimulatePlayer : MonoBehaviour {
 		}
 	}
 
-	// [ServerRpc]
+	[ServerRpc]
 	private void ServerRpc() {
 		ObserversRpc();
 	}
 
-	// [ObserversRpc]
+	[ObserversRpc]
 	private void ObserversRpc() { }
 }
