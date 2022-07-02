@@ -1,6 +1,7 @@
+using Fusion;
 using UnityEngine;
 
-public class SimulatePlayer : MonoBehaviour {
+public class SimulatePlayer : NetworkBehaviour {
 	private float nextMoveUpdate;
 	private float nextRpc;
 	private Vector3 posGoal;
@@ -11,17 +12,17 @@ public class SimulatePlayer : MonoBehaviour {
 		Screen.SetResolution(800, 600, false);
 	}
 
-	private void Update() {
-		// if (!base.IsOwner)
-		// 	return;
-
-		transform.position = Vector3.MoveTowards(transform.position, posGoal, Time.deltaTime * 3f);
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, rotGoal, Time.deltaTime * 20f);
-
-		if (Time.time > nextRpc) {
+	public void Update() {
+		if (Object.InputAuthority == Runner.LocalPlayer && Time.time > nextRpc) {
 			nextRpc = Time.time + 0.5f;
 			ServerRpc();
 		}
+		
+		if (!Runner.IsServer)
+			return;
+
+		transform.position = Vector3.MoveTowards(transform.position, posGoal, Time.deltaTime * 3f);
+		transform.rotation = Quaternion.RotateTowards(transform.rotation, rotGoal, Time.deltaTime * 20f);
 
 		if (Time.time > nextMoveUpdate) {
 			var rotate = Random.Range(0f, 1f) <= 0.5f;
@@ -49,11 +50,11 @@ public class SimulatePlayer : MonoBehaviour {
 		}
 	}
 
-	// [ServerRpc]
+	[Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
 	private void ServerRpc() {
 		ObserversRpc();
 	}
 
-	// [ObserversRpc]
+	[Rpc(RpcSources.StateAuthority, RpcTargets.All)]
 	private void ObserversRpc() { }
 }

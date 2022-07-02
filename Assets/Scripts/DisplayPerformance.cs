@@ -1,15 +1,19 @@
+using System.Linq;
+using Fusion;
 using UnityEngine;
 
 public class DisplayPerformance : MonoBehaviour {
 	public int targetFrameRate = 60;
 	private float nextDisplayTime = 0f;
 	private readonly MovingAverage average = new(100);
+	private NetworkRunner runner;
 
 	private uint frames = 0;
 
 	private void Update() {
 #if UNITY_SERVER
         Application.targetFrameRate = targetFrameRate;
+        runner ??= FindObjectOfType<NetworkRunner>();
 
         frames++;
         if (Time.time < nextDisplayTime)
@@ -26,8 +30,7 @@ public class DisplayPerformance : MonoBehaviour {
         lost = (1d - lost);
 
         //Replace this with the equivalent of your networking solution.
-        int clientCount = 0;
-        // int clientCount = InstanceFinder.ServerManager.Clients.Count;
+        int clientCount = runner.ActivePlayers.Count();
 
         Debug.Log($"Average {lost:f3} performance lost ({avgFrameRate:f2}) with {clientCount} clients.");
 #elif UNITY_EDITOR
