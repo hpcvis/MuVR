@@ -1,26 +1,27 @@
+using Photon.Pun;
 using UnityEngine;
 
-public class SimulatePlayer : MonoBehaviour {
+public class SimulatePlayer : MonoBehaviourPunCallbacks {
 	private float nextMoveUpdate;
 	private float nextRpc;
 	private Vector3 posGoal;
 	private Quaternion rotGoal;
-	
-	void Start() {
+
+	private void Start() {
 		// Turn off fullscreen and set the default resolution
 		Screen.SetResolution(800, 600, false);
 	}
 
 	private void Update() {
-		// if (!base.IsOwner)
-		// 	return;
+		if (!photonView.IsMine)
+			return;
 
 		transform.position = Vector3.MoveTowards(transform.position, posGoal, Time.deltaTime * 3f);
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, rotGoal, Time.deltaTime * 20f);
 
 		if (Time.time > nextRpc) {
 			nextRpc = Time.time + 0.5f;
-			ServerRpc();
+			photonView.RPC("ServerRpc", RpcTarget.MasterClient);
 		}
 
 		if (Time.time > nextMoveUpdate) {
@@ -49,11 +50,11 @@ public class SimulatePlayer : MonoBehaviour {
 		}
 	}
 
-	// [ServerRpc]
+	[PunRPC]
 	private void ServerRpc() {
-		ObserversRpc();
+		photonView.RPC("ObserversRpc", RpcTarget.Others);
 	}
 
-	// [ObserversRpc]
+	[PunRPC]
 	private void ObserversRpc() { }
 }
