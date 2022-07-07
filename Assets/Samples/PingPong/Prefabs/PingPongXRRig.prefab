@@ -831,7 +831,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4732151867741746189}
   - component: {fileID: 4732151867741746186}
-  - component: {fileID: 4732151867741746187}
   m_Layer: 0
   m_Name: PingPongXRRig
   m_TagString: Untagged
@@ -872,22 +871,6 @@ MonoBehaviour:
   m_CameraFloorOffsetObject: {fileID: 4732151868328584725}
   m_RequestedTrackingOriginMode: 0
   m_CameraYOffset: 1.1176
---- !u!114 &4732151867741746187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4732151867741746184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23217197a6979b41baabb62ce6e7a75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncs:
-  - {fileID: 4732151867418884827}
-  - {fileID: 4732151868049709110}
-  - {fileID: 4732151867435081961}
 --- !u!1 &4732151868049709108
 GameObject:
   m_ObjectHideFlags: 0

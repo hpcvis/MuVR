@@ -32,8 +32,12 @@ public class SyncPose : MonoBehaviour {
 
 	// Function that finds the target from the target avatar and slot
 	public void UpdateTarget() {
+		
+		// If the target avatar is not set or set to a prefab, find the User Avatar on a parent
+		if (targetAvatar?.gameObject.scene.name == null)
+			targetAvatar = GetComponentInParent<UserAvatar>();
 		if (targetAvatar is null)
-			throw new Exception("No target avatar provided");
+			throw new Exception("No target avatar provided or found");
 		if (!targetAvatar.slots.Keys.Contains(slot))
 			throw new Exception("The requested slot can not be found");
 
