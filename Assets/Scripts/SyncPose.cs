@@ -10,6 +10,16 @@ public class SyncPose : MonoBehaviour {
 		SyncTo,
 		SyncFrom
 	}
+	
+	// Enum flag indicating which axis should be synced
+	[Flags]
+	public enum SyncedAxis {
+		None = 0,
+		X = 1 << 0,
+		Y = 1 << 1,
+		Z = 1 << 2,
+		Everything = ~0,
+	}
 
 	[Tooltip("UserAvatar we are syncing with")]
 	public UserAvatar targetAvatar;
@@ -22,13 +32,13 @@ public class SyncPose : MonoBehaviour {
 	public Pose offset = Pose.identity;
 	[Tooltip("Whether or not we should sync positions or rotations")]
 	public bool syncPositions = true, syncRotations = true;
+	[Tooltip("The axes that should be synchronized")]
+	public SyncedAxis positionAxis = SyncedAxis.Everything, rotationAxis = SyncedAxis.Everything; 
 
-	[SerializeField] [ReadOnly] private UserAvatar.PoseRef target;
+	[SerializeField, ReadOnly] private UserAvatar.PoseRef target;
 
 	// When the object is created make sure to update the target
-	private void Start() {
-		UpdateTarget();
-	}
+	private void Start() => UpdateTarget();
 
 	// Function that finds the target from the target avatar and slot
 	public void UpdateTarget() {
@@ -47,13 +57,41 @@ public class SyncPose : MonoBehaviour {
 	// Update is called once per frame, and make sure that our transform is properly synced with the pose according to the pose mode
 	private void LateUpdate() {
 		if (mode == SyncMode.SyncTo) {
-			if (syncPositions) target.pose.position = transform.position + offset.position;
-			if (syncRotations) target.pose.rotation = transform.rotation * offset.rotation;
+			updatePosition(ref target.pose.position, transform.position);
+			updateRotaion(ref target.pose.rotation, transform.rotation);
 		} else {
-			if (syncPositions) transform.position = target.pose.position + offset.position;
-			if (syncRotations) transform.rotation = target.pose.rotation * offset.rotation;
+			transform.position = updatePosition(transform.position, target.pose.position);
+			transform.rotation = updateRotaion(transform.rotation, target.pose.rotation);
 		}
 	}
+
+	// Updates the position value, taking ignored axes into account (designed to be generalizable so can work for either case)
+	private Vector3 updatePosition(Vector3 dest, Vector3 src) {
+		if (!syncPositions) return dest;
+		if (positionAxis == SyncedAxis.Everything)
+			return src + offset.position;
+
+		if ((positionAxis & SyncedAxis.X) > 0) dest.x = src.x + offset.position.x;
+		if ((positionAxis & SyncedAxis.Y) > 0) dest.y = src.y + offset.position.y;
+		if ((positionAxis & SyncedAxis.Z) > 0) dest.z = src.z + offset.position.z;
+		return dest;
+	}
+	private void updatePosition(ref Vector3 dest, Vector3 src) => dest = updatePosition(dest, src);
+	
+	// Updates the rotation value, taking ignored axes into account (designed to be generalizable so can work for either case)
+	private Quaternion updateRotaion(Quaternion dest, Quaternion src) {
+		if (!syncRotations) return dest;
+		if (rotationAxis == SyncedAxis.Everything)
+			return src * offset.rotation;
+		if (rotationAxis == SyncedAxis.None) return dest;
+
+		var update = src * offset.rotation;
+		if ((rotationAxis & SyncedAxis.X) == 0) update.eulerAngles = new Vector3(dest.eulerAngles.x, update.eulerAngles.y, update.eulerAngles.z);
+		if ((rotationAxis & SyncedAxis.Y) == 0) update.eulerAngles = new Vector3(update.eulerAngles.x, dest.eulerAngles.y, update.eulerAngles.z);
+		if ((rotationAxis & SyncedAxis.Z) == 0) update.eulerAngles = new Vector3(update.eulerAngles.x, update.eulerAngles.y, dest.eulerAngles.z);
+		return update;
+	}
+	private void updateRotaion(ref Quaternion dest, Quaternion src) => dest = updateRotaion(dest, src);
 }
 
 #if UNITY_EDITOR
@@ -91,8 +129,7 @@ public class SyncPoseEditor : Editor {
 			GUI.enabled = sync.targetAvatar is not null;
 
 			EditorGUILayout.PrefixLabel(new GUIContent("Slot") {
-				tooltip =
-					"Which pose on the avatar we are syncing with.\nNOTE: If there is not currently a Target Avatar selected, this field will not be editable."
+				tooltip = "Which pose on the avatar we are syncing with.\nNOTE: If there is not currently a Target Avatar selected, this field will not be editable."
 			});
 			if (EditorGUILayout.DropdownButton(new GUIContent(ValidateSlot(sync.slot) ? sync.slot : "INVALID"),
 				    FocusType.Keyboard) && sync.targetAvatar is not null) {
@@ -114,8 +151,26 @@ public class SyncPoseEditor : Editor {
 
 		// Toggles weather to enable or disable syncing of positions
 		EditorGUILayout.PropertyField(syncPositions);
+		if (syncPositions.boolValue) {
+			var axis = (SyncPose.SyncedAxis) EditorGUILayout.EnumFlagsField(new GUIContent("Position Axes") {
+				tooltip = "The axes that should be synchronized."
+			}, sync.positionAxis);
+			if (axis != sync.positionAxis) {
+				Undo.RecordObject(target, "Update Position's Synced Axes");
+				sync.positionAxis = axis;
+			}
+		}
 		// Toggles weather to enable or disable syncing of rotations
 		EditorGUILayout.PropertyField(syncRotations);
+		if (syncRotations.boolValue) {
+			var axis = (SyncPose.SyncedAxis) EditorGUILayout.EnumFlagsField(new GUIContent("Rotation Axes") {
+				tooltip = "The axes that should be synchronized."
+			}, sync.rotationAxis);
+			if (axis != sync.rotationAxis) {
+				Undo.RecordObject(target, "Update Rotation's Synced Axes");
+				sync.rotationAxis = axis;
+			}
+		}
 
 		// Present a field with the pose offset
 		EditorGUILayout.PropertyField(offset);
