@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4732151867418884829}
   - component: {fileID: 4732151867418884826}
   - component: {fileID: 4732151867418884827}
+  - component: {fileID: 6830740541825595525}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -210,10 +211,45 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0, w: 1}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &6830740541825595525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732151867418884825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &4732151867435081943
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,13 +796,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetAvatar: {fileID: 886871086713833669, guid: d7f524ba58b680c489206cdd6b642fe1,
     type: 3}
-  slot: RightHand
+  slot: Right Wrist
   mode: 0
   offset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -781,7 +819,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4732151867741746189}
   - component: {fileID: 4732151867741746186}
-  - component: {fileID: 4732151867741746187}
   m_Layer: 0
   m_Name: XRRig
   m_TagString: Untagged
@@ -822,22 +859,6 @@ MonoBehaviour:
   m_CameraFloorOffsetObject: {fileID: 4732151868328584725}
   m_RequestedTrackingOriginMode: 0
   m_CameraYOffset: 1.1176
---- !u!114 &4732151867741746187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4732151867741746184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23217197a6979b41baabb62ce6e7a75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncs:
-  - {fileID: 4732151867418884827}
-  - {fileID: 4732151868049709110}
-  - {fileID: 4732151867435081961}
 --- !u!1 &4732151868049709108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,13 +1405,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetAvatar: {fileID: 886871086713833669, guid: d7f524ba58b680c489206cdd6b642fe1,
     type: 3}
-  slot: LeftHand
+  slot: Left Wrist
   mode: 0
   offset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}

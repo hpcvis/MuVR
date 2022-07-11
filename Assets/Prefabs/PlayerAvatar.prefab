@@ -54,6 +54,8 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0, w: 1}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -207,13 +209,58 @@ MonoBehaviour:
     isExpanded: 1
     _keyValues:
     - Head
-    - LeftHand
-    - RightHand
+    - Left Shoulder
+    - Right Shoulder
+    - Left Elbow
+    - Right Elbow
+    - Left Wrist
+    - Right Wrist
+    - Pelvis
+    - Left Knee
+    - Right Knee
+    - Left Ankle
+    - Right Ankle
     _keys:
     - Head
-    - LeftHand
-    - RightHand
+    - Left Shoulder
+    - Right Shoulder
+    - Left Elbow
+    - Right Elbow
+    - Left Wrist
+    - Right Wrist
+    - Pelvis
+    - Left Knee
+    - Right Knee
+    - Left Ankle
+    - Right Ankle
     _values:
+    - pose:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0, w: 0}
+    - pose:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0, w: 0}
+    - pose:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0, w: 0}
+    - pose:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0, w: 0}
+    - pose:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0, w: 0}
+    - pose:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0, w: 0}
+    - pose:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0, w: 0}
+    - pose:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0, w: 0}
+    - pose:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0, w: 0}
     - pose:
         position: {x: 0, y: 0, z: 0}
         rotation: {x: 0, y: 0, z: 0, w: 0}
@@ -378,13 +425,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetAvatar: {fileID: 886871086713833669}
-  slot: LeftHand
+  slot: Left Wrist
   mode: 1
   offset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -560,13 +609,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetAvatar: {fileID: 886871086713833669}
-  slot: RightHand
+  slot: Right Wrist
   mode: 1
   offset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
