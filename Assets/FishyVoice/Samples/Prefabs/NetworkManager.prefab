@@ -138,7 +138,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 16, y: -96}
+  m_AnchoredPosition: {x: 16, y: -176}
   m_SizeDelta: {x: 256, y: 64}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1986118488799454977
@@ -223,9 +223,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnClick_Client
+      - m_Target: {fileID: 5192306327652594864}
+        m_TargetAssemblyTypeName: FishyVoice.FishyVoiceSample, Assembly-CSharp
+        m_MethodName: OnClick_Voice
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -462,7 +462,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -633,8 +633,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 5192306327652594864}
+        m_TargetAssemblyTypeName: FishyVoice.FishyVoiceSample, Assembly-CSharp
         m_MethodName: OnClick_Server
         m_Mode: 1
         m_Arguments:
@@ -767,8 +767,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 5192306327652594864}
+        m_TargetAssemblyTypeName: FishyVoice.FishyVoiceSample, Assembly-CSharp
         m_MethodName: OnClick_Client
         m_Mode: 1
         m_Arguments:

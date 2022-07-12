@@ -1,6 +1,10 @@
 ﻿using FishNet.Managing;
 using FishNet.Transporting;
 using UnityEngine;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem.UI;
+#endif
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace FishyVoice {
@@ -79,70 +83,28 @@ namespace FishyVoice {
         protected LocalConnectionState serverState = LocalConnectionState.Stopped;
 
         #endregion
-
-        void OnGUI() {
-#if ENABLE_INPUT_SYSTEM
-            string GetNextStateText(LocalConnectionState state) {
-                if (state == LocalConnectionState.Stopped)
-                    return "Start";
-                else if (state == LocalConnectionState.Starting)
-                    return "Starting";
-                else if (state == LocalConnectionState.Stopping)
-                    return "Stopping";
-                else if (state == LocalConnectionState.Started)
-                    return "Stop";
-                else
-                    return "Invalid";
-            }
-
-            GUILayout.BeginArea(new Rect(16, 16, 256, 9000));
-            Vector2 defaultResolution = new Vector2(1920f, 1080f);
-            GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity,
-                new Vector3(Screen.width / defaultResolution.x, Screen.height / defaultResolution.y, 1));
-
-            GUIStyle style = GUI.skin.GetStyle("button");
-            int originalFontSize = style.fontSize;
-
-            Vector2 buttonSize = new Vector2(256f, 64f);
-            style.fontSize = 28;
-            //Server button.
-            if (Application.platform != RuntimePlatform.WebGLPlayer) {
-                if (GUILayout.Button($"{GetNextStateText(serverState)} Server", GUILayout.Width(buttonSize.x),
-                        GUILayout.Height(buttonSize.y)))
-                    OnClick_Server();
-                GUILayout.Space(10f);
-            }
-
-            //Client button.
-            if (GUILayout.Button($"{GetNextStateText(clientState)} Client", GUILayout.Width(buttonSize.x),
-                    GUILayout.Height(buttonSize.y)))
-                OnClick_Client();
-
-            style.fontSize = originalFontSize;
-
-            GUILayout.EndArea();
-#endif
-        }
+        
 
         protected void Start() {
-#if !ENABLE_INPUT_SYSTEM
-            EventSystem systems = FindObjectOfType<EventSystem>();
+
+            var systems = FindObjectOfType<EventSystem>();
             if (systems is null)
                 gameObject.AddComponent<EventSystem>();
-            BaseInputModule inputModule = FindObjectOfType<BaseInputModule>();
+
+            var inputModule = FindObjectOfType<InputSystemUIInputModule>();
             if (inputModule is null)
-                gameObject.AddComponent<StandaloneInputModule>();
+
+#if ENABLE_INPUT_SYSTEM
+                gameObject.AddComponent<InputSystemUIInputModule>();
 #else
-            serverIndicator.transform.parent.gameObject.SetActive(false);
-            clientIndicator.transform.parent.gameObject.SetActive(false);
+                gameObject.AddComponent<StandaloneInputModule>();
 #endif
 
             NetworkManager = FindObjectOfType<NetworkManager>();
             if (NetworkManager is null) {
                 Debug.LogError("NetworkManager not found, HUD will not function.");
                 return;
-            }
-            else {
+            } else {
                 UpdateColor(LocalConnectionState.Stopped, ref serverIndicator);
                 UpdateColor(LocalConnectionState.Stopped, ref clientIndicator);
                 NetworkManager.ServerManager.OnServerConnectionState += ServerManager_OnServerConnectionState;

@@ -11,7 +11,8 @@ namespace FishyVoice {
 
         [Header("Voice Settings")]
         [Tooltip("Name of the room that we should join when enabling voice")]
-        public string roomName = FishyVoice.VoiceNetwork.DefaultRoomName;
+        // Name of the room that players join by default
+        public string roomName = "<DEFAULT>";
         
         // Variable indicating the current connection state of the voice network
         protected LocalConnectionState voiceState => voiceNetwork?.connectionState ?? LocalConnectionState.Stopped;
@@ -25,60 +26,14 @@ namespace FishyVoice {
             if(voiceNetwork is null)
                 Debug.LogError("Voice Network object not found, voice connectivity will not work!");
         }
-
-        private static string GetNextStateText(LocalConnectionState state) {
-            return state switch {
-                LocalConnectionState.Stopped => "Start",
-                LocalConnectionState.Starting => "Starting",
-                LocalConnectionState.Stopping => "Stopping",
-                LocalConnectionState.Started => "Stop",
-                _ => "Invalid"
-            };
-        }
-
-        private void OnGUI() {
-#if ENABLE_INPUT_SYSTEM
-            GUILayout.BeginArea(new Rect(16, 16, 256, 9000));
-            var defaultResolution = new Vector2(1920f, 1080f);
-            GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Screen.width / defaultResolution.x, Screen.height / defaultResolution.y, 1));
-    
-            var style = GUI.skin.GetStyle("button");
-            var originalFontSize = style.fontSize;
-    
-            var buttonSize = new Vector2(256f, 64f);
-            style.fontSize = 28;
-            //Server button.
-            if (Application.platform != RuntimePlatform.WebGLPlayer)
-            {
-                if (GUILayout.Button($"{GetNextStateText(serverState)} Server", GUILayout.Width(buttonSize.x), GUILayout.Height(buttonSize.y)))
-                    OnClick_Server();
-                GUILayout.Space(10f);
-            }
-    
-            //Client button.
-            if (GUILayout.Button($"{GetNextStateText(clientState)} Client", GUILayout.Width(buttonSize.x), GUILayout.Height(buttonSize.y)))
-                OnClick_Client();
-            GUILayout.Space(10f);
-            
-            //Voice button.
-            if(voiceNetwork is not null && NetworkManager is not null && NetworkManager.IsClient)
-                if (GUILayout.Button($"{GetNextStateText(voiceState)} Voice", GUILayout.Width(buttonSize.x), GUILayout.Height(buttonSize.y)))
-                    OnClick_Voice();
-    
-            style.fontSize = originalFontSize;
-    
-            GUILayout.EndArea();
-#endif
-        }
+        
 
         public new void Start() {
             base.Start();
             
-#if ENABLE_INPUT_SYSTEM
             voiceIndicator.transform.parent.gameObject.SetActive(false);
-#endif
-            
-            // Listen for changes to the client state
+
+             // Listen for changes to the client state
             NetworkManager.ClientManager.OnClientConnectionState += OnClientConnectionState;
             
             UpdateColor(LocalConnectionState.Stopped, ref voiceIndicator);
@@ -123,9 +78,12 @@ namespace FishyVoice {
         
         public void OnClientConnectionState(ClientConnectionStateArgs args) {
             // Make sure the voice button is only visible if we are a client (or host)
-#if !ENABLE_INPUT_SYSTEM
             voiceIndicator.transform.parent.gameObject.SetActive(args.ConnectionState == LocalConnectionState.Started);
-#endif
+
+            if (args.ConnectionState != LocalConnectionState.Started) return;
+
+            // When the host client starts it should leave its chatroom (it will be kept open with ID -1)
+            if(NetworkManager.IsServer) agent.LeaveChatroom();
         }
 
         public override void OnClick_Server() {
@@ -146,9 +104,6 @@ namespace FishyVoice {
 
             // The server needs to keep a room running, but it shouldn't participate in the room unless it is a host and the client part wishes to
             agent.HostChatroom(roomName);
-            // agent.MuteOthers = true;
-            // agent.MuteSelf = true;
-            voiceNetwork.connectionState = LocalConnectionState.Stopped;
         }
 
         public override void OnClick_Client() {

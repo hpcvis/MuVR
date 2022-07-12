@@ -42,9 +42,6 @@ namespace FishyVoice {
         // Dictionary mapping open room names to the list of players currently in the room
         [SyncObject] protected readonly SyncDictionary<string, List<short>> openRooms = new();
 
-        // Name of the room that players join by default
-        public const string DefaultRoomName = "<DEFAULT>";
-
 
         #region UniVoice Compatability/Callbacks
 
@@ -67,7 +64,7 @@ namespace FishyVoice {
             }
         }
 
-        [ShowInInspector, ReadOnly] public string CurrentChatroomName { protected set; get; } = DefaultRoomName;
+        [ShowInInspector, ReadOnly] public string CurrentChatroomName { protected set; get; } = string.Empty;
         public short OwnID => (short)LocalConnection.ClientId; // TODO: Is this cast problematic?
 
         [ShowInInspector, ListDrawerSettings(HideAddButton = true, HideRemoveButton = true)]
@@ -176,9 +173,9 @@ namespace FishyVoice {
                 if (IsServer) HostChatroomServer(OwnID, roomName);
                 else HostChatroomServerRpc(OwnID, roomName);
                 CurrentChatroomName = roomName;
+                connectionState = LocalConnectionState.Started;
                 OnCreatedChatroom?.Invoke();
                 OnJoinedChatroom?.Invoke(OwnID);
-                connectionState = LocalConnectionState.Started;
             } catch (Exception e) {
                 OnChatroomCreationFailed?.Invoke(e);
             }
@@ -219,9 +216,9 @@ namespace FishyVoice {
         protected void ChatroomClosedObserverRpc(string roomName) {
             if (roomName != CurrentChatroomName) return;
 
-            OnlosedChatroom?.Invoke();
-            CurrentChatroomName = DefaultRoomName;
             connectionState = LocalConnectionState.Stopped;
+            OnlosedChatroom?.Invoke();
+            CurrentChatroomName = string.Empty;
         }
 
         // Function called to join a chatroom
@@ -236,10 +233,10 @@ namespace FishyVoice {
 
             // Notify the server that we have joined the room
             CurrentChatroomName = roomName;
+            connectionState = LocalConnectionState.Started;
             if(IsServer) JoinChatroomServer(OwnID, roomName); 
             else JoinChatroomServerRpc(OwnID, roomName);
             OnJoinedChatroom?.Invoke(OwnID);
-            connectionState = LocalConnectionState.Started;
         }
 
         // RPC that notifies the server (and all clients in the room) that we have joined a room
@@ -265,12 +262,12 @@ namespace FishyVoice {
         // NOTE: It is a good idea to leave your current chatroom before joining or hosting another one
         public void LeaveChatroom() {
             if (!networkActive) throw new Exception("The network is not active!");
-            if (CurrentChatroomName == DefaultRoomName) return;
+            if (CurrentChatroomName == string.Empty) return;
             
             LeaveChatroomServerRpc(OwnID, CurrentChatroomName);
-            OnLeftChatroom?.Invoke();
-            CurrentChatroomName = DefaultRoomName;
             connectionState = LocalConnectionState.Stopped;
+            OnLeftChatroom?.Invoke();
+            CurrentChatroomName = string.Empty;
         }
         
         // RPC that notifies the server (and other peers in the room) that you have left the chatroom
