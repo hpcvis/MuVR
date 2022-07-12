@@ -153,7 +153,7 @@ namespace FishyVoice {
             // Debug.Log($"Forwarding data from {audio.senderID} to {audio.id}");
 
             // Forward the received audio to the targeted user
-            ServerManager.Broadcast(ServerManager.Clients[audio.id], audio, false, Channel.Unreliable);
+            ServerManager.Broadcast(ServerManager.Clients[audio.id], audio, false, Channel.Reliable);
         }
 
         public void Dispose() { /* I don't think anything needs to be destroyed! */ }
@@ -305,7 +305,7 @@ namespace FishyVoice {
             data.tick = TimeManager.Tick;
             
             // Unreliably send it to the server
-            ClientManager.Broadcast(data, Channel.Unreliable);
+            ClientManager.Broadcast(data, Channel.Reliable);
             OnAudioSent?.Invoke(dtoData);
         }
         

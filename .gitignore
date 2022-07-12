@@ -95,6 +95,8 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Block Fishnet config
+/[Aa]ssets/FishNet.Config.XML*
 # Explicitly Allow Fishnet Settings
 !/[Ll]ibrary/
 !/[Ll]ibrary/FishNet.Runtime.Editor.PrefabObjects.Generation.Settings.json
