@@ -51,15 +51,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _networkBehaviours:
   - {fileID: 417556268116593991}
-  - {fileID: 3368584409944152617}
   - {fileID: 8573085070259277085}
+  - {fileID: 3368584409944152617}
   - {fileID: 211491940691230872}
   - {fileID: 8376110349855017419}
   SceneTransformProperties:
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
-  _isNetworked: 1
+  _isNetworked: 0
   _hasParentNetworkObjectAtEdit: 0
   NetworkObserver: {fileID: 0}
   _prefabId: -1
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6985ec67904d2bb22af3d6a9b8a921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 2
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 3368584409944152788}
   _networkObjectCache: {fileID: 3368584409944152788}
   ballPrefab: {fileID: 1635897748332765926, guid: 0c2788ff160cf3e43ad7b2596a5b70c6,
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aaecc057afee174d8db587928f20f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 1
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 3368584409944152788}
   _networkObjectCache: {fileID: 3368584409944152788}
 --- !u!1 &7530659333984189748
@@ -275,6 +275,8 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0, w: 1}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3368584409944152616}
-  - component: {fileID: 4527785845846669797}
   - component: {fileID: 3368584409944152618}
   - component: {fileID: 6379385393659414679}
   - component: {fileID: 2194181888607052015}
@@ -36,20 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4527785845846669797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368584409944152620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23217197a6979b41baabb62ce6e7a75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncs:
-  - {fileID: 9192731181448383716}
 --- !u!114 &3368584409944152618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +50,7 @@ MonoBehaviour:
   speed: 5
   ballVelocity: 5
   spawnDelay: 0.5
-  prefab: {fileID: 1635897748332765926, guid: 0c2788ff160cf3e43ad7b2596a5b70c6, type: 3}
+  spawner: {fileID: 0}
 --- !u!65 &6379385393659414679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -116,6 +101,8 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0, w: 1}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}

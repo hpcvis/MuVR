@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c95dfde7d73b54dbbdc23155d35d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _refreshDefaultPrefabs: 0
   _runInBackground: 1
   _dontDestroyOnLoad: 1
   _persistence: 0
@@ -932,7 +933,6 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 7272068948753492980}
   _networkObjectCache: {fileID: 7272068948753492980}
   connectionState: 0
-  <CurrentChatroomName>k__BackingField: <DEFAULT>
 --- !u!114 &3931120316356089405
 MonoBehaviour:
   m_ObjectHideFlags: 0
