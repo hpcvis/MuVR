@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using TriInspector;
 
 // Component that copies the transform from the object it is attached to, to a pose slot on a UserAvatar
 public class SyncPose : MonoBehaviour {
@@ -21,18 +22,19 @@ public class SyncPose : MonoBehaviour {
 		Everything = ~0,
 	}
 
-	[Tooltip("UserAvatar we are syncing with")]
+	[PropertyTooltip("UserAvatar we are syncing with.\nNOTE: Drag the prefab with the UserAvatar here when modifying the input prefab.")]
+	[Required]
 	public UserAvatar targetAvatar;
-	[Tooltip("Which pose on the avatar we are syncing with")]
+	[PropertyTooltip("Which pose on the avatar we are syncing with")]
 	public string slot;
-	[Tooltip("Should we send our transform to the pose, or update our transform to match the pose?")]
+	[PropertyTooltip("Should we send our transform to the pose, or update our transform to match the pose?")]
 	public SyncMode mode;
 	
-	[Tooltip("Offset applied while syncing")]
+	[PropertyTooltip("Offset applied while syncing")]
 	public Pose offset = Pose.identity;
-	[Tooltip("Whether or not we should sync positions or rotations")]
+	[PropertyTooltip("Whether or not we should sync positions or rotations")]
 	public bool syncPositions = true, syncRotations = true;
-	[Tooltip("The axes that should be synchronized")]
+	[PropertyTooltip("The axes that should be synchronized")]
 	public SyncedAxis positionAxis = SyncedAxis.Everything, rotationAxis = SyncedAxis.Everything; 
 
 	[SerializeField, ReadOnly] private UserAvatar.PoseRef target;
@@ -120,7 +122,9 @@ public class SyncPoseEditor : Editor {
 		serializedObject.Update();
 
 		// Field for the TargetAvatar
-		EditorGUILayout.PropertyField(targetAvatar);
+		EditorGUILayout.PropertyField(targetAvatar, new GUIContent("Target Avatar") {
+			tooltip = "UserAvatar we are syncing with.\nNOTE: Drag the prefab with the UserAvatar here when modifying the input prefab."
+		});
 
 		// Present a dropdown menu listing the slots found on the target (no list and disabled if not found)
 		EditorGUILayout.BeginHorizontal();
@@ -147,7 +151,9 @@ public class SyncPoseEditor : Editor {
 		EditorGUILayout.EndHorizontal();
 
 		// Present a dropdown menu listing the possible modes (sync to/from)
-		EditorGUILayout.PropertyField(mode);
+		EditorGUILayout.PropertyField(mode, new GUIContent("Mode") {
+			tooltip = "Should we send our transform to the pose, or update our transform to match the pose?"
+		});
 
 		// Toggles weather to enable or disable syncing of positions
 		EditorGUILayout.PropertyField(syncPositions);

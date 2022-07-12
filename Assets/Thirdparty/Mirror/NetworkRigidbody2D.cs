@@ -1,10 +1,9 @@
 using System;
-using FishNet;
 using FishNet.Component.Transforming;
 using FishNet.Connection;
 using FishNet.Object;
-using FishNet.Transporting;
 using UnityEngine;
+using TriInspector;
 
 // NOTE: Component ported from Mirror
 [RequireComponent(typeof(NetworkTransform))]

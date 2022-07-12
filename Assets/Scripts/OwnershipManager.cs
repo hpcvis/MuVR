@@ -5,11 +5,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 // Component that transfers ownership of this object to another user
 public class OwnershipManager : EnchancedNetworkBehaviour {
-	[Tooltip("Enable changing ownership when a user interacts with this object.")]
+	[PropertyTooltip("Enable changing ownership when a user interacts with this object.")]
 	public bool enableInteractionTransfer = true;
-	[Tooltip("Enable changing ownership when this object enters an ownership volume that belongs to a user.")]
+	[PropertyTooltip("Enable changing ownership when this object enters an ownership volume that belongs to a user.")]
 	public bool enableVolumeTransfer = true;
-	[Tooltip("Should the owner of this object return it to the scene before leaving the game?")]
+	[PropertyTooltip("Should the owner of this object return it to the scene before leaving the game?")]
 	public bool releaseOwnershipOnLeave = true;
 
 	// Counter tracking how many controllers are actively selecting us

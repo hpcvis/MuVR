@@ -1,13 +1,14 @@
 using FishNet.Connection;
+using TriInspector;
 using UnityEngine;
 
 // Component that enables or disables a GameObject or list of Components based on the current ownership status of this object
 public class DisableOnOwnership : EnchancedNetworkBehaviour {
-	[Tooltip("Array of components to disable when ownership changes")]
+	[PropertyTooltip("Array of components to disable when ownership changes")]
 	public Component[] toDisable;
-	[Tooltip("When true components will be disabled while the owner, when false the components will be disabled while not the owner")]
+	[PropertyTooltip("When true components will be disabled while the owner, when false the components will be disabled while not the owner")]
 	public bool disableWhenOwner = true;
-	[Tooltip("When true the attached game object will be disabled instead of individual components")]
+	[PropertyTooltip("When true the attached game object will be disabled instead of individual components")]
 	public bool disableGameObject = false;
 
 	// When the ownership of the object changes, figure out which elements should be enabled

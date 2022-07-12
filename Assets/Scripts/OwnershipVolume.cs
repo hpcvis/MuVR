@@ -4,6 +4,7 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine;
 using Gma.DataStructures;
+using TriInspector;
 
 // Component that represents a volume of ownership
 // NOTE: The system is not designed around overlapping ownership volumes, try to prevent this scenario if possible!

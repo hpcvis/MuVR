@@ -1,11 +1,13 @@
+using TriInspector;
 using UnityEngine;
 
 // Component that copies the transform from the object it is attached to, to another target transform.
 public class SyncTransform : MonoBehaviour {
-	[Tooltip("Transform that should be kept in sync with our transform")]
+	[PropertyTooltip("Transform that should be kept in sync with our transform")]
+	[Required]
 	public Transform target;
 	
-	[Tooltip("Offset applied while syncing")]
+	[PropertyTooltip("Offset applied while syncing")]
 	public Pose offset = Pose.identity;
 
 	// Update is called once per frame

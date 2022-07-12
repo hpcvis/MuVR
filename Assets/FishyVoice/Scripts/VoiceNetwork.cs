@@ -11,6 +11,7 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using FishNet.Transporting;
 using UnityEngine;
+using TriInspector;
 
 namespace FishyVoice {
     // Component that provides a UniVoice ChatroomNetwork backed by the existing FishNetworking environment 
@@ -66,9 +67,10 @@ namespace FishyVoice {
             }
         }
 
-        [field: SerializeField, ReadOnly] public string CurrentChatroomName { protected set; get; } = DefaultRoomName;
+        [ShowInInspector, ReadOnly] public string CurrentChatroomName { protected set; get; } = DefaultRoomName;
         public short OwnID => (short)LocalConnection.ClientId; // TODO: Is this cast problematic?
 
+        [ShowInInspector, ListDrawerSettings(HideAddButton = true, HideRemoveButton = true)]
         public List<short> PeerIDs => openRooms.ContainsKey(CurrentChatroomName)
             ? openRooms[CurrentChatroomName]
             : new List<short>();

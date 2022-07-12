@@ -4,6 +4,7 @@ using FishNet.Object;
 using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
 using UnityEngine.Events;
+using TriInspector;
 
 // Component that holds pose data. It acts as the glue between the input layer and the networking layer.
 // Additionally, it provides a convenient method for spawning 
@@ -26,10 +27,10 @@ public class UserAvatar : NetworkBehaviour {
 
     
     [Header("Input Configuration")]
-    [Tooltip("List of input controls that may be spawned as appropriate")]
+    [PropertyTooltip("List of input controls that may be spawned as appropriate")]
     [SerializeField] private GameObject[] inputPrefabs;
     
-    [Tooltip("Index indicating which of the input controls should be spawned")]
+    [PropertyTooltip("Index indicating which of the input controls should be spawned")]
     public int spawnIndex = 0;
     [ReadOnly] public GameObject input = null;
     
