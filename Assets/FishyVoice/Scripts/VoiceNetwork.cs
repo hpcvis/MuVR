@@ -16,7 +16,7 @@ using TriInspector;
 namespace FishyVoice {
     // Component that provides a UniVoice ChatroomNetwork backed by the existing FishNetworking environment 
     [DisallowMultipleComponent]
-    public class VoiceNetwork : EnchancedNetworkBehaviour, IChatroomNetwork {
+    public class VoiceNetwork : MuVR.Enchanced.NetworkBehaviour, IChatroomNetwork {
 
         // Struct that we broadcast across the network, contains all of the audio data
         public struct AudioBroadcast : IBroadcast {

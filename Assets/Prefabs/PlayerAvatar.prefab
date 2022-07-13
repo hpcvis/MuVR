@@ -273,7 +273,6 @@ MonoBehaviour:
   inputPrefabs:
   - {fileID: 4732151867741746184, guid: 299522a758213fc41a1a31c8d742fafe, type: 3}
   spawnIndex: 0
-  input: {fileID: 0}
   onInputSpawned:
     m_PersistentCalls:
       m_Calls: []

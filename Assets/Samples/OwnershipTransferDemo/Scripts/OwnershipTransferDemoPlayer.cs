@@ -1,5 +1,4 @@
-using FishNet;
-using FishNet.Object;
+using MuVR.Utility;
 using UnityEngine;
 
 public class OwnershipTransferDemoPlayer : MonoBehaviour {

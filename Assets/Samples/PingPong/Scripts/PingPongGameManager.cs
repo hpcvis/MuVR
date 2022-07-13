@@ -3,7 +3,7 @@ using FishNet.Object.Synchronizing;
 using TMPro;
 using UnityEngine;
 
-public class PingPongGameManager : EnchancedNetworkBehaviour {
+public class PingPongGameManager : MuVR.Enchanced.NetworkBehaviour {
 	[SyncVar(OnChange = nameof(UpdateScores))]
 	public int plusScore = 0;
 	[SyncVar(OnChange = nameof(UpdateScores))]
