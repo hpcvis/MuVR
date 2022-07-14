@@ -19,8 +19,8 @@ namespace MuVR {
 		[PropertyTooltip("XR Interactable that is interacted with to trigger interactions")]
 		[ShowIf(nameof(enableInteractionTransfer)), PropertyOrder(1)]
 		public XRBaseInteractable interactable = null;
-		[PropertyTooltip("Amount of time to wait before an ownership transfer can occur again")]
-		public float ownershipTransferCooldown = .1f;
+		[PropertyTooltip("Number of ticks to wait before an ownership transfer can occur again")]
+		public uint ownershipTransferCooldown = 10;
 
 		// Counter tracking how many controllers are actively selecting us
 		private uint selectionCount = 0;
@@ -85,7 +85,7 @@ namespace MuVR {
 			var no = e.interactorObject.transform.GetComponentInParent<NetworkObject>();
 			if (no is null) return;
 
-			GiveOwnershipWithCooldown(no.Owner, ownershipTransferCooldown);
+			GiveOwnershipWithCooldown(no.Owner, ownershipTransferCooldown, true);
 			selectionCount++; // Since we are now selected, volume transfers are temporarily disabled
 		}
 
@@ -108,7 +108,7 @@ namespace MuVR {
 			// Debug.Log($"{this} - {ov}");
 
 			if (ov.volumeOwner is not null)
-				GiveOwnershipWithCooldown(ov.volumeOwner, ownershipTransferCooldown);
+				GiveOwnershipWithCooldown(ov.volumeOwner, ownershipTransferCooldown, true);
 
 			// Be sure to listen for changes in ownership
 			ov.RegisterAsListener(this);

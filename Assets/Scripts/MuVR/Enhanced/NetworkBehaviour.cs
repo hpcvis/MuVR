@@ -76,12 +76,15 @@ namespace MuVR.Enchanced {
 
 
 		/// Function that gives ownership to a new owner with a cooldown, so that ownership can't repeatedly flip flop back and fourth
+		/// Ticks allows determining if the given time is in seconds or in ticks (tick value will be truncated)
 		protected bool canGiveOwnership = true;
-		public void GiveOwnershipWithCooldown(NetworkConnection newOwner, float cooldown = .1f) {
+		public void GiveOwnershipWithCooldown(NetworkConnection newOwner, float cooldown = .1f, bool ticks = false) {
 			if (!canGiveOwnership) return;
 
 			RequestGiveOwnership(newOwner);
-			StartCoroutine(Timer.Start(() => canGiveOwnership = true, cooldown));
+			StartCoroutine(ticks
+				? TickTimer.Start(() => canGiveOwnership = true, (uint)cooldown)
+				: Timer.Start(() => canGiveOwnership = true, cooldown));
 			canGiveOwnership = false;
 		}
 

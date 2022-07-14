@@ -64,6 +64,7 @@ MonoBehaviour:
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   _isNetworked: 1
+  _isGlobal: 0
   _hasParentNetworkObjectAtEdit: 0
   NetworkObserver: {fileID: 0}
   _prefabId: 3
@@ -93,7 +94,7 @@ MonoBehaviour:
   enableVolumeTransfer: 1
   releaseOwnershipOnLeave: 1
   interactable: {fileID: 0}
-  ownershipTransferCooldown: 0.1
+  ownershipTransferCooldown: 10
 --- !u!114 &1635897748332765925
 MonoBehaviour:
   m_ObjectHideFlags: 0
