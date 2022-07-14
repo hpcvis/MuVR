@@ -9,9 +9,9 @@ public class OwnershipTransferDemoPlayer : MonoBehaviour {
 
 	private bool canShoot = true;
 
-	void Start() => spawner = GetComponentInParent<BallSpawner>();
+	private void Awake() => spawner = GetComponentInParent<BallSpawner>();
 
-	void Update() {
+	private void Update() {
 		var horizontal = Input.GetAxis("Horizontal");
 		var vertical = Input.GetAxis("Vertical");
 

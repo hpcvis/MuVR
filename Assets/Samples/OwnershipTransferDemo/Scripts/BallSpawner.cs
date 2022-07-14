@@ -1,24 +1,30 @@
+using FishNet.Connection;
 using FishNet.Object;
 using MuVR;
 using UnityEngine;
 
 public class BallSpawner : NetworkBehaviour {
 	public NetworkObject ballPrefab;
-	
+
 	public void SpawnBall(Vector3 position, Vector3 forward, float velocity) {
-		if(IsServer) SpawnBallServer(position, forward, velocity);
-		else SpawnBallServerRPC(position, forward, velocity);
+		if (IsServer) SpawnBallServer(position, forward, velocity, LocalConnection);
+		else SpawnBallServerRPC(position, forward, velocity, LocalConnection);
 	}
 
 	[Server]
-	void SpawnBallServer(Vector3 position, Vector3 forward, float velocity) {
-		var spawned = Instantiate(ballPrefab.gameObject, position + forward, Quaternion.identity);
-		Spawn(spawned, LocalConnection);
+	private void SpawnBallServer(Vector3 position, Vector3 forward, float velocity, NetworkConnection owner) {
+		var spawned = Instantiate(ballPrefab, position + forward, Quaternion.identity);
+		Spawn(spawned.gameObject, owner);
 
-		spawned.GetComponent<NetworkRigidbody>().velocity = forward * velocity;
+		SetBallSpeedTargetRPC(owner, spawned, forward, velocity);
 	}
 
 	[ServerRpc]
-	void SpawnBallServerRPC(Vector3 position, Vector3 forward, float velocity) =>
-		SpawnBallServer(position, forward, velocity);
+	private void SpawnBallServerRPC(Vector3 position, Vector3 forward, float velocity, NetworkConnection owner) =>
+		SpawnBallServer(position, forward, velocity, owner);
+
+	[TargetRpc]
+	private void SetBallSpeedTargetRPC(NetworkConnection target, NetworkObject ball, Vector3 forward, float velocity) {
+		ball.GetComponent<NetworkRigidbody>().velocity = forward * velocity;
+	}
 }

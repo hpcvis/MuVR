@@ -7,10 +7,10 @@ public class DeleteOnKey : NetworkBehaviour  {
     void Update() {
         if (!Input.GetKeyDown(KeyCode.Delete)) return;
         
-        if (IsServer) Destroy(gameObject);
-        else DestroyServerRPC();
+        if (IsServer) Despawn();
+        else DespawnServerRPC();
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void DestroyServerRPC() => Destroy(gameObject);
+    private void DespawnServerRPC() => Despawn();
 }

@@ -57,8 +57,8 @@ MonoBehaviour:
   - {fileID: 1635897748332765928}
   - {fileID: 1635897748332765925}
   - {fileID: 1341014223865917396}
-  - {fileID: 87617164023561027}
   - {fileID: 6169291169782486157}
+  - {fileID: 87617164023561027}
   SceneTransformProperties:
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f572e46af83151541aed4c1c20a097ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 4
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1635897748332765926}
   _networkObjectCache: {fileID: 1635897748332765926}
   target: {fileID: 1635897748332765920}
@@ -271,6 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aaecc057afee174d8db587928f20f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 1635897748332765926}
   _networkObjectCache: {fileID: 1635897748332765926}
