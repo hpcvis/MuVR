@@ -110,7 +110,7 @@ namespace FishyVoice {
             if (NetworkManager is null)
                 return;
             
-            if(voiceState == LocalConnectionState.Started && clientState == LocalConnectionState.Started) OnClick_Voice();
+            if(voiceState == LocalConnectionState.Started && clientState == LocalConnectionState.Started) agent.LeaveChatroom();
             
             base.OnClick_Client();
         }

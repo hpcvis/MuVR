@@ -17,6 +17,16 @@ namespace FishNet.Managing.Observing
         /// <summary>
         /// 
         /// </summary>
+        [Tooltip("True to update visibility for clientHost based on if they are an observer or not.")]
+        [SerializeField]
+        private bool _setHostVisibility = true;
+        /// <summary>
+        /// True to update visibility for clientHost based on if they are an observer or not.
+        /// </summary>
+        public bool SetHostVisibility => _setHostVisibility;
+        /// <summary>
+        /// 
+        /// </summary>
         [Tooltip("Default observer conditions for networked objects.")]
         [SerializeField]
         private List<ObserverCondition> _defaultConditions = new List<ObserverCondition>();
@@ -34,15 +44,25 @@ namespace FishNet.Managing.Observing
             if (nullObs && _defaultConditions.Count == 0)
                 return obs;
 
-            //If null then add.
+            //If null then add and default to use manager.
             if (nullObs)
-                obs = nob.gameObject.AddComponent<NetworkObserver>();
-            //If not null and ignoring manager.
+            {
+                obs = nob.AddAndSerialize<NetworkObserver>();
+                obs.OverrideType = NetworkObserver.ConditionOverrideType.UseManager;
+            }
+
+            //If global then ignore manager and clear all. This overrides other settings.
+            if (nob.IsGlobal && !nob.IsSceneObject)
+            {
+                obs.OverrideType = NetworkObserver.ConditionOverrideType.IgnoreManager;
+                obs.ObserverConditionsInternal.Clear();
+                return obs;
+            }
+            //If ignoring manager.
             else if (obs.OverrideType == NetworkObserver.ConditionOverrideType.IgnoreManager)
                 return obs;
-
             //If using manager then replace all with conditions.
-            if (obs.OverrideType == NetworkObserver.ConditionOverrideType.UseManager)
+            else if (obs.OverrideType == NetworkObserver.ConditionOverrideType.UseManager)
             {
                 obs.ObserverConditionsInternal = _defaultConditions;
             }

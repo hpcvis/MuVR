@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConfigurationData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Loaded>false</Loaded>
+  <IsBuilding>false</IsBuilding>
+  <IsDevelopment>false</IsDevelopment>
+  <IsHeadless>false</IsHeadless>
+  <StripReleaseBuilds>false</StripReleaseBuilds>
+  <SavedVersion>2.2.4</SavedVersion>
+</ConfigurationData>

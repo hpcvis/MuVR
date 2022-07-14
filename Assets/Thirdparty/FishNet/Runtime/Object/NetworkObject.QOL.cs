@@ -3,6 +3,7 @@ using FishNet.Connection;
 using FishNet.Managing;
 using FishNet.Managing.Client;
 using FishNet.Managing.Logging;
+using FishNet.Managing.Observing;
 using FishNet.Managing.Scened;
 using FishNet.Managing.Server;
 using FishNet.Managing.Timing;
@@ -142,6 +143,10 @@ namespace FishNet.Object
         /// ClientManager for this object.
         /// </summary>
         public ClientManager ClientManager { get; private set; }
+        /// <summary>
+        /// ObserverManager for this object.
+        /// </summary>
+        public ObserverManager ObserverManager { get; private set; }
         /// <summary>
         /// TransportManager for this object.
         /// </summary>

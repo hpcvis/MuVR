@@ -285,7 +285,7 @@ namespace FishNet.Managing.Server
         private void SetupSceneObjects(Scene s)
         {
             ListCache<NetworkObject> nobs;
-            SceneFN.GetSceneNetworkObjects(s, true, out nobs);
+            SceneFN.GetSceneNetworkObjects(s, false, out nobs);
             bool isHost = base.NetworkManager.IsHost;
 
             for (int i = 0; i < nobs.Written; i++)
@@ -389,6 +389,12 @@ namespace FishNet.Managing.Server
              * Set visibility based on if the observers contains the clientHost connection. */
             if (NetworkManager.IsClient)
                 networkObject.SetHostVisibility(networkObject.Observers.Contains(NetworkManager.ClientManager.Connection));
+
+            //foreach (NetworkObject childNob in networkObject.ChildNetworkObjects)
+            //{
+            //    if (childNob != null && !childNob.IsSpawned)
+            //        Spawn(childNob, ownerConnection, synchronizeParent);
+            //}
         }
 
         /// <summary>
@@ -427,7 +433,13 @@ namespace FishNet.Managing.Server
             /* Write if a scene object or not, and also
              * store sceneObjectId if is a scene object. */
             bool sceneObject = nob.IsSceneObject;
-            headerWriter.WriteBoolean(sceneObject);
+            ObjectSpawnType ost;
+            if (sceneObject)
+                ost = ObjectSpawnType.Scene;
+            else
+                ost = (nob.IsGlobal) ? ObjectSpawnType.InstantiatedGlobal : ObjectSpawnType.Instantiated;
+            headerWriter.WriteByte((byte)ost);
+            
             /* Writing a scene object. */
             if (sceneObject)
             {
@@ -452,7 +464,7 @@ namespace FishNet.Managing.Server
             else
             {
                 //Check to write parent behaviour or nob.
-                NetworkBehaviour parentNb = null;
+                NetworkBehaviour parentNb;
                 Transform t = nob.transform.parent;
                 if (t != null)
                 {

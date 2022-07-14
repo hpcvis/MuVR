@@ -6,6 +6,7 @@ using FishNet.Connection;
 using FishNet.Managing;
 using FishNet.Managing.Client;
 using FishNet.Managing.Logging;
+using FishNet.Managing.Observing;
 using FishNet.Managing.Scened;
 using FishNet.Managing.Server;
 using FishNet.Managing.Timing;
@@ -36,6 +37,10 @@ namespace FishNet.Object
         /// ClientManager for this object.
         /// </summary>
         public ClientManager ClientManager => _networkObjectCache.ClientManager;
+        /// <summary>
+        /// ObserverManager for this object.
+        /// </summary>
+        public ObserverManager ObserverManager => _networkObjectCache.ObserverManager;
         /// <summary>
         /// TransportManager for this object.
         /// </summary>

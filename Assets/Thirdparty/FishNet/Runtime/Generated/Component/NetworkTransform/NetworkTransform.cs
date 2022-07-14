@@ -10,6 +10,7 @@ using FishNet.Documenting;
 using FishNet.Object;
 using FishNet.Serializing;
 using FishNet.Transporting;
+using FishNet.Utility.Extension;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -97,12 +98,35 @@ namespace FishNet.Component.Transforming
         }
         public class RateData
         {
+            /// <summary>
+            /// Rate for position after smart calculations.
+            /// </summary>
             public float Position;
+            /// <summary>
+            /// Rate for rotation after smart calculations.
+            /// </summary>
             public float Rotation;
+            /// <summary>
+            /// Rate for scale after smart calculations.
+            /// </summary>
             public float Scale;
+            /// <summary>
+            /// Unaltered rate for position calculated through position change and tickspan.
+            /// </summary>
             public float LastUnalteredPositionRate;
-            public bool AbnormalRateDetected;
-            public float TimeRemaining;
+            /// <summary>
+            /// Number of ticks the rates are calculated for.
+            /// If TickSpan is 2 then the rates are calculated under the assumption the transform changed over 2 ticks.
+            /// </summary>
+            public uint TickSpan;
+            /// <summary>
+            /// True if the rate is believed to be fluctuating unusually.
+            /// </summary>
+            internal bool AbnormalRateDetected;
+            /// <summary>
+            /// Time remaining until transform is expected to reach it's goal.
+            /// </summary>
+            internal float TimeRemaining;
 
             public RateData() { }
 
@@ -112,24 +136,27 @@ namespace FishNet.Component.Transforming
                 Rotation = 0f;
                 Scale = 0f;
                 LastUnalteredPositionRate = 0f;
+                TickSpan = 0;
                 AbnormalRateDetected = false;
                 TimeRemaining = 0f;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void Update(RateData rd)
             {
-                Update(rd.Position, rd.Rotation, rd.Scale, rd.LastUnalteredPositionRate, rd.AbnormalRateDetected, rd.TimeRemaining);
+                Update(rd.Position, rd.Rotation, rd.Scale, rd.LastUnalteredPositionRate, rd.TickSpan, rd.AbnormalRateDetected, rd.TimeRemaining);
             }
 
             /// <summary>
             /// Updates rates.
             /// </summary>
-            public void Update(float position, float rotation, float scale, float unalteredPositionRate, bool abnormalRateDetected, float timeRemaining)
+            public void Update(float position, float rotation, float scale, float unalteredPositionRate, uint tickSpan, bool abnormalRateDetected, float timeRemaining)
             {
                 Position = position;
                 Rotation = rotation;
                 Scale = scale;
                 LastUnalteredPositionRate = unalteredPositionRate;
+                TickSpan = tickSpan;
                 AbnormalRateDetected = abnormalRateDetected;
                 TimeRemaining = timeRemaining;
             }
@@ -1160,6 +1187,7 @@ namespace FishNet.Component.Transforming
         /// <summary>
         /// Gets transform values that have changed against specified proprties.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private ChangedDelta GetChanged(ref Vector3 lastPosition, ref Quaternion lastRotation, ref Vector3 lastScale, NetworkBehaviour parentBehaviour)
         {
             ChangedDelta changed = ChangedDelta.Unset;
@@ -1174,7 +1202,7 @@ namespace FishNet.Component.Transforming
                 changed |= ChangedDelta.PositionZ;
 
             Quaternion rotation = t.localRotation;
-            if (rotation != lastRotation)
+            if (!rotation.Matches(lastRotation, true))
                 changed |= ChangedDelta.Rotation;
 
             ChangedDelta startChanged;
@@ -1250,12 +1278,13 @@ namespace FishNet.Component.Transforming
         /// </summary>
         private void SetInstantRates(RateData rd)
         {
-            rd.Update(-1f, -1f, -1f, -1f, false, -1f);
+            rd.Update(-1f, -1f, -1f, -1f, 1, false, -1f);
         }
 
         /// <summary>
         /// Sets move rates which will occur over time.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void SetCalculatedRates(uint lastTick, RateData prevRd, TransformData prevTd, GoalData nextGd, ChangedFull changedFull, bool hasChanged, Channel channel)
         {
             /* Only update rates if data has changed.
@@ -1356,18 +1385,14 @@ namespace FishNet.Component.Transforming
                 //abnormalCorrection = 1f;
                 positionRate = (unalteredPositionRate * abnormalCorrection);
             }
-            if (positionRate == 0f)
-                positionRate = prevRd.Position;
 
             //Rotation.
             if (ChangedFullContains(changedFull, ChangedFull.Rotation))
             {
                 Quaternion lastRotation = prevTd.Rotation;
-                distance = Quaternion.Angle(lastRotation, td.Rotation);
+                distance = lastRotation.Angle(td.Rotation, true);
                 rotationRate = (distance / timePassed) * abnormalCorrection;
             }
-            if (rotationRate == 0f)
-                rotationRate = prevRd.Rotation;
 
             //Scale.
             if (ChangedFullContains(changedFull, ChangedFull.Scale))
@@ -1376,10 +1401,8 @@ namespace FishNet.Component.Transforming
                 distance = Vector3.Distance(lastScale, td.Scale);
                 scaleRate = (distance / timePassed) * abnormalCorrection;
             }
-            if (scaleRate == 0f)
-                scaleRate = prevRd.Scale;
 
-            rd.Update(positionRate, rotationRate, scaleRate, unalteredPositionRate, abnormalRateDetected, timePassed);
+            rd.Update(positionRate, rotationRate, scaleRate, unalteredPositionRate, tickDifference, abnormalRateDetected, timePassed);
 
             //Returns if whole contains part.
             bool ChangedFullContains(ChangedFull whole, ChangedFull part)

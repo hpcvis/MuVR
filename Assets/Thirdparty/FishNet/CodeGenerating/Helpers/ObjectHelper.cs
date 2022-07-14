@@ -28,6 +28,7 @@ namespace FishNet.CodeGenerating.Helping
         internal string SyncDictionary_Name;
         internal string SyncHashSet_Name;
         //Prediction.
+        internal MethodReference NetworkBehaviour_SetLastReconcileTick_MethodRef;
         internal MethodReference NetworkBehaviour_TransformMayChange_MethodRef;
         internal MethodReference NetworkBehaviour_SendReplicateRpc_MethodRef;
         internal MethodReference NetworkBehaviour_SendReconcileRpc_MethodRef;
@@ -159,6 +160,9 @@ namespace FishNet.CodeGenerating.Helping
                     NetworkBehaviour_SendObserversRpc_MethodRef = CodegenSession.ImportReference(mi);
                 else if (mi.Name == nameof(NetworkBehaviour.SendTargetRpc))
                     NetworkBehaviour_SendTargetRpc_MethodRef = CodegenSession.ImportReference(mi);
+                //Prediction.
+                else if (mi.Name == nameof(NetworkBehaviour.SetLastReconcileTick))
+                    NetworkBehaviour_SetLastReconcileTick_MethodRef = CodegenSession.ImportReference(mi);
                 //Misc.
                 else if (mi.Name == nameof(NetworkBehaviour.TransformMayChange))
                     NetworkBehaviour_TransformMayChange_MethodRef = CodegenSession.ImportReference(mi);

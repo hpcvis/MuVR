@@ -11,13 +11,28 @@ namespace FishNet.Utility.Editing
 {
 
 
+    public class OpenDocumentationMenu : MonoBehaviour
+    {
+        /// <summary>
+        /// Opens the documentation.
+        /// </summary>
+        [MenuItem("Fish-Networking/Documentation", false, int.MaxValue)]
+        public static void OpenDocumentation()
+        {
+            System.Diagnostics.Process.Start("https://fish-networking.gitbook.io/docs/");
+        }
+
+
+    }
+
+
     public class RebuildSceneIdMenu : MonoBehaviour
     {
         /// <summary>
         /// Rebuilds sceneIds for open scenes.
         /// </summary>
         [MenuItem("Fish-Networking/Rebuild SceneIds", false, 20)]
-        static void RebuildSceneIds()
+        public static void RebuildSceneIds()
         {
             int generatedCount = 0;
             for (int i = 0; i < SceneManager.sceneCount; i++)
@@ -25,7 +40,7 @@ namespace FishNet.Utility.Editing
                 Scene s = SceneManager.GetSceneAt(i);
 
                 ListCache<NetworkObject> nobs;
-                SceneFN.GetSceneNetworkObjects(s, true, out nobs);
+                SceneFN.GetSceneNetworkObjects(s, false, out nobs);
                 for (int z = 0; z < nobs.Written; z++)
                 {
                     NetworkObject nob = nobs.Collection[z];
@@ -49,7 +64,7 @@ namespace FishNet.Utility.Editing
         /// Rebuilds the DefaultPrefabsCollection file.
         /// </summary>
         [MenuItem("Fish-Networking/Refresh Default Prefabs", false, 21)]
-        static void RebuildDefaultPrefabs()
+        public static void RebuildDefaultPrefabs()
         {
             Debug.Log("Refreshing default prefabs.");
             Generator.GenerateFull();

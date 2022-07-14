@@ -21,7 +21,7 @@ namespace MuVR.Utility {
 		}
 
 		void Update() {
-			if (Input.GetKeyDown(KeyCode.Space))
+			if (Input.GetKeyDown(KeyCode.BackQuote))
 				doShow = !doShow;
 		}
 
