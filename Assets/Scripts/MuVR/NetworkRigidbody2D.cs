@@ -4,14 +4,16 @@ using FishNet.Connection;
 using FishNet.Object;
 using TriInspector;
 using UnityEngine;
+using NetworkBehaviour = MuVR.Enchanced.NetworkBehaviour;
 
 namespace MuVR {
 	
 	// NOTE: Component ported from Mirror
 	[RequireComponent(typeof(NetworkTransform))]
-	public class NetworkRigidbody2D : MuVR.Enchanced.NetworkBehaviour {
-		[Title("Settings")] 
-		[Required, SerializeField] private Rigidbody2D target;
+	public class NetworkRigidbody2D : NetworkBehaviour {
+		[Title("Settings")]
+		[Required]
+		public Rigidbody2D target;
 
 		[PropertyTooltip("Flag indicating weather or not the managed Rigidbody2D should be Kinematic")]
 		public bool targetIsKinematic;
@@ -27,7 +29,6 @@ namespace MuVR {
 		[field: HideIf(nameof(syncVelocity))]
 		[field: SerializeField] private bool clearVelocity;
 
-
 		[field: Title("Angular Velocity")]
 		[field: PropertyTooltip("Syncs AngularVelocity every SyncInterval")]
 		[field: SerializeField] private bool syncAngularVelocity = true;
@@ -36,14 +37,14 @@ namespace MuVR {
 		[field: HideIf(nameof(syncAngularVelocity))]
 		[field: SerializeField] private bool clearAngularVelocity;
 
-        /// <summary>
-        ///     Values sent on client with authority after they are sent to the server
-        /// </summary>
-        private ClientSyncState previousValue;
+		/// <summary>
+		///     Values sent on client with authority after they are sent to the server
+		/// </summary>
+		private ClientSyncState previousValue;
 
 		private new void OnValidate() {
 			base.OnValidate();
-			if (target is null) target = GetComponent<Rigidbody2D>();
+			target ??= GetComponent<Rigidbody2D>();
 			if (target is not null) targetIsKinematic = target.isKinematic;
 		}
 
@@ -61,10 +62,10 @@ namespace MuVR {
 			get => _velocity;
 			set {
 				OnVelocityChanged(_velocity, value, false);
-				_velocity = value;
-				if (IsServer)
+				target.velocity = _velocity = value;
+				if (IsAuthority && IsServer)
 					ObserversSetVelocity(value);
-				else if (IsClient)
+				else if (ClientWithAuthority)
 					ServerSetVelocity(value);
 			}
 		}
@@ -83,6 +84,7 @@ namespace MuVR {
 		}
 
 		private void OnVelocityChanged(Vector2 _, Vector2 newValue, bool onServer) {
+			if (IsAuthority) return;
 			target.velocity = newValue;
 		}
 
@@ -96,10 +98,10 @@ namespace MuVR {
 			get => _angularVelocity;
 			set {
 				OnAngularVelocityChanged(_angularVelocity, value, false);
-				_angularVelocity = value;
-				if (IsServer)
+				target.angularVelocity = _angularVelocity = value;
+				if (IsAuthority && IsServer)
 					ObserversSetAngularVelocity(value);
-				else if (IsClient)
+				else if (ClientWithAuthority)
 					ServerSetAngularVelocity(value);
 			}
 		}
@@ -118,12 +120,13 @@ namespace MuVR {
 		}
 
 		private void OnAngularVelocityChanged(float _, float newValue, bool onServer) {
+			if (IsAuthority) return;
 			target.angularVelocity = newValue;
 		}
 
 		#endregion
 
-		#region is kinemtaic sync
+		#region is kinematic sync
 
 		[ReadOnly, SerializeField] private bool _isKinematic;
 
@@ -131,10 +134,11 @@ namespace MuVR {
 			get => _isKinematic;
 			set {
 				OnIsKinematicChanged(_isKinematic, value, false);
-				_isKinematic = value;
-				if (IsServer)
+				targetIsKinematic = _isKinematic = value;
+				UpdateOwnershipKinematicState();
+				if (IsAuthority && IsServer)
 					ObserversSetIsKinematic(value);
-				else if (IsClient)
+				else if (ClientWithAuthority)
 					ServerSetIsKinematic(value);
 			}
 		}
@@ -153,6 +157,7 @@ namespace MuVR {
 		}
 
 		private void OnIsKinematicChanged(bool _, bool newValue, bool onServer) {
+			if (IsAuthority) return;
 			targetIsKinematic = newValue;
 			UpdateOwnershipKinematicState();
 		}
@@ -167,10 +172,10 @@ namespace MuVR {
 			get => _gravityScale;
 			set {
 				OnGravityScaleChanged(_gravityScale, value, false);
-				_gravityScale = value;
-				if (IsServer)
+				target.gravityScale = _gravityScale = value;
+				if (IsAuthority && IsServer)
 					ObserversSetGravityScale(value);
-				else if (IsClient)
+				else if (ClientWithAuthority)
 					ServerSetGravityScale(value);
 			}
 		}
@@ -189,6 +194,7 @@ namespace MuVR {
 		}
 
 		private void OnGravityScaleChanged(float _, float newValue, bool onServer) {
+			if (IsAuthority) return;
 			target.gravityScale = newValue;
 		}
 
@@ -202,10 +208,10 @@ namespace MuVR {
 			get => _drag;
 			set {
 				OnDragChanged(_drag, value, false);
-				_drag = value;
-				if (IsServer)
+				target.drag = _drag = value;
+				if (IsAuthority && IsServer)
 					ObserversSetDrag(value);
-				else if (IsClient)
+				else if (ClientWithAuthority)
 					ServerSetDrag(value);
 			}
 		}
@@ -224,6 +230,7 @@ namespace MuVR {
 		}
 
 		private void OnDragChanged(float _, float newValue, bool onServer) {
+			if (IsAuthority) return;
 			target.drag = newValue;
 		}
 
@@ -237,10 +244,10 @@ namespace MuVR {
 			get => _angularDrag;
 			set {
 				OnAngularDragChanged(_angularDrag, value, false);
-				_angularDrag = value;
-				if (IsServer)
+				target.angularDrag = _angularDrag = value;
+				if (IsAuthority && IsServer)
 					ObserversSetAngularDrag(value);
-				else if (IsClient)
+				else if (ClientWithAuthority)
 					ServerSetAngularDrag(value);
 			}
 		}
@@ -259,6 +266,7 @@ namespace MuVR {
 		}
 
 		private void OnAngularDragChanged(float _, float newValue, bool onServer) {
+			if (IsAuthority) return;
 			target.angularDrag = newValue;
 		}
 
@@ -288,6 +296,7 @@ namespace MuVR {
 		public override void OnOwnershipBoth(NetworkConnection prev) {
 			base.OnOwnershipBoth(prev);
 
+			if (prev == Owner) return; // Ignore ownership changes if the owner didn't really change
 			if (!isStarted) return;
 
 			// If your the owner, make sure your local Rigidbody2D has the same settings as the previous owner
@@ -305,11 +314,13 @@ namespace MuVR {
 		}
 
 		public override void Tick() {
-			// Debug.Log($"Pre: {velocity} - {target.velocity}");
+			if (!isActiveAndEnabled) return;
+
+			//Debug.Log($"Pre: {velocity} - {target.velocity}");
 
 			SendDataIfAuthority();
 
-			// Debug.Log($"Post: {velocity} - {target.velocity}");
+			//Debug.Log($"Post: {velocity} - {target.velocity}");
 		}
 
 		// TODO: Should this be switched to occuring on ticks?
@@ -319,10 +330,10 @@ namespace MuVR {
 		}
 
 
-        /// <summary>
-        ///     Uses Command to send values to server
-        /// </summary>
-        private void SendDataIfAuthority() {
+		/// <summary>
+		///     Uses Command to send values to server
+		/// </summary>
+		private void SendDataIfAuthority() {
 			if (!IsAuthority) return;
 
 			SendVelocity();
@@ -337,8 +348,7 @@ namespace MuVR {
 				angularVelocity = target.angularVelocity;
 				previousValue.velocity = target.velocity;
 				previousValue.angularVelocity = target.angularVelocity;
-			}
-			else if (syncVelocity) {
+			} else if (syncVelocity) {
 				velocity = target.velocity;
 				previousValue.velocity = target.velocity;
 			}
@@ -349,7 +359,7 @@ namespace MuVR {
 			if (previousValue.isKinematic != targetIsKinematic)
 				previousValue.isKinematic = isKinematic = targetIsKinematic;
 
-			if (Math.Abs(previousValue.gravityScale - target.gravityScale) > Mathf.Epsilon)
+			if (previousValue.gravityScale != target.gravityScale)
 				previousValue.gravityScale = gravityScale = target.gravityScale;
 
 			if (Math.Abs(previousValue.drag - target.drag) > Mathf.Epsilon)
@@ -359,10 +369,10 @@ namespace MuVR {
 				previousValue.angularDrag = angularDrag = target.angularDrag;
 		}
 
-        /// <summary>
-        ///     holds previously synced values
-        /// </summary>
-        public struct ClientSyncState {
+		/// <summary>
+		///     holds previously synced values
+		/// </summary>
+		public struct ClientSyncState {
 			public Vector2 velocity;
 			public float angularVelocity;
 			public bool isKinematic;
