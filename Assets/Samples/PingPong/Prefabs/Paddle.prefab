@@ -65,6 +65,7 @@ MonoBehaviour:
     Rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
     LocalScale: {x: 0.25, y: 0.01, z: 0.25}
   _isNetworked: 1
+  _isGlobal: 0
   _hasParentNetworkObjectAtEdit: 0
   NetworkObserver: {fileID: 0}
   _prefabId: -1
@@ -90,6 +91,7 @@ MonoBehaviour:
   enableVolumeTransfer: 1
   releaseOwnershipOnLeave: 1
   interactable: {fileID: 4657402289165159642}
+  ownershipTransferCooldown: 10
 --- !u!114 &297560200439192031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +162,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3033667219593020291, guid: 6713cf46d4f46b847abde47e626d8537, type: 3}
+  - {fileID: 670224309865224971, guid: e48d18018a0ba46c283d9fd9c227e578, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -435,7 +437,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 670224309865224971, guid: e48d18018a0ba46c283d9fd9c227e578, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

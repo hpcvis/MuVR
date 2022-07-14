@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 6763865742933432442}
   - component: {fileID: 7983287557230526603}
   - component: {fileID: 8668587123222019684}
+  - component: {fileID: 3580693589834944678}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -99,6 +100,8 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0, w: 1}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -125,6 +128,48 @@ MonoBehaviour:
   unownedOffset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &3580693589834944678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5418887565066716862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 6606634378604021384}
+  _networkObjectCache: {fileID: 0}
+  _synchronizeParent: 0
+  _packing:
+    Position: 0
+    Rotation: 0
+    Scale: 0
+  _interpolation: 2
+  _extrapolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  _clientAuthoritative: 1
+  _sendToOwner: 1
+  _interval: 1
+  _synchronizePosition: 1
+  _positionSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeRotation: 1
+  _rotationSnapping:
+    X: 0
+    Y: 0
+    Z: 0
+  _synchronizeScale: 1
+  _scaleSnapping:
+    X: 0
+    Y: 0
+    Z: 0
 --- !u!1 &6531052538444464858
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +231,7 @@ MonoBehaviour:
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
+  _isGlobal: 0
   _hasParentNetworkObjectAtEdit: 0
   NetworkObserver: {fileID: 0}
   _prefabId: -1
@@ -365,6 +411,8 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0, w: 1}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -547,6 +595,8 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0, w: 1}
   syncPositions: 1
   syncRotations: 1
+  positionAxis: -1
+  rotationAxis: -1
   target:
     pose:
       position: {x: 0, y: 0, z: 0}
