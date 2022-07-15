@@ -1,9 +1,11 @@
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using MuVR;
 using TMPro;
 using UnityEngine;
+using NetworkBehaviour = MuVR.Enchanced.NetworkBehaviour;
 
-public class PingPongGameManager : MuVR.Enchanced.NetworkBehaviour {
+public class PingPongGameManager : NetworkBehaviour {
 	[SyncVar(OnChange = nameof(UpdateScores))]
 	public int plusScore = 0;
 	[SyncVar(OnChange = nameof(UpdateScores))]
@@ -11,6 +13,7 @@ public class PingPongGameManager : MuVR.Enchanced.NetworkBehaviour {
 	
 	[SerializeField] private NetworkObject ballPrefab;
 	[SerializeField] private Transform plusSpawn, minusSpawn;
+	[SerializeField] private OwnershipVolume plusVolume, minusVolume;
 	[SerializeField] private TextMeshPro text;
 
 	private bool spawnPlus = false;
@@ -33,7 +36,7 @@ public class PingPongGameManager : MuVR.Enchanced.NetworkBehaviour {
 	[Server]
 	public void RespawnBall() {
 		var ball = Instantiate(ballPrefab, spawnPlus ? plusSpawn.position : minusSpawn.position, Quaternion.identity);
-		Spawn(ball.gameObject);
+		Spawn(ball.gameObject, spawnPlus ? plusVolume.volumeOwner : minusVolume.volumeOwner);
 	}
 
 	// Function called when an object goes out of bounds on the +x side
