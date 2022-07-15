@@ -152,7 +152,7 @@ namespace MuVR {
         // Server only function called by an OwnershipManager to register it as listening for changes in ownership
         public void RegisterAsListener(OwnershipManager m) {
             if (IsServer) RegisterAsListenerServer(m);
-            else RegisterAsListenerServerRPC(m.gameObject);
+            else RegisterAsListenerServerRPC(m.NetworkObject);
         }
 
         [Server]
@@ -162,13 +162,13 @@ namespace MuVR {
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void RegisterAsListenerServerRPC(GameObject m) =>
-            RegisterAsListenerServer(m.GetComponent<OwnershipManager>());
+        private void RegisterAsListenerServerRPC(NetworkObject m) =>
+            RegisterAsListenerServer(m?.GetComponentInChildren<OwnershipManager>());
 
         // Server only function called by an OwnershipManager to indicate it is no longer interested in ownership changes
         public void UnregisterAsListener(OwnershipManager m) {
             if (IsServer) UnregisterAsListenerServer(m);
-            else UnregisterAsListenerServerRPC(m.gameObject);
+            else UnregisterAsListenerServerRPC(m.NetworkObject);
         }
 
         [Server]
@@ -178,8 +178,8 @@ namespace MuVR {
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void UnregisterAsListenerServerRPC(GameObject m) =>
-            UnregisterAsListenerServer(m.GetComponent<OwnershipManager>());
+        private void UnregisterAsListenerServerRPC(NetworkObject m) =>
+            UnregisterAsListenerServer(m?.GetComponentInChildren<OwnershipManager>());
 
 
 
