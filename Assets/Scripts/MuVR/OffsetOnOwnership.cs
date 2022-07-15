@@ -8,7 +8,6 @@ namespace MuVR {
 	public class OffsetOnOwnership : NetworkBehaviour {
 		// The SyncPose to be updated
 		public Transform target;
-
 		// The offsets when the object is owned or not
 		public Pose ownedOffset = Pose.identity, unownedOffset = Pose.identity;
 
@@ -21,10 +20,23 @@ namespace MuVR {
 		// When ownership changes set the pose appropriately
 		public override void OnOwnershipBoth(NetworkConnection prev) {
 			base.OnOwnershipBoth(prev);
-			var offset = IsOwner ? ownedOffset : unownedOffset;
 
-			target.position = offset.position;
-			target.rotation = offset.rotation;
+			// If we used to be the owner, undo the owned offset and apply the unowned offset
+			if (prev == LocalConnection) {
+				target.position -= ownedOffset.position;
+				target.rotation *= Quaternion.Inverse(ownedOffset.rotation);
+
+				target.position += unownedOffset.position;
+				target.rotation *= unownedOffset.rotation;
+			
+				// If we are the new owner, undo the unowned offset and apply the owned offset
+			} else if (IsOwner) {
+				target.position -= unownedOffset.position;
+				target.rotation *= Quaternion.Inverse(unownedOffset.rotation);	
+			
+				target.position += ownedOffset.position;
+				target.rotation *= ownedOffset.rotation;
+			}
 		}
 	}
 }
