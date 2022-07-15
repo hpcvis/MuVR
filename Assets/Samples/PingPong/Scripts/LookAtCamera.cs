@@ -9,7 +9,7 @@ public class LookAtCamera : MonoBehaviour {
 
 	// Update is called once per frame
 	private void Update() {
-		var position = Camera.current?.transform.position ?? transform.position;
+		var position = Camera.main?.transform.position ?? transform.position;
 		try {
 			position = target.transform.position;
 		} catch (UnassignedReferenceException) {}
