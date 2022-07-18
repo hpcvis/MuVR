@@ -3,7 +3,7 @@
 
 # MuVR
 
-The Multi-User Virtual Reality framework is a [Unity] framework that provides a foundation for multiuser/player VR experiences. Its networking is provided by the [Fish-Networking] library. It is primarily designed around 
+The Multi-User Virtual Reality framework is a [Unity] framework that provides a foundation for multiuser/player VR experiences. Its networking is provided by the [Fish-Networking] library. It is primarily designed around allowing users to quickly create VR applications.
 
 ## Features
 
