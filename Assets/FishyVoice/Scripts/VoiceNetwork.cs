@@ -74,7 +74,7 @@ namespace FishyVoice {
 
         public event Action OnCreatedChatroom;
         public event Action<Exception> OnChatroomCreationFailed;
-        public event Action OnlosedChatroom;
+        public event Action OnClosedChatroom;
         public event Action<short> OnJoinedChatroom;
         public event Action<Exception> OnChatroomJoinFailed;
         public event Action OnLeftChatroom;
@@ -217,7 +217,7 @@ namespace FishyVoice {
             if (roomName != CurrentChatroomName) return;
 
             connectionState = LocalConnectionState.Stopped;
-            OnlosedChatroom?.Invoke();
+            OnClosedChatroom?.Invoke();
             CurrentChatroomName = string.Empty;
         }
 

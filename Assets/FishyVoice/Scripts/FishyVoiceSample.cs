@@ -43,12 +43,12 @@ namespace FishyVoice {
             agent = voiceNetwork.CreateAgent();
             agent.Network.OnJoinedChatroom += VoiceStateUpdated;
             agent.Network.OnLeftChatroom += VoiceStateUpdated;
-            agent.Network.OnlosedChatroom += VoiceStateUpdated;
+            agent.Network.OnClosedChatroom += VoiceStateUpdated;
             
             agent.Network.OnCreatedChatroom += OnHostChatroom;
             agent.Network.OnJoinedChatroom += OnJoinedChatroom;
             agent.Network.OnLeftChatroom += OnLeftChatroom;
-            agent.Network.OnlosedChatroom += OnChatroomClose;
+            agent.Network.OnClosedChatroom += OnChatroomClose;
 
             agent.Network.OnChatroomCreationFailed += OnChatroomException;
             agent.Network.OnChatroomJoinFailed += OnChatroomException;
@@ -64,12 +64,12 @@ namespace FishyVoice {
             // Stop listening for agent messages
             agent.Network.OnJoinedChatroom -= VoiceStateUpdated;
             agent.Network.OnLeftChatroom -= VoiceStateUpdated;
-            agent.Network.OnlosedChatroom -= VoiceStateUpdated;
+            agent.Network.OnClosedChatroom -= VoiceStateUpdated;
             
             agent.Network.OnCreatedChatroom -= OnHostChatroom;
             agent.Network.OnJoinedChatroom -= OnJoinedChatroom;
             agent.Network.OnLeftChatroom -= OnLeftChatroom;
-            agent.Network.OnlosedChatroom -= OnChatroomClose;
+            agent.Network.OnClosedChatroom -= OnChatroomClose;
             
             agent.Network.OnChatroomCreationFailed -= OnChatroomException;
             agent.Network.OnChatroomJoinFailed -= OnChatroomException;
