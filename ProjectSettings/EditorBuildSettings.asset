@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Samples/OwnershipTransferDemo/Demo.unity
     guid: 4bd7130b00fa79541b8d4e2dedc133db
   - enabled: 1
-    path: Assets/FishyVoice/Samples/Scenes/VoiceExample.unity
+    path: Assets/FishyVoice/Samples/VoiceExample.unity
     guid: 4c64b0515a3f6be41af39c4e8b8cb54d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
