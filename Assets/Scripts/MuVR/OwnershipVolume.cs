@@ -11,7 +11,7 @@ namespace MuVR {
     // Component that represents a volume of ownership
     // NOTE: The system is not designed around overlapping ownership volumes, try to prevent this scenario if possible!
     [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Collider))]
-    public class OwnershipVolume : MuVR.Enchanced.NetworkBehaviour {
+    public class OwnershipVolume : MuVR.Enhanced.NetworkBehaviour {
 
         // "Stack" of unique users who are currently within the volume
         // NOTE: Ordered set selected so that the stack ordering is preserved, while still only allowing unique network connections in the list

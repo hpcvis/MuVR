@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace MuVR {
 	
 	// Component that transfers ownership of this object to another user
-	public class OwnershipManager : MuVR.Enchanced.NetworkBehaviour {
+	public class OwnershipManager : MuVR.Enhanced.NetworkBehaviour {
 		[PropertyTooltip("Enable changing ownership when a user interacts with this object.")]
 		public bool enableInteractionTransfer = true;
 		[PropertyTooltip("Enable changing ownership when this object enters an ownership volume that belongs to a user.")]

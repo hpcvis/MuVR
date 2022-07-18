@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MuVR.Enchanced {
+namespace MuVR.Enhanced {
 	
 	// Class that adds some extension methods to the Transform class
 	public static class TransformExtensions {

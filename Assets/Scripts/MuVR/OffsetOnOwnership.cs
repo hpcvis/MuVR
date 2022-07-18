@@ -1,5 +1,5 @@
 using FishNet.Connection;
-using MuVR.Enchanced;
+using MuVR.Enhanced;
 using UnityEngine;
 
 namespace MuVR {

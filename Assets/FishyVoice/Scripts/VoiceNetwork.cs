@@ -12,7 +12,7 @@ using FishNet.Object.Synchronizing;
 using FishNet.Transporting;
 using TriInspector;
 using UnityEngine;
-using NetworkBehaviour = MuVR.Enchanced.NetworkBehaviour;
+using NetworkBehaviour = MuVR.Enhanced.NetworkBehaviour;
 
 namespace FishyVoice {
 	
@@ -327,7 +327,7 @@ namespace FishyVoice {
 
 		// Creates a new ChatroomAgent using this network, given an audio input and an audio output factory
 		public Agent CreateAgent(IAudioInput audioInput, IAudioOutputFactory audioOutputFactory) {
-			return new(this, audioInput, audioOutputFactory) {
+			return new Agent(this, audioInput, audioOutputFactory) {
 				MuteSelf = false
 			};
 		}

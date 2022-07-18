@@ -1,0 +1,19 @@
+[default.extend-identifiers]
+m_PVREnvironmentMISS = "m_PVREnvironmentMISS"
+Behaviour = "Behaviour"
+Behaviours = "Behaviours"
+ret = "ret"
+prev = "prev"
+goes = "goes"
+
+[default.extend-words]
+m_PVREnvironmentMISS = "m_PVREnvironmentMISS"
+Behaviour = "Behaviour"
+Behaviours = "Behaviours"
+ret = "ret"
+prev = "prev"
+goes = "goes"
+
+[files]
+# Ignore meta files
+extend-exclude = ["*.meta", "Assets/Thirdparty/*"]

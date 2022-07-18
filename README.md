@@ -9,7 +9,7 @@ The Multi-User Virtual Reality framework is a [Unity] framework that provides a 
 
 * Multiuser VR
 * Network Integration with the XR Interaction Toolkit
-* Networked Physics (Client Authorative and Rollback [provided by FishNetworking])
+* Networked Physics (Client Authoritative and Rollback [provided by FishNetworking])
 * Built-in Voice
 * Ownership Transfer Volumes
 

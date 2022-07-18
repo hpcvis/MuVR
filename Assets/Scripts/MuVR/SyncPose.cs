@@ -65,11 +65,11 @@ namespace MuVR {
 		private void LateUpdate() {
 			if (mode == SyncMode.SyncTo) {
 				updatePosition(ref target.pose.position, transform.position);
-				updateRotaion(ref target.pose.rotation, transform.rotation);
+				updateRotation(ref target.pose.rotation, transform.rotation);
 			}
 			else {
 				transform.position = updatePosition(transform.position, target.pose.position);
-				transform.rotation = updateRotaion(transform.rotation, target.pose.rotation);
+				transform.rotation = updateRotation(transform.rotation, target.pose.rotation);
 			}
 		}
 
@@ -88,7 +88,7 @@ namespace MuVR {
 		private void updatePosition(ref Vector3 dest, Vector3 src) => dest = updatePosition(dest, src);
 
 		// Updates the rotation value, taking ignored axes into account (designed to be generalizable so can work for either case)
-		private Quaternion updateRotaion(Quaternion dest, Quaternion src) {
+		private Quaternion updateRotation(Quaternion dest, Quaternion src) {
 			if (!syncRotations) return dest;
 			if (rotationAxis == SyncedAxis.Everything)
 				return src * offset.rotation;
@@ -104,7 +104,7 @@ namespace MuVR {
 			return update;
 		}
 
-		private void updateRotaion(ref Quaternion dest, Quaternion src) => dest = updateRotaion(dest, src);
+		private void updateRotation(ref Quaternion dest, Quaternion src) => dest = updateRotation(dest, src);
 	}
 
 #if UNITY_EDITOR

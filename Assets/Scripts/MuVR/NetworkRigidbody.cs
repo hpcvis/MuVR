@@ -4,7 +4,7 @@ using FishNet.Connection;
 using FishNet.Object;
 using TriInspector;
 using UnityEngine;
-using NetworkBehaviour = MuVR.Enchanced.NetworkBehaviour;
+using NetworkBehaviour = MuVR.Enhanced.NetworkBehaviour;
 
 namespace MuVR {
 	
@@ -324,7 +324,7 @@ namespace MuVR {
 			//Debug.Log($"Post: {velocity} - {target.velocity}");
 		}
 
-		// TODO: Should this be switched to occuring on ticks?
+		// TODO: Should this be switched to occurring on ticks?
 		private void FixedUpdate() {
 			if (clearAngularVelocity && !syncAngularVelocity) target.angularVelocity = Vector3.zero;
 			if (clearVelocity && !syncVelocity) target.velocity = Vector3.zero;

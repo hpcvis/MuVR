@@ -3,7 +3,7 @@ using FishNet.Connection;
 using FishNet.Object;
 using MuVR.Utility;
 
-namespace MuVR.Enchanced {
+namespace MuVR.Enhanced {
 	
 	// Additions to NetworkBehaviour that make it easier to use
 	public abstract class NetworkBehaviour : FishNet.Object.NetworkBehaviour {
