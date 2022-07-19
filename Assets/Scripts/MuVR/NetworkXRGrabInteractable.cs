@@ -1,5 +1,11 @@
+using MuVR.Enhanced;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+#if UNITY_EDITOR
+using FishNet.Component.Transforming;
+using FishNet.Object;
+using UnityEditor;
+#endif
 
 namespace MuVR {
 	
@@ -56,5 +62,37 @@ namespace MuVR {
 			networkRigidbody.angularVelocity = networkRigidbody.target.angularVelocity;
 			// networkRigidbody.Tick();
 		}
+
+
+		// Function that adds an option to convert XRGrab Interacatbles 
+#if UNITY_EDITOR
+		[MenuItem("CONTEXT/XRGrabInteractable/Make Networked")]
+		public static void MakeNetworkXRGrabInteractable(MenuCommand command) {
+			var interactable = (XRGrabInteractable)command.context;
+			var go = interactable.gameObject;
+
+			var copy = new GameObject().AddComponent<XRGrabInteractable>().CloneFromWithIL(interactable);
+
+			DestroyImmediate(interactable);
+			go.AddComponent<NetworkXRGrabInteractable>().CloneFromWithIL(copy);
+			DestroyImmediate(copy.gameObject);
+		}
+		
+		[MenuItem("CONTEXT/NetworkXRGrabInteractable/Setup Object Networking")]
+		public static void SetupObjectNetworking(MenuCommand command) {
+			var interactable = (NetworkXRGrabInteractable)command.context;
+
+			var no = interactable.GetComponent<NetworkObject>();
+			var om = interactable.GetComponent<OwnershipManager>();
+			var nt = interactable.GetComponent<NetworkTransform>();
+			var rb = interactable.GetComponent<Rigidbody>();
+			var nrb = interactable.GetComponent<NetworkRigidbody>();
+
+			no ??= interactable.gameObject.AddComponent<NetworkObject>();
+			om ??= interactable.gameObject.AddComponent<OwnershipManager>();
+			nt ??= interactable.gameObject.AddComponent<NetworkTransform>();
+			if (rb is not null) nrb ??= interactable.gameObject.AddComponent<NetworkRigidbody>();
+		}
+#endif
 	}
 }
