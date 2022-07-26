@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Text;
 using Adrenak.UniMic;
 using Adrenak.UniVoice;
 using Adrenak.UniVoice.InbuiltImplementations;
@@ -11,6 +12,7 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using FishNet.Serializing;
 using FishNet.Transporting;
+using K4os.Compression.LZ4;
 using TriInspector;
 using UnityEngine;
 using NetworkBehaviour = MuVR.Enhanced.NetworkBehaviour;
@@ -366,37 +368,71 @@ namespace FishyVoice {
 		#endregion
 	}
 
-	// Custom audio broadcast serializer
-	internal static class AudioBroadcastSerializer {
+	// Custom audio broadcast serializer that compresses the data
+	public static class AudioBroadcastSerializer {
 		private static readonly Vector3 Vec3NaN = new (float.NaN, float.NaN, float.NaN);
-		
+		private const LZ4Level CompressionLevel = LZ4Level.L00_FAST; // Is level 3 compression too slow?
+
+
 		public static void WriteAudioBroadcast(this Writer writer, VoiceNetwork.AudioBroadcast data) {
+#if !FISHYVOICE_DISABLE_AUDIO_COMPRESSION
+			var byteWriter = new Writer();
+#else
+			var byteWriter = writer;
+#endif
 			var shouldSendPosition = !(float.IsNaN(data.senderPosition.x) || float.IsNaN(data.senderPosition.y) || float.IsNaN(data.senderPosition.z));
-			writer.WriteBoolean(shouldSendPosition);
-			writer.WriteInt16(data.id);
-			writer.WriteInt32(data.segmentIndex);
-			writer.WriteInt32(data.frequency);
-			writer.WriteInt32(data.channelCount);
-			writer.WriteArray(data.samples); // TODO: Should we compress the audio? Should we compress the whole packet?
-			writer.WriteString(data.roomName);
-			writer.WriteUInt32(data.tick);
-			writer.WriteInt16(data.senderID);
-			if(shouldSendPosition) writer.WriteVector3(data.senderPosition);
+			byteWriter.WriteBoolean(shouldSendPosition);
+			byteWriter.WriteInt16(data.id);
+			byteWriter.WriteInt32(data.segmentIndex);
+			byteWriter.WriteInt32(data.frequency);
+			byteWriter.WriteInt32(data.channelCount);
+			byteWriter.WriteArray(data.samples);
+			byteWriter.WriteString(data.roomName);
+			byteWriter.WriteUInt32(data.tick);
+			byteWriter.WriteInt16(data.senderID);
+			if(shouldSendPosition) byteWriter.WriteVector3(data.senderPosition);
+
+			// Compress the raw data
+#if !FISHYVOICE_DISABLE_AUDIO_COMPRESSION
+			var compressed = new byte[LZ4Codec.MaximumOutputSize(byteWriter.Position)];
+			var compressedLength = LZ4Codec.Encode(byteWriter.GetBuffer(), 0, byteWriter.Position, compressed, 0, compressed.Length, CompressionLevel);
+			writer.WriteInt32(byteWriter.Position); // Start by sending the uncompressed size
+			writer.WriteInt32(compressedLength);
+			writer.WriteBytes(compressed, 0, compressedLength);
+#endif
 		}
 		
 		public static VoiceNetwork.AudioBroadcast ReadAudioBroadcast(this Reader reader) {
-			var sentPosition = reader.ReadBoolean();
+			// Decompress the raw data
+#if !FISHYVOICE_DISABLE_AUDIO_COMPRESSION
+			var uncompressedLength = reader.ReadInt32();
+			var buffer = new byte[uncompressedLength];
+			var compressed = readCompressedData(reader);
+			if (LZ4Codec.Decode(compressed, buffer) < 0) throw new DecoderFallbackException("Failed to decode the packet");
+			var byteReader = new Reader(buffer, null);
+#else
+			var byteReader = reader;
+#endif
+
+			var sentPosition = byteReader.ReadBoolean();
 			return new VoiceNetwork.AudioBroadcast() {
-				id = reader.ReadInt16(),
-				segmentIndex = reader.ReadInt32(),
-				frequency = reader.ReadInt32(),
-				channelCount = reader.ReadInt32(),
-				samples = reader.ReadArrayAllocated<float>(),
-				roomName = reader.ReadString(),
-				tick = reader.ReadUInt32(),
-				senderID = reader.ReadInt16(),
-				senderPosition = sentPosition ? reader.ReadVector3() : Vec3NaN
+				id = byteReader.ReadInt16(),
+				segmentIndex = byteReader.ReadInt32(),
+				frequency = byteReader.ReadInt32(),
+				channelCount = byteReader.ReadInt32(),
+				samples = byteReader.ReadArrayAllocated<float>(),
+				roomName = byteReader.ReadString(),
+				tick = byteReader.ReadUInt32(),
+				senderID = byteReader.ReadInt16(),
+				senderPosition = sentPosition ? byteReader.ReadVector3() : Vec3NaN
 			};
+		}
+
+		private static byte[] readCompressedData(Reader reader) {
+			var length = reader.ReadInt32();
+			var compressed = new byte[length];
+			reader.ReadBytes(ref compressed, length);
+			return compressed;
 		}
 	}
 }
