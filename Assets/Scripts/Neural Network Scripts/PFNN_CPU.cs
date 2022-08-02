@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 /*  Network inputs (total 342 elems):
  * 
@@ -51,7 +52,7 @@ using System.IO;
 public class PFNN_CPU {
 
     private const float PI = 3.14159274f;
-    private string WeightsFolderPath = "D:\\Network weights\\";
+    private string WeightsFolderPath = Path.Combine(Application.streamingAssetsPath, "PFNNWeights");
     
     private int InputSize;
     private int OutputSize;
@@ -177,7 +178,8 @@ public class PFNN_CPU {
 
         item = new Matrix(rows);
 
-        string fullPath = WeightsFolderPath + fileName;
+        string fullPath = Path.Combine(WeightsFolderPath, fileName);
+        Debug.Log(fullPath);
         float value;
         if (File.Exists(fullPath)) {
             using (BinaryReader reader = new BinaryReader(File.Open(fullPath, FileMode.Open))) {
@@ -194,7 +196,7 @@ public class PFNN_CPU {
 
         item = new Matrix(rows, columns);
 
-        string fullPath = WeightsFolderPath + fileName;
+        string fullPath = Path.Combine(WeightsFolderPath, fileName);
         float value;
         if (File.Exists(fullPath)) {
             using (BinaryReader reader = new BinaryReader(File.Open(fullPath, FileMode.Open))) {
