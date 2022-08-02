@@ -35,11 +35,11 @@ public class UserInterfaceScript : MonoBehaviour {
 		output += "Right stick Axis X: " + GamepadMap.RightStickAxisX + "\n";
 		output += "Right stick Axis Y: " + GamepadMap.RightStickAxisY + "\n";
 
-		output += "Button A: " + GamepadMap.ButtonA + "\n";
+		// output += "Button A: " + GamepadMap.ButtonA + "\n";
 		output += "Button B: " + GamepadMap.ButtonB + "\n";
 
-		output += "Button X: " + GamepadMap.ButtonX + "\n";
-		output += "Button Y: " + GamepadMap.ButtonY + "\n";
+		// output += "Button X: " + GamepadMap.ButtonX + "\n";
+		// output += "Button Y: " + GamepadMap.ButtonY + "\n";
 
 		output += "Left trigger: " + GamepadMap.LeftTrigger + "\n";
 		output += "Right trigger: " + GamepadMap.RightTrigger + "\n";
@@ -48,10 +48,10 @@ public class UserInterfaceScript : MonoBehaviour {
 		output += "Right Bumper: " + GamepadMap.RightBumper + "\n";
 
 		output += "Button Back: " + GamepadMap.ButtonBack + "\n";
-		output += "Button Start: " + GamepadMap.ButtonStart + "\n";
+		// output += "Button Start: " + GamepadMap.ButtonStart + "\n";
 
-		output += "D-pad Axis X: " + GamepadMap.DPadAxisX + "\n";
-		output += "D-pad Axis Y: " + GamepadMap.DPadAxisY + "\n";
+		// output += "D-pad Axis X: " + GamepadMap.DPadAxisX + "\n";
+		// output += "D-pad Axis Y: " + GamepadMap.DPadAxisY + "\n";
 
 		testText.text = output;
 	}

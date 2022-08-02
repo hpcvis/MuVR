@@ -41,6 +41,7 @@ public class CharMain : MonoBehaviour {
 		MoveCamera();
 
 		ResetCharacter();
+		GamepadMap.Enable();
 	}
 
 	// Update is called once per frame
@@ -98,7 +99,7 @@ public class CharMain : MonoBehaviour {
 		var rotation = Quaternion.Euler(cameraAngleX, cameraAngleY, 0.0f);
 
 		mainCamera.position = transform.position + rotation * dir;
-		mainCamera.LookAt(transform);
+		mainCamera.LookAt(transform.position + Vector3.up * 6, Vector3.up);
 
 		FixCameraAngles();
 	}
