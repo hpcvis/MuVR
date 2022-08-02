@@ -1,84 +1,64 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UserInterfaceScript : MonoBehaviour {
+	private Text testText;
 
-    private Text testText;
+	public enum DebugType {
+		Gamepad,
+		Trajectory,
+		Joint
+	}
 
-    public enum DebugType {
-        Gamepad,
-        Trajectory,
-        Joint
-    }
-    public DebugType debug;
+	public DebugType debug;
 
-    void Awake() {
-
-        testText = GameObject.Find("DebugText").GetComponent<Text>();        
-    }
-
-    // Use this for initialization
-    void Start () {
-
-    }
+	private void Awake() {
+		testText = GameObject.Find("DebugText").GetComponent<Text>();
+	}
 	
+
 	// Update is called once per frame
-	void Update () {
+	private void Update() {
+		if (debug == DebugType.Gamepad) {
+			PrintGamepadInputs();
+		} else if (debug == DebugType.Trajectory) {
+			PrintTrajectoryData();
+		} else if (debug == DebugType.Joint) { }
+	}
 
-        if (debug == DebugType.Gamepad) {
-            PrintGamepadInputs();
+	private void PrintGamepadInputs() {
+		var output = "";
 
-        } else if (debug == DebugType.Trajectory) {
-            PrintTrajectoryData();
+		output += "Left stick Axis X: " + GamepadMap.LeftStickAxisX + "\n";
+		output += "Left stick Axis Y: " + GamepadMap.LeftStickAxisY + "\n";
 
-        } else if (debug == DebugType.Joint) {
+		output += "Right stick Axis X: " + GamepadMap.RightStickAxisX + "\n";
+		output += "Right stick Axis Y: " + GamepadMap.RightStickAxisY + "\n";
 
+		output += "Button A: " + GamepadMap.ButtonA + "\n";
+		output += "Button B: " + GamepadMap.ButtonB + "\n";
 
-        }
-        
-    }
+		output += "Button X: " + GamepadMap.ButtonX + "\n";
+		output += "Button Y: " + GamepadMap.ButtonY + "\n";
 
-    private void PrintGamepadInputs() {
+		output += "Left trigger: " + GamepadMap.LeftTrigger + "\n";
+		output += "Right trigger: " + GamepadMap.RightTrigger + "\n";
 
-        string output = "";
+		output += "Left Bumper: " + GamepadMap.LeftBumper + "\n";
+		output += "Right Bumper: " + GamepadMap.RightBumper + "\n";
 
-        output += "Left stick Axis X: " + GamepadMap.LeftStickAxisX + "\n";
-        output += "Left stick Axis Y: " + GamepadMap.LeftStickAxisY + "\n";
+		output += "Button Back: " + GamepadMap.ButtonBack + "\n";
+		output += "Button Start: " + GamepadMap.ButtonStart + "\n";
 
-        output += "Right stick Axis X: " + GamepadMap.RightStickAxisX + "\n";
-        output += "Right stick Axis Y: " + GamepadMap.RightStickAxisY + "\n";
+		output += "D-pad Axis X: " + GamepadMap.DPadAxisX + "\n";
+		output += "D-pad Axis Y: " + GamepadMap.DPadAxisY + "\n";
 
-        output += "Button A: " + GamepadMap.ButtonA + "\n";
-        output += "Button B: " + GamepadMap.ButtonB + "\n";
+		testText.text = output;
+	}
 
-        output += "Button X: " + GamepadMap.ButtonX + "\n";
-        output += "Button Y: " + GamepadMap.ButtonY + "\n";
+	private void PrintTrajectoryData() {
+		const string output = "";
 
-        output += "Left trigger: " + GamepadMap.LeftTrigger + "\n";
-        output += "Right trigger: " + GamepadMap.RightTrigger + "\n";
-
-        output += "Left Bumper: " + GamepadMap.LeftBumper + "\n";
-        output += "Right Bumper: " + GamepadMap.RightBumper + "\n";
-
-        output += "Button Back: " + GamepadMap.ButtonBack + "\n";
-        output += "Button Start: " + GamepadMap.ButtonStart + "\n";
-
-        output += "D-pad Axis X: " + GamepadMap.DPadAxisX + "\n";
-        output += "D-pad Axis Y: " + GamepadMap.DPadAxisY + "\n";
-
-        testText.text = output;
-    }
-
-    private void PrintTrajectoryData() {
-
-        string output = "";
-
-
-
-        testText.text = output;
-
-    }
-
+		testText.text = output;
+	}
 }

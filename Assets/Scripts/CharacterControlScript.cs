@@ -1,60 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿public class CharacterControlScript : CharMain {
 
-public class CharacterControlScript : CharMain {
+	protected override void Update() {
+		if (GamepadMap.ButtonB) CharacterCrouch();
 
-    void Awake() {
-    }
+		if (GamepadMap.ButtonBack) ResetCharacter();
 
-    protected override void Update() {
+		LeftStickAxisAndRightTrigger();
 
-        if (GamepadMap.ButtonB) {
-            CharacterCrouch();            
-        }
+		RightStickAxis();
+		Bumpers();
 
-        if (GamepadMap.ButtonBack) {
-            ResetCharacter();
-        }
-
-        LeftStickAxisAndRightTrigger();
-
-        RightStickAxis();
-        Bumpers();
-
-        base.Update();
-    }
+		base.Update();
+	}
 
     /// <summary>
-    /// Camera rotation.
+    ///     Camera rotation.
     /// </summary>
     private void RightStickAxis() {
-
-        if (GamepadMap.RightStickAxisX != 0 || GamepadMap.RightStickAxisY != 0) {
-            MoveCamera(GamepadMap.RightStickAxisX, GamepadMap.RightStickAxisY);
-        }
-    }
+		if (GamepadMap.RightStickAxisX != 0 || GamepadMap.RightStickAxisY != 0) MoveCamera(GamepadMap.RightStickAxisX, GamepadMap.RightStickAxisY);
+	}
 
     /// <summary>
-    /// Camera zoom.
+    ///     Camera zoom.
     /// </summary>
     private void Bumpers() {
-
-        if (GamepadMap.LeftBumper) {
-            UpdateCameraDistance(-1.0f);
-        } else if (GamepadMap.RightBumper) {
-            UpdateCameraDistance(1.0f);
-        }
-    }
+		if (GamepadMap.LeftBumper)
+			UpdateCameraDistance(-1.0f);
+		else if (GamepadMap.RightBumper) UpdateCameraDistance(1.0f);
+	}
 
     /// <summary>
-    /// Player movement.
+    ///     Player movement.
     /// </summary>
     private void LeftStickAxisAndRightTrigger() {
-
-        //Debug.Log(GamepadMap.LeftTrigger);
-        MoveCharacter(GamepadMap.LeftStickAxisX, GamepadMap.LeftStickAxisY, GamepadMap.RightTrigger, GamepadMap.LeftTrigger);
-    }
-
-
+		//Debug.Log(GamepadMap.LeftTrigger);
+		MoveCharacter(GamepadMap.LeftStickAxisX, GamepadMap.LeftStickAxisY, GamepadMap.RightTrigger, GamepadMap.LeftTrigger);
+	}
 }

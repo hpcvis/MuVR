@@ -1,128 +1,113 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharMain : MonoBehaviour {
+	protected CharacterTrajectoryAndAnimScript character;
+	protected PFNN_CPU network;
+	protected Transform mainCamera;
 
-    protected CharacterTrajectoryAndAnimScript character;
-    protected PFNN_CPU network;
-    protected Transform mainCamera;
+	[Range(0.0f, 150.0f)] 
+	public float cameraRotationSensitivity = 90.0f;
 
-    [Range(0.0f, 150.0f)]
-    public float cameraRotationSensitivity = 90.0f;
+	[Range(0.0f, 50.0f)] 
+	public float cameraZoomSensitivity = 60.0f;
 
-    [Range(0.0f, 50.0f)]
-    public float cameraZoomSensitivity = 60.0f;
+	private float cameraDistance;
+	private const float cameraDistanceMax = -40.0f;
+	private const float cameraDistanceMin = -2.0f;
 
-    private float cameraDistance;
-    private const float cameraDistanceMax = -40.0f;
-    private const float cameraDistanceMin = -2.0f;
+	private float cameraAngleX, cameraAngleY;
+	private const float cameraAngleMaxX = 80.0f;
+	private const float cameraAngleMinX = 5.0f;
 
-    private float cameraAngleX, cameraAngleY;
-    private const float cameraAngleMaxX = 80.0f;
-    private const float cameraAngleMinX = 5.0f;
+	public Vector3 initialWorldPosition;
 
-    public Vector3 initialWorldPosition;
+	// Use this for initialization
+	private void Start() {
+		initialWorldPosition = new Vector3(
+			transform.position.x,
+			transform.position.y,
+			transform.position.z);
 
-    // Use this for initialization
-    void Start() {
+		network = new PFNN_CPU();
 
-        initialWorldPosition = new Vector3(
-            transform.position.x,
-            transform.position.y,
-            transform.position.z);
+		character = GetComponent<CharacterTrajectoryAndAnimScript>();
 
-        network = new PFNN_CPU();
+		mainCamera = gameObject.transform.GetChild(0);
+		mainCamera.LookAt(transform);
 
-        character = this.GetComponent<CharacterTrajectoryAndAnimScript>();    
+		cameraAngleX = mainCamera.eulerAngles.x;
+		cameraAngleY = 0.0f;
+		cameraDistance = mainCamera.position.z;
+		MoveCamera();
 
-        mainCamera = gameObject.transform.GetChild(0);
-        mainCamera.LookAt(transform);
+		ResetCharacter();
+	}
 
-        cameraAngleX = mainCamera.eulerAngles.x;
-        cameraAngleY = 0.0f;
-        cameraDistance = mainCamera.position.z;
-        MoveCamera();
+	// Update is called once per frame
+	protected virtual void Update() {
+		character.UpdateNetworkInput(ref network.X);
+		network.Compute(character.phase);
+		character.BuildLocalTransforms(network.Y);
 
-        ResetCharacter();
-    }
+		// display stuff
+		character.DisplayTrajectory();
+		character.DisplayJoints();
 
-    // Update is called once per frame
-    protected virtual void Update() {
+		character.PostVisualisationCalculation(network.Y);
+		character.UpdatePhase(network.Y);
+	}
 
-        character.UpdateNetworkInput(ref network.X);
-        network.Compute(character.phase);
-        character.BuildLocalTransforms(network.Y);
+	protected void MoveCharacter(float axisX = 0.0f, float axisY = 0.0f, float rightTrigger = 0.0f, float leftTrigger = 0.0f) {
+		var newTargetDirection = Vector3.Normalize(
+			new Vector3(mainCamera.forward.x, 0.0f, mainCamera.forward.z));
 
-        // display stuff
-        character.DisplayTrajectory();
-        character.DisplayJoints();
+		//Debug.Log(newTargetDirection);
+		Debug.DrawRay(mainCamera.transform.position, newTargetDirection, Color.cyan);
 
-        character.PostVisualisationCalculation(network.Y);
-        character.UpdatePhase(network.Y);
-    }
+		character.UpdateStrafe(leftTrigger);
+		character.UpdateTargetDirectionAndVelocity(newTargetDirection, axisX, axisY, rightTrigger);
+		character.UpdateGait(rightTrigger);
+		character.PredictFutureTrajectory();
 
-    protected void MoveCharacter(float axisX = 0.0f, float axisY = 0.0f, float rightTrigger = 0.0f, float leftTrigger = 0.0f) {
+		//Character.Jumps();
+		character.Walls();
 
-        Vector3 newTargetDirection = Vector3.Normalize(
-           new Vector3(mainCamera.forward.x, 0.0f, mainCamera.forward.z));
+		character.UpdateRotation();
+		character.UpdateHeights();
+	}
 
-        //Debug.Log(newTargetDirection);
-        Debug.DrawRay(mainCamera.transform.position, newTargetDirection, Color.cyan);        
+	protected void ResetCharacter() {
+		network.Reset();
+		character.Reset(initialWorldPosition, network.Y);
+	}
 
-        character.UpdateStrafe(leftTrigger);
-        character.UpdateTargetDirectionAndVelocity(newTargetDirection, axisX, axisY, rightTrigger);
-        character.UpdateGait(rightTrigger);
-        character.PredictFutureTrajectory();
+	public void UpdateCameraDistance(float value) {
+		cameraDistance += value * cameraZoomSensitivity * Time.deltaTime;
+		cameraDistance = Mathf.Clamp(cameraDistance, cameraDistanceMax, cameraDistanceMin);
 
-        //Character.Jumps();
-        character.Walls();
+		MoveCamera();
+	}
 
-        character.UpdateRotation();
-        character.UpdateHeights();        
-    }
+	protected void MoveCamera(float speedY = 0.0f, float speedX = 0.0f) {
+		cameraAngleX += speedX * cameraRotationSensitivity * Time.deltaTime;
+		cameraAngleY += speedY * cameraRotationSensitivity * Time.deltaTime;
+		cameraAngleX = Mathf.Clamp(cameraAngleX, cameraAngleMinX, cameraAngleMaxX);
+		//Debug.Log("X: " + CameraAngleX + " Y: " + CameraAngleY);
 
-    protected void ResetCharacter() {
+		var dir = new Vector3(0, 0, cameraDistance);
+		var rotation = Quaternion.Euler(cameraAngleX, cameraAngleY, 0.0f);
 
-        network.Reset();
-        character.Reset(initialWorldPosition, network.Y);
-    }
+		mainCamera.position = transform.position + rotation * dir;
+		mainCamera.LookAt(transform);
 
-    public void UpdateCameraDistance(float value) {
+		FixCameraAngles();
+	}
 
-        cameraDistance += value * cameraZoomSensitivity * Time.deltaTime;
-        cameraDistance = Mathf.Clamp(cameraDistance, cameraDistanceMax, cameraDistanceMin);
+	protected void FixCameraAngles() {
+		if (cameraAngleY is >= 360.0f or <= -360.0f) cameraAngleY = mainCamera.eulerAngles.y;
+	}
 
-        MoveCamera();
-    }
-
-    protected void MoveCamera(float speedY = 0.0f, float speedX = 0.0f) {
-
-        cameraAngleX += speedX * cameraRotationSensitivity * Time.deltaTime;
-        cameraAngleY += speedY * cameraRotationSensitivity * Time.deltaTime;
-        cameraAngleX = Mathf.Clamp(cameraAngleX, cameraAngleMinX, cameraAngleMaxX);
-        //Debug.Log("X: " + CameraAngleX + " Y: " + CameraAngleY);
-
-        Vector3 dir = new Vector3(0, 0, cameraDistance);
-        Quaternion rotation = Quaternion.Euler(cameraAngleX, cameraAngleY, 0.0f);
-
-        mainCamera.position = transform.position + (rotation * dir);
-        mainCamera.LookAt(transform);
-
-        FixCameraAngles();
-    }
-
-    protected void FixCameraAngles() {
-
-        if (cameraAngleY >= 360.0f || cameraAngleY <= -360.0f) {
-            cameraAngleY = mainCamera.eulerAngles.y;
-        }
-    }
-
-    protected void CharacterCrouch() {
-
-        character.Crouch();
-    }
-
-
+	protected void CharacterCrouch() {
+		character.Crouch();
+	}
 }

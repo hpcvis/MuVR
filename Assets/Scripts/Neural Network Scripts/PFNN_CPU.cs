@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using UnityEngine;
 
@@ -50,216 +49,215 @@ using UnityEngine;
  */
 
 public class PFNN_CPU {
+	private const float PI = 3.14159274f;
+	private readonly string WeightsFolderPath = Path.Combine(Application.streamingAssetsPath, "PFNNWeights");
 
-    private const float PI = 3.14159274f;
-    private string WeightsFolderPath = Path.Combine(Application.streamingAssetsPath, "PFNNWeights");
-    
-    private int InputSize;
-    private int OutputSize;
-    private int NumberOfNeurons;
+	private readonly int InputSize;
+	private readonly int OutputSize;
+	private readonly int NumberOfNeurons;
 
-    public Matrix X, Y;                         // inputs, outputs
-    private Matrix H0, H1;                      // hidden layers
+	public Matrix X, Y; // inputs, outputs
+	private Matrix H0, H1; // hidden layers
 
-    private Matrix Xmean, Xstd, Ymean, Ystd;
-    private Matrix[] W0, W1, W2;                // weights
-    private Matrix[] B0, B1, B2;                // biases
+	private Matrix Xmean, Xstd, Ymean, Ystd;
+	private Matrix[] W0, W1, W2; // weights
+	private Matrix[] B0, B1, B2; // biases
 
-    public enum Mode {
-        constant,
-        linear,
-        cubic
-    }
-    private Mode WeightsMode;
+	public enum Mode {
+		constant,
+		linear,
+		cubic
+	}
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="weightsType">
-    /// Determine number of location along the phase space. 
-    /// 0 = Constant method, 50 locations. 
-    /// 1 = Linear interpolation, 10 locations. 
-    /// 2 = Cubic Catmull-Rom spline, 4 locations.
-    /// </param>
-    /// <param name="inputSize"></param>
-    /// <param name="outputSize"></param>
-    /// <param name="numberOfNeurons"></param>
-    public PFNN_CPU (
-        Mode weightsType = Mode.constant,
-        int inputSize = 342, 
-        int outputSize = 311, 
-        int numberOfNeurons = 512
-        ) {
+	private readonly Mode WeightsMode;
 
-        WeightsMode = weightsType;
-        InputSize = inputSize;
-        OutputSize = outputSize;
-        NumberOfNeurons = numberOfNeurons;
-        
-        SetWeightsCount();
-        SetLayerSize();
+	/// <summary>
+	/// </summary>
+	/// <param name="weightsType">
+	///     Determine number of location along the phase space.
+	///     0 = Constant method, 50 locations.
+	///     1 = Linear interpolation, 10 locations.
+	///     2 = Cubic Catmull-Rom spline, 4 locations.
+	/// </param>
+	/// <param name="inputSize"></param>
+	/// <param name="outputSize"></param>
+	/// <param name="numberOfNeurons"></param>
+	public PFNN_CPU(
+		Mode weightsType = Mode.constant,
+		int inputSize = 342,
+		int outputSize = 311,
+		int numberOfNeurons = 512
+	) {
+		WeightsMode = weightsType;
+		InputSize = inputSize;
+		OutputSize = outputSize;
+		NumberOfNeurons = numberOfNeurons;
 
-        LoadMeansAndStds();
-        LoadWeights();
-    }
+		SetWeightsCount();
+		SetLayerSize();
 
-    private void SetWeightsCount() {
+		LoadMeansAndStds();
+		LoadWeights();
+	}
 
-        switch (WeightsMode) {
-            case Mode.constant:
-                W0 = new Matrix[50]; W1 = new Matrix[50]; W2 = new Matrix[50];
-                B0 = new Matrix[50]; B1 = new Matrix[50]; B2 = new Matrix[50];
-                break;
-            case Mode.linear:
-                W0 = new Matrix[10]; W1 = new Matrix[10]; W2 = new Matrix[10];
-                B0 = new Matrix[10]; B1 = new Matrix[10]; B2 = new Matrix[10];
-                break;
-            case Mode.cubic:
-                W0 = new Matrix[4]; W1 = new Matrix[4]; W2 = new Matrix[4];
-                B0 = new Matrix[4]; B1 = new Matrix[4]; B2 = new Matrix[4];
-                break;
-        }
-    }
+	private void SetWeightsCount() {
+		switch (WeightsMode) {
+			case Mode.constant:
+				W0 = new Matrix[50];
+				W1 = new Matrix[50];
+				W2 = new Matrix[50];
+				B0 = new Matrix[50];
+				B1 = new Matrix[50];
+				B2 = new Matrix[50];
+				break;
+			case Mode.linear:
+				W0 = new Matrix[10];
+				W1 = new Matrix[10];
+				W2 = new Matrix[10];
+				B0 = new Matrix[10];
+				B1 = new Matrix[10];
+				B2 = new Matrix[10];
+				break;
+			case Mode.cubic:
+				W0 = new Matrix[4];
+				W1 = new Matrix[4];
+				W2 = new Matrix[4];
+				B0 = new Matrix[4];
+				B1 = new Matrix[4];
+				B2 = new Matrix[4];
+				break;
+			default:
+				throw new ArgumentOutOfRangeException();
+		}
+	}
 
-    public void LoadMeansAndStds() {
+	public void LoadMeansAndStds() {
+		ReadDataFromFile(out Xmean, InputSize, "Xmean.bin");
+		ReadDataFromFile(out Xstd, InputSize, "Xstd.bin");
+		ReadDataFromFile(out Ymean, OutputSize, "Ymean.bin");
+		ReadDataFromFile(out Ystd, OutputSize, "Ystd.bin");
+	}
 
-        ReadDataFromFile(out Xmean, InputSize, "Xmean.bin");
-        ReadDataFromFile(out Xstd, InputSize, "Xstd.bin");
-        ReadDataFromFile(out Ymean, OutputSize, "Ymean.bin");
-        ReadDataFromFile(out Ystd, OutputSize, "Ystd.bin");
-    }
+	public void LoadWeights() {
+		int j;
+		switch (WeightsMode) {
+			case Mode.constant:
+				for (var i = 0; i < 50; i++) {
+					ReadDataFromFile(out W0[i], NumberOfNeurons, InputSize, $"W0_{i:000}.bin");
+					ReadDataFromFile(out W1[i], NumberOfNeurons, NumberOfNeurons, $"W1_{i:000}.bin");
+					ReadDataFromFile(out W2[i], OutputSize, NumberOfNeurons, $"W2_{i:000}.bin");
 
-    public void LoadWeights() {        
+					ReadDataFromFile(out B0[i], NumberOfNeurons, $"b0_{i:000}.bin");
+					ReadDataFromFile(out B1[i], NumberOfNeurons, $"b1_{i:000}.bin");
+					ReadDataFromFile(out B2[i], OutputSize, $"b2_{i:000}.bin");
+				}
 
-        int j;
-        switch (WeightsMode) {            
-            case Mode.constant:
-                for (int i = 0; i < 50; i++) {
-                    
-                    ReadDataFromFile(out W0[i], NumberOfNeurons, InputSize, string.Format("W0_{0:000}.bin", i));
-                    ReadDataFromFile(out W1[i], NumberOfNeurons, NumberOfNeurons, string.Format("W1_{0:000}.bin", i));
-                    ReadDataFromFile(out W2[i], OutputSize, NumberOfNeurons, string.Format("W2_{0:000}.bin", i));
+				break;
+			case Mode.linear:
+				for (var i = 0; i < 10; i++) {
+					j = i * 5;
 
-                    ReadDataFromFile(out B0[i], NumberOfNeurons, string.Format("b0_{0:000}.bin", i));
-                    ReadDataFromFile(out B1[i], NumberOfNeurons, string.Format("b1_{0:000}.bin", i));
-                    ReadDataFromFile(out B2[i], OutputSize, string.Format("b2_{0:000}.bin", i));
-                }
-                break;
-            case Mode.linear:                
-                for (int i = 0; i < 10; i++) {
-                    j = i * 5;
+					ReadDataFromFile(out W0[i], NumberOfNeurons, InputSize, $"W0_{j:000}.bin");
+					ReadDataFromFile(out W1[i], NumberOfNeurons, NumberOfNeurons, $"W1_{j:000}.bin");
+					ReadDataFromFile(out W2[i], OutputSize, NumberOfNeurons, $"W2_{j:000}.bin");
 
-                    ReadDataFromFile(out W0[i], NumberOfNeurons, InputSize, string.Format("W0_{0:000}.bin", j));
-                    ReadDataFromFile(out W1[i], NumberOfNeurons, NumberOfNeurons, string.Format("W1_{0:000}.bin", j));
-                    ReadDataFromFile(out W2[i], OutputSize, NumberOfNeurons, string.Format("W2_{0:000}.bin", j));
+					ReadDataFromFile(out B0[i], NumberOfNeurons, $"b0_{j:000}.bin");
+					ReadDataFromFile(out B1[i], NumberOfNeurons, $"b1_{j:000}.bin");
+					ReadDataFromFile(out B2[i], OutputSize, $"b2_{j:000}.bin");
+				}
 
-                    ReadDataFromFile(out B0[i], NumberOfNeurons, string.Format("b0_{0:000}.bin", j));
-                    ReadDataFromFile(out B1[i], NumberOfNeurons, string.Format("b1_{0:000}.bin", j));
-                    ReadDataFromFile(out B2[i], OutputSize, string.Format("b2_{0:000}.bin", j));
-                }
-                break;
-            case Mode.cubic:
-                for (int i = 0; i < 4; i++) {
-                    j = (int)(i * 12.5);
+				break;
+			case Mode.cubic:
+				for (var i = 0; i < 4; i++) {
+					j = (int)(i * 12.5);
 
-                    ReadDataFromFile(out W0[i], NumberOfNeurons, InputSize, string.Format("W0_{0:000}.bin", j));
-                    ReadDataFromFile(out W1[i], NumberOfNeurons, NumberOfNeurons, string.Format("W1_{0:000}.bin", j));
-                    ReadDataFromFile(out W2[i], OutputSize, NumberOfNeurons, string.Format("W2_{0:000}.bin", j));
+					ReadDataFromFile(out W0[i], NumberOfNeurons, InputSize, $"W0_{j:000}.bin");
+					ReadDataFromFile(out W1[i], NumberOfNeurons, NumberOfNeurons, $"W1_{j:000}.bin");
+					ReadDataFromFile(out W2[i], OutputSize, NumberOfNeurons, $"W2_{j:000}.bin");
 
-                    ReadDataFromFile(out B0[i], NumberOfNeurons, string.Format("b0_{0:000}.bin", j));
-                    ReadDataFromFile(out B1[i], NumberOfNeurons, string.Format("b1_{0:000}.bin", j));
-                    ReadDataFromFile(out B2[i], OutputSize, string.Format("b2_{0:000}.bin", j));
-                }
-                break;
-        }
-    }
+					ReadDataFromFile(out B0[i], NumberOfNeurons, $"b0_{j:000}.bin");
+					ReadDataFromFile(out B1[i], NumberOfNeurons, $"b1_{j:000}.bin");
+					ReadDataFromFile(out B2[i], OutputSize, $"b2_{j:000}.bin");
+				}
 
-    private void ReadDataFromFile(out Matrix item, int rows, string fileName) {
+				break;
+			default:
+				throw new ArgumentOutOfRangeException();
+		}
+	}
 
-        item = new Matrix(rows);
+	private void ReadDataFromFile(out Matrix item, int rows, string fileName) {
+		item = new Matrix(rows);
 
-        string fullPath = Path.Combine(WeightsFolderPath, fileName);
-        Debug.Log(fullPath);
-        float value;
-        if (File.Exists(fullPath)) {
-            using (BinaryReader reader = new BinaryReader(File.Open(fullPath, FileMode.Open))) {
+		var fullPath = Path.Combine(WeightsFolderPath, fileName);
+		if (!File.Exists(fullPath)) return;
+		using var reader = new BinaryReader(File.Open(fullPath, FileMode.Open));
+		for (var i = 0; i < rows; i++) {
+			var value = reader.ReadSingle();
+			item[i] = value;
+		}
+	}
 
-                for (int i = 0; i < rows; i++) {
-                    value = reader.ReadSingle();
-                    item[i] = value;
-                }
-            }
-        }
-    }
+	private void ReadDataFromFile(out Matrix item, int rows, int columns, string fileName) {
+		item = new Matrix(rows, columns);
 
-    private void ReadDataFromFile(out Matrix item, int rows, int columns, string fileName) {
+		var fullPath = Path.Combine(WeightsFolderPath, fileName);
+		if (!File.Exists(fullPath)) return;
+		using var reader = new BinaryReader(File.Open(fullPath, FileMode.Open));
+		for (var i = 0; i < rows; i++)
+		for (var j = 0; j < columns; j++) {
+			var value = reader.ReadSingle();
+			item[i, j] = value;
+		}
+	}
 
-        item = new Matrix(rows, columns);
+	private void SetLayerSize() {
+		X = new Matrix(InputSize);
+		Y = new Matrix(OutputSize);
 
-        string fullPath = Path.Combine(WeightsFolderPath, fileName);
-        float value;
-        if (File.Exists(fullPath)) {
-            using (BinaryReader reader = new BinaryReader(File.Open(fullPath, FileMode.Open))) {
+		H0 = new Matrix(NumberOfNeurons);
+		H1 = new Matrix(NumberOfNeurons);
+	}
 
-                for (int i = 0; i < rows; i++) {
-                    for (int j = 0; j < columns; j++) {
-                        value = reader.ReadSingle();
-                        item[i, j] = value;
-                    }
-                }
-            }
-        }
-    }
+	/// <summary>
+	///     Main function for computing Neural Network result.
+	/// </summary>
+	/// <param name="p">Phase value.</param>
+	public void Compute(float p) {
+		int pIndex0;
 
-    private void SetLayerSize() {
+		X = (X - Xmean) / Xstd;
 
-        X = new Matrix(InputSize);
-        Y = new Matrix(OutputSize);
+		switch (WeightsMode) {
+			case Mode.constant:
+				pIndex0 = (int)(p / (2 * PI) * 50);
 
-        H0 = new Matrix(NumberOfNeurons);
-        H1 = new Matrix(NumberOfNeurons);
-    }
+				// Layer 1
+				H0 = W0[pIndex0] * X + B0[pIndex0];
+				H0.ELU();
 
-    /// <summary>
-    /// Main function for computing Neural Network result.
-    /// </summary>
-    /// <param name="p">Phase value.</param>
-    public void Compute(float p) {
+				// Layer 2
+				H1 = W1[pIndex0] * H0 + B1[pIndex0];
+				H1.ELU();
 
-        int pIndex0;
+				// Layer 3, network output
+				Y = W2[pIndex0] * H1 + B2[pIndex0];
+				break;
 
-        X = (X - Xmean) / Xstd;
+			case Mode.linear:
+				break;
 
-        switch (WeightsMode) {
-            case Mode.constant:
-                pIndex0 = (int)((p / (2 * PI)) * 50);
+			case Mode.cubic:
+				break;
 
-                // Layer 1
-                H0 = (W0[pIndex0] * X) + B0[pIndex0];
-                H0.ELU();
+			default:
+				throw new ArgumentOutOfRangeException();
+		}
 
-                // Layer 2
-                H1 = (W1[pIndex0] * H0) + B1[pIndex0];
-                H1.ELU();
+		Y = Y * Ystd + Ymean;
+	}
 
-                // Layer 3, network output
-                Y = (W2[pIndex0] * H1) + B2[pIndex0];
-                break;
-
-            case Mode.linear:
-                break;
-
-            case Mode.cubic:
-                break;
-        }
-
-        Y = (Y * Ystd) + Ymean;
-    }
-
-    public void Reset() {
-
-        Y = Ymean;
-    }
-
-
+	public void Reset() {
+		Y = Ymean;
+	}
 }
