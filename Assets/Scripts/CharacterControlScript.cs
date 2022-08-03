@@ -1,4 +1,4 @@
-﻿public class CharacterControlScript : CharMain {
+﻿public class CharacterControlScript : CharacterMain {
 
 	protected override void Update() {
 		if (GamepadMap.ButtonB) CharacterCrouch();

@@ -708,6 +708,7 @@ public class CharacterTrajectoryAndAnimScript : MonoBehaviour {
 	}
 
 	private float GetStandAmount() => Mathf.Pow(1.0f - points[trajectoryLength / 2].gaitStand, 0.25f);
+	public bool IsStanding() => points[trajectoryLength / 2].gaitStand > .9f;
 
 	public void DisplayTrajectory() {
 		// Middle point

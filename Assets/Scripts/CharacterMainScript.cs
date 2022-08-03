@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class CharMain : MonoBehaviour {
+public class CharacterMain : MonoBehaviour {
 	protected CharacterTrajectoryAndAnimScript character;
 	protected PFNN_CPU network;
 	protected Transform mainCamera;
@@ -42,20 +42,33 @@ public class CharMain : MonoBehaviour {
 
 		ResetCharacter();
 		GamepadMap.Enable();
+
+		// Application.targetFrameRate = 30;
 	}
 
 	// Update is called once per frame
+	private const float resetTime = 1.0f / 60;
+	private float time = resetTime;
 	protected virtual void Update() {
-		character.UpdateNetworkInput(ref network.X);
-		network.Compute(character.phase);
-		character.BuildLocalTransforms(network.Y);
+		// Only invoke the neural network 60 times per second (if the framerate is low enough, we may invoke the network twice)
+		while (time <= 0) {
+			character.UpdateNetworkInput(ref network.X);
+			network.Compute(character.phase);
+			character.BuildLocalTransforms(network.Y);
 
-		// display stuff
-		character.DisplayTrajectory();
-		character.DisplayJoints();
+			// display stuff
+			character.DisplayTrajectory();
+			character.DisplayJoints();
 
-		character.PostVisualisationCalculation(network.Y);
-		character.UpdatePhase(network.Y);
+			character.PostVisualisationCalculation(network.Y);
+			character.UpdatePhase(network.Y);
+			
+			// Reset the timer (While standing don't calculate several frames)
+			if (character.IsStanding()) time = resetTime;
+			else time += resetTime;
+		}
+
+		time -= Time.deltaTime;
 	}
 
 	protected void MoveCharacter(float axisX = 0.0f, float axisY = 0.0f, float rightTrigger = 0.0f, float leftTrigger = 0.0f) {
