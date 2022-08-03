@@ -66,6 +66,41 @@ public class CharacterTrajectoryAndAnimScript : MonoBehaviour {
 	public float crouchedAmount;
 	public float crouchedTarget;
 	public float responsive;
+	
+	public enum JointType {
+		None = ~0,
+		Hips = 0,
+		RHipJoint,
+		RightUpLeg,
+		RightLeg,
+		RightFoot,
+		RightToeBase,
+		LHipJoint,
+		LeftUpLeg,
+		LeftLeg,
+		LeftFoot,
+		LeftToeBase,
+		LowerBack,
+		Spine,
+		Spine1,
+		Neck,
+		Neck1,
+		Head,
+		RightShoulder,
+		RightArm,
+		RightForeArm,
+		RightHand,
+		RightFingerBase,
+		RThumb,
+		LeftHandIndex1,
+		LeftShoulder,
+		LeftArm,
+		LeftForeArm,
+		LeftHand,
+		LeftFingerBase,
+		LThumb,
+		RightHandIndex,
+	}
 
 	public struct JointsComponents {
 		public Vector3 position;
@@ -76,7 +111,8 @@ public class CharacterTrajectoryAndAnimScript : MonoBehaviour {
 		//public Matrix4x4 globalXForm;  // Use to enable xform and global xform
 		//public Matrix4x4 xForm;        // Use to enable xform and global xform
 		public GameObject jointPoint;
-		public string jointName;
+		public JointType jointType;
+		public string jointName => jointType.ToString();
 	}
 
 	public JointsComponents[] joints;
@@ -123,44 +159,44 @@ public class CharacterTrajectoryAndAnimScript : MonoBehaviour {
 	public float wallWidth = 1.5f;
 	public float wallVal = 1.1f;
 
-	[Header("Mirrored Character")] public GameObject Hips;
+	// [Header("Mirrored Character")] public GameObject Hips;
 
-	private Transform[] ImportedJoints;
+	// private Transform[] ImportedJoints;
 
 	// CMU skeleton joint naming convention
-	private readonly string[] JointNames = {
-		"Hips",
-		"RHipJoint",
-		"RightUpLeg",
-		"RightLeg",
-		"RightFoot",
-		"RightToeBase",
-		"LHipJoint",
-		"LeftUpLeg",
-		"LeftLeg",
-		"LeftFoot",
-		"LeftToeBase",
-		"LowerBack",
-		"Spine",
-		"Spine1",
-		"Neck",
-		"Neck1",
-		"Head",
-		"RightShoulder",
-		"RightArm",
-		"RightForeArm",
-		"RightHand",
-		"RightFingerBase",
-		"RThumb",
-		"LeftHandIndex1",
-		"LeftShoulder",
-		"LeftArm",
-		"LeftForeArm",
-		"LeftHand",
-		"LeftFingerBase",
-		"LThumb",
-		"RightHandIndex1"
-	};
+	// private readonly string[] JointNames = {
+	// 	"Hips",
+	// 	"RHipJoint",
+	// 	"RightUpLeg",
+	// 	"RightLeg",
+	// 	"RightFoot",
+	// 	"RightToeBase",
+	// 	"LHipJoint",
+	// 	"LeftUpLeg",
+	// 	"LeftLeg",
+	// 	"LeftFoot",
+	// 	"LeftToeBase",
+	// 	"LowerBack",
+	// 	"Spine",
+	// 	"Spine1",
+	// 	"Neck",
+	// 	"Neck1",
+	// 	"Head",
+	// 	"RightShoulder",
+	// 	"RightArm",
+	// 	"RightForeArm",
+	// 	"RightHand",
+	// 	"RightFingerBase",
+	// 	"RThumb",
+	// 	"LeftHandIndex1",
+	// 	"LeftShoulder",
+	// 	"LeftArm",
+	// 	"LeftForeArm",
+	// 	"LeftHand",
+	// 	"LeftFingerBase",
+	// 	"LThumb",
+	// 	"RightHandIndex1"
+	// };
 
 	private int[] JointParents = {
 		-1, // Hips 0
@@ -198,7 +234,7 @@ public class CharacterTrajectoryAndAnimScript : MonoBehaviour {
 
 
 	// Use this for initialization
-	private void Start() {
+	private void Awake() {
 		GetAllWalls();
 
 		characterBody = gameObject.transform.GetChild(1);
@@ -212,7 +248,7 @@ public class CharacterTrajectoryAndAnimScript : MonoBehaviour {
 
 		oppositeScaleFactor = 1 / scaleFactor;
 
-		ImportedJoints = Hips.GetComponentsInChildren<Transform>();
+		// ImportedJoints = Hips.GetComponentsInChildren<Transform>();
 	}
 
 	private void GetAllWalls() {
@@ -249,7 +285,7 @@ public class CharacterTrajectoryAndAnimScript : MonoBehaviour {
 				characterBody);
 			newJoint.name = "Joint_" + i;
 			joints[i].jointPoint = newJoint;
-			joints[i].jointName = JointNames[i];
+			joints[i].jointType = (JointType)i;
 		}
 	}
 
@@ -756,16 +792,18 @@ public class CharacterTrajectoryAndAnimScript : MonoBehaviour {
 				-(transform.position.y - position.y), // because of that weird 180 degree rotation about the vertical axis in the character model?
 				transform.position.z - position.z);
 
-			var rotation = joints[i].rotation;
-			//joints[i].jointPoint.transform.rotation = rotation; // put the rotations on the original joint gameobjects - not necessary
+			// var rotation = joints[i].rotation;
+			joints[i].jointPoint.transform.rotation = joints[i].rotation; // put the rotations on the original joint gameobjects - not necessary
 
-			foreach (var joint in ImportedJoints)
-				if (joint.name == JointName) {
-					if (joint.name == "Hips") Hips.transform.position = position;
-					joint.rotation = rotation;
-				}
+			// foreach (var joint in ImportedJoints)
+			// 	if (joint.name == JointName) {
+			// 		if (joint.name == "Hips") Hips.transform.position = position;
+			// 		joint.rotation = rotation;
+			// 	}
 		}
 	}
 
 	public void Crouch() => crouchedTarget = crouchedTarget == 0.0f ? 1.0f : 0.0f;
+	
+	public ref JointsComponents GetJoint(JointType type) => ref joints[(int)type];
 }

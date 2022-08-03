@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterTrajectoryAndAnimScript))]
 public class CharacterMain : MonoBehaviour {
 	protected CharacterTrajectoryAndAnimScript character;
 	protected PFNN_CPU network;
