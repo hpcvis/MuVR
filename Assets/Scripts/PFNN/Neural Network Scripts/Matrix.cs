@@ -75,6 +75,15 @@ public class Matrix {
 		return result;
 	}
 
+	public static Matrix operator*(Matrix mat, float scaler) {
+		var result = new Matrix(mat.rows, mat.columns);
+		for (var i = 0; i < mat.rows; i++)
+		for (var j = 0; j < mat.columns; j++)
+			result[i, j] = mat[i, j] * scaler;
+		return result;
+	}
+	public static Matrix operator*(float scaler, Matrix mat) => mat * scaler;
+
 	public bool AreMatricesSameSizeAndVertical(Matrix mat) => rows == mat.rows && columns == 1 && mat.columns == 1;
 
 	public bool IsMultiplicationPossible(Matrix mat) => columns == mat.rows;
@@ -120,6 +129,14 @@ public class Matrix {
 	/// </summary>
 	public void ELU() {
 		for (var i = 0; i < data.Length; i++) data[i] = (float)(Math.Max(data[i], 0) + Math.Exp(Math.Min(data[i], 0)) - 1);
+	}
+	
+	public static Matrix Linear(Matrix y0, Matrix y1, float mu) => (1.0f-mu) * y0 + (mu) * y1;
+	public static Matrix Cubic(Matrix y0, Matrix y1, Matrix y2, Matrix y3, float mu) {
+		return (-0.5f * y0 + 1.5f * y1 - 1.5f * y2 + 0.5f * y3) * mu * mu * mu +
+		       (y0 - 2.5f * y1 + 2.0f * y2 - 0.5f * y3) * mu * mu +
+		       (-0.5f * y0 + 0.5f * y2) * mu +
+		       y1;
 	}
 }
 

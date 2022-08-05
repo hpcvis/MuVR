@@ -59,7 +59,8 @@ public class CharacterTrajectoryAndAnimScript : MonoBehaviour {
 	public float phase;
 
 	// Character Joints stuff 
-	[Header("Joints")] public int jointsNumber = 31;
+	[Header("Joints")]
+	public int jointsNumber = 31;
 
 	public float strafeAmount;
 	public float strafeTarget;

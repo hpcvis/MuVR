@@ -1,0 +1,580 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UserAvatar
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 940a2dfb803f32f46a15a50f69807057,
+          type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _componentIndexCache
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _addedNetworkObject
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _networkObjectCache
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.canAdd
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.canRemove
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.draggable
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.expandable
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.multipleSelection
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.isExpanded
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.label.m_Text
+    value: Keys
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.label.m_Image
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.label.m_Tooltip
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.headerHeight
+    value: 18
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.footerHeight
+    value: 13
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.slideEasing
+    value: 0.15
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.verticalSpacing
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.showDefaultBackground
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.elementDisplayType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.elementNameProperty
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.elementNameOverride
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reorderableList.elementIcon
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.reqReferences
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots.isExpanded
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.size
+    value: 12
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[0]
+    value: Head
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[1]
+    value: Left Shoulder
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[2]
+    value: Right Shoulder
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[3]
+    value: Left Elbow
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[4]
+    value: Right Elbow
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[5]
+    value: Left Wrist
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[6]
+    value: Right Wrist
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[7]
+    value: Pelvis
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[8]
+    value: Left Knee
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[9]
+    value: Right Knee
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[10]
+    value: Left Ankle
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keyValues.Array.data[11]
+    value: Right Ankle
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.size
+    value: 12
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[0]
+    value: Head
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[1]
+    value: Left Shoulder
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[2]
+    value: Right Shoulder
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[3]
+    value: Left Elbow
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[4]
+    value: Right Elbow
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[5]
+    value: Left Wrist
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[6]
+    value: Right Wrist
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[7]
+    value: Pelvis
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[8]
+    value: Left Knee
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[9]
+    value: Right Knee
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[10]
+    value: Left Ankle
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._keys.Array.data[11]
+    value: Right Ankle
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.size
+    value: 12
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[0].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[0].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[0].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[0].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[0].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[0].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[0].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[1].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[1].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[1].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[1].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[1].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[1].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[1].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[2].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[2].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[2].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[2].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[2].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[2].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[2].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[3].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[3].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[3].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[3].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[3].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[3].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[3].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[4].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[4].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[4].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[4].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[4].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[4].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[4].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[5].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[5].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[5].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[5].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[5].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[5].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[5].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[6].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[6].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[6].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[6].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[6].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[6].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[6].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[7].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[7].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[7].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[7].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[7].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[7].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[7].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[8].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[8].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[8].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[8].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[8].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[8].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[8].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[9].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[9].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[9].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[9].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[9].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[9].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[9].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[10].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[10].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[10].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[10].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[10].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[10].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[10].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[11].pose.position.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[11].pose.position.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[11].pose.position.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[11].pose.rotation.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[11].pose.rotation.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[11].pose.rotation.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slots._values.Array.data[11].pose.rotation.w
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: inputPrefabs.Array.size
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spawnIndex
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: input
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: onInputSpawned.m_PersistentCalls.m_Calls.Array.size
+    value: 0
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []
