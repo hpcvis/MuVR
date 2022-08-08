@@ -230,10 +230,11 @@ namespace PFNN {
 		}
 
 		protected void GetAllWalls() {
-			var terrainWalls = GameObject.Find("TerrainWalls").transform;
-			this.terrainWalls = new Utils.WallPoints[terrainWalls.childCount];
+			var terrainWalls = FindObjectsOfType<PFNN.Wall>();
+			this.terrainWalls = new Utils.WallPoints[terrainWalls.Length];
 
-			for (var i = 0; i < terrainWalls.childCount; i++) this.terrainWalls[i] = terrainWalls.GetChild(i).GetComponent<WallScript>().GetWallPoints();
+			for (var i = 0; i < terrainWalls.Length; i++)
+				this.terrainWalls[i] = terrainWalls[i].Points;
 		}
 
 		protected void InitializeJoints() {
@@ -412,13 +413,12 @@ namespace PFNN {
 					scalePosition);
 
 				// Collide with walls
+				var trajectoryPoint = new Vector2(positionsBlend[i].x * scaleFactor, positionsBlend[i].z * scaleFactor);
 				for (var j = 0; j < terrainWalls.Length; j++) {
-					var trajectoryPoint = new Vector2(positionsBlend[i].x * scaleFactor, positionsBlend[i].z * scaleFactor);
-
 					if ((trajectoryPoint - (terrainWalls[j].wallStart + terrainWalls[j].wallEnd) / 2f).magnitude >
 					    (terrainWalls[j].wallStart - terrainWalls[j].wallEnd).magnitude)
 						continue;
-
+					
 					var segmentPoint = Utils.SegmentNearest(terrainWalls[j].wallStart, terrainWalls[j].wallEnd, trajectoryPoint);
 					var segmentDistance = (segmentPoint - trajectoryPoint).magnitude;
 

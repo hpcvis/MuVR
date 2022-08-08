@@ -43,4 +43,6 @@ public static class Utils {
 		var t = Mathf.Clamp01(Vector2.Dot(p - v, w - v) / len);
 		return v + t * (w - v);
 	}
+
+	public static Vector3 ToFixedHeight(Vector2 p, float y) => new Vector3(p.x, y, p.y);
 }
