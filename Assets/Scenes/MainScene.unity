@@ -3050,6 +3050,34 @@ MonoBehaviour:
   avatar: {fileID: 796977850}
   targetJoint: Left Wrist
   poleJoint: Left Elbow
+--- !u!114 &1360010189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360010185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daee955cff5de5540b998af2d3cf7aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 796977850}
+  slot: Left Wrist
+  mode: 1
+  localOffset:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+  globalOffset: {x: 0, y: 0, z: 0}
+  positionWeight: 0
+  rotationWeight: 1
+  positionAxis: -1
+  rotationAxis: -1
+  target:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 1
 --- !u!1 &1361689378 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2671009306738852116, guid: 824260c6307e68840b3c8f7d592eddf9,
@@ -3077,6 +3105,34 @@ MonoBehaviour:
   avatar: {fileID: 796977850}
   targetJoint: Right Wrist
   poleJoint: Right Elbow
+--- !u!114 &1361689382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361689378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daee955cff5de5540b998af2d3cf7aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 796977850}
+  slot: Right Wrist
+  mode: 1
+  localOffset:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+  globalOffset: {x: 0, y: 0, z: 0}
+  positionWeight: 0
+  rotationWeight: 1
+  positionAxis: -1
+  rotationAxis: -1
+  target:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 1
 --- !u!1 &1384934293
 GameObject:
   m_ObjectHideFlags: 0
