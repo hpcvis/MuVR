@@ -137,17 +137,17 @@ namespace DitzelGames.FastIK
             var targetPosition = GetPositionRootSpace(Target);
             var targetRotation = GetRotationRootSpace(Target);
 
-            //1st is possible to reach?
-            if ((targetPosition - GetPositionRootSpace(Bones[0])).sqrMagnitude >= CompleteLength * CompleteLength)
-            {
-                //just strech it
-                var direction = (targetPosition - Positions[0]).normalized;
-                //set everything after root
-                for (int i = 1; i < Positions.Length; i++)
-                    Positions[i] = Positions[i - 1] + direction * BonesLength[i - 1];
-            }
-            else
-            {
+            // //1st is possible to reach?
+            // if ((targetPosition - GetPositionRootSpace(Bones[0])).sqrMagnitude >= CompleteLength * CompleteLength)
+            // {
+            //     //just strech it
+            //     var direction = (targetPosition - Positions[0]).normalized;
+            //     //set everything after root
+            //     for (int i = 1; i < Positions.Length; i++)
+            //         Positions[i] = Positions[i - 1] + direction * BonesLength[i - 1];
+            // }
+            // else
+            // {
                 for (int i = 0; i < Positions.Length - 1; i++)
                     Positions[i + 1] = Vector3.Lerp(Positions[i + 1], Positions[i] + StartDirectionSucc[i], SnapBackStrength);
 
@@ -171,7 +171,7 @@ namespace DitzelGames.FastIK
                     if ((Positions[Positions.Length - 1] - targetPosition).sqrMagnitude < Delta * Delta)
                         break;
                 }
-            }
+            // }
 
             //move towards pole
             if (Pole != null)
