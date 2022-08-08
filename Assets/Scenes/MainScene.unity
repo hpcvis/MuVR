@@ -319,7 +319,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   joint: 20
 --- !u!114 &132908299
 MonoBehaviour:
@@ -845,7 +845,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   joint: 19
 --- !u!114 &344764533
 MonoBehaviour:
@@ -1500,7 +1500,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   joint: 16
 --- !u!114 &594693785
 MonoBehaviour:
@@ -2207,7 +2207,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   joint: 3
 --- !u!1 &763391871
 GameObject:
@@ -2501,7 +2501,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   joint: 27
 --- !u!114 &829877339
 MonoBehaviour:
@@ -2576,7 +2576,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   joint: 26
 --- !u!114 &868077131
 MonoBehaviour:
@@ -2638,7 +2638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710800c82b723af4cbcc17f45e8a1618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   toeJoint: 5
   ankleJoint: 4
   heelHeight: 0.1
@@ -2795,7 +2795,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   joint: 8
 --- !u!1001 &1150360087
 PrefabInstance:
@@ -3194,7 +3194,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   joint: 25
 --- !u!114 &1384934296
 MonoBehaviour:
@@ -3269,7 +3269,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   joint: 18
 --- !u!114 &1419663733
 MonoBehaviour:
@@ -3460,7 +3460,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   joint: 0
 --- !u!1001 &1610981774
 PrefabInstance:
@@ -3945,7 +3945,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1722178872}
   - component: {fileID: 1722178874}
-  - component: {fileID: 1722178869}
   m_Layer: 9
   m_Name: Character
   m_TagString: Player
@@ -3953,37 +3952,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1722178869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722178868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15d202d5431f37d47a3af790b6006824, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  framePointPrefab: {fileID: 1002953499553600, guid: a0701acd823647b4e84f87c4eb46edbf,
-    type: 3}
-  jointPrefab: {fileID: 1793363339858316, guid: 98fac354ec51e6b43a5717b6b8c44dbc,
-    type: 3}
-  phase: 0
-  jointsNumber: 31
-  strafeAmount: 0
-  strafeTarget: 0
-  crouchedAmount: 0
-  crouchedTarget: 0
-  responsive: 0
-  scaleFactor: 0.06
-  numberOfTrajectoryProjections: 12
-  trajectoryLength: 0
-  sidePointsOffset: 25
-  layerMask: 9
-  heightOrigin: 20
-  wallWidth: 1.5
-  wallVal: 1.1
 --- !u!4 &1722178872
 Transform:
   m_ObjectHideFlags: 0
@@ -4014,9 +3982,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1cf5b74ae492643b1f4ba95ee7f35d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialWorldPosition: {x: 0, y: 0, z: 0}
+  framePointPrefab: {fileID: 1002953499553600, guid: a0701acd823647b4e84f87c4eb46edbf,
+    type: 3}
+  jointPrefab: {fileID: 1793363339858316, guid: 98fac354ec51e6b43a5717b6b8c44dbc,
+    type: 3}
+  phase: 0
+  jointsNumber: 31
+  strafeAmount: 0
+  strafeTarget: 0
+  crouchedAmount: 0
+  crouchedTarget: 0
+  responsive: 0
+  scaleFactor: 0.06
+  numberOfTrajectoryProjections: 12
+  trajectoryLength: 0
+  sidePointsOffset: 25
+  layerMask: 9
+  heightOrigin: 20
+  wallWidth: 1.5
+  wallVal: 1.1
   cameraRotationSensitivity: 90
   cameraZoomSensitivity: 60
-  initialWorldPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1811729143 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5665523309383429565, guid: 824260c6307e68840b3c8f7d592eddf9,
@@ -4184,7 +4171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710800c82b723af4cbcc17f45e8a1618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 1722178869}
+  character: {fileID: 1722178874}
   toeJoint: 10
   ankleJoint: 9
   heelHeight: 0.1

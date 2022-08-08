@@ -1,8 +1,8 @@
 using UnityEngine;
 
 public class CopyFromJoint : MonoBehaviour {
-    public CharacterTrajectoryAndAnimScript character;
-    public CharacterTrajectoryAndAnimScript.JointType joint;
+    public PFNN.Controller character;
+    public PFNN.Controller.JointType joint;
 
     public void Update() {
         var j = character.GetJoint(joint).jointPoint;

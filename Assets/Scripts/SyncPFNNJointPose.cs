@@ -1,16 +1,14 @@
-using System;
 using System.Linq;
 using UnityEditor;
-using UnityEngine;
 
 namespace MuVR {
 	
 	// Component that copies the transform from the object it is attached to, to a pose slot on a UserAvatar
 	public class SyncPFNNJointPose : SyncPose {
-		public CharacterTrajectoryAndAnimScript character;
-		public CharacterTrajectoryAndAnimScript.JointType joint;
+		public PFNN.Controller character;
+		public PFNN.Controller.JointType joint;
 
-		private CharacterTrajectoryAndAnimScript.JointsComponents targetJoint;
+		private PFNN.Controller.JointsComponents targetJoint;
 
 		// When the object is created make sure to update the target
 		public new void Start() => UpdateTarget();
@@ -38,10 +36,10 @@ namespace MuVR {
 	[CustomEditor(typeof(SyncPFNNJointPose))]
 	[CanEditMultipleObjects]
 	public class SyncPFNNJointPoseEditor : SyncPoseEditor {
-		// Properties of the object we wish to show a default UI for
+		// Properties of the object we wish to show a UI for
 		protected SerializedProperty character, joint;
 
-		public void OnEnable() {
+		public new void OnEnable() {
 			base.OnEnable();
 			character = serializedObject.FindProperty("character");
 			joint = serializedObject.FindProperty("joint");

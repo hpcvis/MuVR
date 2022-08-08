@@ -1,10 +1,9 @@
-using System;
 using MuVR;
 using UnityEngine;
 
+// Offsets the SyncPose based on the average offset of the character's feet
 [RequireComponent(typeof(SyncPose))]
 public class OffsetByFeet : MonoBehaviour {
-
 	private SyncPose sync;
 	private float initialHeightOffset;
 
