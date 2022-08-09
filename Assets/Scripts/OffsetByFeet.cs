@@ -14,6 +14,6 @@ public class OffsetByFeet : MonoBehaviour {
 
 	// Update is called once per frame
 	private void LateUpdate() {
-		sync.globalOffset.y = initialHeightOffset - ProjectOnGround.averageHeightDifference / 2; // If we don't divide the average by 2, legs are lifted way too high!
+		sync.globalOffset.y = initialHeightOffset - ProjectFootOnGround.averageHeightDifference / 2; // If we don't divide the average by 2, legs are lifted way too high!
 	}
 }

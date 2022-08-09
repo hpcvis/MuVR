@@ -21,6 +21,9 @@ namespace MuVR {
 		[Header("Pose Transforms")] 
 		public StringToPoseRefDictionary slots = new();
 
+		public virtual PoseRef SetterPoseRef(string slot) => slots[slot];
+		public virtual PoseRef GetterPoseRef(string slot) => slots[slot];
+
 		// Creates a game object that synchronizes its transform with this slot, and return its transform
 		public Transform FindOrCreatePoseProxy(string slot) {
 			Transform proxy, cached;

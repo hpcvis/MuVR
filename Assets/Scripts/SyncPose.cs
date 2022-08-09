@@ -43,7 +43,7 @@ namespace MuVR {
 		[Range(0, 1)]
 		public SyncedAxis positionAxis = SyncedAxis.Everything, rotationAxis = SyncedAxis.Everything;
 
-		[SerializeField] protected UserAvatar.PoseRef target;
+		[SerializeField] protected UserAvatar.PoseRef setTarget, getTarget;
 
 		// When the object is created make sure to update the target
 		public void Start() => UpdateTarget();
@@ -58,17 +58,18 @@ namespace MuVR {
 			if (!targetAvatar.slots.Keys.Contains(slot))
 				throw new Exception("The requested slot can not be found");
 
-			target = targetAvatar.slots[slot];
+			setTarget = targetAvatar.SetterPoseRef(slot); 
+			getTarget = targetAvatar.GetterPoseRef(slot);
 		}
 
 		// Update is called once per frame, and make sure that our transform is properly synced with the pose according to the pose mode
 		public void LateUpdate() {
 			if (mode == SyncMode.SyncTo) {
-				updatePosition(ref target.pose.position, transform.position);
-				updateRotation(ref target.pose.rotation, transform.rotation);
+				updatePosition(ref setTarget.pose.position, transform.position);
+				updateRotation(ref setTarget.pose.rotation, transform.rotation);
 			} else {
-				transform.position = updatePosition(transform.position, target.pose.position);
-				transform.rotation = updateRotation(transform.rotation, target.pose.rotation);
+				transform.position = updatePosition(transform.position, getTarget.pose.position);
+				transform.rotation = updateRotation(transform.rotation, getTarget.pose.rotation);
 			}
 		}
 
@@ -242,9 +243,13 @@ namespace MuVR {
 		}
 
 		public void PoseDebugField(SyncPose sync) {
-			// Present a non-editable field with the debug pose (or an empty pose if the target is invalid)
-			if (sync.targetAvatar is not null && sync.targetAvatar.slots.ContainsKey(sync.slot))
-				PoseField("Pose Debug", sync.targetAvatar.slots[sync.slot].pose, ref showTarget, false);
+			try {
+				// Present a non-editable field with the debug pose (or an empty pose if the target is invalid)
+				if (sync.targetAvatar is null || !sync.targetAvatar.slots.ContainsKey(sync.slot)) return;
+				if(sync.mode == SyncPose.SyncMode.SyncTo) 
+					PoseField("Pose Debug", sync.targetAvatar.SetterPoseRef(sync.slot).pose, ref showTarget, false);
+				else PoseField("Pose Debug", sync.targetAvatar.GetterPoseRef(sync.slot).pose, ref showTarget, false);
+			} catch(NullReferenceException) {}
 		}
 
 

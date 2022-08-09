@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ProjectOnGround : MonoBehaviour {
-	public static ProjectOnGround[] inScene;
+public class ProjectFootOnGround : MonoBehaviour {
+	public static ProjectFootOnGround[] inScene;
 	public static float averageHeightDifference;
 
 	public PFNN.Controller character;
@@ -15,11 +15,11 @@ public class ProjectOnGround : MonoBehaviour {
 	private float heightDifference;
 
 	public void OnEnable() {
-		inScene = inScene is null ? new[] { this } : new List<ProjectOnGround>(inScene) { this }.ToArray();
+		inScene = inScene is null ? new[] { this } : new List<ProjectFootOnGround>(inScene) { this }.ToArray();
 	}
 
 	public void OnDisable() {
-		var list = new List<ProjectOnGround>(inScene);
+		var list = new List<ProjectFootOnGround>(inScene);
 		list.Remove(this);
 		inScene = list.Count > 0 ? list.ToArray() : null;
 	}
@@ -31,10 +31,10 @@ public class ProjectOnGround : MonoBehaviour {
 	}
 
 	private void CalculateFoot(float phase, float standing, Vector3 up, out Vector3 position, out Quaternion rotation) {
-		var weight = 1 - Mathf.Min(Mathf.Abs(phase - targetPhase), Mathf.Abs(phase - targetPhase - Mathf.PI * 2)) / Mathf.PI;
+		var weight = 1 - Mathf.Min(Mathf.Abs(phase - targetPhase), Mathf.Abs(phase - targetPhase - Mathf.PI)) / Mathf.PI;
 		weight += standing;
 		weight = Mathf.Clamp(weight, 0, 1);
-		
+
 		var comparisonHeight = heelHeight > .1f ? heelHeight : .1f;
 
 		var toe = character.GetJoint(toeJoint).jointPoint;
@@ -71,9 +71,10 @@ public class ProjectOnGround : MonoBehaviour {
 		// Blend the position and rotation with the original ones based on the animation phase so that he can pick his feet up off the ground!
 		rotation = Quaternion.Slerp(ankle.transform.rotation, Quaternion.LookRotation(toeProjected - anklePosition, (ankleNormal + toeNormal).normalized), weight);
 		position = Vector3.Lerp(baseAnklePosition, anklePosition, weight * weight);
-		
+
 		// Calculate the average height distance (Used to offset the other points)
 		heightDifference = ankle.transform.position.y - position.y;
-		averageHeightDifference = inScene.Aggregate(0f, (total, next) => total + next.heightDifference, total => total / inScene.Length);
+		const float alpha = .9f;
+		averageHeightDifference =  alpha * averageHeightDifference + (1 - alpha) * /*new*/inScene.Aggregate(0f, (total, next) => total + next.heightDifference, total => total / inScene.Length);
 	}
 }

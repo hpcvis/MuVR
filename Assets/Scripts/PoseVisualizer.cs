@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -7,6 +6,7 @@ namespace MuVR {
 	
 	// Component that copies the transform from the object it is attached to, to a pose slot on a UserAvatar
 	public class PoseVisualizer : SyncPose {
+		private UserAvatar.PoseRef target => getTarget;
 		public GameObject visualizationPrefab;
 		private GameObject spawnedPrefab;
 
