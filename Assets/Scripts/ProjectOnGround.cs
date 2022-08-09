@@ -65,12 +65,15 @@ public class ProjectOnGround : MonoBehaviour {
 		// Make sure the ankle isn't clipping through the ground
 		if (anklePosition.y < ankleProjected.y) anklePosition.y = ankleProjected.y;
 		toeProjected.y += toeOffset;
+		var baseAnklePosition = ankle.transform.position;
+		baseAnklePosition.y = Mathf.Max(baseAnklePosition.y, ankleProjected.y);
 
-		// Calculate the average height distance (Used to offset the other points)
-		heightDifference = ankle.transform.position.y - anklePosition.y;
-		averageHeightDifference = inScene.Aggregate(0f, (total, next) => total + next.heightDifference, total => total / inScene.Length);
-
+		// Blend the position and rotation with the original ones based on the animation phase so that he can pick his feet up off the ground!
 		rotation = Quaternion.Slerp(ankle.transform.rotation, Quaternion.LookRotation(toeProjected - anklePosition, (ankleNormal + toeNormal).normalized), weight);
-		position = Vector3.Lerp(ankle.transform.position, anklePosition, weight * weight);
+		position = Vector3.Lerp(baseAnklePosition, anklePosition, weight * weight);
+		
+		// Calculate the average height distance (Used to offset the other points)
+		heightDifference = ankle.transform.position.y - position.y;
+		averageHeightDifference = inScene.Aggregate(0f, (total, next) => total + next.heightDifference, total => total / inScene.Length);
 	}
 }
