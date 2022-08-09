@@ -211,8 +211,9 @@ namespace PFNN {
 			time -= Time.deltaTime;
 		}
 
-		protected void MoveCharacter(Vector2 direction, float sprinting = 0, float strafing = 0) {
-			var newTargetDirection = Vector3.Normalize(new Vector3(mainCamera.forward.x, 0, mainCamera.forward.z));
+		// Move the character in the direction relative to the given coordinate basis
+		protected void MoveCharacter(Vector2 basis, Vector2 direction, float sprinting = 0, float strafing = 0) {
+			var newTargetDirection = Vector3.Normalize(new Vector3(basis.x, 0, basis.y));
 
 			UpdateStrafe(strafing);
 			UpdateTargetDirectionAndVelocity(newTargetDirection, direction.x, direction.y, sprinting);
@@ -225,11 +226,19 @@ namespace PFNN {
 			UpdateRotation();
 			UpdateHeights();
 		}
+		// Move the character in the direction relative to the camera's coordinate basis
+		protected void MoveCharacter(Vector2 direction, float sprinting = 0, float strafing = 0) {
+			MoveCharacter(new Vector2(mainCamera.forward.x, mainCamera.forward.z), direction, sprinting, strafing);
+		}
 
-		protected void MoveCharacterTo(Vector3 point, float targetDistance = .1f, float sprinting = 0, float strafing = 0) {
-			var direction = point - transform.position;
-			if ((point - (transform.position + direction.normalized * targetVelocity.magnitude)).magnitude > targetDistance)
-				MoveCharacter(new Vector2(direction.x, direction.z), sprinting, strafing);
+		// Move the character to a particular point (No pathfinding is done, pathfinding must be performed externally)
+		protected void MoveCharacterTo(Vector3 point, float sprinting = 0, float strafing = 0, float targetDistance = 0) {
+			var movementSpeed = 2.5f + 2.5f * sprinting;
+			
+			var direction = (point - transform.position).normalized;
+			var direction2D = new Vector2(direction.x, direction.z);
+			direction2D = (point - (transform.position + direction * movementSpeed)).sqrMagnitude > targetDistance * targetDistance ? direction2D : Vector2.zero;
+			MoveCharacter(Vector2.up, direction2D, sprinting, strafing);
 		}
 
 		protected void ResetCharacter() {
