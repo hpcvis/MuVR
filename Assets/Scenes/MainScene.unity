@@ -4002,6 +4002,7 @@ MonoBehaviour:
   heightOrigin: 20
   wallWidth: 1.5
   wallVal: 1.1
+  autoWallShadowLength: 3
   cameraRotationSensitivity: 90
   cameraZoomSensitivity: 60
 --- !u!1 &1811729143 stripped

@@ -44,5 +44,11 @@ public static class Utils {
 		return v + t * (w - v);
 	}
 
+	public static Vector3 CloserToPoint(Vector3 a, Vector3 b, Vector3 target) {
+		var aDist = (a - target).sqrMagnitude;
+		var bDist = (b - target).sqrMagnitude;
+		return aDist < bDist ? a : b;
+	}
+
 	public static Vector3 ToFixedHeight(Vector2 p, float y) => new Vector3(p.x, y, p.y);
 }

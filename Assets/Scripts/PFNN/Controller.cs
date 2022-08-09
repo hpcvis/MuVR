@@ -1,4 +1,6 @@
+using MuVR.Utility;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace PFNN {
 	public class Controller : MonoBehaviour {
@@ -119,6 +121,8 @@ namespace PFNN {
 		protected Utils.WallPoints[] terrainWalls;
 		public float wallWidth = 1.5f;
 		public float wallVal = 1.1f;
+		// The maximum length of the shadow between forward from hip and forward from foot where a slope is no longer considered a wall
+		public float autoWallShadowLength = 4;
 
 		protected int[] JointParents = {
 			-1, // Hips 0
@@ -231,7 +235,7 @@ namespace PFNN {
 
 		protected void GetAllWalls() {
 			var terrainWalls = FindObjectsOfType<PFNN.Wall>();
-			this.terrainWalls = new Utils.WallPoints[terrainWalls.Length];
+			this.terrainWalls = new Utils.WallPoints[terrainWalls.Length + 1]; // The last wall slot is used for walls automatically found in the environment
 
 			for (var i = 0; i < terrainWalls.Length; i++)
 				this.terrainWalls[i] = terrainWalls[i].Points;
@@ -400,6 +404,8 @@ namespace PFNN {
 			var positionsBlend = new Vector3[trajectoryLength];
 			positionsBlend[trajectoryLength / 2] = points[trajectoryLength / 2].position;
 
+			CalculateAutomaticWall();
+
 			for (var i = trajectoryLength / 2 + 1; i < trajectoryLength; i++) {
 				var biasPosition = Mathf.Lerp(0.5f, 1f, strafeAmount); // On both variables will come character response check (569)
 				var biasDirection = Mathf.Lerp(2f, 0.5f, strafeAmount);
@@ -457,6 +463,49 @@ namespace PFNN {
 					1f - Mathf.Clamp01(3f / 5f)
 				);
 			}
+		}
+
+		private Coroutine removeWallCoroutine;
+		protected void CalculateAutomaticWall() {
+			var hips = GetJoint(JointType.Hips).jointPoint;
+			var forward = hips.transform.forward;
+			var right = hips.transform.right;
+			forward.y = 0;
+			var upPosition = hips.transform.position;
+			var downPosition = upPosition;
+			downPosition.y = (GetJoint(JointType.RightFoot).jointPoint.transform.position.y + GetJoint(JointType.LeftFoot).jointPoint.transform.position.y) / 2;
+
+			var setWall = false;
+			if (Physics.Raycast(new Ray(upPosition, forward), out var upHit, autoWallShadowLength * 2 + wallWidth, layerMask))
+				if (Physics.Raycast(new Ray(downPosition, forward), out var downHit, autoWallShadowLength * 2 + wallWidth, layerMask)) {
+					var closer = Utils.CloserToPoint(downHit.point, upHit.point, (upPosition + downPosition) / 2);
+					var shadow = Vector3.Project(upHit.point - downHit.point, forward).sqrMagnitude;
+
+					if (shadow < autoWallShadowLength * autoWallShadowLength) {
+						setWall = true;
+
+						var start = closer + right - forward * wallWidth;
+						var end = closer - right - forward * wallWidth;
+						terrainWalls[^1].wallStart = new Vector2(start.x, start.z);
+						terrainWalls[^1].wallEnd = new Vector2(end.x, end.z);
+#if UNITY_EDITOR
+						Debug.DrawLine(start, end, Color.green);
+#endif
+					}
+					// Debug.Log(Mathf.Sqrt(shadow));
+					//
+					// Debug.DrawLine(upPosition, upHit.point, Color.blue);
+					// Debug.DrawLine(downPosition, downHit.point, Color.blue);
+					// Debug.DrawRay(closer, forward * shadow, Color.red);
+				}
+
+			if (setWall) return;
+			if (removeWallCoroutine is not null) StopCoroutine(removeWallCoroutine);
+			removeWallCoroutine = StartCoroutine(Timer.Start(() => {
+				terrainWalls[^1].wallStart = new Vector2(Mathf.Infinity, Mathf.Infinity);
+				terrainWalls[^1].wallEnd = new Vector2(Mathf.Infinity, Mathf.Infinity);
+				removeWallCoroutine = null;
+			}, .1f));
 		}
 
 		public void Walls() {
