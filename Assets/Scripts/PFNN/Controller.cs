@@ -18,7 +18,11 @@ namespace PFNN {
 		protected Transform trajectoryPath;
 
 		public GameObject framePointPrefab;
+		public GameObject framePointInvisiblePrefab;
+		public bool visualizeTrajectory; // NOTE: Changing this value at runtime has no effect!
 		public GameObject jointPrefab;
+		public GameObject jointInvisiblePrefab;
+		public bool visualizeJoints; // NOTE: Changing this value at runtime has no effect!
 		public float phase;
 
 		// Character Joints stuff 
@@ -258,7 +262,7 @@ namespace PFNN {
 		protected void InstantiateJoints() {
 			for (var i = 0; i < jointsNumber; i++) {
 				var newJoint = Instantiate(
-					jointPrefab,
+					visualizeJoints ? jointPrefab : jointInvisiblePrefab,
 					new Vector3(transform.position.x, 0.5f, transform.position.z),
 					Quaternion.identity,
 					characterBody
@@ -282,7 +286,7 @@ namespace PFNN {
 		protected void InstantiateTrajectoryPoints() {
 			for (var i = 0; i < trajectoryLength; i += 10) {
 				var newPoint = Instantiate(
-					framePointPrefab,
+					visualizeTrajectory ? framePointPrefab : framePointInvisiblePrefab,
 					new Vector3(transform.position.x, transform.position.y, transform.position.z + (-6f + i / 10f)),
 					Quaternion.identity,
 					trajectoryPath

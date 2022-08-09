@@ -3985,8 +3985,14 @@ MonoBehaviour:
   initialWorldPosition: {x: 0, y: 0, z: 0}
   framePointPrefab: {fileID: 1002953499553600, guid: a0701acd823647b4e84f87c4eb46edbf,
     type: 3}
+  framePointInvisiblePrefab: {fileID: 1002953499553600, guid: 5eb996be246c5d548b43efa218434364,
+    type: 3}
+  visualizeTrajectory: 1
   jointPrefab: {fileID: 1793363339858316, guid: 98fac354ec51e6b43a5717b6b8c44dbc,
     type: 3}
+  jointInvisiblePrefab: {fileID: 1793363339858316, guid: d43f25ca74a987e49b4ab9869c7861b4,
+    type: 3}
+  visualizeJoints: 0
   phase: 0
   jointsNumber: 31
   strafeAmount: 0
