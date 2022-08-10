@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AIController : PFNN.Controller {
+public class WaypointController : PFNN.Controller {
 
 	[Range(0.0f, 150.0f)]
 	public float cameraRotationSensitivity = 90.0f;
@@ -46,7 +46,7 @@ public class AIController : PFNN.Controller {
 
 	private void FollowWaypoints() {
 		var waypointPos = waypoints[currentWaypoint].transform.position;
-		MoveCharacterTo(waypointPos, 0, 1);
+		MoveCharacterTo(waypointPos);
 
 		var waypointPos2D = new Vector2(waypointPos.x, waypointPos.z);
 		var position2D = new Vector2(transform.position.x, transform.position.z);

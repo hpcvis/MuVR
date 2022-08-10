@@ -485,11 +485,11 @@ namespace PFNN {
 			var right = hips.transform.right;
 			forward.y = 0;
 			var upPosition = hips.transform.position;
-			var downPosition = upPosition;
-			downPosition.y = (GetJoint(JointType.RightFoot).jointPoint.transform.position.y + GetJoint(JointType.LeftFoot).jointPoint.transform.position.y) / 2;
-
+			
 			var setWall = false;
-			if (Physics.Raycast(new Ray(upPosition, forward), out var upHit, autoWallShadowLength * 2 + wallWidth, layerMask))
+			if (Physics.Raycast(new Ray(upPosition, forward), out var upHit, autoWallShadowLength * 2 + wallWidth, layerMask)) {
+				var downPosition = upPosition;
+				downPosition.y = (GetJoint(JointType.RightFoot).jointPoint.transform.position.y + GetJoint(JointType.LeftFoot).jointPoint.transform.position.y) / 2;
 				if (Physics.Raycast(new Ray(downPosition, forward), out var downHit, autoWallShadowLength * 2 + wallWidth, layerMask)) {
 					var closer = Utils.CloserToPoint(downHit.point, upHit.point, (upPosition + downPosition) / 2);
 					var shadow = Vector3.Project(upHit.point - downHit.point, forward).sqrMagnitude;
@@ -505,12 +505,8 @@ namespace PFNN {
 						Debug.DrawLine(start, end, Color.green);
 #endif
 					}
-					// Debug.Log(Mathf.Sqrt(shadow));
-					//
-					// Debug.DrawLine(upPosition, upHit.point, Color.blue);
-					// Debug.DrawLine(downPosition, downHit.point, Color.blue);
-					// Debug.DrawRay(closer, forward * shadow, Color.red);
 				}
+			}
 
 			if (setWall) return;
 			if (removeWallCoroutine is not null) StopCoroutine(removeWallCoroutine);
