@@ -1,4 +1,4 @@
-/* If nested then the nested NB should be sent every tick.
+﻿/* If nested then the nested NB should be sent every tick.
  * This is because if that tick happens to drop then the
  * sent data is now wrong given the parent information is wrong.
  * Once EC is added in we won't have to send every time since
@@ -428,7 +428,7 @@ namespace FishNet.Component.Transforming
             _interval = Math.Max(_interval, (byte)1);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             if (_receivedClientData.Writer != null)
             {
@@ -910,10 +910,8 @@ namespace FishNet.Component.Transforming
         /// Moves to a GoalData. Automatically determins if to use data from server or client.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void MoveToTarget(float deltaOverride = -1f, uint i = 0)
+        private void MoveToTarget(float deltaOverride = -1f)
         {
-            if (i > 512)
-                return;
             if (!_queueReady)
                 return;
             //Cannot move if neither is active.
@@ -1000,7 +998,7 @@ namespace FishNet.Component.Transforming
                     _goalDataCache.Push(_currentGoalData);
                     SetCurrentGoalData(_goalDataQueue.Dequeue());
                     if (leftOver > 0f)
-                        MoveToTarget(leftOver, i+1);
+                        MoveToTarget(leftOver);
                 }
                 //No more in buffer, see if can extrapolate.
                 else
@@ -1013,6 +1011,7 @@ namespace FishNet.Component.Transforming
                         * and it's thrown off. */
                         if (!HasChanged(td))
                             _queueReady = false;
+                        OnInterpolationComplete?.Invoke();
                         
                 }
             }
@@ -1034,7 +1033,7 @@ namespace FishNet.Component.Transforming
             //If relaying from client.
             if (clientAuthoritativeWithOwner)
             {
-                if (_receivedClientData.HasData && _receivedClientData.Writer is not null)
+                if (_receivedClientData.HasData)
                 {
                     _changedSinceStart = true;
                     //Resend data from clients.
@@ -1564,6 +1563,22 @@ namespace FishNet.Component.Transforming
             else
             {
                 _goalDataQueue.Enqueue(nextGd);
+            }
+
+            /* If the queue is excessive beyond interpolation then
+             * dequeue extras to prevent from dropping behind too
+             * quickly. This shouldn't be an issue with normal movement
+             * as the NT speeds up if the buffer unexpectedly grows, but
+             * when connections are unstable results may come in chunks
+             * and for a better experience the older parts of the chunks
+             * will be dropped. */
+            if (_goalDataQueue.Count > (_interpolation + 3))
+            {
+                while (_goalDataQueue.Count > _interpolation)
+                {
+                    GoalData tmpGd = _goalDataQueue.Dequeue();
+                    _goalDataCache.Push(tmpGd);
+                }
             }
         }
 

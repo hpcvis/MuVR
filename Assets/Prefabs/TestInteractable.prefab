@@ -53,21 +53,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
   _networkBehaviours:
   - {fileID: 250987709324251748}
   - {fileID: 250987709324251747}
   - {fileID: 250987709324251744}
   - {fileID: 250987709324251749}
-  SceneTransformProperties:
-    Position: {x: 0, y: 0.223, z: 0.289}
-    Rotation: {x: 0, y: 0, z: 0, w: 1}
-    LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
-  _hasParentNetworkObjectAtEdit: 0
+  _isGlobal: 0
+  _disableOnDespawn: 0
   NetworkObserver: {fileID: 0}
-  _prefabId: -1
+  <PrefabId>k__BackingField: -1
   _scenePathHash: 0
-  _sceneId: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 11532882581181298903
   _sceneNetworkObjects:
   - {fileID: 250987709324251746}
 --- !u!114 &250987709324251749
@@ -87,7 +89,9 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 250987709324251746}
   enableInteractionTransfer: 1
   enableVolumeTransfer: 1
+  releaseOwnershipOnLeave: 1
   interactable: {fileID: 6970877829897743906}
+  ownershipTransferCooldown: 10
 --- !u!114 &250987709324251747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,10 +233,14 @@ MonoBehaviour:
   clientAuthority: 0
   syncVelocity: 1
   clearVelocity: 0
-  velocitySensitivity: 0.1
   syncAngularVelocity: 1
   clearAngularVelocity: 0
-  angularVelocitySensitivity: 0.1
+  _velocity: {x: 0, y: 0, z: 0}
+  _angularVelocity: {x: 0, y: 0, z: 0}
+  _isKinematic: 0
+  _useGravity: 0
+  _drag: 0
+  _angularDrag: 0
 --- !u!114 &6970877829897743906
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -55,22 +55,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
   _networkBehaviours:
   - {fileID: 2231786356982152076}
   - {fileID: 297560200439192031}
   - {fileID: 5029603494205110888}
   - {fileID: 8400210005197454872}
-  SceneTransformProperties:
-    Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-    LocalScale: {x: 0.25, y: 0.01, z: 0.25}
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
   _isGlobal: 0
-  _hasParentNetworkObjectAtEdit: 0
+  _disableOnDespawn: 0
   NetworkObserver: {fileID: 0}
-  _prefabId: -1
+  <PrefabId>k__BackingField: -1
   _scenePathHash: 0
-  _sceneId: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 9512299815024548606
   _sceneNetworkObjects: []
 --- !u!114 &2231786356982152076
 MonoBehaviour:

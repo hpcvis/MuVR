@@ -49,17 +49,23 @@ MonoBehaviour:
   targetAvatar: {fileID: 886871086713833669}
   slot: Head
   mode: 1
-  offset:
+  localOffset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
-  syncPositions: 1
-  syncRotations: 1
+  globalPositionOffset: {x: 0, y: 0, z: 0}
+  positionWeight: 1
+  rotationWeight: 1
   positionAxis: -1
   rotationAxis: -1
-  target:
+  setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
 --- !u!114 &7407683681342061073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,22 +158,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
   _networkBehaviours:
   - {fileID: 886871086713833669}
   - {fileID: 7089441834453454997}
   - {fileID: 7407683681342061073}
   - {fileID: 2450336938242817400}
   - {fileID: 8229183251738500020}
-  SceneTransformProperties:
-    Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 1}
-    LocalScale: {x: 1, y: 1, z: 1}
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
-  _hasParentNetworkObjectAtEdit: 0
+  _isGlobal: 0
+  _disableOnDespawn: 0
   NetworkObserver: {fileID: 0}
-  _prefabId: -1
+  <PrefabId>k__BackingField: -1
   _scenePathHash: 0
-  _sceneId: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 18158004688962545083
   _sceneNetworkObjects: []
 --- !u!114 &886871086713833669
 MonoBehaviour:
@@ -273,6 +281,7 @@ MonoBehaviour:
   inputPrefabs:
   - {fileID: 4732151867741746184, guid: 299522a758213fc41a1a31c8d742fafe, type: 3}
   spawnIndex: 0
+  input: {fileID: 0}
   onInputSpawned:
     m_PersistentCalls:
       m_Calls: []
@@ -426,17 +435,23 @@ MonoBehaviour:
   targetAvatar: {fileID: 886871086713833669}
   slot: Left Wrist
   mode: 1
-  offset:
+  localOffset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
-  syncPositions: 1
-  syncRotations: 1
+  globalPositionOffset: {x: 0, y: 0, z: 0}
+  positionWeight: 1
+  rotationWeight: 1
   positionAxis: -1
   rotationAxis: -1
-  target:
+  setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
 --- !u!114 &8229183251738500020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,17 +625,23 @@ MonoBehaviour:
   targetAvatar: {fileID: 886871086713833669}
   slot: Right Wrist
   mode: 1
-  offset:
+  localOffset:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
-  syncPositions: 1
-  syncRotations: 1
+  globalPositionOffset: {x: 0, y: 0, z: 0}
+  positionWeight: 1
+  rotationWeight: 1
   positionAxis: -1
   rotationAxis: -1
-  target:
+  setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
 --- !u!114 &2450336938242817400
 MonoBehaviour:
   m_ObjectHideFlags: 0

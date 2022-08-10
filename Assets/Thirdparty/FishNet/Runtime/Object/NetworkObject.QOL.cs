@@ -45,7 +45,7 @@ namespace FishNet.Object
 
             private set => _isClient = value;
         }
-        
+
         /// <summary>
         /// True if only the client is active and authenticated.
         /// </summary>
@@ -88,18 +88,18 @@ namespace FishNet.Object
                  * 
                  * Wait for client-host being initialized before potentially
                  * returning true. */
-                if (!ClientInitialized)
-                    return false;
 
-                ////perf see how this can be removed.
-                ////ClientInitialized is only used for this.
-                //if (!IsClient || !ClientInitialized || !Owner.IsValid || (NetworkManager == null))
-                //    return false;
+                /* Removed this restriction because people may want to use
+                 * base.IsOwner for initializing in OnNetworkStart. While this
+                 * would return true for client only, it wouldn't for host. That
+                 * would be bad. */
+                //if (!ClientInitialized)
+                //return false;
 
                 return Owner.IsLocalClient;
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -163,18 +163,40 @@ namespace FishNet.Object
         /// RollbackManager for this object.
         /// </summary>
         public RollbackManager RollbackManager { get; private set; }
-
-
         #endregion
 
         /// <summary>
+        /// Returns a NetworkBehaviour on this NetworkObject.
+        /// </summary>
+        /// <param name="componentIndex">ComponentIndex of the NetworkBehaviour.</param>
+        /// <param name="error">True to error if not found.</param>
+        /// <returns></returns>
+        public NetworkBehaviour GetNetworkBehaviour(byte componentIndex, bool error)
+        {
+            if (componentIndex >= NetworkBehaviours.Length)
+            {
+                if (error)
+                {
+                    bool staticLog = (NetworkManager == null);
+                    string errMsg = $"ComponentIndex of {componentIndex} is out of bounds on {gameObject.name} [id {ObjectId}]. This may occur if you have modified your gameObject/prefab without saving it, or the scene.";
+
+                    if (staticLog && NetworkManager.StaticCanLog(LoggingType.Error))
+                        Debug.LogError(errMsg);
+                    else if (!staticLog && NetworkManager.CanLog(LoggingType.Error))
+                        Debug.LogError(errMsg);
+                }
+            }
+
+            return NetworkBehaviours[componentIndex];
+        }
+        /// <summary>
         /// Despawns this NetworkObject. Only call from the server.
         /// </summary>
-        /// <param name="destroyInstantiated">True to also destroy the object if it was instantiated. False will only disable the object.</param>
-        public void Despawn()
+        /// <param name="disableOnDespawnOverride">Overrides the default DisableOnDespawn value for this single despawn. Scene objects will never be destroyed.</param>
+        public void Despawn(bool? disableOnDespawnOverride = null)
         {
             NetworkObject nob = this;
-            NetworkManager.ServerManager.Despawn(nob);
+            NetworkManager.ServerManager.Despawn(nob, disableOnDespawnOverride);
         }
         /// <summary>
         /// Spawns an object over the network. Only call from the server.
