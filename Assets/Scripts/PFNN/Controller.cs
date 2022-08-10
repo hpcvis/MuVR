@@ -232,13 +232,23 @@ namespace PFNN {
 		}
 
 		// Move the character to a particular point (No pathfinding is done, pathfinding must be performed externally)
-		protected void MoveCharacterTo(Vector3 point, float sprinting = 0, float strafing = 0, float targetDistance = 0) {
-			var movementSpeed = 2.5f + 2.5f * sprinting;
-			
-			var direction = (point - transform.position).normalized;
-			var direction2D = new Vector2(direction.x, direction.z);
-			direction2D = (point - (transform.position + direction * movementSpeed)).sqrMagnitude > targetDistance * targetDistance ? direction2D : Vector2.zero;
-			MoveCharacter(Vector2.up, direction2D, sprinting, strafing);
+		protected void MoveCharacterTo(Vector2 basis, Vector2 point, float sprinting = 0, float strafing = 0, float targetDistance = .1f) {
+			var currentPosition = GetJoint(JointType.Hips).jointPoint.transform.position;
+			var currentPosition2D = new Vector2(currentPosition.x, currentPosition.z);
+
+			var direction = (point - currentPosition2D).normalized;
+			direction = (point - currentPosition2D).magnitude > targetDistance ? direction : Vector2.zero;
+			direction = direction.Rotate(-Vector2.SignedAngle(Vector2.up, basis)); // Rotate the direction into the new basis
+			MoveCharacter(basis, direction, sprinting, strafing);
+		}
+		protected void MoveCharacterTo(Vector2 point, float sprinting = 0, float strafing = 0, float targetDistance = .1f) {
+			MoveCharacterTo(Vector2.up, point, sprinting, strafing, targetDistance);
+		}
+		protected void MoveCharacterTo(Vector3 forward, Vector3 point, float sprinting = 0, float strafing = 0, float targetDistance = .1f) {
+			MoveCharacterTo(new Vector2(forward.x, forward.z), new Vector2(point.x, point.z), sprinting, strafing, targetDistance);
+		}
+		protected void MoveCharacterTo(Vector3 point, float sprinting = 0, float strafing = 0, float targetDistance = .1f) {
+			MoveCharacterTo(new Vector2(point.x, point.z), sprinting, strafing, targetDistance);
 		}
 
 		protected void ResetCharacter() {

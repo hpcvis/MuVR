@@ -54,6 +54,17 @@ public static class Utils {
 
 	public static Vector3 ToFixedHeight(Vector2 p, float y) => new Vector3(p.x, y, p.y);
 
+	public static Vector2 Rotate(this Vector2 v, float degrees) {
+		var sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+		var cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+
+		var tx = v.x;
+		var ty = v.y;
+		v.x = cos * tx - sin * ty;
+		v.y = sin * tx + cos * ty;
+		return v;
+	}
+
 	public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> source) {
 		return source.Select((item, index) => (item, index));
 	}
