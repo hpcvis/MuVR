@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public static class Utils {
 	public static float extraDirectionSmooth = 0.9f; // 0.9f;
@@ -51,4 +53,20 @@ public static class Utils {
 	}
 
 	public static Vector3 ToFixedHeight(Vector2 p, float y) => new Vector3(p.x, y, p.y);
+
+	public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> source) {
+		return source.Select((item, index) => (item, index));
+	}
+	
+	public static void Concatentate<T>(this IEnumerable<IEnumerable<T>> data, out T[] concatenatedData, out long[] starts) {
+		starts = new long[data.LongCount()];
+		starts[0] = 0;
+
+		var concat = data.First();
+		foreach (var (enumerable, i) in data.WithIndex().Skip(1)) {
+			starts[i] = concat.LongCount();
+			concat = concat.Concat(enumerable);
+		}
+		concatenatedData = concat.ToArray();
+	}
 }
