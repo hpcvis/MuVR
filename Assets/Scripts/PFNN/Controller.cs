@@ -1,3 +1,4 @@
+using MuVR.Enhanced;
 using MuVR.Utility;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -436,10 +437,7 @@ namespace PFNN {
 				var scalePosition = 1f - Mathf.Pow(1f - (float)(i - trajectoryLength / 2) / (trajectoryLength / 2), biasPosition);
 				var scaleDirection = 1f - Mathf.Pow(1f - (float)(i - trajectoryLength / 2) / (trajectoryLength / 2), biasDirection);
 
-				positionsBlend[i] = positionsBlend[i - 1] + Vector3.Lerp(
-					points[i].position - points[i - 1].position,
-					targetVelocity,
-					scalePosition);
+				positionsBlend[i] = positionsBlend[i - 1] + Vector3.Lerp(points[i].position - points[i - 1].position, targetVelocity, scalePosition);
 
 				// Collide with walls
 				var trajectoryPoint = new Vector2(positionsBlend[i].x * scaleFactor, positionsBlend[i].z * scaleFactor);
@@ -519,7 +517,7 @@ namespace PFNN {
 			}
 
 			if (setWall) return;
-			if (removeWallCoroutine is not null) StopCoroutine(removeWallCoroutine);
+			if (removeWallCoroutine is not null) return;
 			removeWallCoroutine = StartCoroutine(Timer.Start(() => {
 				terrainWalls[^1].wallStart = new Vector2(Mathf.Infinity, Mathf.Infinity);
 				terrainWalls[^1].wallEnd = new Vector2(Mathf.Infinity, Mathf.Infinity);

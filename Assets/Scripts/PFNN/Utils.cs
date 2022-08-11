@@ -51,33 +51,4 @@ public static class Utils {
 		var bDist = (b - target).sqrMagnitude;
 		return aDist < bDist ? a : b;
 	}
-
-	public static Vector3 ToFixedHeight(Vector2 p, float y) => new Vector3(p.x, y, p.y);
-
-	public static Vector2 Rotate(this Vector2 v, float degrees) {
-		var sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
-		var cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
-
-		var tx = v.x;
-		var ty = v.y;
-		v.x = cos * tx - sin * ty;
-		v.y = sin * tx + cos * ty;
-		return v;
-	}
-
-	public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> source) {
-		return source.Select((item, index) => (item, index));
-	}
-	
-	public static void Concatentate<T>(this IEnumerable<IEnumerable<T>> data, out T[] concatenatedData, out long[] starts) {
-		starts = new long[data.LongCount()];
-		starts[0] = 0;
-
-		var concat = data.First();
-		foreach (var (enumerable, i) in data.WithIndex().Skip(1)) {
-			starts[i] = concat.LongCount();
-			concat = concat.Concat(enumerable);
-		}
-		concatenatedData = concat.ToArray();
-	}
 }

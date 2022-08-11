@@ -22,11 +22,11 @@ namespace MuVR {
 		// Update is called once per frame, and make sure that our transform is properly synced with the pose according to the pose mode
 		public new void LateUpdate() {
 			if (mode == SyncPose.SyncMode.SyncTo) {
-				updatePosition(ref setTarget.pose.position, targetJoint.jointPoint.transform.position);
-				updateRotation(ref setTarget.pose.rotation, targetJoint.jointPoint.transform.rotation);
+				UpdatePosition(ref setTarget.pose.position, targetJoint.jointPoint.transform.position);
+				UpdateRotation(ref setTarget.pose.rotation, targetJoint.jointPoint.transform.rotation);
 			} else {
-				targetJoint.position = targetJoint.jointPoint.transform.position = updatePosition(transform.position, getTarget.pose.position);
-				targetJoint.rotation = targetJoint.jointPoint.transform.rotation = updateRotation(transform.rotation, getTarget.pose.rotation);
+				targetJoint.position = targetJoint.jointPoint.transform.position = UpdatePosition(transform.position, getTarget.pose.position);
+				targetJoint.rotation = targetJoint.jointPoint.transform.rotation = UpdateRotation(transform.rotation, getTarget.pose.rotation);
 			}
 		}
 	}
