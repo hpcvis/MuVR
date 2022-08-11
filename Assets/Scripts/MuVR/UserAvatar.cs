@@ -11,6 +11,8 @@ namespace MuVR {
 	// Component that holds pose data. It acts as the glue between the input layer and the networking layer.
 	// Additionally, it provides a convenient method for spawning 
 	public class UserAvatar : NetworkBehaviour {
+		#region Pose Slots
+
 		// Class wrapper around unity's Pose to enable reference semantics
 		[Serializable]
 		public class PoseRef {
@@ -24,10 +26,34 @@ namespace MuVR {
 		// Poses that can can be read to or from by the input and networking layers respectively
 		[Title("Pose Transforms")] 
 		public StringToPoseRefDictionary slots = new();
+		
+		// Provide separate functions that return a reference to the PoseRef used for setting and getting
+		// NOTE: Provides support for the PostProcessed Avatar
+		public virtual PoseRef SetterPoseRef(string slot) => slots[slot];
+		public virtual PoseRef GetterPoseRef(string slot) => slots[slot];
 
+		// Creates a game object that synchronizes its transform with this slot, and return its transform
+		public Transform FindOrCreatePoseProxy(string slot) {
+			Transform proxy, cached;
+			if (!slots.ContainsKey(slot)) throw new ArgumentException("The given slot " + slot + " is not stored within this avatar");
+			if ((proxy = transform.Find("Proxies")) is null) proxy = new GameObject { transform = { parent = this.transform }, name = "Proxies" }.transform;
+			if ((cached = proxy.Find(slot)) is not null) return cached;
+
+			var sp = new GameObject { transform = { parent = proxy }, name = slot }.AddComponent<SyncPose>();
+			sp.targetAvatar = this;
+			sp.slot = slot;
+			sp.mode = SyncPose.SyncMode.SyncFrom;
+
+			return sp.transform;
+		}
+
+		#endregion
+		
 
 		// -- Input Spawning --
 
+
+		#region Input Spawning
 
 		[Title("Input Configuration")]
 		[PropertyTooltip("List of input controls that may be spawned as appropriate")]
@@ -94,5 +120,7 @@ namespace MuVR {
 			foreach (var sync in syncs)
 				sync.enabled = false;
 		}
+		
+		#endregion
 	}
 }

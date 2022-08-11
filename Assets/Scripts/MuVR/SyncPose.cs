@@ -35,18 +35,20 @@ namespace MuVR {
 		public SyncMode mode;
 
 		[PropertyTooltip("Offset applied while syncing")]
-		public Pose offset = Pose.identity;
+		public Pose localOffset = Pose.identity;
+		public Vector3 globalPositionOffset = Vector3.zero;
 
-		[PropertyTooltip("Whether or not we should sync positions or rotations")]
-		public bool syncPositions = true, syncRotations = true;
+		[PropertyTooltip("The weight of position and rotation synchronization, .5 will blend ")]
+		public float positionWeight = 1, rotationWeight = 1;
 
 		[PropertyTooltip("The axes that should be synchronized")]
+		[Range(0, 1)]
 		public SyncedAxis positionAxis = SyncedAxis.Everything, rotationAxis = SyncedAxis.Everything;
 
-		[SerializeField, ReadOnly] private UserAvatar.PoseRef target;
+		[SerializeField, ReadOnly] protected UserAvatar.PoseRef setTarget, getTarget;
 
 		// When the object is created make sure to update the target
-		private void Start() => UpdateTarget();
+		public void Start() => UpdateTarget();
 
 		// Function that finds the target from the target avatar and slot
 		public void UpdateTarget() {
@@ -58,53 +60,62 @@ namespace MuVR {
 			if (!targetAvatar.slots.Keys.Contains(slot))
 				throw new Exception("The requested slot can not be found");
 
-			target = targetAvatar.slots[slot];
+			setTarget = targetAvatar.SetterPoseRef(slot); 
+			getTarget = targetAvatar.GetterPoseRef(slot);
 		}
 
 		// Update is called once per frame, and make sure that our transform is properly synced with the pose according to the pose mode
-		private void LateUpdate() {
+		public void LateUpdate() {
 			if (mode == SyncMode.SyncTo) {
-				updatePosition(ref target.pose.position, transform.position);
-				updateRotation(ref target.pose.rotation, transform.rotation);
-			}
-			else {
-				transform.position = updatePosition(transform.position, target.pose.position);
-				transform.rotation = updateRotation(transform.rotation, target.pose.rotation);
+				UpdatePosition(ref setTarget.pose.position, transform.position);
+				UpdateRotation(ref setTarget.pose.rotation, transform.rotation);
+			} else {
+				transform.position = UpdatePosition(transform.position, getTarget.pose.position);
+				transform.rotation = UpdateRotation(transform.rotation, getTarget.pose.rotation);
 			}
 		}
 
 		// Updates the position value, taking ignored axes into account (designed to be generalizable so can work for either case)
-		private Vector3 updatePosition(Vector3 dest, Vector3 src) {
-			if (!syncPositions) return dest;
+		protected Vector3 UpdatePosition(Vector3 dest, Vector3 src) {
+			if (!(positionWeight > 0)) return dest;
+			if (positionAxis == SyncedAxis.None) return dest;
+			var offset = globalPositionOffset + transform.TransformDirection(localOffset.position);
 			if (positionAxis == SyncedAxis.Everything)
-				return src + offset.position;
+				return Vector3.Lerp(dest, src + offset, positionWeight);
 
-			if ((positionAxis & SyncedAxis.X) > 0) dest.x = src.x + offset.position.x;
-			if ((positionAxis & SyncedAxis.Y) > 0) dest.y = src.y + offset.position.y;
-			if ((positionAxis & SyncedAxis.Z) > 0) dest.z = src.z + offset.position.z;
-			return dest;
+			var update = dest;
+			if ((positionAxis & SyncedAxis.X) > 0) update.x = src.x + offset.x;
+			if ((positionAxis & SyncedAxis.Y) > 0) update.y = src.y + offset.y;
+			if ((positionAxis & SyncedAxis.Z) > 0) update.z = src.z + offset.z;
+			return Vector3.Lerp(dest, update, positionWeight);
 		}
-
-		private void updatePosition(ref Vector3 dest, Vector3 src) => dest = updatePosition(dest, src);
+		protected void UpdatePosition(ref Vector3 dest, Vector3 src) => dest = UpdatePosition(dest, src);
 
 		// Updates the rotation value, taking ignored axes into account (designed to be generalizable so can work for either case)
-		private Quaternion updateRotation(Quaternion dest, Quaternion src) {
-			if (!syncRotations) return dest;
-			if (rotationAxis == SyncedAxis.Everything)
-				return src * offset.rotation;
+		protected Quaternion UpdateRotation(Quaternion dest, Quaternion src) {
+			if (!(rotationWeight > 0)) return dest;
 			if (rotationAxis == SyncedAxis.None) return dest;
+			if (rotationAxis == SyncedAxis.Everything)
+				return Quaternion.Slerp(dest, src * localOffset.rotation, rotationWeight);
 
-			var update = src * offset.rotation;
+			var update = src * localOffset.rotation;
 			if ((rotationAxis & SyncedAxis.X) == 0)
 				update.eulerAngles = new Vector3(dest.eulerAngles.x, update.eulerAngles.y, update.eulerAngles.z);
 			if ((rotationAxis & SyncedAxis.Y) == 0)
 				update.eulerAngles = new Vector3(update.eulerAngles.x, dest.eulerAngles.y, update.eulerAngles.z);
 			if ((rotationAxis & SyncedAxis.Z) == 0)
 				update.eulerAngles = new Vector3(update.eulerAngles.x, update.eulerAngles.y, dest.eulerAngles.z);
-			return update;
+			return Quaternion.Slerp(dest, update, rotationWeight);
 		}
+		protected void UpdateRotation(ref Quaternion dest, Quaternion src) => dest = UpdateRotation(dest, src);
+		
 
-		private void updateRotation(ref Quaternion dest, Quaternion src) => dest = updateRotation(dest, src);
+
+
+		// Extra property that only exists in the editor which determines if the object's additional settings should be displayed or not
+#if UNITY_EDITOR
+		[HideInInspector] public bool showSettings;
+#endif
 	}
 
 #if UNITY_EDITOR
@@ -113,17 +124,18 @@ namespace MuVR {
 	[CanEditMultipleObjects]
 	public class SyncPoseEditor : Editor {
 		// Bool indicating if the target pose debug dropdown should be expanded or not
-		private bool showTarget = false;
+		[SerializeField] protected bool showTarget = false;
 
 		// Properties of the object we wish to show a default UI for
-		private SerializedProperty targetAvatar, mode, syncPositions, syncRotations, offset;
+		protected SerializedProperty targetAvatar, mode, positionWeight, rotationWeight, globalOffset, localOffset;
 
-		private void OnEnable() {
+		protected void OnEnable() {
 			targetAvatar = serializedObject.FindProperty("targetAvatar");
 			mode = serializedObject.FindProperty("mode");
-			syncPositions = serializedObject.FindProperty("syncPositions");
-			syncRotations = serializedObject.FindProperty("syncRotations");
-			offset = serializedObject.FindProperty("offset");
+			positionWeight = serializedObject.FindProperty("positionWeight");
+			rotationWeight = serializedObject.FindProperty("rotationWeight");
+			globalOffset = serializedObject.FindProperty("globalPositionOffset");
+			localOffset = serializedObject.FindProperty("localOffset");
 		}
 
 		// Immediate mode GUI used to edit a SyncPose in the inspector
@@ -132,11 +144,39 @@ namespace MuVR {
 
 			serializedObject.Update();
 
+			TargetAvatarField(sync);
+			PoseSlotField(sync);
+			ModeField(sync);
+
+			// Toggle hiding additional settings
+			sync.showSettings = EditorGUILayout.Foldout(sync.showSettings, "Additional Settings");
+			if (sync.showSettings) {
+				PositionSettingsField(sync);
+				RotationSettingsField(sync);
+				
+				// Present a field with the pose offset
+				EditorGUILayout.PropertyField(localOffset);
+				EditorGUILayout.PropertyField(globalOffset);
+			}
+			
+			PoseDebugField(sync);
+
+			// Apply changes to the fields
+			var oldAvatar = sync.targetAvatar;
+			serializedObject.ApplyModifiedProperties();
+			// If the target avatar has changed, automatically select its first slot
+			if (sync.targetAvatar != oldAvatar && sync.targetAvatar is not null)
+				sync.slot = sync.targetAvatar.slots.Keys.First();
+		}
+
+		public void TargetAvatarField(SyncPose sync) {
 			// Field for the TargetAvatar
 			EditorGUILayout.PropertyField(targetAvatar, new GUIContent("Target Avatar") {
 				tooltip = "UserAvatar we are syncing with.\nNOTE: Drag the prefab with the UserAvatar here when modifying the input prefab."
 			});
+		}
 
+		public void PoseSlotField(SyncPose sync) {
 			// Present a dropdown menu listing the slots found on the target (no list and disabled if not found)
 			EditorGUILayout.BeginHorizontal();
 			{
@@ -161,60 +201,68 @@ namespace MuVR {
 				GUI.enabled = cache;
 			}
 			EditorGUILayout.EndHorizontal();
+		}
 
+		public void ModeField(SyncPose sync) {
 			// Present a dropdown menu listing the possible modes (sync to/from)
 			EditorGUILayout.PropertyField(mode, new GUIContent("Mode") {
 				tooltip = "Should we send our transform to the pose, or update our transform to match the pose?"
 			});
+		}
 
-			// Toggles weather to enable or disable syncing of positions
-			EditorGUILayout.PropertyField(syncPositions);
-			if (syncPositions.boolValue) {
-				var axis = (SyncPose.SyncedAxis)EditorGUILayout.EnumFlagsField(new GUIContent("Position Axes") {
-					tooltip = "The axes that should be synchronized."
-				}, sync.positionAxis);
-				if (axis != sync.positionAxis) {
-					Undo.RecordObject(target, "Update Position's Synced Axes");
-					sync.positionAxis = axis;
-				}
+		public void PositionSettingsField(SyncPose sync) {
+			var weight = EditorGUILayout.Slider("Position Weight", sync.positionWeight, 0, 1);
+			if (Math.Abs(weight - sync.positionWeight) > Mathf.Epsilon) {
+				Undo.RecordObject(target, "Update Position's Weight");
+				sync.positionWeight = weight;
 			}
+			
+			if (!(positionWeight.floatValue > 0)) return;
+			var axis = (SyncPose.SyncedAxis)EditorGUILayout.EnumFlagsField(new GUIContent("Position Axes") {
+				tooltip = "The axes that should be synchronized."
+			}, sync.positionAxis);
+			
+			if (axis == sync.positionAxis) return;
+			Undo.RecordObject(target, "Update Position's Synced Axes");
+			sync.positionAxis = axis;
+		}
 
-			// Toggles weather to enable or disable syncing of rotations
-			EditorGUILayout.PropertyField(syncRotations);
-			if (syncRotations.boolValue) {
-				var axis = (SyncPose.SyncedAxis)EditorGUILayout.EnumFlagsField(new GUIContent("Rotation Axes") {
-					tooltip = "The axes that should be synchronized."
-				}, sync.rotationAxis);
-				if (axis != sync.rotationAxis) {
-					Undo.RecordObject(target, "Update Rotation's Synced Axes");
-					sync.rotationAxis = axis;
-				}
+		public void RotationSettingsField(SyncPose sync) {
+			var weight = EditorGUILayout.Slider("Rotation Weight", sync.rotationWeight, 0, 1);
+			if (Math.Abs(weight - sync.rotationWeight) > Mathf.Epsilon) {
+				Undo.RecordObject(target, "Update Rotation's Weight");
+				sync.rotationWeight = weight;
 			}
+			
+			if (!(rotationWeight.floatValue > 0)) return;
+			var axis = (SyncPose.SyncedAxis)EditorGUILayout.EnumFlagsField(new GUIContent("Rotation Axes") {
+				tooltip = "The axes that should be synchronized."
+			}, sync.rotationAxis);
+			
+			if (axis == sync.rotationAxis) return;
+			Undo.RecordObject(target, "Update Rotation's Synced Axes");
+			sync.rotationAxis = axis;
+		}
 
-			// Present a field with the pose offset
-			EditorGUILayout.PropertyField(offset);
-
-			// Present a non-editable field with the debug pose (or an empty pose if the target is invalid)
-			if (sync.targetAvatar is not null)
-				PoseField("Pose Debug", sync.targetAvatar?.slots[sync.slot]?.pose ?? Pose.identity, ref showTarget, false);
-
-			// Apply changes to the fields
-			var oldAvatar = sync.targetAvatar;
-			serializedObject.ApplyModifiedProperties();
-			// If the target avatar has changed, automatically select its first slot
-			if (sync.targetAvatar != oldAvatar && sync.targetAvatar is not null)
-				sync.slot = sync.targetAvatar.slots.Keys.First();
+		public void PoseDebugField(SyncPose sync) {
+			try {
+				// Present a non-editable field with the debug pose (or an empty pose if the target is invalid)
+				if (sync.targetAvatar is null || !sync.targetAvatar.slots.ContainsKey(sync.slot)) return;
+				if(sync.mode == SyncPose.SyncMode.SyncTo) 
+					PoseField("Pose Debug", sync.targetAvatar.SetterPoseRef(sync.slot).pose, ref showTarget, false);
+				else PoseField("Pose Debug", sync.targetAvatar.GetterPoseRef(sync.slot).pose, ref showTarget, false);
+			} catch(NullReferenceException) {}
 		}
 
 
 		// Function that validates weather or not a slot's name is invalid
-		private bool ValidateSlot(string name) {
+		protected bool ValidateSlot(string name) {
 			var sync = (SyncPose)target;
 			return sync?.targetAvatar?.slots?.Keys.Contains(name) ?? false;
 		}
 
 		// Function that displays a pose field with dropdown hiding position and rotation
-		private Pose PoseField(string label, Pose pose, ref bool show, bool editable = true,
+		protected Pose PoseField(string label, Pose pose, ref bool show, bool editable = true,
 			params GUILayoutOption[] options) {
 			var cache = GUI.enabled;
 			if (show = EditorGUILayout.BeginFoldoutHeaderGroup(show, label)) {
@@ -237,23 +285,13 @@ namespace MuVR {
 		}
 
 		// Function called when a new slot is selected
-		private void OnSlotSelect(object s) {
+		protected void OnSlotSelect(object s) {
 			if (s is not string slot)
 				throw new ArgumentException(nameof(String));
 
 			Undo.RecordObject(target, "Slot Select");
 			var sync = (SyncPose)target;
 			sync.slot = slot;
-		}
-
-		// Function called when a new mode is selected
-		private void OnModeSelect(object m) {
-			if (m is not SyncPose.SyncMode mode)
-				throw new ArgumentException(nameof(SyncPose.SyncMode));
-
-			Undo.RecordObject(target, "Mode Select");
-			var sync = (SyncPose)target;
-			sync.mode = mode;
 		}
 	}
 #endif
