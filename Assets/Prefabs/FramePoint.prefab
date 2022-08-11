@@ -43,7 +43,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4949307972307278}
-  - component: {fileID: 119893404117113286}
+  - component: {fileID: 2396483740893289960}
   m_Layer: 9
   m_Name: Direction
   m_TagString: Untagged
@@ -66,25 +66,29 @@ Transform:
   m_Father: {fileID: 4364052982493774}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!119 &119893404117113286
-Projector:
+--- !u!114 &2396483740893289960
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058726128992714}
   m_Enabled: 1
-  serializedVersion: 2
-  m_NearClipPlane: 0
-  m_FarClipPlane: 5
-  m_FieldOfView: 70
-  m_AspectRatio: 1
-  m_Orthographic: 1
-  m_OrthographicSize: 0.4
-  m_Material: {fileID: 2100000, guid: b1a70b2397a4e5a46b1b0e6406266905, type: 2}
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 512
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 47a2fe8222b3cd3428e91f1e1baef861, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 2.5}
+  m_Size: {x: 0.8, y: 0.8, z: 5}
+  m_FadeFactor: 1
 --- !u!1 &1060558404380788
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4364052982493774}
-  - component: {fileID: 119106740167366046}
+  - component: {fileID: 2362522377413493345}
   m_Layer: 9
   m_Name: Middle
   m_TagString: Untagged
@@ -118,25 +122,29 @@ Transform:
   m_Father: {fileID: 4855402542971376}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!119 &119106740167366046
-Projector:
+--- !u!114 &2362522377413493345
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060558404380788}
   m_Enabled: 1
-  serializedVersion: 2
-  m_NearClipPlane: 0
-  m_FarClipPlane: 2
-  m_FieldOfView: 10
-  m_AspectRatio: 1
-  m_Orthographic: 1
-  m_OrthographicSize: 0.15
-  m_Material: {fileID: 2100000, guid: 4afe4e590cad85f469c0e9d0bb527078, type: 2}
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 512
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 04aa0151e61575d4cba798b2e4994e0e, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 1}
+  m_Size: {x: 0.3, y: 0.3, z: 2}
+  m_FadeFactor: 1
 --- !u!1 &1523220951082338
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4336289243756648}
-  - component: {fileID: 119191986711945752}
+  - component: {fileID: 3279993640979276586}
   m_Layer: 9
   m_Name: Right
   m_TagString: Untagged
@@ -169,25 +177,29 @@ Transform:
   m_Father: {fileID: 4855402542971376}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!119 &119191986711945752
-Projector:
+--- !u!114 &3279993640979276586
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523220951082338}
   m_Enabled: 1
-  serializedVersion: 2
-  m_NearClipPlane: 0
-  m_FarClipPlane: 2
-  m_FieldOfView: 10
-  m_AspectRatio: 1
-  m_Orthographic: 1
-  m_OrthographicSize: 0.15
-  m_Material: {fileID: 2100000, guid: 4afe4e590cad85f469c0e9d0bb527078, type: 2}
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 512
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 04aa0151e61575d4cba798b2e4994e0e, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 1}
+  m_Size: {x: 0.3, y: 0.3, z: 2}
+  m_FadeFactor: 1
 --- !u!1 &1805605062807886
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4780008307788920}
-  - component: {fileID: 119790715445674346}
+  - component: {fileID: 6025105671240481538}
   m_Layer: 9
   m_Name: Left
   m_TagString: Untagged
@@ -220,22 +232,26 @@ Transform:
   m_Father: {fileID: 4855402542971376}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!119 &119790715445674346
-Projector:
+--- !u!114 &6025105671240481538
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805605062807886}
   m_Enabled: 1
-  serializedVersion: 2
-  m_NearClipPlane: 0
-  m_FarClipPlane: 2
-  m_FieldOfView: 10
-  m_AspectRatio: 1
-  m_Orthographic: 1
-  m_OrthographicSize: 0.15
-  m_Material: {fileID: 2100000, guid: 4afe4e590cad85f469c0e9d0bb527078, type: 2}
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 512
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 04aa0151e61575d4cba798b2e4994e0e, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 1}
+  m_Size: {x: 0.3, y: 0.3, z: 2}
+  m_FadeFactor: 1

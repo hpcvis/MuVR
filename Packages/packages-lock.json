@@ -9,6 +9,15 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.burst": {
+      "version": "1.7.3",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.mathematics": "1.2.1"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.collab-proxy": {
       "version": "1.17.2",
       "depth": 0,
