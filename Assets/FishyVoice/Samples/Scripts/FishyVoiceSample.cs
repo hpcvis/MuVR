@@ -1,15 +1,18 @@
 using System;
 using FishNet.Transporting;
+using TriInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FishyVoice {
+namespace FishyVoice.Samples {
 	public class FishyVoiceSample : NetworkHudCanvases {
 		// Indicator indicating if voice should be enabled or not
 		public Image voiceIndicator;
 
 		[Header("Voice Settings")]
-		[Tooltip("Name of the room that we should join by default")]
+		[SerializeField]
+		private bool spacer;
+		[PropertyTooltip("Name of the room that we should join by default")]
 		public string roomName = "<DEFAULT>";
 
 		// Variable indicating the current connection state of the voice network
@@ -24,6 +27,11 @@ namespace FishyVoice {
 			if (voiceNetwork is null)
 				Debug.LogError("Voice Network object not found, voice connectivity will not work!");
 		}
+
+		protected virtual void InitAgent() {
+			agent?.Dispose();
+			agent = voiceNetwork.CreateAgent();
+		}
 		
 		protected new void Start() {
 			base.Start();
@@ -36,8 +44,7 @@ namespace FishyVoice {
 			UpdateColor(LocalConnectionState.Stopped, ref voiceIndicator);
 
 			// Create agent and listen for its messages
-			agent?.Dispose();
-			agent = voiceNetwork.CreateAgent();
+			InitAgent();
 			agent.Network.OnJoinedChatroom += VoiceStateUpdated;
 			agent.Network.OnLeftChatroom += VoiceStateUpdated;
 			agent.Network.OnClosedChatroom += VoiceStateUpdated;

@@ -39,7 +39,7 @@ In any *Unix terminal or the git terminal on Windows.
 
 Before you begin, we would recommend familiarizing yourself with [Fish-Networking]'s documentation which can be found here: https://fish-networking.gitbook.io/docs/
 
-Once you have done that the sample scenes in `Assets/Samples/PingPong` and `Assets/Samples/OwnershipTransferDemo` provide a basic overview of how a simple scene is put together. Likewise the `Assets/FishyVoice/Samples` directory includes several examples of voice functionality in isolation (a basic voice sample).
+Once you have done that the sample scenes in `Assets/Samples/PingPong` and `Assets/Samples/OwnershipTransferDemo` provide a basic overview of how a simple scene is put together. Likewise the `Assets/FishyVoice/Samples` directory includes several examples of voice functionality in isolation (a basic voice sample and a positional audio sample).
 
 To create your own scene first, add the NetworkManager prefab (either from `Assets/FishyVoice/Samples/Prefabs/NetworkManager` [with voice] or `Assets/Prefabs/NetworkManager`) to your scene. Next, create an object and attach a UserAvatar to it, configure all of the pose-slots you will need. Below this object add any graphics (hands, HMDs, etc...) you would like as children. Add a SyncPose referencing the UserAvatar and its appropriate slot set to SyncFrom mode so that positions will be copied to the SyncPose. Drag the UserAvatar object into your assets folder to make a prefab. 
 

@@ -9,13 +9,14 @@ using FishNet.Connection;
 using FishNet.Managing;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using FishNet.Serializing;
 using FishNet.Transporting;
 using TriInspector;
 using UnityEngine;
 using NetworkBehaviour = MuVR.Enhanced.NetworkBehaviour;
 
 namespace FishyVoice {
-	
+
 	// Component that provides a UniVoice ChatroomNetwork backed by the existing FishNetworking environment 
 	[DisallowMultipleComponent]
 	public class VoiceNetwork : NetworkBehaviour, IChatroomNetwork {
@@ -24,7 +25,7 @@ namespace FishyVoice {
 
 		// Struct that we broadcast across the network, contains all of the audio data
 		public struct AudioBroadcast : IBroadcast {
-			public short id; // ClientId of the player who sent this audio
+			public short id; // ClientId of the audio's receiver
 			public int segmentIndex;
 			public int frequency;
 			public int channelCount;
@@ -33,10 +34,14 @@ namespace FishyVoice {
 			// Extra fields must be at the bottom so that AudioBroadcast and ChatroomAudioDTO have overlapping memory layouts
 			public string roomName; // Name of the room this audio is being sent to
 			public uint tick; // The tick this audio was sent on
-			public int senderID; // The client ID of the packet's sender
+			public short senderID; // The client ID of the packet's sender
+			public Vector3 senderPosition; // The position of the sender in the world
 		}
 
-
+		
+		// Reference to the agent that is managing this network (set automatically by the create agent functions)
+		// NOTE: If this is not set, positional audio will be automatically disabled
+		public Agent agent = null;
 		// Bool property checking if the network is currently active
 		protected bool networkActive => (IsServer && ServerManager.Started) || LocalConnection.IsActive;
 		// Variable tracking the current connection state of the network (connected? disconnected?)
@@ -132,11 +137,16 @@ namespace FishyVoice {
 
 			// Debug.Log($"Received data from {broadcastAudio.senderID}");
 
+			// If everything is in place for positional audio, update the position of the audio source
+			if (!(float.IsNaN(broadcastAudio.senderPosition.x) || float.IsNaN(broadcastAudio.senderPosition.y) || float.IsNaN(broadcastAudio.senderPosition.z)))
+				if ((agent?.PeerOutputs.ContainsKey(broadcastAudio.id) ?? false) && agent.PeerOutputs[broadcastAudio.id] is InbuiltAudioOutput iao) iao.AudioSource.transform.position = broadcastAudio.senderPosition;
+
 			OnAudioReceivedEnhanced?.Invoke(broadcastAudio);
 			OnAudioReceived?.Invoke(BroadcastUnion.ToDTO(broadcastAudio));
 		}
 
 		// Function called when audio is received on the server, it figures out where the audio needs to be forwarded and then does so.
+		private static readonly Dictionary<NetworkConnection, uint> lastTickReceived = new(); // Dictionary used to track the timestamp of the latest received packet and then discard any packets that are earlier 
 		[ServerRpc(RequireOwnership = false)]
 		protected void OnAudioBroadcastReceivedServerRPC(NetworkConnection sender, AudioBroadcast audio) {
 			// Make sure the targeted user is in the room (and data isn't forwarded back to the sender)
@@ -144,10 +154,13 @@ namespace FishyVoice {
 			if (!ServerManager.Clients.ContainsKey(audio.id)) return;
 			if (!openRooms.ContainsKey(audio.roomName)) return;
 			if (!openRooms[audio.roomName].Contains(audio.id)) return;
+			if (lastTickReceived.TryGetValue(sender, out var tick) && tick > audio.tick) return; // Ignore any old audio data
 
-			audio.senderID = sender.ClientId;
+			audio.senderID = (short)sender.ClientId;
 			// Debug.Log($"Forwarding data from {audio.senderID} to {audio.id}");
 
+			// Update the last received tick
+			lastTickReceived[sender] = audio.tick;
 			// Forward the received audio to the targeted user
 			OnAudioBroadcastReceiveTargetRPC(ServerManager.Clients[audio.id], audio);
 		}
@@ -315,7 +328,8 @@ namespace FishyVoice {
 			var data = BroadcastUnion.ToBroadcast(dtoData);
 			data.roomName = CurrentChatroomName;
 			data.tick = TimeManager.Tick;
-			data.senderID = LocalConnection.ClientId;
+			data.senderID = (short)LocalConnection.ClientId;
+			data.senderPosition = !(agent is null || PlayerPositionReference.instance is null) ? PlayerPositionReference.instance.position : new Vector3(float.NaN, float.NaN, float.NaN);
 
 			// Unreliably send it to the server
 			OnAudioBroadcastReceivedServerRPC(LocalConnection, data);
@@ -327,9 +341,11 @@ namespace FishyVoice {
 
 		// Creates a new ChatroomAgent using this network, given an audio input and an audio output factory
 		public Agent CreateAgent(IAudioInput audioInput, IAudioOutputFactory audioOutputFactory) {
-			return new Agent(this, audioInput, audioOutputFactory) {
+			var agent = new Agent(this, audioInput, audioOutputFactory) {
 				MuteSelf = false
 			};
+			this.agent = agent; // Register this new agent as our agent
+			return agent;
 		}
 
 		// Creates a new ChatroomAgent using this network, given an audio input (default audio output)
@@ -348,5 +364,39 @@ namespace FishyVoice {
 		public Agent CreateAgent() => CreateAgent(new InbuiltAudioOutputFactory());
 
 		#endregion
+	}
+
+	// Custom audio broadcast serializer
+	internal static class AudioBroadcastSerializer {
+		private static readonly Vector3 Vec3NaN = new (float.NaN, float.NaN, float.NaN);
+		
+		public static void WriteAudioBroadcast(this Writer writer, VoiceNetwork.AudioBroadcast data) {
+			var shouldSendPosition = !(float.IsNaN(data.senderPosition.x) || float.IsNaN(data.senderPosition.y) || float.IsNaN(data.senderPosition.z));
+			writer.WriteBoolean(shouldSendPosition);
+			writer.WriteInt16(data.id);
+			writer.WriteInt32(data.segmentIndex);
+			writer.WriteInt32(data.frequency);
+			writer.WriteInt32(data.channelCount);
+			writer.WriteArray(data.samples); // TODO: Should we compress the audio? Should we compress the whole packet?
+			writer.WriteString(data.roomName);
+			writer.WriteUInt32(data.tick);
+			writer.WriteInt16(data.senderID);
+			if(shouldSendPosition) writer.WriteVector3(data.senderPosition);
+		}
+		
+		public static VoiceNetwork.AudioBroadcast ReadAudioBroadcast(this Reader reader) {
+			var sentPosition = reader.ReadBoolean();
+			return new VoiceNetwork.AudioBroadcast() {
+				id = reader.ReadInt16(),
+				segmentIndex = reader.ReadInt32(),
+				frequency = reader.ReadInt32(),
+				channelCount = reader.ReadInt32(),
+				samples = reader.ReadArrayAllocated<float>(),
+				roomName = reader.ReadString(),
+				tick = reader.ReadUInt32(),
+				senderID = reader.ReadInt16(),
+				senderPosition = sentPosition ? reader.ReadVector3() : Vec3NaN
+			};
+		}
 	}
 }
