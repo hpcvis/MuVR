@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 8bea1fe28e0878449ae2f387e86feb57,
     type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 2ec746b12e17d3c4a91fac25f04c4585,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 7dbecb80993a4b343a5841054abea149,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -544,11 +544,11 @@ MonoBehaviour:
   _scenePathHash: 2022318177
   _sceneId: 8685790432469705015
   _sceneNetworkObjects:
-  - {fileID: 1696469370}
   - {fileID: 184229306}
   - {fileID: 1266367180}
   - {fileID: 1367552555}
   - {fileID: 1608710081}
+  - {fileID: 1696469370}
   - {fileID: 2146829495}
   - {fileID: 4860446019697322385}
   - {fileID: 5100199778064726583}
@@ -2312,11 +2312,11 @@ MonoBehaviour:
   _scenePathHash: 2022318177
   _sceneId: 8685790435645647840
   _sceneNetworkObjects:
-  - {fileID: 1696469370}
   - {fileID: 184229306}
   - {fileID: 1266367180}
   - {fileID: 1367552555}
   - {fileID: 1608710081}
+  - {fileID: 1696469370}
   - {fileID: 2146829495}
   - {fileID: 4860446019697322385}
   - {fileID: 5100199778064726583}
@@ -2387,11 +2387,11 @@ MonoBehaviour:
   _scenePathHash: 2022318177
   _sceneId: 8685790434126326083
   _sceneNetworkObjects:
-  - {fileID: 1696469370}
   - {fileID: 184229306}
   - {fileID: 1266367180}
   - {fileID: 1367552555}
   - {fileID: 1608710081}
+  - {fileID: 1696469370}
   - {fileID: 2146829495}
   - {fileID: 4860446019697322385}
   - {fileID: 5100199778064726583}
