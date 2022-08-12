@@ -2038,8 +2038,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   useJobs: 1
-  positionAlpha: 0.95
-  rotationAlpha: 0.95
+  positionAlpha: 0.8
+  rotationAlpha: 0.8
+  frequency: 60
 --- !u!114 &796977852
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -55,6 +55,7 @@ namespace MuVR {
 		// Unity job that applies post processing
 		protected struct PostProcessJob : IJobParallelFor {
 			public uint ownerID; // The ID of the UserAvatar in the static references
+			public float deltaTime;
 			public NativeArray<byte>.ReadOnly slotData;
 			public NativeArray<long>.ReadOnly slotStarts;
 
@@ -66,7 +67,7 @@ namespace MuVR {
 				var owner = UserAvatarPostProcessed.inScene[ownerID];
 				
 				if(owner.ShouldProcess(slot))
-					owner.GetProcessedPose(slot) = owner.OnPostProcess(slot, owner.GetProcessedPose(slot), owner.GetRawPose(slot));
+					owner.GetProcessedPose(slot) = owner.OnPostProcess(slot, owner.GetProcessedPose(slot), owner.GetRawPose(slot), deltaTime);
 				else if(owner.ShouldCopy(slot))
 					owner.GetProcessedPose(slot) = owner.GetRawPose(slot);
 			}
@@ -143,6 +144,7 @@ namespace MuVR {
 
 				postProcessJob = new PostProcessJob {
 					ownerID = indexInScene,
+					deltaTime = Time.deltaTime,
 					slotData = slotsNativeArray.AsReadOnly(),
 					slotStarts = startsNativeArray.AsReadOnly()
 				}.Schedule(rawSlotData.Count, 1); // Job is completed in LateUpdate
@@ -157,7 +159,7 @@ namespace MuVR {
 			{
 				// Process all of the data that should be processed
 				foreach (var slot in rawSlotData.Keys.Where(ShouldProcess))
-					GetProcessedPose(slot) = OnPostProcess(slot, GetProcessedPose(slot), GetRawPose(slot));
+					GetProcessedPose(slot) = OnPostProcess(slot, GetProcessedPose(slot), GetRawPose(slot), Time.deltaTime);
 
 				// Copy all of the data that should be copied
 				foreach (var slot in rawSlotData.Keys.Where(ShouldCopy))
@@ -171,6 +173,6 @@ namespace MuVR {
 		public void LateUpdate() => postProcessJob.Complete();
 
 		// Function that can be overridden in derived classes to process the data in some way
-		public abstract Pose OnPostProcess(string slot, Pose processed, Pose raw);
+		public abstract Pose OnPostProcess(string slot, Pose processed, Pose raw, float dt);
 	}
 }
