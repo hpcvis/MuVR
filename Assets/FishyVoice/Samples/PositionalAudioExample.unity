@@ -167,6 +167,12 @@ PrefabInstance:
       propertyPath: _sceneNetworkObjects.Array.data[1]
       value: 
       objectReference: {fileID: 1690818665}
+    - target: {fileID: 6534097567964003392, guid: f93d6b5be8c94364fb4192e827ce6234,
+        type: 3}
+      propertyPath: _spawnablePrefabs
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c6b85ac99d036c4281782a52b59ef61,
+        type: 2}
     - target: {fileID: 6534097567964003393, guid: f93d6b5be8c94364fb4192e827ce6234,
         type: 3}
       propertyPath: m_Name
@@ -781,7 +787,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d0a99caade0a68842b2274726d1bc7c3, type: 2}
+  - {fileID: 2100000, guid: 7cc437cc62bbc8a439e43239b465e454, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -869,7 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _overrideType: 3
-  _setHostVisibility: 1
+  _updateHostVisibility: 1
   _observerConditions: []
 --- !u!114 &1690818668
 MonoBehaviour:

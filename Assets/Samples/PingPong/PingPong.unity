@@ -1725,6 +1725,12 @@ PrefabInstance:
       propertyPath: _sceneNetworkObjects.Array.data[7]
       value: 
       objectReference: {fileID: 5100199778064726583}
+    - target: {fileID: 1420177980032600304, guid: 7328e618e8dc5f84987e09f5e751e875,
+        type: 3}
+      propertyPath: _spawnablePrefabs
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c6b85ac99d036c4281782a52b59ef61,
+        type: 2}
     - target: {fileID: 1420177980032600305, guid: 7328e618e8dc5f84987e09f5e751e875,
         type: 3}
       propertyPath: m_Name
@@ -1927,7 +1933,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unreliableMTU: 1023
-  _attackResponseType: 1
   _ipv4BindAddress: 
   _ipv6BindAddress: 
   _port: 7770
@@ -1947,6 +1952,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Transport: {fileID: 1696469380}
+  _latencySimulator:
+    _enabled: 0
+    _simulateHost: 1
+    _latency: 0
+    _outOfOrder: 0
+    _packetLoss: 0
 --- !u!1 &1730332139
 GameObject:
   m_ObjectHideFlags: 0

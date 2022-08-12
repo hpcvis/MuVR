@@ -1,0 +1,3 @@
+[submodule "Submodules/FishNet"]
+	path = Submodules/FishNet
+	url = https://github.com/FirstGearGames/FishNet.git

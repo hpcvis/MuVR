@@ -54,7 +54,7 @@ MonoBehaviour:
   _dontDestroyOnLoad: 1
   _persistence: 0
   _logging: {fileID: 0}
-  _spawnablePrefabs: {fileID: 11400000, guid: 7a0cfb70696219f41840627264ad5aeb, type: 2}
+  _spawnablePrefabs: {fileID: 11400000, guid: 9c6b85ac99d036c4281782a52b59ef61, type: 2}
 --- !u!114 &292003422624771865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +450,7 @@ MonoBehaviour:
   serverIndicator: {fileID: 4895593233885180536}
   clientIndicator: {fileID: 7438274758774107762}
   voiceIndicator: {fileID: 1986118489215205536}
+  spacer: 0
   roomName: <DEFAULT>
 --- !u!223 &5192306327652594895
 Canvas:
@@ -867,6 +868,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VoiceNetwork
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966123051235842663, guid: 66f39a9d67098204db9b1e10bf69fb47,
+        type: 3}
+      propertyPath: _networkBehaviours.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7267191469258534597, guid: 66f39a9d67098204db9b1e10bf69fb47,
         type: 3}

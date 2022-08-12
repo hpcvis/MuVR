@@ -51,15 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 0
   <ComponentIndex>k__BackingField: 0
-  _networkBehaviours:
-  - {fileID: 417556268116593991}
-  - {fileID: 8573085070259277085}
-  - {fileID: 3368584409944152617}
-  - {fileID: 211491940691230872}
-  - {fileID: 8376110349855017419}
+  _networkBehaviours: []
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
-  _isNetworked: 0
+  _isNetworked: 1
   _isGlobal: 0
   _disableOnDespawn: 0
   NetworkObserver: {fileID: 0}
@@ -67,11 +62,7 @@ MonoBehaviour:
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 18434937746722712353
-  _sceneNetworkObjects:
-  - {fileID: 0}
-  - {fileID: 3368584409944152788}
-  - {fileID: 0}
-  - {fileID: 0}
+  _sceneNetworkObjects: []
 --- !u!114 &417556268116593991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +226,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d0a99caade0a68842b2274726d1bc7c3, type: 2}
+  - {fileID: 2100000, guid: 7cc437cc62bbc8a439e43239b465e454, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -301,13 +292,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 3368584409944152788}
-  _networkObjectCache: {fileID: 3368584409944152788}
+  _networkObjectCache: {fileID: 0}
   _synchronizeParent: 0
   _packing:
-    Position: 0
-    Rotation: 0
+    Position: 1
+    Rotation: 1
     Scale: 0
   _interpolation: 2
   _extrapolation: 2
