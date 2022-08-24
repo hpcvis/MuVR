@@ -365,7 +365,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   autoStartServerBuild: 1
-  serverTickRate: 128
+  serverTickRate: 60
   offlineScene: 
   onlineScene: 
   transport: {fileID: 1244801080}
