@@ -231,7 +231,7 @@ namespace PFNN {
 
 			switch (WeightsMode) {
 				case Mode.constant:
-					pIndex0 = (int)(p / (2 * PI) * 50);
+					pIndex0 = (int)Mathf.Max(p / (2 * PI) * 50, 0);
 
 					// Layer 1
 					H0 = W0[pIndex0] * X + B0[pIndex0];
