@@ -21,12 +21,12 @@ Our results are summarized in the table below:
 
 | Library | AVG FPS | Total Bandwidth  |
 | ------- | ------- | ---------------------- |
-| Fish-Networking | 60.59 | 1.19 MB/s |
-| Mirror | 60.55 | 2.39 MB/s** |
-| Netcode for GameObjects | 60.48 | 3.51 MB/s** | 
-| Photon Fusion | 22.92 | 0.56 MB/s | 
+| Fish-Networking | 60.19 | 0.94 MB/s |
+| Mirror | 60.23 | 2.15 MB/s** |
+| Netcode for GameObjects | 59.97 | 3.42 MB/s** | 
+| Photon Fusion | 27.30 | 0.44 MB/s | 
 
-** Due to how Mirror and Netcode for GameObjects calculate their tick rate, somewhere between 55-60 ticks are actually sent per second. Be aware that these numbers are slightly lower than they should be.
+** Due to how Mirror and Netcode for GameObjects calculate their tick rate, somewhere between 45-60 ticks are actually sent per second. Be aware that these numbers are slightly lower than they should be.
 
 ## Methodology
 
