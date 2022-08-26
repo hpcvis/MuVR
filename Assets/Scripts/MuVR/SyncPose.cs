@@ -149,7 +149,7 @@ namespace MuVR {
 			ModeField(sync);
 
 			// Toggle hiding additional settings
-			sync.showSettings = EditorGUILayout.Foldout(sync.showSettings, "Additional Settings");
+			sync.showSettings = EditorGUILayout.Foldout(sync.showSettings, "Additional Settings", EditorStyles.foldoutHeader);
 			if (sync.showSettings) {
 				PositionSettingsField(sync);
 				RotationSettingsField(sync);
