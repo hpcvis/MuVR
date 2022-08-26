@@ -658,6 +658,12 @@ MonoBehaviour:
   showSettings: 1
   character: {fileID: 968372967}
   joint: 8
+--- !u!4 &653378906 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8730018976116654385, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6815912552196192325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &655880382
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,7 +950,9 @@ MonoBehaviour:
   wallWidth: 1.5
   wallVal: 1.1
   autoWallShadowLength: 3
-  HMD: {fileID: 1388510873}
+  Hips: {fileID: 1388510873}
+  HMD: {fileID: 653378906}
+  Foot: {fileID: 922113724}
 --- !u!1 &991308013
 GameObject:
   m_ObjectHideFlags: 0

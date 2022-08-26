@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class VRController : PFNN.Controller {
 
-	public Transform HMD;
+	public Transform Hips, HMD, Foot;
+	private float initialHMDHeight = 1.5f;
 
 	private void OnEnable() {
 		UxrManager.AvatarMoved += OnAvatarMoved;
@@ -20,13 +21,17 @@ public class VRController : PFNN.Controller {
 
 	protected override void Update() {
 		// Make sure the body is always under the HMD (using strafing)
-		MoveCharacterTo(HMD.transform.forward, HMD.transform.position, 0, 1, .1f);
+		MoveCharacterTo(Hips.transform.forward, Hips.transform.position, 0, 1, .1f);
+
+		const float Cmax = .95f;
+		const float Cmid = .85f;
+		crouchedTarget = Mathf.Clamp01( 1 - ((HMD.transform.position.y - Foot.transform.position.y) / (Cmax * initialHMDHeight - Cmid * initialHMDHeight) - Cmid / (Cmax - Cmid)) );
 
 		base.Update();
 	}
 
 	protected void TeleportLegs() {
-		initialWorldPosition = HMD.transform.position.FixedHeight(0);
+		initialWorldPosition = Hips.transform.position.FixedHeight(0);
 		initialWorldPosition.x += 3f; // Not entirely sure why this is necessary...
 		ResetCharacter();
 	}
