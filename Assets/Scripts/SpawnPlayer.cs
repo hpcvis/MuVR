@@ -8,9 +8,14 @@ public class SpawnPlayer : MonoBehaviour, INetworkRunnerCallbacks {
 	public NetworkPrefabRef playerPrefab;
 
 	public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) {
+		if (player != runner.LocalPlayer)
+			return;
+		
+#if !UNITY_SERVER
 		// Create a unique position for the player
 		var spawnPosition = new Vector3(player.RawEncoded % runner.Config.Simulation.DefaultPlayers * 3, 1, 0);
 		runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, player);
+#endif
 	}
 
 	public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }

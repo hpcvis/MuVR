@@ -6,20 +6,27 @@ public class SimulatePlayer : NetworkBehaviour {
 	private float nextRpc;
 	private Vector3 posGoal;
 	private Quaternion rotGoal;
-	
+
 	void Start() {
 		// Turn off fullscreen and set the default resolution
 		Screen.SetResolution(800, 600, false);
 	}
 
+	public override void Spawned() {
+		if (Object.InputAuthority == Runner.LocalPlayer) {
+			Object.RemoveInputAuthority();
+			Object.RequestStateAuthority();
+		}
+	}
+
 	public void Update() {
-		if (Object.InputAuthority == Runner.LocalPlayer && Time.time > nextRpc) {
+		if (Object.StateAuthority != Runner.LocalPlayer)
+			return;
+
+		if (Time.time > nextRpc) {
 			nextRpc = Time.time + 0.5f;
 			ServerRpc();
 		}
-		
-		if (!Runner.IsServer)
-			return;
 
 		transform.position = Vector3.MoveTowards(transform.position, posGoal, Time.deltaTime * 3f);
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, rotGoal, Time.deltaTime * 20f);
@@ -50,11 +57,11 @@ public class SimulatePlayer : NetworkBehaviour {
 		}
 	}
 
-	[Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+	[Rpc(RpcSources.StateAuthority, RpcTargets.Proxies)]
 	private void ServerRpc() {
 		ObserversRpc();
 	}
 
-	[Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+	[Rpc]
 	private void ObserversRpc() { }
 }
