@@ -25,6 +25,8 @@ namespace MuVR.Enhanced {
 		
 		public static Vector3 ToVec3(this Vector2 vec, float z = 0) => new Vector3(vec.x, vec.y, z);
 		public static Vector3 ToVec3(this Vector4 vec) => new Vector3(vec.x, vec.y, vec.z);
+
+		public static Quaternion AngularVelocityToQuaternion(this Vector3 v) => Quaternion.AngleAxis(v.magnitude, v.normalized);
 	}
 	
 	public static class Vector4Extensions {
@@ -38,6 +40,15 @@ namespace MuVR.Enhanced {
 			ret.position = Vector3.Lerp(a.position, b.position, t);
 			ret.rotation = Quaternion.Lerp(a.rotation, b.rotation, t);
 			return ret;
+		}
+	}
+
+	public static class QuaternionExtensions {
+		public static Quaternion Diff(this Quaternion to, Quaternion from) => to * Quaternion.Inverse(from);
+
+		public static Vector3 ToAngularVelocity(this Quaternion q) {
+			q.ToAngleAxis(out var angle, out var axis);
+			return axis * (angle * Mathf.Deg2Rad);
 		}
 	}
 	
