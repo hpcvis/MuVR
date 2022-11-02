@@ -6,6 +6,7 @@ using UnityEngine;
 public class VRController : PFNN.Controller {
 
 	public Transform Hips, HMD, Foot;
+	public float targetDistance = .13f;
 	private float initialHMDHeight = 1.5f;
 
 	private void OnEnable() {
@@ -21,7 +22,7 @@ public class VRController : PFNN.Controller {
 
 	protected override void Update() {
 		// Make sure the body is always under the HMD (using strafing)
-		MoveCharacterTo(Hips.transform.forward, Hips.transform.position, 0, 1, .1f);
+		MoveCharacterTo(Hips.transform.forward, Hips.transform.position, 0, 1, targetDistance);
 
 		const float Cmax = .95f;
 		const float Cmid = .85f;
