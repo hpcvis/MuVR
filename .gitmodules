@@ -1,3 +1,6 @@
 [submodule "Submodules/FishNet"]
 	path = Submodules/FishNet
 	url = https://github.com/FirstGearGames/FishNet.git
+[submodule "Submodules/UltimateXR"]
+	path = Submodules/UltimateXR
+	url = https://github.com/VRMADA/ultimatexr-unity.git

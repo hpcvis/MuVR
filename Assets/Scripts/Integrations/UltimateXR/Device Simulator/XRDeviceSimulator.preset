@@ -1,0 +1,259 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: XRDeviceSimulator
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 4685dbe662a7af644ad79e022f96aeb1,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_KeyboardXTranslateAction
+    value: 
+    objectReference: {fileID: -2435995061748527091, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_KeyboardYTranslateAction
+    value: 
+    objectReference: {fileID: 4091624078112751379, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_KeyboardZTranslateAction
+    value: 
+    objectReference: {fileID: 8957443236229058949, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ManipulateLeftAction
+    value: 
+    objectReference: {fileID: 3215650258570939094, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ManipulateRightAction
+    value: 
+    objectReference: {fileID: 138396950478516224, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ToggleManipulateLeftAction
+    value: 
+    objectReference: {fileID: 2547216639932606815, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ToggleManipulateRightAction
+    value: 
+    objectReference: {fileID: 743384497930276301, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ManipulateHeadAction
+    value: 
+    objectReference: {fileID: -3619485213038975404, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_MouseDeltaAction
+    value: 
+    objectReference: {fileID: -1273072440521047205, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_MouseScrollAction
+    value: 
+    objectReference: {fileID: 4546399164687744209, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_RotateModeOverrideAction
+    value: 
+    objectReference: {fileID: -8754530952185592012, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ToggleMouseTransformationModeAction
+    value: 
+    objectReference: {fileID: 3100586429251580691, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_NegateModeAction
+    value: 
+    objectReference: {fileID: 1882878426541990298, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_XConstraintAction
+    value: 
+    objectReference: {fileID: -8086843181801629294, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_YConstraintAction
+    value: 
+    objectReference: {fileID: 5691479700773754790, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ZConstraintAction
+    value: 
+    objectReference: {fileID: 1644704167276153141, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ResetAction
+    value: 
+    objectReference: {fileID: -2638007419058092452, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ToggleCursorLockAction
+    value: 
+    objectReference: {fileID: -2382836779261746822, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ToggleDevicePositionTargetAction
+    value: 
+    objectReference: {fileID: -6716103979869350223, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_TogglePrimary2DAxisTargetAction
+    value: 
+    objectReference: {fileID: -7682297331024740639, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_ToggleSecondary2DAxisTargetAction
+    value: 
+    objectReference: {fileID: 1155009490345466815, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_Axis2DAction
+    value: 
+    objectReference: {fileID: 3916730463652292459, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_RestingHandAxis2DAction
+    value: 
+    objectReference: {fileID: 3286401898038372283, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_GripAction
+    value: 
+    objectReference: {fileID: -681151063944262417, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_TriggerAction
+    value: 
+    objectReference: {fileID: -2775837120590753941, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_PrimaryButtonAction
+    value: 
+    objectReference: {fileID: -160020527567978557, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_SecondaryButtonAction
+    value: 
+    objectReference: {fileID: -5294950080248747617, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_MenuAction
+    value: 
+    objectReference: {fileID: 885331191818821413, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_Primary2DAxisClickAction
+    value: 
+    objectReference: {fileID: -2837746240632994702, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_Secondary2DAxisClickAction
+    value: 
+    objectReference: {fileID: -7174462898626817516, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_Primary2DAxisTouchAction
+    value: 
+    objectReference: {fileID: -5833971730023712372, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_Secondary2DAxisTouchAction
+    value: 
+    objectReference: {fileID: 2328165288370724080, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_PrimaryTouchAction
+    value: 
+    objectReference: {fileID: 2841133684394947652, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_SecondaryTouchAction
+    value: 
+    objectReference: {fileID: -8190023648362360997, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: m_CameraTransform
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_KeyboardTranslateSpace
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_MouseTranslateSpace
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_KeyboardXTranslateSpeed
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_KeyboardYTranslateSpeed
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_KeyboardZTranslateSpeed
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_MouseXTranslateSensitivity
+    value: 0.0004
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_MouseYTranslateSensitivity
+    value: 0.0004
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_MouseScrollTranslateSensitivity
+    value: 0.0002
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_MouseXRotateSensitivity
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_MouseYRotateSensitivity
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_MouseScrollRotateSensitivity
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_MouseYRotateInvert
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_DesiredCursorLockMode
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_ActionAsset
+    value: 
+    objectReference: {fileID: -944628639613478452, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+      type: 3}
+  m_ExcludedProperties: []
