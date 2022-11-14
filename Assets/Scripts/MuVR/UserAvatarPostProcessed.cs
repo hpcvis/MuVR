@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MuVR.Enhanced;
@@ -75,6 +74,7 @@ namespace MuVR {
 
 		#endregion
 
+		[Title("Postprocessing")]
 		[PropertyTooltip("Weather or not post processing should be performed using jobs or sequentially")] 
 		public bool useJobs = true;
 		

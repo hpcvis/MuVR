@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 namespace MuVR {
 	
 	// FABRIK implementation modified based on the one in: https://github.com/ditzel/SimpleIK
-	public class SyncFABRIK : MonoBehaviour {
+	public class SyncFABRIK : Utility.SyncBase {
 		/// <summary>
 		///     Chain length of bones
 		/// </summary>

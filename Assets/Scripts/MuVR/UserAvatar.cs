@@ -1,6 +1,7 @@
 using System;
 using FishNet.Connection;
 using FishNet.Object;
+using MuVR.Utility;
 using RotaryHeart.Lib.SerializableDictionary;
 using TriInspector;
 using UnityEngine;
@@ -116,7 +117,7 @@ namespace MuVR {
 		// If we aren't the owner disable all of the pose syncs... just rely on the network transforms
 		[Client]
 		private void DisableSyncs() {
-			var syncs = GetComponentsInChildren<SyncPose>();
+			var syncs = GetComponentsInChildren<SyncBase>();
 			foreach (var sync in syncs)
 				sync.enabled = false;
 		}
