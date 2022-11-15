@@ -18,6 +18,11 @@ namespace MuVR.Enhanced {
 
 		public static Vector2 ToVec2(this Vector3 vec) => new Vector2(vec.x, vec.y);
 		public static Vector2 ToVec2(this Vector4 vec) => new Vector2(vec.x, vec.y);
+
+		public static bool Approximately(this Vector2 a, Vector2 b, float _epsilon) {
+			return (a - b).magnitude < _epsilon;
+		}
+		public static bool Approximately(this Vector2 a, Vector2 b) => Approximately(a, b, Mathf.Epsilon);
 	}
 
 	public static class Vector3Extensions {
@@ -25,6 +30,11 @@ namespace MuVR.Enhanced {
 		
 		public static Vector3 ToVec3(this Vector2 vec, float z = 0) => new Vector3(vec.x, vec.y, z);
 		public static Vector3 ToVec3(this Vector4 vec) => new Vector3(vec.x, vec.y, vec.z);
+		
+		public static bool Approximately(this Vector3 a, Vector3 b, float _epsilon) {
+			return (a - b).magnitude < _epsilon;
+		}
+		public static bool Approximately(this Vector3 a, Vector3 b) => Approximately(a, b, Mathf.Epsilon);
 
 		public static Quaternion AngularVelocityToQuaternion(this Vector3 v) => Quaternion.AngleAxis(v.magnitude, v.normalized);
 	}
@@ -32,6 +42,11 @@ namespace MuVR.Enhanced {
 	public static class Vector4Extensions {
 		public static Vector4 ToVec4(this Vector2 vec, float z = 0, float w = 0) => new Vector4(vec.x, vec.y, z, w);
 		public static Vector4 ToVec4(this Vector3 vec, float w = 0) => new Vector4(vec.x, vec.y, vec.z, w);
+		
+		public static bool Approximately(this Vector4 a, Vector4 b, float _epsilon) {
+			return (a - b).magnitude < _epsilon;
+		}
+		public static bool Approximately(this Vector4 a, Vector4 b) => Approximately(a, b, Mathf.Epsilon);
 	}
 
 	public static class PoseExtensions {
