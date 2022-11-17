@@ -147,7 +147,7 @@ namespace MuVR {
 					deltaTime = Time.deltaTime,
 					slotData = slotsNativeArray.AsReadOnly(),
 					slotStarts = startsNativeArray.AsReadOnly()
-				}.Schedule(rawSlotData.Count, 1); // Job is completed in LateUpdate
+				}.Schedule(rawSlotData.Count, 1); // Job completion is awaited in LateUpdate
 			}
 
 			#endregion

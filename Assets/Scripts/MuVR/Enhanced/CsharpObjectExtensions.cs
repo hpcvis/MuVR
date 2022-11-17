@@ -6,10 +6,15 @@ using System.Reflection.Emit;
 namespace MuVR.Enhanced {
 	public static class CsharpObjectExtensions {
 		
+		/// Cache holding generated functions which clone an object using generated IL code
 		private static Dictionary<Type, Delegate> CachedIl { get; } = new();
 		
-		// Function that clones an object into another object using IL (used to copy a base class into a derived class)
-		// From: https://stackoverflow.com/questions/14613919/copying-the-contents-of-a-base-class-from-a-derived-class
+		/// <summary>
+		///		Function that clones an object into another object using IL (used to copy a base class into a derived class)
+		///		From: <see href="https://stackoverflow.com/questions/14613919/copying-the-contents-of-a-base-class-from-a-derived-class"/>
+		/// </summary>
+		/// <param name="source">The object to clone</param>
+		/// <param name="destination">The object which will become a cone of the <paramref name="source"/></param>
 		public static void CloneObjectWithIL<T>(T source, T destination) {
 			//See http://lindexi.oschina.io/lindexi/post/C-%E4%BD%BF%E7%94%A8Emit%E6%B7%B1%E5%85%8B%E9%9A%86/
 			if (CachedIl.ContainsKey(typeof(T))) {
@@ -35,7 +40,12 @@ namespace MuVR.Enhanced {
 			clone(source, destination);
 		}
 
-		// Function that clones an object into another object using IL (used to copy a base class into a derived class)
+		/// <summary>
+		///		Function that clones an object into another object using IL (used to copy a base class into a derived class)
+		/// </summary>
+		/// <remarks>This version is an extension function permitting the form <c>dest.CloneFromWithIL(src)</c></remarks>
+		/// <param name="destination">The object which will become a cone of the <paramref name="source"/></param>
+		/// <param name="source">The object to clone</param>
 		public static T CloneFromWithIL<T>(this T destination, T source) {
 			CloneObjectWithIL(source, destination);
 			return destination;
