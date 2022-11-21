@@ -9,6 +9,9 @@ ModelImporter:
   - first:
       74: -4791504522942941401
     second: Armature|Armature|mixamo.com|Layer0
+  - first:
+      74: 6759086803382991731
+    second: Armature|Armature|Armature|Armature|mixamo.com|Layer0
   externalObjects: {}
   materials:
     materialImportMode: 2

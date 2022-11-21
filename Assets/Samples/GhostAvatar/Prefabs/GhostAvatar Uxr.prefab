@@ -91,11 +91,13 @@ MonoBehaviour:
   _showControllerHands: 1
   _avatarRenderers:
   - {fileID: 1062617472897169988}
-  - {fileID: 5889918827934773216}
+  - {fileID: 903925649172612843}
   - {fileID: 5534841904487219548}
   - {fileID: 5611890211026407641}
-  - {fileID: 3298200703068137048}
+  - {fileID: 986124617995608258}
   - {fileID: 9016101140815339124}
+  - {fileID: 2620826197881565698}
+  - {fileID: 5159396164393208381}
   _rigType: 1
   _rigExpandedInitialized: 1
   _rigFoldout: 1
@@ -200,22 +202,22 @@ MonoBehaviour:
         _initialLocalRotation: {x: 0.068158016, y: 0.13096178, z: 0.082205206, w: 0.9856195}
         _initialLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
         _initialUniversalLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
-        _initialPosition: {x: -0.8993853, y: 0.8633378, z: -0.03349321}
-        _initialLocalPosition: {x: -0.038919665, y: -0.000000008233323, z: 0.00000038364456}
+        _initialPosition: {x: -0.8993853, y: 0.8633378, z: -0.033493202}
+        _initialLocalPosition: {x: -0.038919665, y: -0.000000008233032, z: 0.00000038126038}
       _handUniversalLocalAxes:
         _transform: {fileID: 4636712376327790915}
-        _localRight: {x: -0.06880748, y: 0.000021268934, z: 0.99762994}
-        _localUp: {x: 0.00030910783, y: 0.99999994, z: -0}
-        _localForward: {x: -0.9976299, y: 0.00030837522, z: -0.06880749}
-        _universalToActualAxesRotation: {x: 0.000112983435, y: 0.7310292, z: 0.00010545927,
-          w: 0.6823462}
+        _localRight: {x: -0.06880753, y: 0.000021345517, z: 0.99762994}
+        _localUp: {x: 0.00031022064, y: 0.99999994, z: -0}
+        _localForward: {x: -0.9976299, y: 0.0003094854, z: -0.068807535}
+        _universalToActualAxesRotation: {x: 0.00011339019, y: 0.7310293, z: 0.00010583894,
+          w: 0.68234617}
         _initialRotation: {x: 0.00002601651, y: 0.000000040802615, z: -1.0767011e-12,
           w: 1}
         _initialLocalRotation: {x: 0.000025994656, y: 0.000000044703476, z: -1.1567093e-12,
           w: 1}
         _initialLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
         _initialUniversalLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
-        _initialPosition: {x: -0.7377994, y: 0.8656561, z: -0.061714087}
+        _initialPosition: {x: -0.7377994, y: 0.8656561, z: -0.06171408}
         _initialLocalPosition: {x: -0.27614462, y: 0.00000031253268, z: 0.00000019597312}
       _armUniversalLocalAxes:
         _transform: {fileID: 989552836269252873}
@@ -230,8 +232,8 @@ MonoBehaviour:
           w: 1}
         _initialLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
         _initialUniversalLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
-        _initialPosition: {x: -0.18760796, y: 0.86565536, z: -0.061714347}
-        _initialLocalPosition: {x: -0.12655036, y: -0.002659313, z: -0.026009219}
+        _initialPosition: {x: -0.18760796, y: 0.86565536, z: -0.06171434}
+        _initialLocalPosition: {x: -0.12655036, y: -0.002659313, z: -0.026009213}
       _forearmUniversalLocalAxes:
         _transform: {fileID: 1845790397268889499}
         _localRight: {x: 0.0000007093004, y: -0, z: 1}
@@ -245,7 +247,7 @@ MonoBehaviour:
           w: 1}
         _initialLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
         _initialUniversalLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
-        _initialPosition: {x: -0.46165478, y: 0.86565584, z: -0.06171428}
+        _initialPosition: {x: -0.46165478, y: 0.86565584, z: -0.061714273}
         _initialLocalPosition: {x: -0.2740468, y: 0.00000045776366, z: 0.0000000667572}
       _clavicleUniversalLocalAxes:
         _transform: {fileID: 3318527592628258594}
@@ -366,22 +368,22 @@ MonoBehaviour:
         _initialLocalRotation: {x: 0.06815798, y: -0.13096169, z: -0.082205236, w: 0.98561954}
         _initialLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
         _initialUniversalLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
-        _initialPosition: {x: 0.8993852, y: 0.8633234, z: -0.033494916}
-        _initialLocalPosition: {x: 0.038919665, y: -0.000000004223821, z: 0.0000003733395}
+        _initialPosition: {x: 0.8993852, y: 0.8633234, z: -0.03349492}
+        _initialLocalPosition: {x: 0.038919665, y: -0.0000000042241117, z: 0.0000003709553}
       _handUniversalLocalAxes:
         _transform: {fileID: 4347686849334905042}
-        _localRight: {x: -0.06881937, y: -0.000015707594, z: -0.9976291}
-        _localUp: {x: -0.0002282438, y: 1, z: 0}
-        _localForward: {x: 0.99762917, y: 0.00022770268, z: -0.068819374}
-        _universalToActualAxesRotation: {x: 0.00008342691, y: -0.73103327, z: -0.000077870136,
+        _localRight: {x: -0.06881934, y: -0.00001578417, z: -0.9976291}
+        _localUp: {x: -0.0002293566, y: 1, z: 0}
+        _localForward: {x: 0.99762917, y: 0.00022881285, z: -0.068819344}
+        _universalToActualAxesRotation: {x: 0.00008383366, y: -0.73103327, z: -0.000078249795,
           w: 0.6823418}
         _initialRotation: {x: 0.00002601651, y: -0.000000040802615, z: 1.0482794e-12,
           w: 1}
-        _initialLocalRotation: {x: 0.000025994656, y: -0.000000044703476, z: 1.1567094e-12,
+        _initialLocalRotation: {x: 0.000025994656, y: -0.000000044703476, z: 1.1567095e-12,
           w: 1}
         _initialLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
         _initialUniversalLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
-        _initialPosition: {x: 0.7377994, y: 0.8656556, z: -0.06171373}
+        _initialPosition: {x: 0.7377994, y: 0.8656556, z: -0.061713733}
         _initialLocalPosition: {x: 0.27614462, y: 0.00000015994478, z: 0.00000018166794}
       _armUniversalLocalAxes:
         _transform: {fileID: 2501790427645645549}
@@ -396,13 +398,13 @@ MonoBehaviour:
           w: 1}
         _initialLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
         _initialUniversalLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
-        _initialPosition: {x: 0.187608, y: 0.86565524, z: -0.06171396}
-        _initialLocalPosition: {x: 0.1265504, y: -0.0026601988, z: -0.026008958}
+        _initialPosition: {x: 0.187608, y: 0.86565524, z: -0.061713967}
+        _initialLocalPosition: {x: 0.1265504, y: -0.0026601988, z: -0.026008964}
       _forearmUniversalLocalAxes:
         _transform: {fileID: 4200833836603879535}
-        _localRight: {x: 0.000000655339, y: 0, z: -1}
+        _localRight: {x: 0.0000006688294, y: 0, z: -1}
         _localUp: {x: 0, y: 1, z: 0}
-        _localForward: {x: 1, y: 0.0000004316916, z: 0.000000655339}
+        _localForward: {x: 1, y: 0.0000004316916, z: 0.0000006688294}
         _universalToActualAxesRotation: {x: 0.00000015262599, y: -0.7071066, z: -0,
           w: 0.70710707}
         _initialRotation: {x: 0.000000021855698, y: 0.000000003900862, z: 3.177655e-16,
@@ -411,7 +413,7 @@ MonoBehaviour:
           w: 1}
         _initialLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
         _initialUniversalLocalReferenceRotation: {x: 0, y: 0, z: 0, w: 1}
-        _initialPosition: {x: 0.4616548, y: 0.8656555, z: -0.061713908}
+        _initialPosition: {x: 0.4616548, y: 0.8656555, z: -0.061713915}
         _initialLocalPosition: {x: 0.2740468, y: 0.00000030517577, z: 0.000000052452087}
       _clavicleUniversalLocalAxes:
         _transform: {fileID: 5694482453555979885}
@@ -1945,9 +1947,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2103077517920650490}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &903925649172612843 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1271354620333589009, guid: 07c46d6dd7bcdd8469249226200bb260,
+    type: 3}
+  m_PrefabInstance: {fileID: 2103077517920650490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &948755768381055669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8069032694317455793, guid: 07c46d6dd7bcdd8469249226200bb260,
+    type: 3}
+  m_PrefabInstance: {fileID: 2103077517920650490}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &986124617995608258 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1189173234606548024, guid: 07c46d6dd7bcdd8469249226200bb260,
     type: 3}
   m_PrefabInstance: {fileID: 2103077517920650490}
   m_PrefabAsset: {fileID: 0}
@@ -2035,6 +2049,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2103077517920650490}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &2620826197881565698 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5084376690138679560, guid: 07c46d6dd7bcdd8469249226200bb260,
+    type: 3}
+  m_PrefabInstance: {fileID: 2103077517920650490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3010324017882247526 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3812702128279385500, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -2056,12 +2076,6 @@ Transform:
 --- !u!4 &3274553290421496918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5738099386740791124, guid: 07c46d6dd7bcdd8469249226200bb260,
-    type: 3}
-  m_PrefabInstance: {fileID: 2103077517920650490}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &3298200703068137048 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -5698687623043439966, guid: 07c46d6dd7bcdd8469249226200bb260,
     type: 3}
   m_PrefabInstance: {fileID: 2103077517920650490}
   m_PrefabAsset: {fileID: 0}
@@ -2167,6 +2181,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2103077517920650490}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &5159396164393208381 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -2686825274482438457, guid: 07c46d6dd7bcdd8469249226200bb260,
+    type: 3}
+  m_PrefabInstance: {fileID: 2103077517920650490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5179037522314285833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6552740704638146547, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -2218,12 +2238,6 @@ Transform:
 --- !u!4 &5772565344422689639 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3660331089067622499, guid: 07c46d6dd7bcdd8469249226200bb260,
-    type: 3}
-  m_PrefabInstance: {fileID: 2103077517920650490}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &5889918827934773216 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -3705741025253610726, guid: 07c46d6dd7bcdd8469249226200bb260,
     type: 3}
   m_PrefabInstance: {fileID: 2103077517920650490}
   m_PrefabAsset: {fileID: 0}
