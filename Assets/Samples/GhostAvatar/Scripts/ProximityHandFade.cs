@@ -6,7 +6,7 @@ public class ProximityHandFade : MonoBehaviour {
 	private SkinnedMeshRenderer renderer;
 	private Material mat;
 	private float originalAlpha;
-	private void Awake() {
+	protected void Awake() {
 		renderer = GetComponent<SkinnedMeshRenderer>();
 		mat = new Material(renderer.material);
 		renderer.material = mat;

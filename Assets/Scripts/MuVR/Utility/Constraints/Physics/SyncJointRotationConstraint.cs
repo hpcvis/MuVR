@@ -1,7 +1,8 @@
 ﻿using MuVR;
+using MuVR.Utility;
 using UnityEngine;
 
-public class SyncJointRotationConstraint : JointRotationConstraint {
+public class SyncJointRotationConstraint : JointRotationConstraint, ISyncable {
 	[Header("User Avatar Settings")]
 	public UserAvatar targetAvatar;
 	public string targetJoint = string.Empty;

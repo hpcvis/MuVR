@@ -43,9 +43,7 @@ GameObject:
   - component: {fileID: 3017568627158525200}
   - component: {fileID: 4773802003910781}
   - component: {fileID: 9145511485344120004}
-  - component: {fileID: 1788376432531000349}
   - component: {fileID: 8608194143600123222}
-  - component: {fileID: 1972786339569240918}
   m_Layer: 0
   m_Name: GhostAvatar Uxr
   m_TagString: Untagged
@@ -68,7 +66,6 @@ Transform:
   - {fileID: 8072579021935420112}
   - {fileID: 1919967897396454161}
   - {fileID: 109485549382129038}
-  - {fileID: 5608376038459770438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -92,12 +89,12 @@ MonoBehaviour:
   _avatarRenderers:
   - {fileID: 1062617472897169988}
   - {fileID: 903925649172612843}
+  - {fileID: 986124617995608258}
   - {fileID: 5534841904487219548}
   - {fileID: 5611890211026407641}
-  - {fileID: 986124617995608258}
-  - {fileID: 9016101140815339124}
   - {fileID: 2620826197881565698}
   - {fileID: 5159396164393208381}
+  - {fileID: 9016101140815339124}
   _rigType: 1
   _rigExpandedInitialized: 1
   _rigFoldout: 1
@@ -264,95 +261,95 @@ MonoBehaviour:
         _initialPosition: {x: -0.06105762, y: 0.8683147, z: -0.035705127}
         _initialLocalPosition: {x: -0.061058242, y: 0.09110428, z: 0.007055509}
       _thumbInfo:
-        _avatar: {fileID: 0}
+        _avatar: {fileID: 4773802003910781}
         _side: 0
-        _finger: 0
+        _finger: 1
         _metacarpalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.047449578
+          _radius: 0.021848109
         _proximalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.043821163
+          _radius: 0.019800406
         _intermediateInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.0345907
+          _radius: 0.013976369
         _distalInfo:
           _length: 0
           _radius: 0
-        _distalLocalTip: {x: 0, y: 0, z: 0}
-        _distalLocalFingerPrintCenter: {x: 0, y: 0, z: 0}
+        _distalLocalTip: {x: -0, y: -0, z: -0}
+        _distalLocalFingerPrintCenter: {x: -0, y: -0, z: -0}
       _indexInfo:
-        _avatar: {fileID: 0}
+        _avatar: {fileID: 4773802003910781}
         _side: 0
-        _finger: 0
+        _finger: 2
         _metacarpalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.038919628
+          _radius: 0.014977936
         _proximalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.034151573
+          _radius: 0.01123959
         _intermediateInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.030779863
+          _radius: 0.010445446
         _distalInfo:
           _length: 0
           _radius: 0
-        _distalLocalTip: {x: 0, y: 0, z: 0}
-        _distalLocalFingerPrintCenter: {x: 0, y: 0, z: 0}
+        _distalLocalTip: {x: -0, y: -0, z: -0}
+        _distalLocalFingerPrintCenter: {x: -0, y: -0, z: -0}
       _middleInfo:
-        _avatar: {fileID: 0}
+        _avatar: {fileID: 4773802003910781}
         _side: 0
-        _finger: 0
+        _finger: 3
         _metacarpalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.036139667
+          _radius: 0.014535733
         _proximalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.034597628
+          _radius: 0.011246762
         _intermediateInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.03680191
+          _radius: 0.011273964
         _distalInfo:
           _length: 0
           _radius: 0
-        _distalLocalTip: {x: 0, y: 0, z: 0}
-        _distalLocalFingerPrintCenter: {x: 0, y: 0, z: 0}
+        _distalLocalTip: {x: -0, y: -0, z: -0}
+        _distalLocalFingerPrintCenter: {x: -0, y: -0, z: -0}
       _ringInfo:
-        _avatar: {fileID: 0}
+        _avatar: {fileID: 4773802003910781}
         _side: 0
-        _finger: 0
+        _finger: 4
         _metacarpalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.036011875
+          _radius: 0.013593636
         _proximalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.033073176
+          _radius: 0.0115542635
         _intermediateInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.036601234
+          _radius: 0.010461952
         _distalInfo:
           _length: 0
           _radius: 0
-        _distalLocalTip: {x: 0, y: 0, z: 0}
-        _distalLocalFingerPrintCenter: {x: 0, y: 0, z: 0}
+        _distalLocalTip: {x: -0, y: -0, z: -0}
+        _distalLocalFingerPrintCenter: {x: -0, y: -0, z: -0}
       _littleInfo:
-        _avatar: {fileID: 0}
+        _avatar: {fileID: 4773802003910781}
         _side: 0
-        _finger: 0
+        _finger: 5
         _metacarpalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.041366518
+          _radius: 0.013819703
         _proximalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.025948301
+          _radius: 0.0113698
         _intermediateInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.029238677
+          _radius: 0.010310177
         _distalInfo:
           _length: 0
           _radius: 0
-        _distalLocalTip: {x: 0, y: 0, z: 0}
-        _distalLocalFingerPrintCenter: {x: 0, y: 0, z: 0}
+        _distalLocalTip: {x: -0, y: -0, z: -0}
+        _distalLocalFingerPrintCenter: {x: -0, y: -0, z: -0}
     _rightArmInfo:
       _avatar: {fileID: 4773802003910781}
       _side: 1
@@ -430,90 +427,90 @@ MonoBehaviour:
         _initialPosition: {x: 0.061057582, y: 0.8683154, z: -0.035705}
         _initialLocalPosition: {x: 0.06105696, y: 0.09110504, z: 0.007055635}
       _thumbInfo:
-        _avatar: {fileID: 0}
-        _side: 0
-        _finger: 0
+        _avatar: {fileID: 4773802003910781}
+        _side: 1
+        _finger: 1
         _metacarpalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.047449615
+          _radius: 0.021848107
         _proximalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.04382116
+          _radius: 0.019800574
         _intermediateInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.034590755
+          _radius: 0.013976471
         _distalInfo:
           _length: 0
           _radius: 0
         _distalLocalTip: {x: 0, y: 0, z: 0}
         _distalLocalFingerPrintCenter: {x: 0, y: 0, z: 0}
       _indexInfo:
-        _avatar: {fileID: 0}
-        _side: 0
-        _finger: 0
+        _avatar: {fileID: 4773802003910781}
+        _side: 1
+        _finger: 2
         _metacarpalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.03891957
+          _radius: 0.014977986
         _proximalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.03415161
+          _radius: 0.0112395575
         _intermediateInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.030779863
+          _radius: 0.0104454495
         _distalInfo:
           _length: 0
           _radius: 0
         _distalLocalTip: {x: 0, y: 0, z: 0}
         _distalLocalFingerPrintCenter: {x: 0, y: 0, z: 0}
       _middleInfo:
-        _avatar: {fileID: 0}
-        _side: 0
-        _finger: 0
+        _avatar: {fileID: 4773802003910781}
+        _side: 1
+        _finger: 3
         _metacarpalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.03613973
+          _radius: 0.014535704
         _proximalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.03459765
+          _radius: 0.011246828
         _intermediateInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.03680196
+          _radius: 0.011273928
         _distalInfo:
           _length: 0
           _radius: 0
         _distalLocalTip: {x: 0, y: 0, z: 0}
         _distalLocalFingerPrintCenter: {x: 0, y: 0, z: 0}
       _ringInfo:
-        _avatar: {fileID: 0}
-        _side: 0
-        _finger: 0
+        _avatar: {fileID: 4773802003910781}
+        _side: 1
+        _finger: 4
         _metacarpalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.03601182
+          _radius: 0.013593615
         _proximalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.03307321
+          _radius: 0.01155429
         _intermediateInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.036601156
+          _radius: 0.010461938
         _distalInfo:
           _length: 0
           _radius: 0
         _distalLocalTip: {x: 0, y: 0, z: 0}
         _distalLocalFingerPrintCenter: {x: 0, y: 0, z: 0}
       _littleInfo:
-        _avatar: {fileID: 0}
-        _side: 0
-        _finger: 0
+        _avatar: {fileID: 4773802003910781}
+        _side: 1
+        _finger: 5
         _metacarpalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.04136646
+          _radius: 0.013819622
         _proximalInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.02594832
+          _radius: 0.011369702
         _intermediateInfo:
-          _length: 0
-          _radius: 0
+          _length: 0.029238665
+          _radius: 0.010310298
         _distalInfo:
           _length: 0
           _radius: 0
@@ -559,8 +556,8 @@ MonoBehaviour:
     _upperChestTorsion: 0.2
     _neckBaseHeight: 1.6
     _neckForwardOffset: 0
-    _eyesBaseHeight: 1.75
-    _eyesForwardOffset: 0.1
+    _eyesBaseHeight: 1.6775708
+    _eyesForwardOffset: 0.10779886
   _useLegIK: 1
   _listControllerEvents:
   - _buttons: 65536
@@ -579,113 +576,6 @@ MonoBehaviour:
     _animationType: 5
     _handPose: {fileID: 11400000, guid: f94a838f19b1d3f46980d0d721ac7737, type: 2}
     _poseBlendValue: 0
---- !u!114 &1788376432531000349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4690986228536503815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cedb6a5bdb2aaa04e99ebd9c65e866d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 0
-  _addedNetworkObject: {fileID: 1972786339569240918}
-  _networkObjectCache: {fileID: 1972786339569240918}
-  slots:
-    reorderableList:
-      canAdd: 1
-      canRemove: 1
-      draggable: 1
-      expandable: 1
-      multipleSelection: 1
-      isExpanded: 1
-      label:
-        m_Text: Keys
-        m_Image: {fileID: 0}
-        m_Tooltip: 
-      headerHeight: 18
-      footerHeight: 13
-      slideEasing: 0.15
-      verticalSpacing: 2
-      showDefaultBackground: 1
-      elementDisplayType: 0
-      elementNameProperty: 
-      elementNameOverride: 
-      elementIcon: {fileID: 0}
-    reqReferences: {fileID: 0}
-    isExpanded: 1
-    _keyValues:
-    - Head
-    - Left Shoulder
-    - Right Shoulder
-    - Left Elbow
-    - Right Elbow
-    - Left Wrist
-    - Right Wrist
-    - Pelvis
-    - Left Knee
-    - Right Knee
-    - Left Ankle
-    - Right Ankle
-    _keys:
-    - Head
-    - Left Shoulder
-    - Right Shoulder
-    - Left Elbow
-    - Right Elbow
-    - Left Wrist
-    - Right Wrist
-    - Pelvis
-    - Left Knee
-    - Right Knee
-    - Left Ankle
-    - Right Ankle
-    _values:
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-  inputPrefabs: []
-  spawnIndex: 0
-  input: {fileID: 0}
-  onInputSpawned:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &8608194143600123222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb099788656a76499e95ebc3cdf4d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 1788376432531000349}
+  targetAvatar: {fileID: 0}
   slot: Head
   mode: 0
   localOffset:
@@ -719,33 +609,6 @@ MonoBehaviour:
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 1
   toSync: -1
---- !u!114 &1972786339569240918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4690986228536503815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <IsNested>k__BackingField: 0
-  <ComponentIndex>k__BackingField: 0
-  _networkBehaviours:
-  - {fileID: 1788376432531000349}
-  <ParentNetworkObject>k__BackingField: {fileID: 0}
-  <ChildNetworkObjects>k__BackingField: []
-  _isNetworked: 1
-  _isGlobal: 0
-  _disableOnDespawn: 0
-  NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: -1
-  _scenePathHash: 0
-  <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 12330921762139680680
-  _sceneNetworkObjects: []
 --- !u!1 &6815912553171494524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,6 +969,16 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.22192281
       objectReference: {fileID: 0}
+    - target: {fileID: -5084376690138679560, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5084376690138679560, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 142935e9a51545c4ca471832fdbfacdb, type: 2}
     - target: {fileID: -4706228988682842286, guid: 07c46d6dd7bcdd8469249226200bb260,
         type: 3}
       propertyPath: m_Layer
@@ -1281,6 +1154,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -25.827
       objectReference: {fileID: 0}
+    - target: {fileID: -2686825274482438457, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2686825274482438457, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 142935e9a51545c4ca471832fdbfacdb, type: 2}
     - target: {fileID: -2058936242603852060, guid: 07c46d6dd7bcdd8469249226200bb260,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -1521,6 +1404,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: ybot
       objectReference: {fileID: 0}
+    - target: {fileID: 1189173234606548024, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189173234606548024, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0eef87400370af24d86a88c89485c871, type: 2}
+    - target: {fileID: 1271354620333589009, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271354620333589009, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0eef87400370af24d86a88c89485c871, type: 2}
     - target: {fileID: 2408001348110326286, guid: 07c46d6dd7bcdd8469249226200bb260,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -2578,6 +2481,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7707304262654702915, guid: 2f7a5d0166ab0d041bed38f7cc6affef,
+        type: 3}
+      propertyPath: _handRenderer
+      value: 
+      objectReference: {fileID: 5159396164393208381}
     - target: {fileID: 7810402233226669651, guid: 2f7a5d0166ab0d041bed38f7cc6affef,
         type: 3}
       propertyPath: m_IsActive
@@ -2598,6 +2506,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9032343385440403180, guid: 2f7a5d0166ab0d041bed38f7cc6affef,
+        type: 3}
+      propertyPath: _handRenderer
+      value: 
+      objectReference: {fileID: 2620826197881565698}
     - target: {fileID: 9157964076682061632, guid: 2f7a5d0166ab0d041bed38f7cc6affef,
         type: 3}
       propertyPath: m_IsActive
@@ -3821,197 +3734,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3aec586ed72f74a8f71a9fc93449d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &7507491347904665261
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3017568627158525200}
-    m_Modifications:
-    - target: {fileID: 2736785391001014480, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Left Wrist
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014480, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014481, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Right Wrist
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014481, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014482, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Left Elbow
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014482, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014483, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Right Elbow
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014483, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014484, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Left Shoulder
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014484, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014485, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Right Shoulder
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014485, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014487, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014504, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_Name
-      value: 12PointVisualizers
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014506, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Head
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014506, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014508, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Head
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014508, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014509, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Left Knee
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014509, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014510, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Pelvis
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014510, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    - target: {fileID: 2736785391001014511, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: slot
-      value: Head
-      objectReference: {fileID: 0}
-    - target: {fileID: 2736785391001014511, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-        type: 3}
-      propertyPath: targetAvatar
-      value: 
-      objectReference: {fileID: 1788376432531000349}
-    m_RemovedComponents:
-    - {fileID: 2736785391001014511, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce, type: 3}
-    - {fileID: 2736785391001014508, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce, type: 3}
-    - {fileID: 2736785391001014509, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce, type: 3}
-    - {fileID: 2736785391001014506, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce, type: 3}
-  m_SourcePrefab: {fileID: 100100000, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce, type: 3}
---- !u!4 &5608376038459770438 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2736785391001014507, guid: 4a1d8b3eb94f8c34d9ea94f2983e5cce,
-    type: 3}
-  m_PrefabInstance: {fileID: 7507491347904665261}
-  m_PrefabAsset: {fileID: 0}

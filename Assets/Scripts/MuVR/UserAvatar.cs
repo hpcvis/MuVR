@@ -117,7 +117,7 @@ namespace MuVR {
 		// If we aren't the owner disable all of the pose syncs... just rely on the network transforms
 		[Client]
 		private void DisableSyncs() {
-			var syncs = GetComponentsInChildren<SyncBase>();
+			var syncs = GetComponentsInChildren<ISyncable>();
 			foreach (var sync in syncs)
 				sync.enabled = false;
 		}

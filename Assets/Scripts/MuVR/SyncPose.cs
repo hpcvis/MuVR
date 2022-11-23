@@ -7,7 +7,7 @@ using TriInspector;
 namespace MuVR {
 	
 	// Component that copies the transform from the object it is attached to, to a pose slot on a UserAvatar
-	public class SyncPose : Utility.SyncBase {
+	public class SyncPose : MonoBehaviour, Utility.ISyncable {
 		// Enum setting weather we should be sending our transform to the pose, or reading our transform from the pose
 		public enum SyncMode {
 			SyncTo,

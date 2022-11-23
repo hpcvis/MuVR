@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 namespace MuVR {
 	
 	// FABRIK implementation modified based on the one in: https://github.com/ditzel/SimpleIK
-	public class SyncFABRIK : Utility.SyncBase {
+	public class SyncFABRIK : MonoBehaviour, Utility.ISyncable {
 		/// <summary>
 		///     Chain length of bones
 		/// </summary>
@@ -60,12 +60,12 @@ namespace MuVR {
 
 		private void Start() {
 			try {
-				if (targetJoint != string.Empty)
+				if (!string.IsNullOrEmpty(targetJoint))
 					targetTransform = targetAvatar?.FindOrCreatePoseProxy(targetJoint) ?? targetTransform;
 			} catch (ArgumentException){}
 			
 			try {
-				if (poleJoint != string.Empty)
+				if (!string.IsNullOrEmpty(poleJoint))
 					poleTransform = targetAvatar?.FindOrCreatePoseProxy(poleJoint) ?? poleTransform;
 			} catch (ArgumentException){}
 		}
