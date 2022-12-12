@@ -6,15 +6,21 @@ using TriInspector;
 
 namespace MuVR {
 	
-	// Component that copies the transform from the object it is attached to, to a pose slot on a UserAvatar
+	/// <summary>
+	/// Component that copies the transform from the object it is attached to, to a pose slot on a UserAvatar
+	/// </summary>
 	public class SyncPose : MonoBehaviour, Utility.ISyncable {
-		// Enum setting weather we should be sending our transform to the pose, or reading our transform from the pose
+		/// <summary>
+		/// Enum setting weather we should be sending our transform to the pose, or reading our transform from the pose
+		/// </summary>
 		public enum SyncMode {
 			SyncTo,
 			SyncFrom
 		}
-
-		// Enum flag indicating which axis should be synced
+		
+		/// <summary>
+		/// Enum flag indicating which axis should be synced
+		/// </summary>
 		[Flags]
 		public enum SyncedAxis {
 			None = 0,
@@ -45,26 +51,36 @@ namespace MuVR {
 		[Range(0, 1)]
 		public SyncedAxis positionAxis = SyncedAxis.Everything, rotationAxis = SyncedAxis.Everything;
 
+		/// <summary>
+		/// References to the pose we should store values in and get values from
+		/// </summary>
 		[SerializeField, ReadOnly] protected UserAvatar.PoseRef setTarget, getTarget;
-
-		// When the object is created make sure to update the target
+		
+		/// <summary>
+		/// When the object is created make sure to update the target
+		/// </summary>
 		public void Start() => UpdateTarget();
-
-		// Function that finds the target from the target avatar and slot
+		
+		/// <summary>
+		/// Function that finds the target from the target avatar and slot
+		/// </summary>
+		/// <exception cref="ArgumentNullException">Thrown when the target avatar doesn't exist or the requested pose slot can't be found</exception>
 		public void UpdateTarget() {
 			// If the target avatar is not set or set to a prefab, find the User Avatar on a parent
 			if (targetAvatar?.gameObject.scene.name == null)
 				targetAvatar = GetComponentInParent<UserAvatar>();
 			if (targetAvatar is null)
-				throw new Exception("No target avatar provided or found");
+				throw new ArgumentNullException("No target avatar provided or found");
 			if (!targetAvatar.slots.Keys.Contains(slot))
-				throw new Exception("The requested slot can not be found");
+				throw new ArgumentNullException("The requested slot can not be found");
 
 			setTarget = targetAvatar.SetterPoseRef(slot); 
 			getTarget = targetAvatar.GetterPoseRef(slot);
 		}
-
-		// Update is called once per frame, and make sure that our transform is properly synced with the pose according to the pose mode
+		
+		/// <summary>
+		/// At the end of the frame, make sure that our transform is properly synced with the pose according to the pose mode
+		/// </summary>
 		public void LateUpdate() {
 			if (mode == SyncMode.SyncTo) {
 				UpdatePosition(ref setTarget.pose.position, transform.position);
@@ -74,8 +90,13 @@ namespace MuVR {
 				transform.rotation = UpdateRotation(transform.rotation, getTarget.pose.rotation);
 			}
 		}
-
-		// Updates the position value, taking ignored axes into account (designed to be generalizable so can work for either case)
+		
+		/// <summary>
+		/// Updates the position value, taking ignored axes into account (designed to be generalizable so can work for either case)
+		/// </summary>
+		/// <param name="dest">The new position</param>
+		/// <param name="src">The old position</param>
+		/// <returns>The position that should be stored once ignored axis and weights are accounted for</returns>
 		protected Vector3 UpdatePosition(Vector3 dest, Vector3 src) {
 			if (!(positionWeight > 0)) return dest;
 			if (positionAxis == SyncedAxis.None) return dest;
@@ -90,8 +111,13 @@ namespace MuVR {
 			return Vector3.Lerp(dest, update, positionWeight);
 		}
 		protected void UpdatePosition(ref Vector3 dest, Vector3 src) => dest = UpdatePosition(dest, src);
-
-		// Updates the rotation value, taking ignored axes into account (designed to be generalizable so can work for either case)
+		
+		/// <summary>
+		/// Updates the rotation value, taking ignored axes into account (designed to be generalizable so can work for either case)
+		/// </summary>
+		/// <param name="dest">The new rotation</param>
+		/// <param name="src">The old rotation</param>
+		/// <returns>The rotation which should be stored once ignored axis and weights are accounted for</returns>
 		protected Quaternion UpdateRotation(Quaternion dest, Quaternion src) {
 			if (!(rotationWeight > 0)) return dest;
 			if (rotationAxis == SyncedAxis.None) return dest;
@@ -110,25 +136,34 @@ namespace MuVR {
 		protected void UpdateRotation(ref Quaternion dest, Quaternion src) => dest = UpdateRotation(dest, src);
 		
 
-
-
-		// Extra property that only exists in the editor which determines if the object's additional settings should be displayed or not
 #if UNITY_EDITOR
+		/// <summary>
+		/// Extra property that only exists in the editor which determines if the object's additional settings should be displayed or not
+		/// </summary>
 		[HideInInspector] public bool showSettings;
 #endif
 	}
 
 #if UNITY_EDITOR
-	// Editor that makes hooking up a sync pose to slots much easier
+	/// <summary>
+	/// Editor that makes hooking up a sync pose to slots much easier
+	/// </summary>
 	[CustomEditor(typeof(SyncPose))]
 	[CanEditMultipleObjects]
 	public class SyncPoseEditor : Editor {
-		// Bool indicating if the target pose debug dropdown should be expanded or not
+		/// <summary>
+		/// Bool indicating if the target pose debug dropdown should be expanded or not
+		/// </summary>
 		[SerializeField] protected bool showTarget = false;
-
-		// Properties of the object we wish to show a default UI for
+		
+		/// <summary>
+		/// Properties of the object we wish to show a default UI for
+		/// </summary>
 		protected SerializedProperty targetAvatar, mode, positionWeight, rotationWeight, globalOffset, localOffset;
 
+		/// <summary>
+		/// When the editor is enabled find references to the object's properties
+		/// </summary>
 		protected void OnEnable() {
 			targetAvatar = serializedObject.FindProperty("targetAvatar");
 			mode = serializedObject.FindProperty("mode");
@@ -137,8 +172,10 @@ namespace MuVR {
 			globalOffset = serializedObject.FindProperty("globalPositionOffset");
 			localOffset = serializedObject.FindProperty("localOffset");
 		}
-
-		// Immediate mode GUI used to edit a SyncPose in the inspector
+ 
+		/// <summary>
+		/// Immediate mode GUI used to edit a SyncPose in the inspector
+		/// </summary>
 		public override void OnInspectorGUI() {
 			var sync = (SyncPose)target;
 
@@ -169,6 +206,10 @@ namespace MuVR {
 				sync.slot = sync.targetAvatar.slots.Keys.First();
 		}
 
+		/// <summary>
+		/// Function which displays the target avatar GUI for the provided SyncPose
+		/// </summary>
+		/// <param name="sync">The SyncPose to display a GUI for</param>
 		public void TargetAvatarField(SyncPose sync) {
 			// Field for the TargetAvatar
 			EditorGUILayout.PropertyField(targetAvatar, new GUIContent("Target Avatar") {
@@ -176,6 +217,10 @@ namespace MuVR {
 			});
 		}
 
+		/// <summary>
+		/// Function which displays the pose slot GUI for the provided SyncPose
+		/// </summary>
+		/// <param name="sync">The SyncPose to display a GUI for</param>
 		public void PoseSlotField(SyncPose sync) {
 			// Present a dropdown menu listing the slots found on the target (no list and disabled if not found)
 			EditorGUILayout.BeginHorizontal();
@@ -203,6 +248,10 @@ namespace MuVR {
 			EditorGUILayout.EndHorizontal();
 		}
 
+		/// <summary>
+		/// Function which displays the mode selection GUI for the provided SyncPose
+		/// </summary>
+		/// <param name="sync">The SyncPose to display a GUI for</param>
 		public void ModeField(SyncPose sync) {
 			// Present a dropdown menu listing the possible modes (sync to/from)
 			EditorGUILayout.PropertyField(mode, new GUIContent("Mode") {
@@ -210,40 +259,56 @@ namespace MuVR {
 			});
 		}
 
+		/// <summary>
+		/// Function which displays the position weight and axis ignore settings GUI for the provided SyncPose
+		/// </summary>
+		/// <param name="sync">The SyncPose to display a GUI for</param>
 		public void PositionSettingsField(SyncPose sync) {
+			// Display weight slider (and log its change on the object)
 			var weight = EditorGUILayout.Slider("Position Weight", sync.positionWeight, 0, 1);
 			if (Math.Abs(weight - sync.positionWeight) > Mathf.Epsilon) {
 				Undo.RecordObject(target, "Update Position's Weight");
 				sync.positionWeight = weight;
 			}
 			
+			// If the weight is non-zero, display the axes selection field
 			if (!(positionWeight.floatValue > 0)) return;
 			var axis = (SyncPose.SyncedAxis)EditorGUILayout.EnumFlagsField(new GUIContent("Position Axes") {
 				tooltip = "The axes that should be synchronized."
 			}, sync.positionAxis);
-			
+			// Log the change on the object (if a change occurred)
 			if (axis == sync.positionAxis) return;
 			Undo.RecordObject(target, "Update Position's Synced Axes");
 			sync.positionAxis = axis;
 		}
 
+		/// <summary>
+		/// Function which displays the rotation weight and axis ignore settings GUI for the provided SyncPose
+		/// </summary>
+		/// <param name="sync">The SyncPose to display a GUI for</param>
 		public void RotationSettingsField(SyncPose sync) {
+			// Display weight slider (and log its change on the object)
 			var weight = EditorGUILayout.Slider("Rotation Weight", sync.rotationWeight, 0, 1);
 			if (Math.Abs(weight - sync.rotationWeight) > Mathf.Epsilon) {
 				Undo.RecordObject(target, "Update Rotation's Weight");
 				sync.rotationWeight = weight;
 			}
 			
+			// If the weight is non-zero, display the axes selection field
 			if (!(rotationWeight.floatValue > 0)) return;
 			var axis = (SyncPose.SyncedAxis)EditorGUILayout.EnumFlagsField(new GUIContent("Rotation Axes") {
 				tooltip = "The axes that should be synchronized."
 			}, sync.rotationAxis);
-			
+			// Log the change on the object (if a change occurred)
 			if (axis == sync.rotationAxis) return;
 			Undo.RecordObject(target, "Update Rotation's Synced Axes");
 			sync.rotationAxis = axis;
 		}
 
+		/// <summary>
+		/// Function which displays a GUI showing an uneditable display of the pose stored in the user avatar
+		/// </summary>
+		/// <param name="sync">The SyncPose to display a GUI for</param>
 		public void PoseDebugField(SyncPose sync) {
 			try {
 				// Present a non-editable field with the debug pose (or an empty pose if the target is invalid)
@@ -254,37 +319,61 @@ namespace MuVR {
 			} catch(NullReferenceException) {}
 		}
 
-
-		// Function that validates weather or not a slot's name is invalid
+		
+		/// <summary>
+		/// Function that validates weather or not a slot's name is invalid
+		/// </summary>
+		/// <param name="name">The name of the slot to check for</param>
+		/// <returns>True if the slot exists in the target avatar, false otherwise</returns>
 		protected bool ValidateSlot(string name) {
 			var sync = (SyncPose)target;
 			return sync?.targetAvatar?.slots?.Keys.Contains(name) ?? false;
 		}
-
-		// Function that displays a pose field with dropdown hiding position and rotation
-		protected Pose PoseField(string label, Pose pose, ref bool show, bool editable = true,
-			params GUILayoutOption[] options) {
+		
+		/// <summary>
+		/// Function that displays a pose field with dropdown hiding position and rotation
+		/// </summary>
+		/// <param name="label">Label that goes before the field</param>
+		/// <param name="pose">Pose to edit in the field</param>
+		/// <param name="show">Variable indicating if the field should be expanded or not</param>
+		/// <param name="editable">Variable indicating if the field should be editable or read only</param>
+		/// <param name="options">Additional options to control the layout</param>
+		/// <returns></returns>
+		protected Pose PoseField(string label, Pose pose, ref bool show, bool editable = true, 
+		  params GUILayoutOption[] options) {
+			// Save if the GUI is currently enabled
 			var cache = GUI.enabled;
+			
+			// If we should expand the field
 			if (show = EditorGUILayout.BeginFoldoutHeaderGroup(show, label)) {
+				// Make the GUI editable if requested
 				GUI.enabled = editable && cache;
+				// Position and rotation GUIs
 				var position = EditorGUILayout.Vector3Field("Position", pose.position, options);
-				var rotation =
-					Quaternion.Euler(EditorGUILayout.Vector3Field("Rotation", pose.rotation.eulerAngles, options));
+				var rotation = Quaternion.Euler(EditorGUILayout.Vector3Field("Rotation", pose.rotation.eulerAngles, options));
 
+				// If the value of the position or rotation has changed... record it
 				if (position != pose.position || rotation != pose.rotation) {
 					Undo.RecordObject(target, $"Update Pose {label}");
 					pose.position = position;
 					pose.rotation = rotation;
 				}
 
+				// Reset the editablity state
 				GUI.enabled = cache;
 			}
 
+			// End the foldout group
 			EditorGUILayout.EndFoldoutHeaderGroup();
+			// Return the pose currently in the field
 			return pose;
 		}
-
-		// Function called when a new slot is selected
+		
+		/// <summary>
+		/// Callback function called when a new slot is selected. Updates the value of slot on the object and records the change
+		/// </summary>
+		/// <param name="s">The name of the selected slot</param>
+		/// <exception cref="ArgumentException">Exception thrown if the slot is not a string!</exception>
 		protected void OnSlotSelect(object s) {
 			if (s is not string slot)
 				throw new ArgumentException(nameof(String));

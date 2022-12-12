@@ -4,30 +4,42 @@ using UnityEditor;
 using UnityEngine;
 
 namespace MuVR.Utility {
-	
-	// Component that visualizes a pose in a pose slot
+	/// <summary>
+	/// Component that visualizes a pose in a pose slot
+	/// </summary>
 	public class PoseVisualizer : SyncPose {
+		/// <summary>
+		/// We only care about the get target and don't need to worry about setting values
+		/// </summary>
 		private UserAvatar.PoseRef target => getTarget;
 		
 		[PropertyTooltip("The prefab that should be spawned to visualize this pose")]
 		public GameObject visualizationPrefab;
-		// Reference to the spawned prefab
+		/// <summary>
+		/// Reference to the spawned prefab
+		/// </summary>
 		private GameObject spawnedPrefab;
-
-		// When the object is created make sure to update the target
+		
+		/// <summary>
+		/// When the object is created make sure to update the target
+		/// </summary>
 		public new void Start() {
 			UpdateTarget();
 			RespawnVisualization();
 		}
-
-		// Function that gets rid of the old visualization and spawns a new one in its place
+		
+		/// <summary>
+		/// Function that gets rid of the old visualization and spawns a new one in its place
+		/// </summary>
 		public void RespawnVisualization() {
 			if (spawnedPrefab is not null) Destroy(spawnedPrefab);
 			spawnedPrefab ??= Instantiate(visualizationPrefab, target?.pose.position ?? Vector3.zero, target?.pose.rotation ?? Quaternion.identity, transform);
 			spawnedPrefab.name = slot;
 		}
-
-		// Update is called once per frame to make sure that the visualization is properly synced with the pose
+		
+		/// <summary>
+		/// At the end of each frame, make sure that the visualization is properly synced with the pose
+		/// </summary>
 		public new void LateUpdate() {
 			spawnedPrefab.transform.position = UpdatePosition(spawnedPrefab.transform.position, target.pose.position);
 			spawnedPrefab.transform.rotation = UpdateRotation(spawnedPrefab.transform.rotation, target.pose.rotation);
@@ -35,19 +47,28 @@ namespace MuVR.Utility {
 	}
 
 #if UNITY_EDITOR
-	// Editor that makes hooking up a sync pose to slots much easier
+	/// <summary>
+	/// Custom editor that makes hooking up a sync pose to slots much easier
+	/// </summary>
 	[CustomEditor(typeof(PoseVisualizer))]
 	[CanEditMultipleObjects]
 	public class PoseVisualizerEditor : SyncPoseEditor {
-		// Properties of the object we wish to show a default UI for
+		/// <summary>
+		/// Properties of the object we wish to show a default UI for
+		/// </summary>
 		protected SerializedProperty visualizationPrefab;
 
+		/// <summary>
+		/// When the editor is enabled find the properties
+		/// </summary>
 		protected new void OnEnable() {
 			base.OnEnable();
 			visualizationPrefab = serializedObject.FindProperty("visualizationPrefab");
 		}
 
-		// Immediate mode GUI used to edit a SyncPose in the inspector
+		/// <summary>
+		/// Display the editor GUI to the user
+		/// </summary>
 		public override void OnInspectorGUI() {
 			var sync = (PoseVisualizer)target;
 

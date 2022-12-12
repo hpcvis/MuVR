@@ -11,5 +11,5 @@ which uses this code or data.
     }
     
     
-If you have any questions, or wish to enquire about commerical licenses, please 
+If you have any questions, or wish to inquire about commercial licenses, please 
 contact me at `contact@theorangeduck.com`.

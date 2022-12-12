@@ -4,7 +4,9 @@ using System.Linq;
 
 namespace MuVR.Enhanced {
 	
-	// Additions to Linq
+	/// <summary>
+	/// Additions to Linq
+	/// </summary>
 	public static class Linq {
 		/// <summary>
 		///		Extension function that returns an iterator with the array index attached

@@ -9,15 +9,35 @@ using UnityEditor;
 
 namespace MuVR {
 	
-	// Class that extends an XR Grab Interactable to properly manage an attached NetworkRigidbody
+	/// <summary>
+	/// Class that extends an XR Grab Interactable to properly manage an attached NetworkRigidbody
+	/// </summary>
 	public class NetworkXRGrabInteractable : XRGrabInteractable {
+		/// <summary>
+		/// Variable used to save properties that get changed (Gravity)
+		/// </summary>
 		private bool usedGravity;
+		/// <summary>
+		/// Variable used to save properties that get changed (Drag)
+		/// </summary>
 		private float oldDrag;
+		/// <summary>
+		/// Variable used to save properties that get changed (Angular Drag)
+		/// </summary>
 		private float oldAngularDrag;
-
+		/// <summary>
+		/// Variable used to save properties that get changed (isKinematic)
+		/// </summary>
 		private bool wasNetworkKinematic;
+		
+		/// <summary>
+		/// Reference to the network rigidbody attached to this object
+		/// </summary>
 		private NetworkRigidbody networkRigidbody;
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected override void Awake() {
 			base.Awake();
 			networkRigidbody = GetComponent<NetworkRigidbody>();
@@ -62,10 +82,14 @@ namespace MuVR {
 			networkRigidbody.angularVelocity = networkRigidbody.target.angularVelocity;
 			// networkRigidbody.Tick();
 		}
-
-
-		// Function that adds an option to convert XRGrab Interacatbles 
+		
+		
+		
+		
 #if UNITY_EDITOR
+		/// <summary>
+		/// Function that adds an option to convert XRGrab Interacatbles to the networked version 
+		/// </summary>
 		[MenuItem("CONTEXT/XRGrabInteractable/Make Networked")]
 		public static void MakeNetworkXRGrabInteractable(MenuCommand command) {
 			var interactable = (XRGrabInteractable)command.context;
@@ -78,6 +102,9 @@ namespace MuVR {
 			DestroyImmediate(copy.gameObject);
 		}
 		
+		/// <summary>
+		/// Function that adds an option to add the whole needed networking stack to a networked interactable
+		/// </summary>
 		[MenuItem("CONTEXT/NetworkXRGrabInteractable/Setup Object Networking")]
 		public static void SetupObjectNetworking(MenuCommand command) {
 			var interactable = (NetworkXRGrabInteractable)command.context;

@@ -1,15 +1,35 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace MuVR {
+namespace MuVR.Utility {
 	
-	// Component that promotes the collision callbacks to events that other objects can subscribe to
+	/// <summary>
+	/// Component that promotes the collision callbacks to events that other objects can subscribe to
+	/// </summary>
 	public class CollisionEvents : MonoBehaviour {
+		/// <summary>
+		/// Subscribable onCollisionEnter
+		/// </summary>
 		public UnityEvent<Collision> onCollisionEnter;
+		/// <summary>
+		/// Subscribable onCollisionExit
+		/// </summary>
 		public UnityEvent<Collision> onCollisionExit;
+		/// <summary>
+		/// Subscribable onCollisionStay
+		/// </summary>
 		public UnityEvent<Collision> onCollisionStay;
+		/// <summary>
+		/// Subscribable onTriggerEnter
+		/// </summary>
 		public UnityEvent<Collider> onTriggerEnter;
+		/// <summary>
+		/// Subscribable onTriggerExit
+		/// </summary>
 		public UnityEvent<Collider> onTriggerExit;
+		/// <summary>
+		/// Subscribable onTriggerStay
+		/// </summary>
 		public UnityEvent<Collider> onTriggerStay;
 
 		private void OnCollisionEnter(Collision collision) { onCollisionEnter?.Invoke(collision); }

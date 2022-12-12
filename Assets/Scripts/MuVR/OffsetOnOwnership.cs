@@ -4,20 +4,30 @@ using UnityEngine;
 
 namespace MuVR {
 	
-	// Component that changes a child transform's offset based on its ownership status
+	/// <summary>
+	/// Component that changes a child transform's offset based on its ownership status
+	/// </summary>
 	public class OffsetOnOwnership : NetworkBehaviour {
-		// The SyncPose to be updated
+		/// <summary>
+		/// Target to be updated
+		/// </summary>
 		public Transform target;
-		// The offsets when the object is owned or not
+		/// <summary>
+		/// The offsets when the object is owned or not
+		/// </summary>
 		public Pose ownedOffset = Pose.identity, unownedOffset = Pose.identity;
-
-		// Automatically set target equal to a SyncPose on the same object
+		
+		/// <summary>
+		/// Automatically set target equal to this object's transform if not already set
+		/// </summary>
 		private new void OnValidate() {
 			base.OnValidate();
 			target ??= GetComponent<Transform>();
 		}
-
-		// When ownership changes set the pose appropriately
+		
+		/// <summary>
+		/// When ownership changes set the pose appropriately
+		/// </summary>
 		public override void OnOwnershipBoth(NetworkConnection prev) {
 			base.OnOwnershipBoth(prev);
 

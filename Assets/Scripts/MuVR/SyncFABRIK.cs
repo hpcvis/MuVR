@@ -5,7 +5,10 @@ using UnityEngine.Serialization;
 
 namespace MuVR {
 	
-	// FABRIK implementation modified based on the one in: https://github.com/ditzel/SimpleIK
+	/// <summary>
+	/// FABRIK inverse kinematics implementation with target points extracted from the user avatar
+	/// </summary>
+	/// <remarks>From: https://github.com/ditzel/SimpleIK</remarks>
 	public class SyncFABRIK : MonoBehaviour, Utility.ISyncable {
 		/// <summary>
 		///     Chain length of bones
@@ -138,7 +141,7 @@ namespace MuVR {
 			// //1st is possible to reach?
 			// if ((targetPosition - GetPositionRootSpace(Bones[0])).sqrMagnitude >= CompleteLength * CompleteLength)
 			// {
-			//     //just strech it
+			//     //just stretch it
 			//     var direction = (targetPosition - Positions[0]).normalized;
 			//     //set everything after root
 			//     for (int i = 1; i < Positions.Length; i++)

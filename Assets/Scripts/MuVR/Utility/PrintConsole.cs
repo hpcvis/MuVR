@@ -1,51 +1,80 @@
+using System;
+using System.IO;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace MuVR.Utility {
-	
 	/// <summary>
 	/// Script used to log console messages to the screen and a file in a build of the game.
 	/// </summary>
 	public class PrintConsole : MonoBehaviour {
-		string myLog = "*begin log";
-		string filename = "";
-		int kChars = 900;
+		/// <summary>
+		/// String representing the current log
+		/// </summary>
+		private string myLog = "*begin log";
+		/// <summary>
+		/// Name of the log file
+		/// </summary>
+		private string filename = "";
+		/// <summary>
+		/// Maximum length of the log (in characters)
+		/// </summary>
+		private readonly int kChars = 900;
 
-		[SerializeField] bool doShow = false;
+		/// <summary>
+		/// Variable which indicates if the log is visible or not
+		/// </summary>
+		[SerializeField] private bool doShow;
 
-		void OnEnable() {
+		/// <summary>
+		/// On dis/enable subscribe to log events
+		/// </summary>
+		private void OnEnable() {
 			Application.logMessageReceived += Log;
 		}
-
-		void OnDisable() {
+		private void OnDisable() {
 			Application.logMessageReceived -= Log;
 		}
 
-		void Update() {
+		/// <summary>
+		/// Every frame check if we should toggle display of the log!
+		/// </summary>
+		private void Update() {
 			if (Input.GetKeyDown(KeyCode.BackQuote))
 				doShow = !doShow;
 		}
 
+		/// <summary>
+		/// Callback called when a new message is added to the log
+		/// </summary>
+		/// <param name="logString">The string to add to the log</param>
+		/// <param name="stackTrace">Path back to where the issue occurred</param>
+		/// <param name="type">The type of log message</param>
 		public void Log(string logString, string stackTrace, LogType type) {
 			// for onscreen...
 			myLog = myLog + "\n" + logString;
-			if (myLog.Length > kChars) myLog = myLog.Substring(myLog.Length - kChars);
+			if (myLog.Length > kChars) myLog = myLog[^kChars..];
 
 			// for the file ...
 			if (filename == "") {
-				string d = System.Environment.GetFolderPath(
-					System.Environment.SpecialFolder.Desktop) + "/YOUR_LOGS";
-				System.IO.Directory.CreateDirectory(d);
-				string r = Random.Range(1000, 9999).ToString();
+				var d = Environment.GetFolderPath(
+					Environment.SpecialFolder.Desktop) + "/YOUR_LOGS";
+				Directory.CreateDirectory(d);
+				var r = Random.Range(1000, 9999).ToString();
 				filename = d + "/log-" + r + ".txt";
 			}
 
 			try {
-				System.IO.File.AppendAllText(filename, logString + "\n");
+				File.AppendAllText(filename, logString + "\n");
+			} catch {
+				// ignored
 			}
-			catch { }
 		}
 
-		void OnGUI() {
+		/// <summary>
+		/// When GUIs are rendered, display the console on screen
+		/// </summary>
+		private void OnGUI() {
 			if (!doShow) return;
 			GUI.matrix = Matrix4x4.TRS(
 				Vector3.zero,

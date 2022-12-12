@@ -5,7 +5,9 @@ using UnityEngine;
 
 namespace MuVR {
 	
-	// Component that enables or disables a GameObject or list of Components based on the current ownership status of this object
+	/// <summary>
+	/// Component that enables or disables a GameObject or list of Components based on the current ownership status of this object
+	/// </summary>
 	public class DisableOnOwnership : NetworkBehaviour {
 		[PropertyTooltip("Array of components to disable when ownership changes")]
 		public Component[] toDisable;
@@ -13,8 +15,11 @@ namespace MuVR {
 		public bool disableWhenOwner = true;
 		[PropertyTooltip("When true the attached game object will be disabled instead of individual components")]
 		public bool disableGameObject = false;
-
-		// When the ownership of the object changes, figure out which elements should be enabled
+		
+		/// <summary>
+		/// When the ownership of the object changes, figure out which elements should be enabled
+		/// </summary>
+		/// <param name="prev">The previous object owner</param>
 		public override void OnOwnershipBoth(NetworkConnection prev) {
 			base.OnOwnershipBoth(prev);
 

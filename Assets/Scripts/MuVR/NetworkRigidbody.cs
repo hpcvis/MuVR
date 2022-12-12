@@ -8,32 +8,57 @@ using NetworkBehaviour = MuVR.Enhanced.NetworkBehaviour;
 
 namespace MuVR {
 	
-	// NOTE: Component ported from Mirror
+	/// <summary>
+	/// Component which synchronizes rigidbody properties across the network
+	/// </summary>
+	/// <remarks>NOTE: Component ported from Mirror</remarks>
+	/// <remarks>Requires a <see cref="NetworkTransform"/> to synchronize position/rotation information!</remarks>
 	[HelpURL("https://mirror-networking.gitbook.io/docs/components/network-rigidbody")]
 	[RequireComponent(typeof(NetworkTransform))]
 	public class NetworkRigidbody : NetworkBehaviour {
+		/// <summary>
+		/// Rigidbody that we are managing (this allows managing a rigidbody on a different object)
+		/// </summary>
+		/// <remarks>Component automatically searches for a rigidbody on the same object and assigns it if it exists</remarks>
 		[Title("Settings")]
 		[Required]
 		public Rigidbody target;
 
+		/// <summary>
+		/// Bool indicating if the rigidbody should be kinematic or not (use this instead of the same field on the rigidbody)
+		/// </summary>
 		[PropertyTooltip("Flag indicating weather or not the managed rigidbody should be Kinematic")]
 		public bool targetIsKinematic;
 
+		/// <summary>
+		/// Should clients run the simulations and propagate their results or should simulations be performed by the server and distributed?
+		/// </summary>
+		/// <remarks>If you wish to use sever simulations, it would probably be better to use FishNet's predictive physics stack</remarks>
 		[PropertyTooltip("Set to true if moves come from owner client, set to false if moves always come from server")]
 		public bool clientAuthority = true;
 
+		/// <summary>
+		/// Weather or not we should sync velocity
+		/// </summary>
 		[field: Title("Velocity")]
 		[field: PropertyTooltip("Syncs Velocity every SyncInterval")]
 		[field: SerializeField] private bool syncVelocity = true;
-
+		/// <summary>
+		/// Weather or not we should reset velocity to zero every frame
+		/// </summary>
 		[field: PropertyTooltip("Set velocity to 0 each frame (only works if syncVelocity is false")]
 		[field: HideIf(nameof(syncVelocity))]
 		[field: SerializeField] private bool clearVelocity;
 
+		/// <summary>
+		/// Weather or not we should sync angular velocity
+		/// </summary>
 		[field: Title("Angular Velocity")]
 		[field: PropertyTooltip("Syncs AngularVelocity every SyncInterval")]
 		[field: SerializeField] private bool syncAngularVelocity = true;
-
+		/// <summary>
+		/// Weather or not we should reset angular velocity to zero every frame
+		/// </summary>
 		[field: PropertyTooltip("Set angularVelocity to 0 each frame (only works if syncAngularVelocity is false")]
 		[field: HideIf(nameof(syncAngularVelocity))]
 		[field: SerializeField] private bool clearAngularVelocity;
@@ -43,14 +68,26 @@ namespace MuVR {
 		/// </summary>
 		private ClientSyncState previousValue;
 
+		/// <summary>
+		/// Whenever the Unity UI updates, if we don't have an associated rigidbody assign the one on this object (if it exists)
+		/// </summary>
 		private new void OnValidate() {
 			base.OnValidate();
 			target ??= GetComponent<Rigidbody>();
 			if (target is not null) targetIsKinematic = target.isKinematic;
 		}
 
+		/// <summary>
+		/// Bool indicating if we are in client authoritative mode and have authority
+		/// </summary>
 		private bool ClientWithAuthority => clientAuthority && IsOwner;
+		/// <summary>
+		/// Bool indicating if we are in server authoritative mode and have authority
+		/// </summary>
 		private bool ServerWithAuthority => IsServer && !clientAuthority;
+		/// <summary>
+		/// Bool indicating if we have authority to perform physics simulations
+		/// </summary>
 		private bool IsAuthority => ClientWithAuthority || ServerWithAuthority;
 
 		#region Sync vars
@@ -58,7 +95,6 @@ namespace MuVR {
 		#region veclocity sync
 
 		[ReadOnly, SerializeField] private Vector3 _velocity;
-
 		public Vector3 velocity {
 			get => _velocity;
 			set {
@@ -94,7 +130,6 @@ namespace MuVR {
 		#region angular velocity sync
 
 		[ReadOnly, SerializeField] private Vector3 _angularVelocity;
-
 		public Vector3 angularVelocity {
 			get => _angularVelocity;
 			set {
@@ -130,7 +165,6 @@ namespace MuVR {
 		#region is kinematic sync
 
 		[ReadOnly, SerializeField] private bool _isKinematic;
-
 		public bool isKinematic {
 			get => _isKinematic;
 			set {
@@ -168,7 +202,6 @@ namespace MuVR {
 		#region use gravity sync
 
 		[ReadOnly, SerializeField] private bool _useGravity;
-
 		public bool useGravity {
 			get => _useGravity;
 			set {
@@ -204,7 +237,6 @@ namespace MuVR {
 		#region drag sync
 
 		[ReadOnly, SerializeField] private float _drag;
-
 		public float drag {
 			get => _drag;
 			set {
@@ -240,7 +272,6 @@ namespace MuVR {
 		#region angular drag sync
 
 		[ReadOnly, SerializeField] private float _angularDrag;
-
 		public float angularDrag {
 			get => _angularDrag;
 			set {
@@ -274,10 +305,15 @@ namespace MuVR {
 		#endregion
 
 		#endregion
-
-		// Bool tracking if the "SyncVar"s have been initialized
+		
+		/// <summary>
+		/// Bool tracking if the "SyncVar"s have been initialized
+		/// </summary>
 		private bool isStarted;
 
+		/// <summary>
+		/// When we start the network connection make sure the network variables are synced
+		/// </summary>
 		public override void OnStartBoth() {
 			base.OnStartBoth();
 
@@ -294,6 +330,10 @@ namespace MuVR {
 			isStarted = true;
 		}
 
+		/// <summary>
+		/// When ownership of the object changes make sure properties are transferred
+		/// </summary>
+		/// <param name="prev"></param>
 		public override void OnOwnershipBoth(NetworkConnection prev) {
 			base.OnOwnershipBoth(prev);
 
@@ -308,14 +348,19 @@ namespace MuVR {
 
 			UpdateOwnershipKinematicState();
 		}
-
-		// Make sure that anyone without authority isn't performing physics calculations
+		
+		/// <summary>
+		/// Updates the kinematic state of rigidbodies, making sure that anyone without authority isn't performing physics calculations
+		/// </summary>
 		public void UpdateOwnershipKinematicState() {
 			target.isKinematic = targetIsKinematic || !IsAuthority;
 		}
 
+		/// <summary>
+		/// Every network tick, send data if we have authority
+		/// </summary>
 		public override void Tick() {
-			if (!isActiveAndEnabled) return;
+			if (!isActiveAndEnabled) return; // Only tick if we are enabled
 
 			//Debug.Log($"Pre: {velocity} - {target.velocity}");
 
@@ -324,7 +369,7 @@ namespace MuVR {
 			//Debug.Log($"Post: {velocity} - {target.velocity}");
 		}
 
-		// TODO: Should this be switched to occurring on ticks?
+		// TODO: Should this be switched to occurring onPostTick?
 		private void FixedUpdate() {
 			if (clearAngularVelocity && !syncAngularVelocity) target.angularVelocity = Vector3.zero;
 			if (clearVelocity && !syncVelocity) target.velocity = Vector3.zero;
@@ -332,7 +377,7 @@ namespace MuVR {
 
 
 		/// <summary>
-		///     Uses Command to send values to server
+		/// Command to send values to server
 		/// </summary>
 		private void SendDataIfAuthority() {
 			if (!IsAuthority) return;
@@ -341,6 +386,9 @@ namespace MuVR {
 			SendRigidBodySettings();
 		}
 
+		/// <summary>
+		/// Sends velocity values to the server
+		/// </summary>
 		private void SendVelocity() {
 			// if angularVelocity has changed it is likely that velocity has also changed so just sync both values
 			// however if only velocity has changed just send velocity
@@ -355,6 +403,9 @@ namespace MuVR {
 			}
 		}
 
+		/// <summary>
+		/// Sends other settings to the server if they have changed
+		/// </summary>
 		private void SendRigidBodySettings() {
 			// These shouldn't change often so it is ok to send in their own Command
 			if (previousValue.isKinematic != targetIsKinematic)

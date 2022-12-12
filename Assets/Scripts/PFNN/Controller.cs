@@ -201,7 +201,7 @@ namespace PFNN {
 				DisplayTrajectory();
 				DisplayJoints();
 
-				PostVisualisationCalculation(network.Y);
+				PostVisualizationCalculation(network.Y);
 				UpdatePhase(network.Y);
 
 				// Reset the timer (While standing don't calculate several frames)
@@ -665,7 +665,7 @@ namespace PFNN {
 			}
 		}
 
-		public void PostVisualisationCalculation(Matrix Y) {
+		public void PostVisualizationCalculation(Matrix Y) {
 			// Update past trajectory
 			for (var i = 0; i < trajectoryLength / 2; i++) {
 				points[i].position = points[i + 1].position;

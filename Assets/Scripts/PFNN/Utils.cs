@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 public static class Utils {
 	public static float extraDirectionSmooth = 0.9f; // 0.9f;

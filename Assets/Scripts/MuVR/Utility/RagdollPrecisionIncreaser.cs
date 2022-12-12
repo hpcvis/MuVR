@@ -1,13 +1,20 @@
 using UnityEngine;
 
-// Class that increases the quality of the physics simulations
-public class RagdollPrecisionIncreaser : MonoBehaviour {
-	// Start is called before the first frame update
-	private void Start() {
-		foreach (var rb in GetComponentsInChildren<Rigidbody>()) {
-			rb.solverIterations = 8;
-			rb.solverVelocityIterations = 8;
-			rb.maxAngularVelocity = 20;
+namespace MuVR.Utility {
+
+	/// <summary>
+	/// Class that increases the quality of the physics simulations on child rigidbodies
+	/// </summary>
+	public class RagdollPrecisionIncreaser : MonoBehaviour {
+		/// <summary>
+		/// When the game starts make sure all of the child rigidbodies have their performance increased!
+		/// </summary>
+		private void Start() {
+			foreach (var rb in GetComponentsInChildren<Rigidbody>()) {
+				rb.solverIterations = 8;
+				rb.solverVelocityIterations = 8;
+				rb.maxAngularVelocity = 20;
+			}
 		}
 	}
 }

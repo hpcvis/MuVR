@@ -6,7 +6,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace MuVR {
 	
-	// Component that transfers ownership of this object to another user
+	/// <summary>
+	/// Component that transfers ownership of this object to another user
+	/// </summary>
 	public class OwnershipManager : MuVR.Enhanced.NetworkBehaviour {
 		[PropertyTooltip("Enable changing ownership when a user interacts with this object.")]
 		public bool enableInteractionTransfer = true;
@@ -18,16 +20,22 @@ namespace MuVR {
 
 		[PropertyTooltip("XR Interactable that is interacted with to trigger interactions")]
 		[ShowIf(nameof(enableInteractionTransfer)), PropertyOrder(1)]
-		public XRBaseInteractable interactable = null;
+		public XRBaseInteractable interactable;
 		[PropertyTooltip("Number of ticks to wait before an ownership transfer can occur again")]
 		public uint ownershipTransferCooldown = 10;
-
-		// Counter tracking how many controllers are actively selecting us
+		
+		/// <summary>
+		/// Counter tracking how many controllers are actively selecting us
+		/// </summary>
 		private uint selectionCount = 0;
-		// Property indicating if we are actively selected
+		/// <summary>
+		/// Property indicating if we are actively selected
+		/// </summary>
 		private bool isSelected => selectionCount > 0;
-
-		// When this object is spawned on the client, add it as a listener to the interaction's interactions
+		
+		/// <summary>
+		/// When this object is spawned on the client, add it as a listener to the interaction's interactions
+		/// </summary>
 		public override void OnStartClient() {
 			base.OnStartClient();
 
@@ -38,8 +46,10 @@ namespace MuVR {
 					interactable.selectExited.AddListener(OnInteractableUnselected);
 				}
 		}
-
-		// When this object is destroyed on the client, remove it it as an interaction listener
+		
+		/// <summary>
+		/// When this object is destroyed on the client, remove it it as an interaction listener
+		/// </summary>
 		public override void OnStopClient() {
 			base.OnStopClient();
 
@@ -49,19 +59,22 @@ namespace MuVR {
 				interactable.selectExited.RemoveListener(OnInteractableUnselected);
 			}
 		}
-
-		// Un/Register the listener which returns control of the object to scene when its owner leaves
+		
+		/// <summary>
+		/// Un/Register the listener which returns control of the object to scene when its owner leaves
+		/// </summary>
 		public override void OnStartServer() {
 			base.OnStartServer();
 			ServerManager.Objects.OnPreDestroyClientObjects += OnPreDestroyClientObjects;
 		}
-
 		public override void OnStopServer() {
 			base.OnStopServer();
 			ServerManager.Objects.OnPreDestroyClientObjects -= OnPreDestroyClientObjects;
 		}
-
-		// When the owner of this object leaves, return control of it to the scene
+		
+		/// <summary>
+		/// When the owner of this object leaves, return control of it to the scene
+		/// </summary>
 		public void OnPreDestroyClientObjects(NetworkConnection leaving) {
 			if (leaving != Owner) return;
 
@@ -69,8 +82,10 @@ namespace MuVR {
 				GiveOwnership(null);
 		}
 
-
-		// When variables are changed in the editor, automatically add the attached GrabInteractable
+		
+		/// <summary>
+		/// Automatically add the attached GrabInteractable
+		/// </summary>
 		protected override void OnValidate() {
 			base.OnValidate();
 
@@ -78,9 +93,13 @@ namespace MuVR {
 				interactable = GetComponent<XRBaseInteractable>();
 		}
 
-		// When this object is interacted with (only called if interaction transfers are enabled), give it to the interaction's owner
+		
+		/// <summary>
+		/// When this object is interacted with (only called if interaction transfers are enabled), give it to the interaction's owner
+		/// </summary>
+		/// <param name="e"></param>
 		protected void OnInteractableSelected(SelectEnterEventArgs e) {
-			// note: beware of NetworkObjects that may be in the way of the user representation that we are looking for
+			// NOTE: beware of NetworkObjects that may be in the way of the user representation that we are looking for
 			// there was a NetworkObject on the XRRig at some point which broke this whole function
 			var no = e.interactorObject.transform.GetComponentInParent<NetworkObject>();
 			if (no is null) return;
@@ -88,13 +107,19 @@ namespace MuVR {
 			GiveOwnershipWithCooldown(no.Owner, ownershipTransferCooldown, true);
 			selectionCount++; // Since we are now selected, volume transfers are temporarily disabled
 		}
-
-		// When interaction with this object ceases, decrement the number of selections
+		
+		/// <summary>
+		/// When interaction with this object ceases, decrement the number of selections
+		/// </summary>
+		/// <param name="e"></param>
 		protected void OnInteractableUnselected(SelectExitEventArgs e) {
 			selectionCount--; // If this was the last interaction, volume transfers are now enabled again!
 		}
-
-		// When this object enters an Ownership Volume (only called if volume transfers are enabled), give it to the volume's owner
+		
+		/// <summary>
+		/// When this object enters an Ownership Volume (only called if volume transfers are enabled), give it to the volume's owner
+		/// </summary>
+		/// <param name="other"></param>
 		protected void OnTriggerStay(Collider other) {
 			if (!enableVolumeTransfer) return;
 

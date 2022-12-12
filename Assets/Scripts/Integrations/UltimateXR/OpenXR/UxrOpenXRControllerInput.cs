@@ -1,16 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UltimateXR.Core;
-using UnityEngine;
-using UnityEngine.XR;
 
-namespace UltimateXR.Devices.Integrations.OpenXR
-{
-	public class UxrOpenXRControllerInput : UxrUnityXRControllerInput
-	{
+namespace UltimateXR.Devices.Integrations.OpenXR {
+	public class UxrOpenXRControllerInput : UxrUnityXRControllerInput {
 		public string[] supportedControllers;
-		
+
 		public override string SDKDependency => UxrManager.SdkUnityInputSystem;
 		public override UxrControllerSetupType SetupType => UxrControllerSetupType.Dual;
 		public override bool IsHandednessSupported => true;
@@ -50,4 +44,3 @@ namespace UltimateXR.Devices.Integrations.OpenXR
 		public override IEnumerable<string> ControllerNames => supportedControllers;
 	}
 }
-
