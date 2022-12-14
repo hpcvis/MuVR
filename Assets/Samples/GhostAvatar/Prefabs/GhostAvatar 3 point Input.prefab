@@ -3157,6 +3157,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8127633167687480910, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+        type: 3}
+      propertyPath: _leftHandSensor
+      value: 
+      objectReference: {fileID: 6419241907276661570}
+    - target: {fileID: 8127633167687480910, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+        type: 3}
+      propertyPath: _rightHandSensor
+      value: 
+      objectReference: {fileID: 6419241907606336190}
+    - target: {fileID: 8127633167687480911, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+        type: 3}
+      propertyPath: _leftController
+      value: 
+      objectReference: {fileID: 3980484108342869233}
+    - target: {fileID: 8127633167687480911, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+        type: 3}
+      propertyPath: _rightController
+      value: 
+      objectReference: {fileID: 7150209437711268110}
     - target: {fileID: 8157200421473942079, guid: 05349bcf22b9a2b4ba2802b394363f9c,
         type: 3}
       propertyPath: m_LocalRotation.w
