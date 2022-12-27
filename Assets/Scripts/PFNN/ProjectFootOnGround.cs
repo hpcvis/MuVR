@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using MuVR.Enhanced;
+using uMuVR.Enhanced;
 using UnityEngine;
 
 /// <summary>

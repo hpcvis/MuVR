@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEditor;
 
-namespace MuVR {
+namespace uMuVR {
 	
 	// Component that copies the transform from the object it is attached to, to a pose slot on a UserAvatar
 	public class SyncPFNNJointPose : SyncPose {

@@ -15,7 +15,7 @@ using FishNet.Transporting;
 using K4os.Compression.LZ4;
 using TriInspector;
 using UnityEngine;
-using NetworkBehaviour = MuVR.Enhanced.NetworkBehaviour;
+using NetworkBehaviour = uMuVR.Enhanced.NetworkBehaviour;
 
 namespace FishyVoice {
 

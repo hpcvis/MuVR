@@ -1,5 +1,5 @@
 ﻿using CircularBuffer;
-using MuVR.Enhanced;
+using uMuVR.Enhanced;
 using UltimateXR.Avatar;
 using UltimateXR.Core;
 using UnityEngine;

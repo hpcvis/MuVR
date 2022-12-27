@@ -1,5 +1,5 @@
-using MuVR.Enhanced;
-using MuVR.Utility;
+using uMuVR.Enhanced;
+using uMuVR.Utility;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 

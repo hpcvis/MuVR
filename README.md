@@ -1,7 +1,7 @@
 [Unity]: https://unity.com/
 [Fish-Networking]: https://github.com/FirstGearGames/FishNet/
 
-# MuVR
+# uMuVR
 
 The Multi-User Virtual Reality framework is a [Unity] framework that provides a foundation for multiuser/player VR experiences. Its networking is provided by the [Fish-Networking] library. It is primarily designed around allowing users to quickly create VR applications.
 
@@ -22,9 +22,20 @@ The Multi-User Virtual Reality framework is a [Unity] framework that provides a 
 
 ## Installation
 
-Clone the repository (or download it as a zip) and open the project in Unity2021.3.5f1 (or newer).
+Clone the repository (or download it as a zip) make sure your clone is recurisve (add `--recursive`) or that you run the following commands in the console after you have cloned the repository:
+```bash
+git submodule init
+git submodule update
+```
+Then open the project in Unity2021.3.15f1 (or newer).
 
-If you cloned the repository and want to use Git as your project's version control system, we recommend removing MuVR's remote and replacing it with your own. This can be accomplished by running:
+**WINDOWS USERS:**  git for windows doesn't track symbolic links by default. Thus if you encounter weird issues claiming the files for FishNet or UltimateXR can't be found... simply run from an administrative PowerShell window: 
+```bash
+cd Submodules # From the root project directory
+./FixSymlinks.bat
+```
+
+If you cloned the repository and want to use Git as your project's version control system, we recommend removing uMuVR's remote and replacing it with your own. This can be accomplished by running:
 
 ```bash
 git remote rm origin
@@ -47,9 +58,9 @@ Add another object, and add an XR Origin as a child of it. Add SyncPoses to the 
 
 Congratulations! You should now have a basic game working go ahead and build it (making sure to Rebuild SceneIds in the Fish-Networking menu) and test it out. **Make sure that in the future whenever you need to add grab interactivity to an object or inherit from grab interactable you use a NetworkXRGrabInteractable instead!**
 
-The prefabs in the `Assets/Prefabs` folder provide simple prebuilt examples of everything described above; however, due to their simple nature, they can be used as a basis for more complex objects but are unlikely to be overly useful without extension. As a general rule changing a player to support MuVR is done in two steps, first determine what components are visuals (UserAvatar prefab) and which are inputs (spawned input prefab) and separate them into the appropriate prefabs. Second use SyncPoses to ensure that inputs are fed to the UserAvatar and NetworkTransforms so the visuals' positions will be synchronized across the network, then extend UserAvatar and hook into its OnInputSpawned method to facilitate any extra linkage.
+The prefabs in the `Assets/Prefabs` folder provide simple prebuilt examples of everything described above; however, due to their simple nature, they can be used as a basis for more complex objects but are unlikely to be overly useful without extension. As a general rule changing a player to support uMuVR is done in two steps, first determine what components are visuals (UserAvatar prefab) and which are inputs (spawned input prefab) and separate them into the appropriate prefabs. Second use SyncPoses to ensure that inputs are fed to the UserAvatar and NetworkTransforms so the visuals' positions will be synchronized across the network, then extend UserAvatar and hook into its OnInputSpawned method to facilitate any extra linkage.
 
-Preparing other objects for MuVR is simpler, any nonplayer objects that need their positions synced can have the NetworkTransform component added. If the object has a Rigidbody, add a NetworkRigidbody.
+Preparing other objects for uMuVR is simpler, any nonplayer objects that need their positions synced can have the NetworkTransform component added. If the object has a Rigidbody, add a NetworkRigidbody.
 
 ## Benchmark
 

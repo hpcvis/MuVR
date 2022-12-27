@@ -1,4 +1,4 @@
-using MuVR.Enhanced;
+using uMuVR.Enhanced;
 using UnityEngine;
 
 public class WaypointController : PFNN.Controller {

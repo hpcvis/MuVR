@@ -1,6 +1,6 @@
 using FishNet.Connection;
 using FishNet.Object;
-using MuVR;
+using uMuVR;
 using UnityEngine;
 
 public class BallSpawner : NetworkBehaviour {

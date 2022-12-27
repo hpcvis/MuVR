@@ -1,9 +1,9 @@
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
-using MuVR;
+using uMuVR;
 using TMPro;
 using UnityEngine;
-using NetworkBehaviour = MuVR.Enhanced.NetworkBehaviour;
+using NetworkBehaviour = uMuVR.Enhanced.NetworkBehaviour;
 
 public class PingPongGameManager : NetworkBehaviour {
 	[SyncVar(OnChange = nameof(UpdateScores))]
