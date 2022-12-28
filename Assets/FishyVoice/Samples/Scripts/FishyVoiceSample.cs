@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace FishyVoice.Samples {
+	/// <summary>
+	/// Extension to FishNetworking's auto start sample script which manages as voice network as well
+	/// </summary>
 	public class FishyVoiceSample : NetworkHudCanvases {
 		// Indicator indicating if voice should be enabled or not
 		public Image voiceIndicator;

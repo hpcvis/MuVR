@@ -8,6 +8,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace FishyVoice {
+    /// <summary>
+    /// 
+    /// </summary>
     public class NetworkHudCanvases : MonoBehaviour {
         #region Types.
 

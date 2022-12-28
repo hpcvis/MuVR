@@ -331,7 +331,7 @@ namespace FishyVoice {
 			data.roomName = CurrentChatroomName;
 			data.tick = TimeManager.Tick;
 			data.senderID = (short)LocalConnection.ClientId;
-			data.senderPosition = !(agent is null || PlayerPositionReference.instance is null) ? PlayerPositionReference.instance.position : new Vector3(float.NaN, float.NaN, float.NaN);
+			data.senderPosition = !(agent is null || PlayerAudioPositionReference.instance is null) ? PlayerAudioPositionReference.instance.position : new Vector3(float.NaN, float.NaN, float.NaN);
 
 			// Unreliably send it to the server
 			OnAudioBroadcastReceivedServerRPC(LocalConnection, data);
