@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "K4os.Compression.LZ4": {
-      "commandName": "Project",
-      "nativeDebugging": true
-    }
-  }
-}

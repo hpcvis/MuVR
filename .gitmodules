@@ -4,3 +4,6 @@
 [submodule "Submodules/UltimateXR"]
 	path = Submodules/UltimateXR
 	url = https://github.com/VRMADA/ultimatexr-unity.git
+[submodule "Submodules/FishyVoice"]
+	path = Submodules/FishyVoice
+	url = https://github.com/hpcvis/FishyVoice.git
