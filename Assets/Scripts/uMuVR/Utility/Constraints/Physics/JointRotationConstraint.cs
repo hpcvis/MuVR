@@ -36,7 +36,7 @@ namespace uMuVR.Utility.Constraints {
 		/// Every physics update, apply the constraint
 		/// </summary>
 		protected void FixedUpdate() {
-			// If there is no force then don't both
+			// If there is no force then don't bother
 			if (Mathf.Approximately(springConstant, 0)) return;
 
 			// Reset the center of mass so that torque is properly applied
