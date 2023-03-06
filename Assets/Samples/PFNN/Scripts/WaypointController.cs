@@ -74,7 +74,7 @@ public class WaypointController : PFNN.Controller {
 
 	public void UpdateCameraDistance(float value) {
 		cameraDistance += value * cameraZoomSensitivity * Time.deltaTime;
-		cameraDistance = Mathf.Clamp(cameraDistance, cameraDistanceMax, cameraDistanceMin);
+		cameraDistance = UnityEngine.Mathf.Clamp(cameraDistance, cameraDistanceMax, cameraDistanceMin);
 
 		MoveCamera();
 	}
@@ -82,7 +82,7 @@ public class WaypointController : PFNN.Controller {
 	protected void MoveCamera(float speedY = 0.0f, float speedX = 0.0f) {
 		cameraAngleX += speedX * cameraRotationSensitivity * Time.deltaTime;
 		cameraAngleY += speedY * cameraRotationSensitivity * Time.deltaTime;
-		cameraAngleX = Mathf.Clamp(cameraAngleX, cameraAngleMinX, cameraAngleMaxX);
+		cameraAngleX = UnityEngine.Mathf.Clamp(cameraAngleX, cameraAngleMinX, cameraAngleMaxX);
 
 		var dir = new Vector3(0, 0, cameraDistance);
 		var rotation = Quaternion.Euler(cameraAngleX, cameraAngleY, 0.0f);

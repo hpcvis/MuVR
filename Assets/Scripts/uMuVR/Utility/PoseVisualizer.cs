@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using TriInspector;
 using UnityEditor;
 using UnityEngine;

@@ -1,8 +1,9 @@
 using System;
 using System.Linq;
+using TriInspector;
+using uMuVR.Utility;
 using UnityEditor;
 using UnityEngine;
-using TriInspector;
 
 namespace uMuVR {
 	
@@ -10,14 +11,6 @@ namespace uMuVR {
 	/// Component that copies the transform from the object it is attached to, to a pose slot on a UserAvatar
 	/// </summary>
 	public class SyncPose : MonoBehaviour, Utility.ISyncable {
-		/// <summary>
-		/// Enum setting weather we should be sending our transform to the pose, or reading our transform from the pose
-		/// </summary>
-		public enum SyncMode {
-			SyncTo,
-			SyncFrom
-		}
-		
 		/// <summary>
 		/// Enum flag indicating which axis should be synced
 		/// </summary>
@@ -38,7 +31,7 @@ namespace uMuVR {
 		public string slot;
 
 		[PropertyTooltip("Should we send our transform to the pose, or update our transform to match the pose?")]
-		public SyncMode mode;
+		public ISyncable.SyncMode mode;
 
 		[PropertyTooltip("Offset applied while syncing")]
 		public Pose localOffset = Pose.identity;
@@ -82,7 +75,7 @@ namespace uMuVR {
 		/// At the end of the frame, make sure that our transform is properly synced with the pose according to the pose mode
 		/// </summary>
 		public void LateUpdate() {
-			if (mode == SyncMode.SyncTo) {
+			if (mode == ISyncable.SyncMode.SyncTo) {
 				UpdatePosition(ref setTarget.pose.position, transform.position);
 				UpdateRotation(ref setTarget.pose.rotation, transform.rotation);
 			} else {
@@ -203,7 +196,8 @@ namespace uMuVR {
 			serializedObject.ApplyModifiedProperties();
 			// If the target avatar has changed, automatically select its first slot
 			if (sync.targetAvatar != oldAvatar && sync.targetAvatar is not null)
-				sync.slot = sync.targetAvatar.slots.Keys.First();
+				if(!sync.targetAvatar.slots.ContainsKey(sync.slot))
+					sync.slot = sync.targetAvatar.slots.Keys.First();
 		}
 
 		/// <summary>
@@ -313,7 +307,7 @@ namespace uMuVR {
 			try {
 				// Present a non-editable field with the debug pose (or an empty pose if the target is invalid)
 				if (sync.targetAvatar is null || !sync.targetAvatar.slots.ContainsKey(sync.slot)) return;
-				if(sync.mode == SyncPose.SyncMode.SyncTo) 
+				if(sync.mode == ISyncable.SyncMode.SyncTo) 
 					PoseField("Pose Debug", sync.targetAvatar.SetterPoseRef(sync.slot).pose, ref showTarget, false);
 				else PoseField("Pose Debug", sync.targetAvatar.GetterPoseRef(sync.slot).pose, ref showTarget, false);
 			} catch(NullReferenceException) {}

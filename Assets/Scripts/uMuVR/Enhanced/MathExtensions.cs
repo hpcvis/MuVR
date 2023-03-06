@@ -2,6 +2,26 @@
 
 namespace uMuVR.Enhanced {
 	// Extensions to Unity's Math Types
+	public static class Mathf {
+		// Function which converts an angle in the range [0, 360] to the corresponding angle in the range [-180, 180]
+		public static float AngleTo180s(float angle) {
+			if (angle > 180)
+				return angle - 360;
+			return angle;
+		}
+		
+		// Function which converts an angle in the range [-180, 180] to the corresponding angle in the range [0, 360]
+		public static float AngleTo360s(float angle) {
+			if (angle < 0)
+				return angle + 360;
+			return angle;
+		}
+
+		public static float UnclampedInverseLerp(float a, float b, float v) {
+			return (v - a) / (b - a);
+		}
+	}
+	
 	public static class Vector2Extensions {
 		/// <summary>
 		///     Extension function that rotates a Vector2 around the origin <paramref name="degrees" /> degrees
@@ -10,8 +30,8 @@ namespace uMuVR.Enhanced {
 		/// <param name="degrees">The number of degrees to rotate <paramref name="v" /> by</param>
 		/// <returns><paramref name="v" /> rotated</returns>
 		public static Vector2 Rotate(this Vector2 v, float degrees) {
-			var sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
-			var cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+			var sin = UnityEngine.Mathf.Sin(degrees * UnityEngine.Mathf.Deg2Rad);
+			var cos = UnityEngine.Mathf.Cos(degrees * UnityEngine.Mathf.Deg2Rad);
 
 			var tx = v.x;
 			var ty = v.y;
@@ -61,7 +81,7 @@ namespace uMuVR.Enhanced {
 			return (a - b).magnitude < epsilon;
 		}
 		public static bool Approximately(this Vector2 a, Vector2 b) {
-			return Approximately(a, b, Mathf.Epsilon);
+			return Approximately(a, b,UnityEngine.Mathf.Epsilon);
 		}
 	}
 
@@ -109,7 +129,7 @@ namespace uMuVR.Enhanced {
 			return (a - b).magnitude < epsilon;
 		}
 		public static bool Approximately(this Vector3 a, Vector3 b) {
-			return Approximately(a, b, Mathf.Epsilon);
+			return Approximately(a, b, UnityEngine.Mathf.Epsilon);
 		}
 
 		/// <summary>
@@ -154,7 +174,7 @@ namespace uMuVR.Enhanced {
 			return (a - b).magnitude < epsilon;
 		}
 		public static bool Approximately(this Vector4 a, Vector4 b) {
-			return Approximately(a, b, Mathf.Epsilon);
+			return Approximately(a, b, UnityEngine.Mathf.Epsilon);
 		}
 	}
 
@@ -192,7 +212,7 @@ namespace uMuVR.Enhanced {
 		/// <returns>The angular velocity vector corresponding to <paramref name="q" /></returns>
 		public static Vector3 ToAngularVelocity(this Quaternion q) {
 			q.ToAngleAxis(out var angle, out var axis);
-			return axis * (angle * Mathf.Deg2Rad);
+			return axis * (angle * UnityEngine.Mathf.Deg2Rad);
 		}
 	}
 

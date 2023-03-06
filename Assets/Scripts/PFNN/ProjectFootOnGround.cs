@@ -36,7 +36,7 @@ public class ProjectFootOnGround : MonoBehaviour {
 	/// <summary>
 	///     The point in the phase when the foot should be lifted off the ground
 	/// </summary>
-	public float targetPhase = Mathf.PI;
+	public float targetPhase = UnityEngine.Mathf.PI;
 
 	/// <summary>
 	///     The average distance this IK instance moves its associated foot
@@ -72,9 +72,9 @@ public class ProjectFootOnGround : MonoBehaviour {
 	/// <returns>The new pose of the foot</returns>
 	private Pose CalculateFoot(float phase, float standing, Vector3 up) {
 		// Calculate the IK weight based on the face and standing
-		var weight = 1 - Mathf.Min(Mathf.Abs(phase - targetPhase), Mathf.Abs(phase - targetPhase - Mathf.PI)) / Mathf.PI;
+		var weight = 1 - UnityEngine.Mathf.Min(UnityEngine.Mathf.Abs(phase - targetPhase), UnityEngine.Mathf.Abs(phase - targetPhase - UnityEngine.Mathf.PI)) / UnityEngine.Mathf.PI;
 		weight += standing;
-		weight = Mathf.Clamp(weight, 0, 1);
+		weight = UnityEngine.Mathf.Clamp(weight, 0, 1);
 
 		// Set a minimum on heelHeight
 		var comparisonHeight = heelHeight > .1f ? heelHeight : .1f;
@@ -88,18 +88,18 @@ public class ProjectFootOnGround : MonoBehaviour {
 		var ankleNormal = up;
 
 		// Perform a toe and ankle projection
-		if (Physics.Raycast(new Ray(toeProjected + up, -up), out var hit, Mathf.Infinity, LayerMask.NameToLayer("Character"))) {
+		if (Physics.Raycast(new Ray(toeProjected + up, -up), out var hit, UnityEngine.Mathf.Infinity, LayerMask.NameToLayer("Character"))) {
 			toeProjected = hit.point;
 			toeNormal = hit.normal;
 		}
-		if (Physics.Raycast(new Ray(ankleProjected + up, -up), out hit, Mathf.Infinity, LayerMask.NameToLayer("Character"))) {
+		if (Physics.Raycast(new Ray(ankleProjected + up, -up), out hit, UnityEngine.Mathf.Infinity, LayerMask.NameToLayer("Character"))) {
 			ankleProjected = hit.point;
 			ankleNormal = hit.normal;
 		}
 
 		// Unique angle formula
 		var anklePosition = ankleProjected;
-		if (Mathf.Abs(ankleProjected.y + heelHeight - toeProjected.y) > comparisonHeight)
+		if (UnityEngine.Mathf.Abs(ankleProjected.y + heelHeight - toeProjected.y) > comparisonHeight)
 			// Big slope case!
 			anklePosition.y = toeProjected.y + heelHeight;
 		else
@@ -110,7 +110,7 @@ public class ProjectFootOnGround : MonoBehaviour {
 		if (anklePosition.y < ankleProjected.y) anklePosition.y = ankleProjected.y;
 		toeProjected.y += toeOffset;
 		var baseAnklePosition = ankle.transform.position;
-		baseAnklePosition.y = Mathf.Max(baseAnklePosition.y, ankleProjected.y);
+		baseAnklePosition.y = UnityEngine.Mathf.Max(baseAnklePosition.y, ankleProjected.y);
 
 		// Blend the position and rotation with the original ones based on the animation phase so that he can pick his feet up off the ground!
 		Pose output;

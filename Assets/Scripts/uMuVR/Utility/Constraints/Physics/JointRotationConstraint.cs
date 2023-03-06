@@ -37,7 +37,7 @@ namespace uMuVR.Utility.Constraints {
 		/// </summary>
 		protected void FixedUpdate() {
 			// If there is no force then don't bother
-			if (Mathf.Approximately(springConstant, 0)) return;
+			if (UnityEngine.Mathf.Approximately(springConstant, 0)) return;
 
 			// Reset the center of mass so that torque is properly applied
 			rb.centerOfMass = Vector3.zero;

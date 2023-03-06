@@ -35,10 +35,10 @@ public class VRController : PFNN.Controller {
 
 		// While the feet and HMD are pointing in substantially different directions force the target distance to 0
 		var footForward = ((GetJoint(JointType.LeftToeBase).jointPoint.transform.forward + GetJoint(JointType.RightToeBase).jointPoint.transform.forward) / 2).normalized.FixedHeight(0);
-		if (Mathf.Abs(Vector3.Angle(footForward, HMD.forward.FixedHeight(0))) > 10) speed = 1;
+		if (UnityEngine.Mathf.Abs(Vector3.Angle(footForward, HMD.forward.FixedHeight(0))) > 10) speed = 1;
 
 		// Adjust the target distance based on the speed of the hips 
-		targetDistanceTarget = Mathf.Max(-150 * speed + .3f, 0);
+		targetDistanceTarget = UnityEngine.Mathf.Max(-150 * speed + .3f, 0);
 		// Debug.Log($"{footForward} - {Hips.forward.FixedHeight(0)} - {Mathf.Abs(Vector3.Angle(footForward, HMD.forward.FixedHeight(0)))} - {targetDistance}");
 
 		// Allow the target distance to immediately drop to match its target, but force it to take 3 seconds to reach its maximum
@@ -50,7 +50,7 @@ public class VRController : PFNN.Controller {
 
 		const float Cmax = .95f;
 		const float Cmid = .85f;
-		crouchedTarget = Mathf.Clamp01(1 - ((HMD.transform.position.y - Foot.transform.position.y) / (Cmax * initialHMDHeight - Cmid * initialHMDHeight) - Cmid / (Cmax - Cmid)));
+		crouchedTarget = UnityEngine.Mathf.Clamp01(1 - ((HMD.transform.position.y - Foot.transform.position.y) / (Cmax * initialHMDHeight - Cmid * initialHMDHeight) - Cmid / (Cmax - Cmid)));
 
 		base.Update();
 	}

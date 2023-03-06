@@ -368,12 +368,12 @@ namespace PFNN {
 
 		public void UpdateStrafe(float strafe) {
 			strafeTarget = strafe;
-			strafeAmount = Mathf.Lerp(strafeAmount, strafeTarget, Utils.extraStrafeSmooth);
+			strafeAmount = UnityEngine.Mathf.Lerp(strafeAmount, strafeTarget, Utils.extraStrafeSmooth);
 		}
 
 		public void UpdateTargetDirectionAndVelocity(Vector3 newTargetDirection, float axisX, float axisY, float rightTrigger) {
 			var newTargetRotation = Quaternion.AngleAxis(
-				Mathf.Atan2(newTargetDirection.x, newTargetDirection.z) * Mathf.Rad2Deg,
+				UnityEngine.Mathf.Atan2(newTargetDirection.x, newTargetDirection.z) * UnityEngine.Mathf.Rad2Deg,
 				Vector3.up
 			);
 
@@ -387,7 +387,7 @@ namespace PFNN {
 			newTargetDirection = Utils.MixDirections(targetVelocityDirection, newTargetDirection, strafeAmount);
 			targetDirection = Utils.MixDirections(targetDirection, newTargetDirection, Utils.extraDirectionSmooth);
 
-			crouchedAmount = Mathf.Lerp(crouchedAmount, crouchedTarget, Utils.extraCrouchedSmooth);
+			crouchedAmount = UnityEngine.Mathf.Lerp(crouchedAmount, crouchedTarget, Utils.extraCrouchedSmooth);
 
 			Debug.DrawRay(transform.position, targetDirection * 10, Color.red);
 			Debug.DrawRay(transform.position, targetVelocityDirection * 10, Color.green);
@@ -395,35 +395,35 @@ namespace PFNN {
 
 		public void UpdateGait(float sprinting) {
 			if (targetVelocity.magnitude < 0.1f) { // Standing still
-				var standAmount = 1f - Mathf.Clamp01(targetVelocity.magnitude / 0.1f);
+				var standAmount = 1f - UnityEngine.Mathf.Clamp01(targetVelocity.magnitude / 0.1f);
 
-				points[trajectoryLength / 2].gaitStand = Mathf.Lerp(points[trajectoryLength / 2].gaitStand, standAmount, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitWalk = Mathf.Lerp(points[trajectoryLength / 2].gaitWalk, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitJog = Mathf.Lerp(points[trajectoryLength / 2].gaitJog, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitCrouch = Mathf.Lerp(points[trajectoryLength / 2].gaitCrouch, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitJump = Mathf.Lerp(points[trajectoryLength / 2].gaitJump, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitBump = Mathf.Lerp(points[trajectoryLength / 2].gaitBump, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitStand = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitStand, standAmount, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitWalk = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitWalk, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitJog = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitJog, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitCrouch = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitCrouch, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitJump = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitJump, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitBump = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitBump, 0, Utils.extraGaitSmooth);
 			} else if (crouchedAmount > 0.1f) { // Crouch
-				points[trajectoryLength / 2].gaitStand = Mathf.Lerp(points[trajectoryLength / 2].gaitStand, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitWalk = Mathf.Lerp(points[trajectoryLength / 2].gaitWalk, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitJog = Mathf.Lerp(points[trajectoryLength / 2].gaitJog, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitCrouch = Mathf.Lerp(points[trajectoryLength / 2].gaitCrouch, crouchedAmount, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitJump = Mathf.Lerp(points[trajectoryLength / 2].gaitJump, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitBump = Mathf.Lerp(points[trajectoryLength / 2].gaitBump, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitStand = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitStand, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitWalk = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitWalk, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitJog = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitJog, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitCrouch = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitCrouch, crouchedAmount, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitJump = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitJump, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitBump = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitBump, 0, Utils.extraGaitSmooth);
 			} else if (sprinting != 0) { // Jog - 546 wuuuut??
-				points[trajectoryLength / 2].gaitStand = Mathf.Lerp(points[trajectoryLength / 2].gaitStand, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitWalk = Mathf.Lerp(points[trajectoryLength / 2].gaitWalk, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitJog = Mathf.Lerp(points[trajectoryLength / 2].gaitJog, 1f, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitCrouch = Mathf.Lerp(points[trajectoryLength / 2].gaitCrouch, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitJump = Mathf.Lerp(points[trajectoryLength / 2].gaitJump, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitBump = Mathf.Lerp(points[trajectoryLength / 2].gaitBump, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitStand = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitStand, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitWalk = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitWalk, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitJog = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitJog, 1f, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitCrouch = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitCrouch, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitJump = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitJump, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitBump = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitBump, 0, Utils.extraGaitSmooth);
 			} else { // Walk
-				points[trajectoryLength / 2].gaitStand = Mathf.Lerp(points[trajectoryLength / 2].gaitStand, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitWalk = Mathf.Lerp(points[trajectoryLength / 2].gaitWalk, 1f, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitJog = Mathf.Lerp(points[trajectoryLength / 2].gaitJog, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitCrouch = Mathf.Lerp(points[trajectoryLength / 2].gaitCrouch, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitJump = Mathf.Lerp(points[trajectoryLength / 2].gaitJump, 0, Utils.extraGaitSmooth);
-				points[trajectoryLength / 2].gaitBump = Mathf.Lerp(points[trajectoryLength / 2].gaitBump, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitStand = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitStand, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitWalk = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitWalk, 1f, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitJog = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitJog, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitCrouch = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitCrouch, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitJump = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitJump, 0, Utils.extraGaitSmooth);
+				points[trajectoryLength / 2].gaitBump = UnityEngine.Mathf.Lerp(points[trajectoryLength / 2].gaitBump, 0, Utils.extraGaitSmooth);
 			}
 		}
 
@@ -434,11 +434,11 @@ namespace PFNN {
 			CalculateAutomaticWall();
 
 			for (var i = trajectoryLength / 2 + 1; i < trajectoryLength; i++) {
-				var biasPosition = Mathf.Lerp(0.5f, 1f, strafeAmount); // On both variables will come character response check (569)
-				var biasDirection = Mathf.Lerp(2f, 0.5f, strafeAmount);
+				var biasPosition = UnityEngine.Mathf.Lerp(0.5f, 1f, strafeAmount); // On both variables will come character response check (569)
+				var biasDirection = UnityEngine.Mathf.Lerp(2f, 0.5f, strafeAmount);
 
-				var scalePosition = 1f - Mathf.Pow(1f - (float)(i - trajectoryLength / 2) / (trajectoryLength / 2), biasPosition);
-				var scaleDirection = 1f - Mathf.Pow(1f - (float)(i - trajectoryLength / 2) / (trajectoryLength / 2), biasDirection);
+				var scalePosition = 1f - UnityEngine.Mathf.Pow(1f - (float)(i - trajectoryLength / 2) / (trajectoryLength / 2), biasPosition);
+				var scaleDirection = 1f - UnityEngine.Mathf.Pow(1f - (float)(i - trajectoryLength / 2) / (trajectoryLength / 2), biasDirection);
 
 				positionsBlend[i] = positionsBlend[i - 1] + Vector3.Lerp(points[i].position - points[i - 1].position, targetVelocity, scalePosition);
 
@@ -455,7 +455,7 @@ namespace PFNN {
 					if (!(segmentDistance < wallWidth + wallVal)) continue;
 					var point0 = (wallWidth + 0) * (trajectoryPoint - segmentPoint).normalized + segmentPoint;
 					var point1 = (wallWidth + wallVal) * (trajectoryPoint - segmentPoint).normalized + segmentPoint;
-					var point = Vector2.Lerp(point0, point1, Mathf.Clamp01(segmentDistance - wallWidth) / wallVal);
+					var point = Vector2.Lerp(point0, point1, UnityEngine.Mathf.Clamp01(segmentDistance - wallWidth) / wallVal);
 
 					positionsBlend[i].x = point.x * oppositeScaleFactor;
 					positionsBlend[i].z = point.y * oppositeScaleFactor;
@@ -482,9 +482,9 @@ namespace PFNN {
 			for (var i = trajectoryLength / 2 + 1; i < trajectoryLength; i++) {
 				points[i].gaitJump = 0;
 
-				points[i].gaitJump = Mathf.Max(
+				points[i].gaitJump = UnityEngine.Mathf.Max(
 					points[i].gaitJump,
-					1f - Mathf.Clamp01(3f / 5f)
+					1f - UnityEngine.Mathf.Clamp01(3f / 5f)
 				);
 			}
 		}
@@ -522,8 +522,8 @@ namespace PFNN {
 			if (setWall) return;
 			if (removeWallCoroutine is not null) return;
 			removeWallCoroutine = StartCoroutine(Timer.Start(() => {
-				terrainWalls[^1].wallStart = new Vector2(Mathf.Infinity, Mathf.Infinity);
-				terrainWalls[^1].wallEnd = new Vector2(Mathf.Infinity, Mathf.Infinity);
+				terrainWalls[^1].wallStart = new Vector2(UnityEngine.Mathf.Infinity, UnityEngine.Mathf.Infinity);
+				terrainWalls[^1].wallEnd = new Vector2(UnityEngine.Mathf.Infinity, UnityEngine.Mathf.Infinity);
 				removeWallCoroutine = null;
 			}, .1f));
 		}
@@ -536,7 +536,7 @@ namespace PFNN {
 					var segmentPoint = Utils.SegmentNearest(terrainWalls[j].wallStart, terrainWalls[j].wallEnd, trajectoryPoint);
 
 					var segmentDistance = (segmentPoint - trajectoryPoint).magnitude;
-					points[i].gaitBump = Mathf.Max(points[i].gaitBump, 1f - Mathf.Clamp01((segmentDistance - wallWidth) / wallVal));
+					points[i].gaitBump = UnityEngine.Mathf.Max(points[i].gaitBump, 1f - UnityEngine.Mathf.Clamp01((segmentDistance - wallWidth) / wallVal));
 				}
 			}
 		}
@@ -544,7 +544,7 @@ namespace PFNN {
 		public void UpdateRotation() {
 			for (var i = 0; i < trajectoryLength; i++)
 				points[i].rotation = Quaternion.AngleAxis(
-					Mathf.Atan2(points[i].direction.x, points[i].direction.z) * Mathf.Rad2Deg,
+					UnityEngine.Mathf.Atan2(points[i].direction.x, points[i].direction.z) * UnityEngine.Mathf.Rad2Deg,
 					Vector3.up);
 		}
 
@@ -559,7 +559,7 @@ namespace PFNN {
 			position.Scale(new Vector3(scaleFactor, 0, scaleFactor));
 			position.y = heightOrigin;
 
-			if (!Physics.Raycast(position, Vector3.down, out var hit, Mathf.Infinity, layerMask)) return 0;
+			if (!Physics.Raycast(position, Vector3.down, out var hit, UnityEngine.Mathf.Infinity, layerMask)) return 0;
 			return hit.transform.CompareTag("Terrain") ? (heightOrigin - hit.distance) * oppositeScaleFactor : 0;
 		}
 
@@ -686,13 +686,13 @@ namespace PFNN {
 			var trajectoryUpdate = points[trajectoryLength / 2].rotation * new Vector3(Y[0], 0, Y[1]);
 			points[trajectoryLength / 2].position += standAmount * trajectoryUpdate;
 
-			points[trajectoryLength / 2].direction = Quaternion.AngleAxis(standAmount * -Y[2, 0] * Mathf.Rad2Deg, Vector3.up)
+			points[trajectoryLength / 2].direction = Quaternion.AngleAxis(standAmount * -Y[2, 0] * UnityEngine.Mathf.Rad2Deg, Vector3.up)
 			                                         * points[trajectoryLength / 2].direction;
 
 			points[trajectoryLength / 2].rotation = Quaternion.AngleAxis(
-				Mathf.Atan2(points[trajectoryLength / 2].direction.x,
+				UnityEngine.Mathf.Atan2(points[trajectoryLength / 2].direction.x,
 					points[trajectoryLength / 2].direction.z)
-				* Mathf.Rad2Deg, Vector3.up);
+				* UnityEngine.Mathf.Rad2Deg, Vector3.up);
 
 			// Collide with walls
 			for (var j = 0; j < terrainWalls.Length; j++) {
@@ -704,7 +704,7 @@ namespace PFNN {
 				if (!(segmentDistance < wallWidth + wallVal)) continue;
 				var point0 = (wallWidth + 0) * (trajectoryPoint - segmentPoint).normalized + segmentPoint;
 				var point1 = (wallWidth + wallVal) * (trajectoryPoint - segmentPoint).normalized + segmentPoint;
-				var point = Vector2.Lerp(point0, point1, Mathf.Clamp01((segmentDistance - wallWidth) / wallVal));
+				var point = Vector2.Lerp(point0, point1, UnityEngine.Mathf.Clamp01((segmentDistance - wallWidth) / wallVal));
 
 				points[trajectoryLength / 2].position.x = point.x * oppositeScaleFactor;
 				points[trajectoryLength / 2].position.z = point.y * oppositeScaleFactor;
@@ -723,16 +723,16 @@ namespace PFNN {
 				points[i].position = points[trajectoryLength / 2].rotation * points[i].position + points[trajectoryLength / 2].position;
 				points[i].direction = Vector3.Normalize(points[trajectoryLength / 2].rotation * points[i].direction);
 				points[i].rotation = Quaternion.AngleAxis(
-					Mathf.Atan2(points[i].direction.x, points[i].direction.z) * Mathf.Rad2Deg,
+					UnityEngine.Mathf.Atan2(points[i].direction.x, points[i].direction.z) * UnityEngine.Mathf.Rad2Deg,
 					Vector3.up);
 			}
 		}
 
 		public void UpdatePhase(Matrix Y) {
-			phase = (phase + (GetStandAmount() * 0.9f + 0.1f) * (2f * Mathf.PI) * Y[3, 0]) % (2f * Mathf.PI);
+			phase = (phase + (GetStandAmount() * 0.9f + 0.1f) * (2f * UnityEngine.Mathf.PI) * Y[3, 0]) % (2f * UnityEngine.Mathf.PI);
 		}
 
-		protected float GetStandAmount() => Mathf.Pow(1f - points[trajectoryLength / 2].gaitStand, 0.25f);
+		protected float GetStandAmount() => UnityEngine.Mathf.Pow(1f - points[trajectoryLength / 2].gaitStand, 0.25f);
 		public bool IsStanding() => points[trajectoryLength / 2].gaitStand > .9f;
 
 		public void DisplayTrajectory() {
@@ -760,7 +760,7 @@ namespace PFNN {
 			// Direction arrow
 			for (var i = 0; i < trajectoryLength; i += 10) {
 				var angle = Quaternion.AngleAxis(
-					Mathf.Atan2(points[i].direction.x, points[i].direction.z) * Mathf.Rad2Deg,
+					UnityEngine.Mathf.Atan2(points[i].direction.x, points[i].direction.z) * UnityEngine.Mathf.Rad2Deg,
 					Vector3.up); //new Vector3(0, 1f, 0));
 				angle *= new Quaternion(0.7f, 0, 0, 0.7f);
 

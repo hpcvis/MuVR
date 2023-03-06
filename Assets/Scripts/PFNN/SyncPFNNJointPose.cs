@@ -1,4 +1,5 @@
 using System.Linq;
+using uMuVR.Utility;
 using UnityEditor;
 
 namespace uMuVR {
@@ -21,7 +22,7 @@ namespace uMuVR {
 
 		// Update is called once per frame, and make sure that our transform is properly synced with the pose according to the pose mode
 		public new void LateUpdate() {
-			if (mode == SyncPose.SyncMode.SyncTo) {
+			if (mode == ISyncable.SyncMode.SyncTo) {
 				UpdatePosition(ref setTarget.pose.position, targetJoint.jointPoint.transform.position);
 				UpdateRotation(ref setTarget.pose.rotation, targetJoint.jointPoint.transform.rotation);
 			} else {
