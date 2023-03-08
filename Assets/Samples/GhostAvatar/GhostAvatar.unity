@@ -559,7 +559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1420347233}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1313481376}
 --- !u!114 &1313481373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,9 +572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f57a7c786f019442b3036e9f735943d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
-  _addedNetworkObject: {fileID: 0}
-  _networkObjectCache: {fileID: 0}
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 1313481376}
+  _networkObjectCache: {fileID: 1313481376}
   enableInteractionTransfer: 1
   enableVolumeTransfer: 1
   releaseOwnershipOnLeave: 1
@@ -593,9 +593,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f572e46af83151541aed4c1c20a097ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 1313481376}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1313481376}
   target: {fileID: 1313481355}
   targetIsKinematic: 1
   clientAuthority: 1
@@ -621,9 +621,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1313481376}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1313481376}
   _synchronizeParent: 0
   _packing:
     Position: 1
@@ -664,9 +664,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 0
-  _networkBehaviours: []
-  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ComponentIndex>k__BackingField: 1
+  _networkBehaviours:
+  - {fileID: 1313481370}
+  - {fileID: 1313481373}
+  - {fileID: 1313481374}
+  - {fileID: 1313481375}
+  <ParentNetworkObject>k__BackingField: {fileID: 1420347233}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
   _isGlobal: 0
@@ -696,7 +700,7 @@ MonoBehaviour:
   _networkBehaviours: []
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField:
-  - {fileID: 0}
+  - {fileID: 1313481376}
   _isNetworked: 1
   _isGlobal: 0
   _defaultDespawnType: 0
@@ -706,7 +710,7 @@ MonoBehaviour:
   <SceneId>k__BackingField: 7956184815686312593
   <AssetPathHash>k__BackingField: 0
   _sceneNetworkObjects:
-  - {fileID: 0}
+  - {fileID: 1313481376}
   - {fileID: 1420347233}
 --- !u!1 &1491201255
 GameObject:

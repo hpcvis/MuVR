@@ -588,7 +588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb099788656a76499e95ebc3cdf4d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
+    type: 3}
   slot: Head
   mode: 0
   localOffset:

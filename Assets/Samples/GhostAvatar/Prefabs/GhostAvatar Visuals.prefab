@@ -210,38 +210,16 @@ MonoBehaviour:
     - Right Knee
     - Left Ankle
     - Right Ankle
-    - ---Left Fingers---
-    - LeftIndex1
-    - LeftIndex2
-    - LeftIndex3
-    - LeftMiddle1
-    - LeftMiddle2
-    - LeftMiddle3
-    - LeftRing1
-    - LeftRing2
-    - LeftRing3
-    - LeftPinky1
-    - LeftPinky2
-    - LeftPinky3
-    - LeftThumb1
-    - LeftThumb2
-    - LeftThumb3
-    - ---Right Fingers---
-    - RightIndex1
-    - RightIndex2
-    - RightIndex3
-    - RightMiddle1
-    - RightMiddle2
-    - RightMiddle3
-    - RightRing1
-    - RightRing2
-    - RightRing3
-    - RightPinky1
-    - RightPinky2
-    - RightPinky3
-    - RightThumb1
-    - RightThumb2
-    - RightThumb3
+    - LeftIndex
+    - LeftMiddle
+    - LeftRing
+    - LeftPinky
+    - LeftThumb
+    - RightIndex
+    - RightMiddle
+    - RightRing
+    - RightPinky
+    - RightThumb
     _keys:
     - Head
     - Left Shoulder
@@ -255,38 +233,16 @@ MonoBehaviour:
     - Right Knee
     - Left Ankle
     - Right Ankle
-    - ---Left Fingers---
-    - LeftIndex1
-    - LeftIndex2
-    - LeftIndex3
-    - LeftMiddle1
-    - LeftMiddle2
-    - LeftMiddle3
-    - LeftRing1
-    - LeftRing2
-    - LeftRing3
-    - LeftPinky1
-    - LeftPinky2
-    - LeftPinky3
-    - LeftThumb1
-    - LeftThumb2
-    - LeftThumb3
-    - ---Right Fingers---
-    - RightIndex1
-    - RightIndex2
-    - RightIndex3
-    - RightMiddle1
-    - RightMiddle2
-    - RightMiddle3
-    - RightRing1
-    - RightRing2
-    - RightRing3
-    - RightPinky1
-    - RightPinky2
-    - RightPinky3
-    - RightThumb1
-    - RightThumb2
-    - RightThumb3
+    - LeftIndex
+    - LeftMiddle
+    - LeftRing
+    - LeftPinky
+    - LeftThumb
+    - RightIndex
+    - RightMiddle
+    - RightRing
+    - RightPinky
+    - RightThumb
     _values:
     - pose:
         position: {x: 0, y: 0, z: 0}
@@ -324,72 +280,6 @@ MonoBehaviour:
     - pose:
         position: {x: 0, y: 0, z: 0}
         rotation: {x: 0, y: 0, z: 0, w: 0}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-    - pose:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
     - pose:
         position: {x: 0, y: 0, z: 0}
         rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -657,6 +547,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: -8707241393673669972, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8699787447509501512, guid: 07c46d6dd7bcdd8469249226200bb260,
         type: 3}
       propertyPath: m_Layer
@@ -837,6 +732,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: -5370524573826645861, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5084376690138679560, guid: 07c46d6dd7bcdd8469249226200bb260,
         type: 3}
       propertyPath: m_UpdateWhenOffscreen
@@ -861,6 +761,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -3842908045289527126, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3705741025253610726, guid: 07c46d6dd7bcdd8469249226200bb260,
         type: 3}
@@ -901,6 +806,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -2598182969042596370, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2453550708452717748, guid: 07c46d6dd7bcdd8469249226200bb260,
         type: 3}
@@ -956,6 +866,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: -1693546492923637869, guid: 07c46d6dd7bcdd8469249226200bb260,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1322763434854513700, guid: 07c46d6dd7bcdd8469249226200bb260,
         type: 3}
@@ -1323,7 +1238,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.03415162, y: 0.00000007851321, z: -0.000000089173625}
+  m_ConnectedAnchor: {x: -0.03415162, y: 0.000000078512926, z: -0.00000008865209}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1407,23 +1322,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &537029991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15533330821897191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftIndex3
 --- !u!114 &179676509357682357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1494,6 +1392,21 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &5840816647355792950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15533330821897191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!1 &25359935209578653 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6093313921892373013, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -1542,7 +1455,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.03459761, y: 0.000000053636658, z: -0.00000026212777}
+  m_ConnectedAnchor: {x: -0.03459761, y: 0.00000005363618, z: -0.00000026026513}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1626,23 +1539,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1401178615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25359935209578653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftMiddle3
 --- !u!114 &2992472959999111207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1671,6 +1567,21 @@ MonoBehaviour:
   _useGravity: 0
   _drag: 0
   _angularDrag: 0
+--- !u!114 &3364347175329233331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25359935209578653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 100
 --- !u!114 &8629518994785158910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1761,7 +1672,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.025948346, y: 0.0000000021228423, z: -0.00000037265323}
+  m_ConnectedAnchor: {x: -0.025948346, y: 0.0000000021222615, z: -0.0000003747394}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1845,23 +1756,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1524535840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170746718300045582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftPinky3
 --- !u!114 &3218304304591338861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1932,6 +1826,21 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &8366476443605276771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170746718300045582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 100
 --- !u!1 &467952598275683893 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5956947741087532221, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -1966,7 +1875,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.036754366, y: -0.021220157, z: 0.021220122}
+  m_ConnectedAnchor: {x: -0.036754366, y: -0.021220157, z: 0.021220123}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2050,23 +1959,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &954498273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467952598275683893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftThumb2
 --- !u!114 &1614750618623552237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2137,6 +2029,21 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &4981055143385815834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467952598275683893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 100
 --- !u!1 &598753825009018839 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2550471778959469217, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -2185,7 +2092,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.036139667, y: 0.00000003836585, z: 0.000000024366964}
+  m_ConnectedAnchor: {x: -0.036139667, y: 0.000000038365666, z: 0.000000026229609}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2269,7 +2176,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1281545091
+--- !u!114 &4643188542001064666
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2278,14 +2185,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 598753825009018839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftMiddle2
+  springConstant: 100
 --- !u!114 &5972862060940424526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2416,7 +2321,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.03415162, y: 0.000000050289284, z: -0.000000084456516}
+  m_ConnectedAnchor: {x: 0.03415162, y: 0.000000050289575, z: -0.00000008393495}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2500,23 +2405,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1630910567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762831445282363325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightIndex3
 --- !u!114 &8093562329463852519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2587,6 +2475,21 @@ MonoBehaviour:
   _useGravity: 0
   _drag: 0
   _angularDrag: 0
+--- !u!114 &9063574197789429724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762831445282363325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!1 &905236102724263200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6360735721235083178, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -2719,23 +2622,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &30749614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 905236102724263200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftIndex1
 --- !u!114 &317576913525727035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2778,6 +2664,21 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &2877746477441449851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905236102724263200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!114 &5185068377166956205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2806,6 +2707,37 @@ MonoBehaviour:
   _useGravity: 0
   _drag: 0
   _angularDrag: 0
+--- !u!114 &7410614618897401977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905236102724263200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8572cc7dc0494a0c9e9ecd082dfb608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 3110346869223933058}
+  slot: LeftIndex
+  mode: 1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 0}
+  connectorJoint: {fileID: 0}
+  tipJoint: {fileID: 0}
+  setTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
+  _knuckleJoint: {fileID: 2877746477441449851}
+  _connectorJoint: {fileID: 1185749092995798864}
+  _tipJoint: {fileID: 5840816647355792950}
 --- !u!1 &953116642202012841 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2742706977199014367, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -2854,7 +2786,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.12775514, y: 0.00000016415291, z: 0.00000018228343}
+  m_ConnectedAnchor: {x: 0.12775514, y: 0.00000016415281, z: 0.00000018042078}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2938,23 +2870,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &451167646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953116642202012841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightMiddle1
 --- !u!114 &2862172660464335858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3025,6 +2940,52 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &3509091205240676562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953116642202012841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8572cc7dc0494a0c9e9ecd082dfb608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 3110346869223933058}
+  slot: RightMiddle
+  mode: 1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 0}
+  connectorJoint: {fileID: 0}
+  tipJoint: {fileID: 0}
+  setTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
+  _knuckleJoint: {fileID: 6355527832459173652}
+  _connectorJoint: {fileID: 4784007942794550815}
+  _tipJoint: {fileID: 5975166916531967249}
+--- !u!114 &6355527832459173652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953116642202012841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!1 &1174542011456728985 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4280359472741655279, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -3073,7 +3034,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.03601192, y: 0.000000105607015, z: 0.0000003531131}
+  m_ConnectedAnchor: {x: -0.03601192, y: 0.0000003106435, z: 0.00000035311308}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3157,7 +3118,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1063693225
+--- !u!114 &1968314082554400563
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3166,14 +3127,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1174542011456728985}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftRing2
+  springConstant: 100
 --- !u!114 &8107324146433140652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3455,7 +3414,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.03459761, y: 0.00000002885837, z: -0.00000026105533}
+  m_ConnectedAnchor: {x: 0.03459761, y: 0.00000002885876, z: -0.0000002591927}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3539,23 +3498,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1542519975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851424939722558301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightMiddle3
 --- !u!114 &692199721732104599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3626,6 +3568,21 @@ MonoBehaviour:
   _useGravity: 0
   _drag: 0
   _angularDrag: 0
+--- !u!114 &5975166916531967249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851424939722558301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!1 &2106764054165855501 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3897462237488877691, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -3893,7 +3850,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.1277552, y: 0.00000018882079, z: 0.00000020396327}
+  m_ConnectedAnchor: {x: -0.1277552, y: 0.00000018882089, z: 0.00000020582591}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3977,23 +3934,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2109567819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2184874349798264301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftMiddle1
 --- !u!114 &3577729494618253372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4036,6 +3976,52 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &5334088821978650030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2184874349798264301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 100
+--- !u!114 &7012159613217220348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2184874349798264301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8572cc7dc0494a0c9e9ecd082dfb608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 3110346869223933058}
+  slot: LeftMiddle
+  mode: 1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 0}
+  connectorJoint: {fileID: 0}
+  tipJoint: {fileID: 0}
+  setTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
+  _knuckleJoint: {fileID: 5334088821978650030}
+  _connectorJoint: {fileID: 4643188542001064666}
+  _tipJoint: {fileID: 3364347175329233331}
 --- !u!114 &9011878442671655971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4541,7 +4527,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.036754366, y: -0.02122018, z: 0.021220125}
+  m_ConnectedAnchor: {x: 0.036754366, y: -0.02122018, z: 0.021220123}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4625,23 +4611,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1848901190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2712916511104564666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightThumb2
 --- !u!114 &414543940016519158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4712,6 +4681,21 @@ MonoBehaviour:
   _useGravity: 0
   _drag: 0
   _angularDrag: 0
+--- !u!114 &8534256440313862219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2712916511104564666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!1 &2781960132106157906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8236615327842799068, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -4760,7 +4744,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.038919613, y: 0.00000004911874, z: 0.0000003762542}
+  m_ConnectedAnchor: {x: 0.038919613, y: 0.00000004911874, z: 0.00000037439156}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4844,23 +4828,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &443728245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781960132106157906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightIndex2
 --- !u!114 &94342850865262444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4931,6 +4898,21 @@ MonoBehaviour:
   _useGravity: 0
   _drag: 0
   _angularDrag: 0
+--- !u!114 &5438869219126383291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781960132106157906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!1 &2818695592292268375 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 879379824694670369, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -4979,7 +4961,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.10908195, y: -0.002263687, z: -0.047258202}
+  m_ConnectedAnchor: {x: 0.10908195, y: -0.002263687, z: -0.047258187}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -5063,7 +5045,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &859276076
+--- !u!114 &6979281337714624691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5072,14 +5054,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 2818695592292268375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8572cc7dc0494a0c9e9ecd082dfb608b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
   targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightPinky1
+  slot: RightPinky
+  mode: 1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 0}
+  connectorJoint: {fileID: 0}
+  tipJoint: {fileID: 0}
+  setTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
+  _knuckleJoint: {fileID: 9125744703893621720}
+  _connectorJoint: {fileID: 635257164440967760}
+  _tipJoint: {fileID: 3222312155843020816}
 --- !u!114 &7942908767396781752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5150,6 +5146,21 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &9125744703893621720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818695592292268375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!1 &2876465554373554215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -5390,7 +5401,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.037888143, y: -0.021669907, z: 0.030030884}
+  m_ConnectedAnchor: {x: -0.037888143, y: -0.021669907, z: 0.030030886}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -5474,23 +5485,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1322269199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3171521405721837530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftThumb1
 --- !u!114 &5272199698995038273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5519,6 +5513,52 @@ MonoBehaviour:
   _useGravity: 0
   _drag: 0
   _angularDrag: 0
+--- !u!114 &5725208988969777242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171521405721837530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8572cc7dc0494a0c9e9ecd082dfb608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 3110346869223933058}
+  slot: LeftThumb
+  mode: 1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 0}
+  connectorJoint: {fileID: 0}
+  tipJoint: {fileID: 0}
+  setTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
+  _knuckleJoint: {fileID: 7395139730175422423}
+  _connectorJoint: {fileID: 4981055143385815834}
+  _tipJoint: {fileID: 9000183345844608525}
+--- !u!114 &7395139730175422423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171521405721837530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 100
 --- !u!114 &7725054258608719155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5753,7 +5793,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.03307319, y: 0.00000012887755, z: -0.00000020689615}
+  m_ConnectedAnchor: {x: -0.03307319, y: 0.00000018132582, z: -0.00000020687757}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -5837,7 +5877,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1244634517
+--- !u!114 &2415541602064026928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5846,14 +5886,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3678098657331290927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftRing3
+  springConstant: 100
 --- !u!114 &7749691281111457769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5972,7 +6010,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.121470064, y: 0.00009891189, z: -0.022166315}
+  m_ConnectedAnchor: {x: 0.121470064, y: 0.00009915031, z: -0.022166325}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -6056,23 +6094,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1549326973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3854304103458444380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightRing1
 --- !u!114 &536817977693993508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6101,6 +6122,52 @@ MonoBehaviour:
   _useGravity: 0
   _drag: 0
   _angularDrag: 0
+--- !u!114 &4554463328413193344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3854304103458444380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8572cc7dc0494a0c9e9ecd082dfb608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 3110346869223933058}
+  slot: RightRing
+  mode: 1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 0}
+  connectorJoint: {fileID: 0}
+  tipJoint: {fileID: 0}
+  setTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
+  _knuckleJoint: {fileID: 4842876254827711591}
+  _connectorJoint: {fileID: 2239537425463936598}
+  _tipJoint: {fileID: 2915635597521917821}
+--- !u!114 &4842876254827711591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3854304103458444380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!114 &8638649842325416563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6191,7 +6258,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.041366465, y: -0.0000000465123, z: 0.00000025578575}
+  m_ConnectedAnchor: {x: 0.041366465, y: -0.000000046512298, z: 0.00000026696162}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -6275,7 +6342,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &843582386
+--- !u!114 &635257164440967760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6284,14 +6351,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4091388584685343986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0, w: 1}
   springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightPinky2
 --- !u!114 &930698032343478102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6533,7 +6598,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.2761446, y: 0.00000008568319, z: 0.00000018067033}
+  m_ConnectedAnchor: {x: 0.2761446, y: 0.00000008568319, z: 0.00000018253297}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -6954,7 +7019,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.03601186, y: 0.00000008086875, z: 0.0000003531131}
+  m_ConnectedAnchor: {x: 0.03601186, y: 0.0000002859125, z: 0.0000003493878}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -7038,7 +7103,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1243299469
+--- !u!114 &2239537425463936598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7047,14 +7112,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5244873863387985719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0, w: 1}
   springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightRing2
 --- !u!114 &2867698357505127182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7159,7 +7222,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.03394349, y: -0.019597495, z: 0.019597927}
+  m_ConnectedAnchor: {x: -0.033943385, y: -0.019597495, z: 0.019597927}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -7243,23 +7306,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1922360318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288074120818576961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftThumb3
 --- !u!114 &3211132662900050457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7330,6 +7376,21 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &9000183345844608525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288074120818576961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 100
 --- !u!1 &5534925443410722813 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1731024231264914805, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -7566,7 +7627,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.12266621, y: -0.0023167543, z: 0.02822056}
+  m_ConnectedAnchor: {x: 0.12266621, y: -0.0023167543, z: 0.028220562}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -7650,7 +7711,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1923108881
+--- !u!114 &847780285146846133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7659,14 +7720,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 5576932833485944525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8572cc7dc0494a0c9e9ecd082dfb608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 3110346869223933058}
+  slot: RightIndex
+  mode: 1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 0}
+  connectorJoint: {fileID: 0}
+  tipJoint: {fileID: 0}
+  setTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
+  _knuckleJoint: {fileID: 1782750927373715786}
+  _connectorJoint: {fileID: 5438869219126383291}
+  _tipJoint: {fileID: 9063574197789429724}
+--- !u!114 &1782750927373715786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576932833485944525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0, w: 1}
   springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightIndex1
 --- !u!114 &5136569866662210693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7791,7 +7881,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.025948346, y: -0.000000022341275, z: -0.00000037059039}
+  m_ConnectedAnchor: {x: 0.025948346, y: -0.000000022341839, z: -0.00000036895125}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -7875,23 +7965,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1465317966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5704455809496585365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightPinky3
 --- !u!114 &2622970581018829917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7920,6 +7993,21 @@ MonoBehaviour:
   _useGravity: 0
   _drag: 0
   _angularDrag: 0
+--- !u!114 &3222312155843020816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5704455809496585365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!114 &6890558170567258951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8010,7 +8098,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.036139667, y: 0.0000000137380125, z: 0.000000030230957}
+  m_ConnectedAnchor: {x: 0.036139667, y: 0.000000013737913, z: 0.000000028368312}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -8094,7 +8182,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &206145101
+--- !u!114 &4784007942794550815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8103,14 +8191,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5745254855214956531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0, w: 1}
   springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightMiddle2
 --- !u!114 &5846725629477936603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8642,7 +8728,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.041366525, y: -0.000000022065091, z: 0.0000002706869}
+  m_ConnectedAnchor: {x: -0.041366525, y: -0.000000022065091, z: 0.0000002781375}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -8726,7 +8812,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &324585388
+--- !u!114 &1568107044150813158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8735,14 +8821,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6322039936278505161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftPinky2
+  springConstant: 100
 --- !u!114 &5480253668113421173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9136,7 +9220,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.03394343, y: -0.019597406, z: 0.019597922}
+  m_ConnectedAnchor: {x: 0.033943385, y: -0.019597406, z: 0.019597929}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -9220,23 +9304,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1583747871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6595771212501720842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightThumb3
 --- !u!114 &1081898358193933663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9307,6 +9374,21 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &5858337384076239934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595771212501720842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!1 &6643900807289130473 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -641257812432895841, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -9439,7 +9521,7 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1810652558
+--- !u!114 &1185749092995798864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9448,14 +9530,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6643900807289130473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0, w: 1}
   springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftIndex2
 --- !u!114 &2721409466286201286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9560,7 +9640,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.037888143, y: -0.021669934, z: 0.030030875}
+  m_ConnectedAnchor: {x: 0.037888143, y: -0.021669934, z: 0.030030876}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -9644,23 +9724,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1169377010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6972130719176635296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightThumb1
 --- !u!114 &2850348023313609675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9731,6 +9794,52 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &7535768500633832692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972130719176635296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
+--- !u!114 &8928121992204745657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972130719176635296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8572cc7dc0494a0c9e9ecd082dfb608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 3110346869223933058}
+  slot: RightThumb
+  mode: 1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 0}
+  connectorJoint: {fileID: 0}
+  tipJoint: {fileID: 0}
+  setTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
+  _knuckleJoint: {fileID: 7535768500633832692}
+  _connectorJoint: {fileID: 8534256440313862219}
+  _tipJoint: {fileID: 5858337384076239934}
 --- !u!1 &7025919441399375324 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3842908045289527126, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -9779,7 +9888,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.10908195, y: -0.0022636626, z: -0.04725818}
+  m_ConnectedAnchor: {x: -0.10908195, y: -0.0022636626, z: -0.047258176}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -9863,23 +9972,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1173294825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7025919441399375324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftPinky1
 --- !u!114 &161932916919368622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9950,6 +10042,52 @@ MonoBehaviour:
   _useGravity: 0
   _drag: 0
   _angularDrag: 0
+--- !u!114 &6527952850117317386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025919441399375324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8572cc7dc0494a0c9e9ecd082dfb608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 3110346869223933058}
+  slot: LeftPinky
+  mode: 1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 0}
+  connectorJoint: {fileID: 0}
+  tipJoint: {fileID: 0}
+  setTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
+  _knuckleJoint: {fileID: 8186893120393588473}
+  _connectorJoint: {fileID: 1568107044150813158}
+  _tipJoint: {fileID: 8366476443605276771}
+--- !u!114 &8186893120393588473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025919441399375324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 100
 --- !u!1 &7397340213721973956 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3638193520734090830, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -10217,7 +10355,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.121470064, y: 0.00009893621, z: -0.022166284}
+  m_ConnectedAnchor: {x: -0.121470064, y: 0.00009905542, z: -0.02216629}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -10301,23 +10439,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1780259215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8132178924850839704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: LeftRing1
 --- !u!114 &1989212716316176870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10388,6 +10509,52 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &3863274477321374498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132178924850839704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8572cc7dc0494a0c9e9ecd082dfb608b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAvatar: {fileID: 3110346869223933058}
+  slot: LeftRing
+  mode: 1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 0}
+  connectorJoint: {fileID: 0}
+  tipJoint: {fileID: 0}
+  setTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  getTarget:
+    pose:
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+  showSettings: 0
+  _knuckleJoint: {fileID: 8629729623072903377}
+  _connectorJoint: {fileID: 1968314082554400563}
+  _tipJoint: {fileID: 2415541602064026928}
+--- !u!114 &8629729623072903377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132178924850839704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 100
 --- !u!1 &8150974969124571084 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6499889929296628410, guid: 07c46d6dd7bcdd8469249226200bb260,
@@ -10655,7 +10822,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.03307313, y: 0.00000010427492, z: -0.00000019946883}
+  m_ConnectedAnchor: {x: 0.03307313, y: 0.0000002759403, z: -0.00000020317553}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -10739,23 +10906,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &859497439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8179710455920043799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3e0ddd995d66b4399eca985bcd2df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0, w: 1}
-  springConstant: 50
-  targetAvatar: {fileID: 3110346869223933058}
-  targetJoint: RightRing3
 --- !u!114 &956124047629700964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10798,6 +10948,21 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &2915635597521917821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179710455920043799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d4fcddbf4c47819f8e8182a4971bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0, w: 1}
+  springConstant: 50
 --- !u!114 &4423766021175419279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11343,17 +11508,17 @@ PrefabInstance:
     - target: {fileID: 6261229132785056361, guid: 7de104e1121fce14b9865852ce23e30d,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.27614462
+      value: 0.007999986
       objectReference: {fileID: 0}
     - target: {fileID: 6261229132785056361, guid: 7de104e1121fce14b9865852ce23e30d,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.00000019346986
+      value: -0.00000007427834
       objectReference: {fileID: 0}
     - target: {fileID: 6261229132785056361, guid: 7de104e1121fce14b9865852ce23e30d,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.00000015726667
+      value: 2.1605027e-10
       objectReference: {fileID: 0}
     - target: {fileID: 6261229132785056361, guid: 7de104e1121fce14b9865852ce23e30d,
         type: 3}

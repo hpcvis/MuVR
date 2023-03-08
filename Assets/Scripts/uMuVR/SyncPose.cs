@@ -204,7 +204,7 @@ namespace uMuVR {
 		/// Function which displays the target avatar GUI for the provided SyncPose
 		/// </summary>
 		/// <param name="sync">The SyncPose to display a GUI for</param>
-		public void TargetAvatarField(SyncPose sync) {
+		public void TargetAvatarField(ISyncable sync) {
 			// Field for the TargetAvatar
 			EditorGUILayout.PropertyField(targetAvatar, new GUIContent("Target Avatar") {
 				tooltip = "UserAvatar we are syncing with.\nNOTE: Drag the prefab with the UserAvatar here when modifying the input prefab."

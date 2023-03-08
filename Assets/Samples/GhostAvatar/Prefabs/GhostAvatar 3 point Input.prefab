@@ -3344,57 +3344,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05349bcf22b9a2b4ba2802b394363f9c, type: 3}
+--- !u!4 &8394105945 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5179037522314285833, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &19835567546973549 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5159396164393208381, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &26461258191559115 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5152576959174471323, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &41908465849303286 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5137270895406102438, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1203806734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 26461258191559115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightRing3
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
 --- !u!1 &72449745991237188 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5106738409489713428, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1179617218
+--- !u!114 &4399715380081534251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3403,20 +3377,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 72449745991237188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
+  m_Script: {fileID: 11500000, guid: edb0da0c16d0423bbc41b4c210163106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftRing1
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
+    type: 3}
+  slot: LeftRing
   mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 8394105945}
+  connectorJoint: {fileID: 442916081254768336}
+  tipJoint: {fileID: 2612732023398315331}
   setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -3426,9 +3397,33 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 0
+--- !u!4 &437317394160628336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4741739502814266656, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &442916081254768336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4754164009796249984, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &542484164260746771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4636712376327790915, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &705895555172049139 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5626257531051120547, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1075319871350589698 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5274821924652908114, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
@@ -3438,7 +3433,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1630023325
+--- !u!114 &4751672854497689508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3447,20 +3442,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1178603400357878528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
+  m_Script: {fileID: 11500000, guid: edb0da0c16d0423bbc41b4c210163106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftPinky1
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
+    type: 3}
+  slot: LeftPinky
   mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 1922212099771059471}
+  connectorJoint: {fileID: 4717547710548863535}
+  tipJoint: {fileID: 437317394160628336}
   setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -3476,7 +3468,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &76867831
+--- !u!114 &1279651225534165074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3485,20 +3477,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1232810917291642236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
+  m_Script: {fileID: 11500000, guid: edb0da0c16d0423bbc41b4c210163106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightThumb1
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
+    type: 3}
+  slot: RightThumb
   mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 3957416945694494063}
+  connectorJoint: {fileID: 705895555172049139}
+  tipJoint: {fileID: 8772960044752278777}
   setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -3508,6 +3497,30 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 0
+--- !u!4 &1712465955016068151 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5772565344422689639, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1922212099771059471 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6733640751435643487, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2243149028090214689 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6412816932951674481, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2425843292456634858 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7383071807278022330, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2470934769594471000 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7319797704483317000, guid: 05349bcf22b9a2b4ba2802b394363f9c,
@@ -3529,120 +3542,48 @@ MonoBehaviour:
   physicsBone: {fileID: 0}
   ghostBone: {fileID: 542484164260746771}
   distanceThreshold: 0.1
---- !u!1 &2766983537663825941 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7041923307153387333, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &2519367978697249084 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7289415721079793260, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1761736828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2766983537663825941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftPinky2
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
---- !u!1 &3049724152162378198 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7894081013657425542, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &2612732023398315331 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7178151493941592595, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1037301119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3049724152162378198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightThumb3
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 0
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 1
---- !u!1 &3308397059326784309 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7653421950684562533, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &2789549331659903781 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7019382803794093173, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1312066354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!4 &2791841595203645779 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7016957922942928387, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3308397059326784309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftIndex2
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
+--- !u!4 &3436382318445328250 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7525471740654796842, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3748287483667538211 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8348324287524787827, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3957416945694494063 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8157200421473942079, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3980484108342869233 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8134105773727320993, guid: 05349bcf22b9a2b4ba2802b394363f9c,
@@ -3655,89 +3596,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2285bc0022316448ac5c40fd488b38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &4087344765684363421 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9180175826439538637, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &4151530057322171726 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9097994422115514910, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1320042086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4087344765684363421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftThumb3
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
---- !u!1 &4112808940683676139 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9136680899841490619, guid: 05349bcf22b9a2b4ba2802b394363f9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5179037515128354640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &760680264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4112808940683676139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightRing2
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
 --- !u!1 &4377243547638466577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8890304669725310785, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2102153635
+--- !u!114 &4123074766534519238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3746,96 +3617,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4377243547638466577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
+  m_Script: {fileID: 11500000, guid: edb0da0c16d0423bbc41b4c210163106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightIndex1
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
---- !u!1 &4494900104428519727 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8772648111592027775, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
     type: 3}
-  m_PrefabInstance: {fileID: 5179037515128354640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &702510789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494900104428519727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightMiddle2
+  slot: RightIndex
   mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
---- !u!1 &4535236254694763081 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8732416414384151833, guid: 05349bcf22b9a2b4ba2802b394363f9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5179037515128354640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1525032247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4535236254694763081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightPinky3
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 41908465849303286}
+  connectorJoint: {fileID: 3436382318445328250}
+  tipJoint: {fileID: 6641108606120627344}
   setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -3851,51 +3643,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4814649475402980851 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 364423364230507171, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &4717547710548863535 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 479558094462737791, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1108783906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4814649475402980851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftRing3
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
 --- !u!1 &4946944863267482240 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 250151035130469840, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &449642575
+--- !u!114 &5633519717314761197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3904,20 +3664,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4946944863267482240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
+  m_Script: {fileID: 11500000, guid: edb0da0c16d0423bbc41b4c210163106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightRing1
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
+    type: 3}
+  slot: RightRing
   mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 4151530057322171726}
+  connectorJoint: {fileID: 2519367978697249084}
+  tipJoint: {fileID: 2243149028090214689}
   setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -3945,89 +3702,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5268544366627711534 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1063414790549888382, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &6192931709768760260 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1310008431035370644, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &698048506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5268544366627711534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightPinky2
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
---- !u!1 &6087774043267990374 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1415182596395021366, guid: 05349bcf22b9a2b4ba2802b394363f9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5179037515128354640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1139214142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6087774043267990374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightThumb2
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 0
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 1
 --- !u!1 &6252172453560371083 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1232735701122379995, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &147840489
+--- !u!114 &2466918543417157696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4036,20 +3723,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6252172453560371083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
+  m_Script: {fileID: 11500000, guid: edb0da0c16d0423bbc41b4c210163106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightPinky1
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
+    type: 3}
+  slot: RightPinky
   mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 6259447990399488432}
+  connectorJoint: {fileID: 6264347380963948869}
+  tipJoint: {fileID: 8538829025260994085}
   setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -4059,44 +3743,18 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 0
---- !u!1 &6287494630078710158 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1197403499871155934, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &6259447990399488432 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1225442983607723744, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2069516322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!4 &6264347380963948869 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1238716323633335829, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6287494630078710158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightIndex2
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
 --- !u!1 &6316526087740767629 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1186535965450242781, guid: 05349bcf22b9a2b4ba2802b394363f9c,
@@ -4130,6 +3788,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &6641108606120627344 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2014892688007609280, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6716868694380474206 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1939010004209686542, guid: 05349bcf22b9a2b4ba2802b394363f9c,
@@ -4157,7 +3821,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1973425739
+--- !u!114 &2091211388662180854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4166,58 +3830,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6762622029286867206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
+  m_Script: {fileID: 11500000, guid: edb0da0c16d0423bbc41b4c210163106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftThumb1
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 0
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 1
---- !u!1 &7032061516519985477 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2758812796974786069, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
     type: 3}
-  m_PrefabInstance: {fileID: 5179037515128354640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &478086020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7032061516519985477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftRing2
+  slot: LeftThumb
   mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 3748287483667538211}
+  connectorJoint: {fileID: 7933498183925564982}
+  tipJoint: {fileID: 2791841595203645779}
   setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -4227,6 +3850,12 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 0
+--- !u!4 &6888262377388334517 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1749548454911077093, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7150209437711268110 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2658538540291935838, guid: 05349bcf22b9a2b4ba2802b394363f9c,
@@ -4266,47 +3895,27 @@ MonoBehaviour:
   physicsBone: {fileID: 0}
   ghostBone: {fileID: 8901845191663239042}
   distanceThreshold: 0.1
---- !u!1 &7524314456534201729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3437406568628028113, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &7515459648259659884 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3428336171181748028, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &306023696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!4 &7559651721873598109 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3402157386366423501, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7524314456534201729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightMiddle3
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
 --- !u!4 &7762324863658728573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3199511184217353005, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7933498183925564982 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3010324017882247526, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
@@ -4322,7 +3931,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &521833163
+--- !u!114 &5312598164930010998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4331,20 +3940,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8036694050875536177}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
+  m_Script: {fileID: 11500000, guid: edb0da0c16d0423bbc41b4c210163106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftMiddle1
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
+    type: 3}
+  slot: LeftMiddle
   mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 6192931709768760260}
+  connectorJoint: {fileID: 7559651721873598109}
+  tipJoint: {fileID: 7515459648259659884}
   setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -4354,237 +3960,27 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
   showSettings: 0
---- !u!1 &8178591587866598977 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3918011389656754449, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &8538829025260994085 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3557739166787455349, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1115791263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8178591587866598977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftMiddle3
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
---- !u!1 &8209224803763725627 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3905365627783352939, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+--- !u!4 &8772960044752278777 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4494719438343513001, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1439186583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8209224803763725627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftIndex3
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
---- !u!1 &8323976137301458898 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3772634538674210946, guid: 05349bcf22b9a2b4ba2802b394363f9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5179037515128354640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1467787375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323976137301458898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftPinky3
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
---- !u!1 &8621201838949632233 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3493397253667438521, guid: 05349bcf22b9a2b4ba2802b394363f9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5179037515128354640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1250104551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8621201838949632233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftThumb2
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 0
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 1
---- !u!1 &8760937666581190923 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4488603722419334747, guid: 05349bcf22b9a2b4ba2802b394363f9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5179037515128354640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1427255680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8760937666581190923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftMiddle2
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
---- !u!1 &8884535701664000353 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4364996342025608753, guid: 05349bcf22b9a2b4ba2802b394363f9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5179037515128354640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1583786026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8884535701664000353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightIndex3
-  mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
-  setTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  getTarget:
-    pose:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-  showSettings: 0
 --- !u!4 &8901845191663239042 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4347686849334905042, guid: 05349bcf22b9a2b4ba2802b394363f9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179037515128354640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8906697869573482916 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4342967214475992820, guid: 05349bcf22b9a2b4ba2802b394363f9c,
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
@@ -4594,7 +3990,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1538884102
+--- !u!114 &4289524304810907048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4603,20 +3999,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8998209118779880053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
+  m_Script: {fileID: 11500000, guid: edb0da0c16d0423bbc41b4c210163106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: RightMiddle1
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
+    type: 3}
+  slot: RightMiddle
   mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 1712465955016068151}
+  connectorJoint: {fileID: 2789549331659903781}
+  tipJoint: {fileID: 2425843292456634858}
   setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}
@@ -4632,7 +4025,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5179037515128354640}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &65942910
+--- !u!114 &9206464436613345921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4641,20 +4034,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 9028066327189119996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7e09aa71e791a4a8197bf363b9db7c, type: 3}
+  m_Script: {fileID: 11500000, guid: edb0da0c16d0423bbc41b4c210163106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAvatar: {fileID: 0}
-  slot: LeftIndex1
+  targetAvatar: {fileID: 3110346869223933058, guid: 29b42dede8f4cde4c80efd988ff927ab,
+    type: 3}
+  slot: LeftIndex
   mode: 0
-  localOffset:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  globalPositionOffset: {x: 0, y: 0, z: 0}
-  positionWeight: 1
-  rotationWeight: 1
-  positionAxis: -1
-  rotationAxis: -1
+  localFingerRotationAxis: 2
+  knuckleJoint: {fileID: 1075319871350589698}
+  connectorJoint: {fileID: 6888262377388334517}
+  tipJoint: {fileID: 8906697869573482916}
   setTarget:
     pose:
       position: {x: 0, y: 0, z: 0}

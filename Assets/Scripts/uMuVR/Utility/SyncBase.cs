@@ -1,4 +1,4 @@
-﻿
+
 namespace uMuVR.Utility {
 	/// <summary>
 	/// Base class that all of the different types of sync classes inherit from
