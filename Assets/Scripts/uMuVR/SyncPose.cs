@@ -75,7 +75,7 @@ namespace uMuVR {
 		/// At the end of the frame, make sure that our transform is properly synced with the pose according to the pose mode
 		/// </summary>
 		public void LateUpdate() {
-			if (mode == ISyncable.SyncMode.SyncTo) {
+			if (mode == ISyncable.SyncMode.Store) {
 				UpdatePosition(ref setTarget.pose.position, transform.position);
 				UpdateRotation(ref setTarget.pose.rotation, transform.rotation);
 			} else {
@@ -307,7 +307,7 @@ namespace uMuVR {
 			try {
 				// Present a non-editable field with the debug pose (or an empty pose if the target is invalid)
 				if (sync.targetAvatar is null || !sync.targetAvatar.slots.ContainsKey(sync.slot)) return;
-				if(sync.mode == ISyncable.SyncMode.SyncTo) 
+				if(sync.mode == ISyncable.SyncMode.Store) 
 					PoseField("Pose Debug", sync.targetAvatar.SetterPoseRef(sync.slot).pose, ref showTarget, false);
 				else PoseField("Pose Debug", sync.targetAvatar.GetterPoseRef(sync.slot).pose, ref showTarget, false);
 			} catch(NullReferenceException) {}

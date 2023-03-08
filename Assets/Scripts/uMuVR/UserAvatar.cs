@@ -71,7 +71,7 @@ namespace uMuVR {
 			// Configure the sync pose to reference the appropriate slot
 			sp.targetAvatar = this;
 			sp.slot = slot;
-			sp.mode = ISyncable.SyncMode.SyncFrom;
+			sp.mode = ISyncable.SyncMode.Load;
 
 			// Return the transform of that newly created proxy object
 			return sp.transform;

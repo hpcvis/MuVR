@@ -9,8 +9,11 @@ namespace uMuVR.Utility {
 		/// Enum setting weather we should be sending our transform to the pose, or reading our transform from the pose
 		/// </summary>
 		public enum SyncMode {
-			SyncTo,
-			SyncFrom
+			Store,
+			SyncTo = Store,
+			
+			Load,
+			SyncFrom = Load,
 		}
 		
 		public bool enabled { set; get; }

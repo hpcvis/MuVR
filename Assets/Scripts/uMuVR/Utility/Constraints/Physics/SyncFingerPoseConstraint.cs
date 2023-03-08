@@ -11,7 +11,7 @@ namespace uMuVR.Utility.Constraints {
 		/// When the game starts create a proxy finger, and set each joint of the proxy finger as a target for a joint!
 		/// </summary>
 		protected new void Start() {
-			mode = ISyncable.SyncMode.SyncFrom;
+			mode = ISyncable.SyncMode.Load;
 			base.Start();
 
 			if (string.IsNullOrEmpty(slot)) return;
